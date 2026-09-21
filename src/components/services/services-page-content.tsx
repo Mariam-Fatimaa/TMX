@@ -12,7 +12,7 @@ export default function ServicesPageContent() {
       {/* <ServicesList /> */}
       <DetailedServiceSections />
       <ServicesProcess />
-      <ServicesTech />
+      {/* <ServicesTech /> */}
       <ServicesCTA />
     </main>
   );
