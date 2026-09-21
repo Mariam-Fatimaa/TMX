@@ -72,32 +72,31 @@ export default function ServicesProcess() {
     steps.length > 1 ? (activeStep / (steps.length - 1)) * 100 : 0;
 
   return (
-  <section className="px-5 pb-14 pt-12 md:px-8 md:pb-20 md:pt-16 lg:px-12 xl:px-16">
-    <div className="mx-auto max-w-[1440px]">
-
-      {/* Header */}
-      <div>
-        <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.18em] text-neutral-500 md:mb-4 md:text-[12px]">
-          Our process
-        </p>
-
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-8">
-          <h2 className="max-w-[850px] text-[40px] font-medium leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-            A clear path from
-            <br />
-            idea to launch.
-          </h2>
-
-          <p className="max-w-[390px] text-[14px] leading-[1.7] text-neutral-500 md:text-[15px]">
-            Every project follows a flexible process designed to keep
-            decisions clear and progress visible.
+    <section className="px-5 md:px-8 lg:px-12 xl:px-16">
+        <div className="mx-auto max-w-[1440px] pb-14 pt-12 md:pb-20 md:pt-16">
+        {/* Header */}
+        <div>
+          <p className="mb-4 text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
+            Our process
           </p>
+
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
+            <h2 className="max-w-[850px] text-[40px] font-medium leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">
+              A clear path from
+              <br />
+              idea to launch.
+            </h2>
+
+            <p className="max-w-[390px] text-[14px] leading-[1.7] text-neutral-500 md:text-[15px]">
+              Every project follows a flexible process designed to keep
+              decisions clear and progress visible.
+            </p>
+          </div>
         </div>
-      </div>
-      
+
         {/* Process */}
         <div className="relative mt-10 md:mt-14">
-          {/* Desktop Journey Line */}
+          {/* Journey line */}
           <div className="absolute bottom-0 left-[15px] top-0 hidden w-px bg-black/10 md:block">
             <motion.div
               className="absolute left-0 top-0 w-px bg-black"
@@ -111,7 +110,6 @@ export default function ServicesProcess() {
             />
           </div>
 
-          {/* Steps */}
           <div className="border-b border-black/10">
             {steps.map((step, index) => {
               const isActive = activeStep === index;
@@ -134,19 +132,17 @@ export default function ServicesProcess() {
                   className={`
                     relative
                     grid
-                    min-h-[138px]
                     gap-4
                     border-t
                     border-black/10
-                    py-6
+                    py-7
                     transition-all
                     duration-500
 
-                    md:min-h-[158px]
                     md:grid-cols-[80px_1fr_1fr]
                     md:items-center
                     md:gap-6
-                    md:py-9
+                    md:py-10
 
                     ${
                       isActive
@@ -157,7 +153,6 @@ export default function ServicesProcess() {
                     }
                   `}
                 >
-                  {/* Number / marker */}
                   <div className="relative flex items-center gap-3 md:block">
                     <motion.div
                       animate={{
@@ -173,7 +168,6 @@ export default function ServicesProcess() {
                         w-2.5
                         shrink-0
                         rounded-full
-
                         md:absolute
                         md:left-[11px]
                         md:top-1/2
@@ -187,7 +181,6 @@ export default function ServicesProcess() {
                         font-medium
                         transition-colors
                         duration-500
-
                         md:pl-10
                         md:text-[12px]
 
@@ -202,7 +195,6 @@ export default function ServicesProcess() {
                     </span>
                   </div>
 
-                  {/* Title */}
                   <motion.h3
                     animate={{
                       x: isActive ? 5 : 0,
@@ -218,7 +210,6 @@ export default function ServicesProcess() {
                       tracking-[-0.035em]
                       transition-colors
                       duration-500
-
                       md:text-4xl
 
                       ${
@@ -231,7 +222,6 @@ export default function ServicesProcess() {
                     {step.title}
                   </motion.h3>
 
-                  {/* Description */}
                   <motion.p
                     animate={{
                       x: isActive ? 5 : 0,
@@ -246,7 +236,6 @@ export default function ServicesProcess() {
                       leading-[1.65]
                       transition-colors
                       duration-500
-
                       md:text-[15px]
 
                       ${

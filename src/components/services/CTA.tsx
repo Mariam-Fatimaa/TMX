@@ -3,9 +3,8 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function ServicesCTA() {
   return (
-    <section className="px-5 pb-28 pt-24 md:px-8 lg:px-12 xl:px-16">
-      <div className="mx-auto max-w-[1440px] border-t border-black/10 pt-10">
-
+    <section className="px-5 md:px-8 lg:px-12 xl:px-16">
+      <div className="mx-auto max-w-[1440px] pb-20 pt-12 md:pb-28 md:pt-16">
         <p className="mb-5 text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
           Start a project
         </p>
@@ -58,7 +57,6 @@ export default function ServicesCTA() {
             </Link>
           </div>
         </div>
-
       </div>
     </section>
   );

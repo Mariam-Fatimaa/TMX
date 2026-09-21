@@ -33,10 +33,9 @@ const services = [
 
 export default function ServicesList() {
   return (
-    <section className="px-5 py-20 md:px-8 lg:px-12 xl:px-16">
-      <div className="mx-auto max-w-[1440px]">
-
-        <div className="mb-10">
+    <section className="px-5 md:px-8 lg:px-12 xl:px-16">
+      <div className="mx-auto max-w-[1440px] border-t border-black/10 py-14 md:py-20">
+        <div className="mb-10 md:mb-12">
           <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
             What we do
           </p>
@@ -46,7 +45,17 @@ export default function ServicesList() {
           {services.map((service) => (
             <div
               key={service.number}
-              className="grid gap-6 border-t border-black/10 py-8 md:grid-cols-[80px_1fr_1fr] md:items-start md:py-10"
+              className="
+                grid
+                gap-5
+                border-t
+                border-black/10
+                py-7
+                md:grid-cols-[80px_1fr_1fr]
+                md:items-start
+                md:gap-6
+                md:py-10
+              "
             >
               <span className="text-[12px] font-medium text-neutral-400">
                 {service.number}
@@ -62,7 +71,6 @@ export default function ServicesList() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

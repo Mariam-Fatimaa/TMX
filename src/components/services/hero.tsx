@@ -5,8 +5,7 @@ import { motion } from "motion/react";
 export default function ServicesHero() {
   return (
     <section className="px-5 pt-40 md:px-8 lg:px-12 xl:px-16">
-      <div className="mx-auto max-w-[1440px] border-b border-black/10 pb-12">
-
+      <div className="mx-auto max-w-[1440px] pb-16 md:pb-20">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,7 +67,6 @@ export default function ServicesHero() {
             Strategy · Design · Development
           </p>
         </motion.div>
-
       </div>
     </section>
   );

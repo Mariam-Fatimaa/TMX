@@ -91,12 +91,12 @@ const services = [
 
 export default function DetailedServiceSections() {
   return (
-    <section className="px-5 pb-24 pt-14 md:px-8 md:pb-28 md:pt-18 lg:px-12 xl:px-16">
-      <div className="mx-auto max-w-[1440px]">
-
+    <section className="px-5 md:px-8 lg:px-12 xl:px-16">
+      <div className="mx-auto max-w-[1440px] border-t border-black/10 pt-14 md:pt-20">
+        
         {/* Section Intro */}
-        <div className="mb-16">
-          <div className="grid gap-8 md:grid-cols-[0.42fr_1fr] md:items-end">
+        <div className="mb-12 md:mb-16">
+          <div className="grid gap-6 md:grid-cols-[0.42fr_1fr] md:items-end md:gap-8">
             <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
               What we do
             </p>
@@ -123,10 +123,10 @@ export default function DetailedServiceSections() {
           {services.map((service) => (
             <article
               key={service.number}
-              className="border-t border-black/10 py-12 md:py-16"
+              className="border-t border-black/10 py-10 md:py-14"
             >
               {/* Main title */}
-              <div className="grid gap-6 md:grid-cols-[80px_1fr]">
+              <div className="grid gap-5 md:grid-cols-[80px_1fr] md:gap-6">
                 <span className="pt-1 text-[12px] font-medium text-neutral-400">
                   {service.number}
                 </span>
@@ -147,8 +147,8 @@ export default function DetailedServiceSections() {
               </div>
 
               {/* Content */}
-              <div className="mt-9 grid gap-10 md:ml-[80px] md:grid-cols-[1.05fr_0.95fr] md:gap-20">
-
+              <div className="mt-8 grid gap-8 md:ml-[80px] md:mt-9 md:grid-cols-[1.05fr_0.95fr] md:gap-16 lg:gap-20">
+                
                 {/* Left */}
                 <div>
                   <h4
@@ -164,14 +164,14 @@ export default function DetailedServiceSections() {
                     {service.statement}
                   </h4>
 
-                  <p className="mt-5 max-w-[580px] text-[15px] leading-[1.8] text-neutral-600">
+                  <p className="mt-4 max-w-[580px] text-[15px] leading-[1.8] text-neutral-600 md:mt-5">
                     {service.description}
                   </p>
                 </div>
 
                 {/* Right */}
                 <div>
-                  <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.16em] text-neutral-400">
+                  <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.16em] text-neutral-400 md:mb-5">
                     Capabilities
                   </p>
 
@@ -199,12 +199,10 @@ export default function DetailedServiceSections() {
                     ))}
                   </div>
                 </div>
-
               </div>
             </article>
           ))}
         </div>
-
       </div>
     </section>
   );
