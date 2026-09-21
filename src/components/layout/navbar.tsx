@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight} from "lucide-react";
 import Image from "next/image";
 
 const navItems = [
@@ -94,7 +94,10 @@ export default function Navbar() {
               href="/contact"
               className="hidden rounded-full bg-black px-5 py-2.5 text-[13px] font-medium text-white transition-transform duration-200 hover:scale-[1.02] md:block"
             >
-              Start a project ↗
+              <span className="flex items-center gap-1.5">
+  Start a project
+  <ArrowUpRight size={14} strokeWidth={1.8} />
+</span>
             </Link>
 
             <button
@@ -156,7 +159,7 @@ export default function Navbar() {
               className="mt-1 flex items-center justify-between rounded-[16px] bg-black px-4 py-4 text-[15px] font-medium text-white"
             >
               Start a project
-              <span>↗</span>
+              <ArrowUpRight size={17} strokeWidth={1.8} />
             </Link>
           </div>
         </div>
