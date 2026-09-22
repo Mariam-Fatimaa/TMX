@@ -1,13 +1,16 @@
-import Container from "@/components/layout/container";
-
-export default function ServicesPage() {
+import AboutHero from "@/components/about/hero";
+import WhoWeAre from "@/components/about/who-we-are";
+import Philosophy from "@/components/about/tmx-philosophy";
+import Principles from "@/components/about/principles";
+import AboutCTA from "@/components/about/cta";
+export default function AboutPage() {
   return (
-    <Container>
-      <section className="py-32">
-        <h1 className="text-6xl font-medium tracking-tight">
-          About
-        </h1>
-      </section>
-    </Container>
+    <>
+      <AboutHero />
+      <WhoWeAre />
+      <Philosophy />
+      <Principles />
+      <AboutCTA />
+    </>
   );
 }

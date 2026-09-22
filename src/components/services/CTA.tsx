@@ -5,7 +5,7 @@ export default function ServicesCTA() {
   return (
     // cta.tsx
     <section className="px-5 py-20 md:px-8 md:py-24 lg:px-12 xl:px-16">
-      <div className="mb-10 border-t border-black/10 pt-8">
+      <div>
         <p className="mb-5 text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
           Start a project
         </p>

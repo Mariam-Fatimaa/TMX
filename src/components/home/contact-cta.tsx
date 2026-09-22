@@ -3,9 +3,9 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function ContactCTA() {
   return (
-    <section className="px-5 py-28 md:px-8 md:py-36 lg:px-12 xl:px-16">
+    <section className="px-5 pt-8 pb-28 md:px-8 md:pt-8 md:pb-24 lg:px-12 xl:px-16">
       <div className="mx-auto max-w-[1440px]">
-        <div className="border-t border-black/10 pt-10">
+        <div>
 
           <p className="mb-6 text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
             Start a project
