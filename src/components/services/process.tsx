@@ -72,8 +72,9 @@ export default function ServicesProcess() {
     steps.length > 1 ? (activeStep / (steps.length - 1)) * 100 : 0;
 
   return (
-    <section className="px-5 md:px-8 lg:px-12 xl:px-16">
-        <div className="mx-auto max-w-[1440px] pb-14 pt-12 md:pb-20 md:pt-16">
+    // process.tsx
+    <section className="px-5 py-16 md:px-8 md:py-20 lg:px-12 xl:px-16">
+      <div className="mx-auto max-w-[1440px]">
         {/* Header */}
         <div>
           <p className="mb-4 text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
@@ -95,7 +96,7 @@ export default function ServicesProcess() {
         </div>
 
         {/* Process */}
-        <div className="relative mt-10 md:mt-14">
+        <div className="relative mt-8 md:mt-10">
           {/* Journey line */}
           <div className="absolute bottom-0 left-[15px] top-0 hidden w-px bg-black/10 md:block">
             <motion.div
@@ -144,10 +145,9 @@ export default function ServicesProcess() {
                     md:gap-6
                     md:py-10
 
-                    ${
-                      isActive
-                        ? "opacity-100"
-                        : isPassed
+                    ${isActive
+                      ? "opacity-100"
+                      : isPassed
                         ? "opacity-60"
                         : "opacity-35"
                     }
@@ -184,10 +184,9 @@ export default function ServicesProcess() {
                         md:pl-10
                         md:text-[12px]
 
-                        ${
-                          isActive
-                            ? "text-black"
-                            : "text-neutral-400"
+                        ${isActive
+                          ? "text-black"
+                          : "text-neutral-400"
                         }
                       `}
                     >
@@ -212,10 +211,9 @@ export default function ServicesProcess() {
                       duration-500
                       md:text-4xl
 
-                      ${
-                        isActive
-                          ? "text-black"
-                          : "text-neutral-500"
+                      ${isActive
+                        ? "text-black"
+                        : "text-neutral-500"
                       }
                     `}
                   >
@@ -238,10 +236,9 @@ export default function ServicesProcess() {
                       duration-500
                       md:text-[15px]
 
-                      ${
-                        isActive
-                          ? "text-neutral-700"
-                          : "text-neutral-400"
+                      ${isActive
+                        ? "text-neutral-700"
+                        : "text-neutral-400"
                       }
                     `}
                   >

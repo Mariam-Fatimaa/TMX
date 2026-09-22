@@ -47,7 +47,8 @@ const techGroups = [
 
 export default function ServicesTech() {
   return (
-    <section className="px-5 py-24 md:px-8 lg:px-12 xl:px-16">
+    // tech.tsx
+    <section className="px-5 py-20 md:px-8 md:py-24 lg:px-12 xl:px-16">
       <div className="mx-auto max-w-[1440px]">
 
         {/* Header */}

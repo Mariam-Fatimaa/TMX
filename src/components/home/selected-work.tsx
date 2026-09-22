@@ -33,7 +33,7 @@ export default function SelectedWork() {
         <div className="mb-12 flex flex-col gap-6 border-t border-black/10 pt-8 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="mb-3 text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
-              Selected Work
+              Featured Work
             </p>
 
             <h2 className="max-w-[760px] text-4xl font-medium tracking-[-0.045em] md:text-6xl">

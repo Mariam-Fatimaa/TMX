@@ -33,7 +33,7 @@ const services = [
 
 export default function ServicesList() {
   return (
-    <section className="px-5 md:px-8 lg:px-12 xl:px-16">
+    <section className="px-5 py-28 md:px-8 md:py-36 lg:px-12 xl:px-16">
       <div className="mx-auto max-w-[1440px] border-t border-black/10 py-14 md:py-20">
         <div className="mb-10 md:mb-12">
           <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
