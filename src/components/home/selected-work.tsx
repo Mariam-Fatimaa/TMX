@@ -1,36 +1,37 @@
+
 import Link from "next/link";
 
 const projects = [
   {
-    title: "FitLayer",
-    category: "AI / Fashion Tech",
+    title: "Plinth",
+    category: "Real Estate / Web Development",
     year: "2026",
-    image: "/images/projects/fitlayer-cover.jpg",
-    href: "/work/fitlayer",
+    image: "/Images/projects/plinth.png",
+    href: "/demos/plinth.html",
   },
   {
-    title: "BYLT",
-    category: "Construction Technology",
+    title: "AUREL",
+    category: "Jewellery / E-Commerce Development",
     year: "2026",
-    image: "/images/projects/bylt-cover.jpg",
-    href: "/work/bylt",
+    image: "/Images/projects/aurel-jewellery.png",
+    href: "/demos/aurel-jewellery.html",
   },
   {
-    title: "Commerce Platform",
-    category: "E-Commerce",
+    title: "Atelier Noor",
+    category: "Web Development",
     year: "2026",
-    image: "/images/projects/ecommerce-cover.jpg",
-    href: "/work/ecommerce-platform",
+    image: "/Images/projects/atelier-noor.png",
+    href: "/demos/atelier-noor.html",
   },
 ];
 
 export default function SelectedWork() {
   return (
-    <section className="px-5 py-28 md:px-8 lg:px-12 xl:px-16">
+    <section className="px-5 py-20 md:px-8 lg:px-12 xl:px-16">
       <div className="mx-auto max-w-[1440px]">
 
-        {/* Header */}
-        <div className="mb-12 flex flex-col gap-6 border-t border-black/10 pt-8 md:flex-row md:items-end md:justify-between">
+        {/* Section Header */}
+        <div className="mb-10 flex flex-col gap-6 border-t border-black/10 pt-8 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="mb-3 text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
               Featured Work
@@ -51,67 +52,84 @@ export default function SelectedWork() {
           </Link>
         </div>
 
-        {/* Large featured project */}
-        <Link href={projects[0].href} className="group block">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-[24px] bg-neutral-200">
 
-            <img
-              src={projects[0].image}
-              alt={projects[0].title}
-              className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.025]"
-            />
+        {/* Three Equal Project Cards */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <Link
+              key={project.title}
+              href={project.href}
+              className="group block"
+            >
+              <div
+                className="
+          relative aspect-[4/5]
+          overflow-hidden rounded-[20px]
+          bg-[#F1F0ED]
+          p-[6px] md:p-[8px]
+        "
+              >
+                {/* Image Container */}
+                <div className="relative h-full w-full overflow-hidden rounded-[14px]">
 
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/45 to-transparent p-6 text-white md:p-8">
-              <div>
-                <p className="text-[13px] text-white/75">
-                  {projects[0].category}
-                </p>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="
+              h-full w-full
+              object-cover object-top
+              transition-transform duration-[900ms]
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+              group-hover:scale-[1.02]
+            "
+                  />
 
-                <h3 className="mt-2 text-3xl font-medium tracking-[-0.04em] md:text-5xl">
-                  {projects[0].title}
-                </h3>
-              </div>
+                  {/* Subtle Glass Overlay on Hover */}
+                  <div
+                    className="
+              absolute inset-x-3 bottom-3
+              rounded-[12px]
+              border border-white/20
+              bg-black/30
+              p-4 text-white
+              backdrop-blur-lg
+              translate-y-3 opacity-0
+              transition-all duration-500
+              group-hover:translate-y-0
+              group-hover:opacity-100
+              group-focus-visible:translate-y-0
+              group-focus-visible:opacity-100
+              max-md:translate-y-0
+              max-md:opacity-100
+            "
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h3 className="text-xl font-medium tracking-[-0.03em]">
+                          {project.title}
+                        </h3>
 
-              <p className="text-[13px] text-white/75">
-                {projects[0].year}
-              </p>
-            </div>
-          </div>
-        </Link>
+                        <p className="mt-1 text-[12px] text-white/80">
+                          {project.category}
+                        </p>
+                      </div>
 
-        {/* Smaller project grid */}
-        <div className="mt-8 grid gap-8 md:grid-cols-2">
-          {projects.slice(1).map((project) => (
-            <Link key={project.title} href={project.href} className="group block">
+                      <span className="text-[12px] text-white/80">
+                        {project.year}
+                      </span>
+                    </div>
 
-              <div className="aspect-[4/3] overflow-hidden rounded-[20px] bg-neutral-200">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                />
-              </div>
+                    <div className="mt-3 flex items-center justify-between border-t border-white/20 pt-3 text-[12px]">
+                      <span>View Project</span>
+                      <span className="text-lg">↗</span>
+                    </div>
+                  </div>
 
-              <div className="mt-4 flex items-start justify-between gap-6">
-                <div>
-                  <h3 className="text-xl font-medium tracking-[-0.03em]">
-                    {project.title}
-                  </h3>
-
-                  <p className="mt-1 text-sm text-neutral-500">
-                    {project.category}
-                  </p>
                 </div>
-
-                <p className="text-sm text-neutral-400">
-                  {project.year}
-                </p>
               </div>
-
             </Link>
           ))}
         </div>
-
       </div>
     </section>
   );

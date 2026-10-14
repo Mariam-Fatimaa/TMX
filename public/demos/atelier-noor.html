@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier Noor — Architecture & Interiors | Concept by TMX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600&family=Inter:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F0E9;--ink:#2A2424;--mut:#756E6B;--fog:#DED5CD;--paper:#EBE3D9;--acc:#813F4A;--inv:#4B252F;--invt:#F7F1EA;--btn:#4B252F;--btnt:#FCF8F2;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#211A1D;--ink:#F1E9E1;--mut:#B8A9A5;--fog:#49383C;--paper:#30242A;--acc:#D6A09C;--inv:#4B252F;--btn:#F1E9E1;--btnt:#211A1D}}
+:root[data-theme="dark"]{--bg:#211A1D;--ink:#F1E9E1;--mut:#B8A9A5;--fog:#49383C;--paper:#30242A;--acc:#D6A09C;--inv:#4B252F;--btn:#F1E9E1;--btnt:#211A1D}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Schibsted Grotesk',Inter,sans-serif;font-weight:600;letter-spacing:-.04em;line-height:.98}
+.mono{font-family:'DM Mono',ui-monospace,monospace;font-size:13px;letter-spacing:.01em}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1320px;margin:0 auto;padding:0 28px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:12px 22px;background:var(--btn);color:var(--btnt);border:1px solid var(--btn);cursor:pointer;font-weight:500;font-size:15px;transition:opacity .2s,transform .2s}
+.pill:hover{opacity:.85}.pill:active{transform:scale(.97)}
+.pill.ghost{background:transparent;color:inherit;border-color:currentColor}
+nav{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:600 21px 'Schibsted Grotesk';letter-spacing:-.04em;display:flex;align-items:center;gap:8px}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.links{display:flex;gap:30px;font-size:14px;color:var(--mut)}.links a:hover{color:var(--ink)}
+/* hero */
+.hero{position:relative;border-radius:28px;overflow:hidden;height:min(80vh,740px);min-height:480px;background:#271E21;color:#FAF5EF;margin-top:4px}
+.hero svg{position:absolute;inset:0;width:100%;height:100%}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,15,15,0) 35%,rgba(15,15,15,.72))}
+.hero .in{position:absolute;z-index:2;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);bottom:clamp(24px,4vw,48px);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.hero h1{font-size:clamp(48px,9.4vw,140px);max-width:9ch}
+.hero .side{max-width:300px;display:grid;gap:16px;justify-items:start}
+.hero .side p{opacity:.85}
+.hero .pill{background:#F8EDE5;color:#44232D;border-color:#F8EDE5}
+@media(prefers-reduced-motion:no-preference){.hero svg{clip-path:inset(0 0 100% 0);animation:wipe 1.1s cubic-bezier(.7,0,.2,1) .1s forwards}.hero .in{opacity:0;animation:fade .8s ease .8s forwards}
+@keyframes wipe{to{clip-path:inset(0)}}@keyframes fade{to{opacity:1}}}
+/* intro */
+section{padding:112px 0 0}
+.intro{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:start}
+.intro p.big{font:500 clamp(24px,3vw,40px)/1.2 'Schibsted Grotesk';letter-spacing:-.03em;max-width:24ch}
+.facts{display:grid;gap:0;border-top:1px solid var(--fog)}
+.facts div{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--fog)}
+.facts b{font:600 28px 'Schibsted Grotesk';letter-spacing:-.03em}
+.facts span{color:var(--mut);font-size:14px}
+/* work */
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.head h2{font-size:clamp(40px,6vw,88px)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--fog);background:transparent;border-radius:99px;padding:8px 16px;font-size:14px;cursor:pointer;transition:all .2s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--btn);color:var(--btnt);border-color:var(--btn)}
+.idx{list-style:none;padding:0;border-top:1px solid var(--ink)}
+.idx li{display:grid;grid-template-columns:56px 1.6fr 1fr 1fr 70px;gap:16px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--fog);cursor:pointer;transition:padding .35s cubic-bezier(.2,.7,.2,1),color .2s}
+.idx li:hover,.idx li:focus-visible{padding-left:16px}
+.idx li:hover .nm{color:var(--acc)}
+.idx .nm{font:600 clamp(24px,3.4vw,46px)/1 'Schibsted Grotesk';letter-spacing:-.04em;transition:color .2s}
+.idx .m{color:var(--mut)}
+.idx .th{display:none;grid-column:2/-1;border-radius:14px;overflow:hidden;aspect-ratio:16/8}
+.th svg,.pv svg{display:block;width:100%;height:100%}
+.pv{position:fixed;left:0;top:0;width:300px;aspect-ratio:4/3;border-radius:16px;overflow:hidden;pointer-events:none;z-index:40;opacity:0;transform:translate(-999px,-999px);transition:opacity .2s}
+@media(hover:none){.idx .th{display:block}.idx li{grid-template-columns:36px 1fr 1fr}.pv{display:none}}
+.empty{padding:40px 0;color:var(--mut)}
+/* slider */
+.sl{margin-top:96px}
+.sl .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.sl .ct{display:flex;align-items:center;gap:12px}
+.ar{width:44px;height:44px;border-radius:50%;border:1px solid var(--fog);background:transparent;cursor:pointer;display:grid;place-items:center;transition:all .2s}
+.ar:hover{background:var(--btn);color:var(--btnt);border-color:var(--btn)}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 min(68%,860px);scroll-snap-align:start}
+.slide .ph{border-radius:22px;overflow:hidden;aspect-ratio:16/10;background:var(--fog)}
+.slide .ph svg{display:block;width:100%;height:100%;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.slide:hover .ph svg{transform:scale(1.04)}
+.slide .cap{display:flex;justify-content:space-between;gap:16px;padding:16px 4px 0}
+.slide h3{font-size:26px}.slide .mono{color:var(--mut)}
+/* light study */
+.inv{background:var(--inv);color:#F7EEE7;border-radius:36px;padding:72px 0;margin:112px 12px 0}
+.light{display:grid;grid-template-columns:.8fr 1.5fr;gap:56px;align-items:center}
+.light h2{font-size:clamp(38px,5vw,72px)}
+.light p{opacity:.7;margin-top:20px;max-width:34ch}
+.stage{border-radius:22px;overflow:hidden;background:#30262A;aspect-ratio:8/5}
+.stage svg{display:block;width:100%;height:100%}
+.ctl{margin-top:28px;display:grid;gap:10px}
+.ctl .row{display:flex;justify-content:space-between;color:#F7EEE7}
+.ctl .row span:first-child{opacity:.6}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:rgba(247,238,231,.35);border-radius:2px;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#F7EEE7;border:5px solid var(--acc)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#F7EEE7;border:5px solid var(--acc)}
+/* method */
+.method{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink)}
+.method div{padding:24px 24px 8px 0}
+.method .mono{color:var(--acc)}
+.method h3{font-size:30px;margin:44px 0 10px}
+.method p{color:var(--mut);max-width:26ch;font-size:15px}
+/* journal */
+.jr{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.jr a{display:block}
+.jr .ph{border-radius:18px;overflow:hidden;aspect-ratio:4/3}
+.jr .ph svg{display:block;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.jr a:hover .ph svg{transform:scale(1.05)}
+.jr h3{font-size:24px;margin:16px 0 6px;line-height:1.05}
+.jr .mono{color:var(--mut)}
+/* enquiry */
+.enq{display:grid;grid-template-columns:1fr 1fr;gap:56px;background:var(--paper);border-radius:32px;padding:clamp(28px,5vw,64px)}
+.enq h2{font-size:clamp(38px,5vw,72px)}
+.enq p{color:var(--mut);margin-top:18px;max-width:34ch}
+form{display:grid;gap:12px;align-content:start}
+form input,form select,form textarea{width:100%;background:var(--bg);border:1px solid var(--fog);border-radius:14px;padding:14px 16px;transition:border-color .2s}
+form textarea{resize:vertical;min-height:96px}
+form input:focus,form select:focus,form textarea:focus{border-color:var(--acc);outline:none}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.err{color:#B3402B;font-size:13px;min-height:1.2em}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{color:#FF9A78}}
+.ok{padding:18px;border-radius:14px;border:1px solid var(--acc)}
+/* footer */
+footer{padding:96px 0 0;overflow:hidden}
+.fc{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;color:var(--mut);font-size:14px}
+.fc div{display:grid;gap:6px;align-content:start}.fc b{color:var(--ink);font-weight:500}.fc a:hover{color:var(--ink)}
+.giant{font:600 clamp(130px,31vw,470px)/.8 'Schibsted Grotesk';letter-spacing:-.07em;margin:56px 0 0 -.04em;height:.62em;overflow:hidden;white-space:nowrap}
+.note{padding:16px 0 28px;font-size:12px;color:var(--mut);border-top:1px solid var(--fog)}
+@media(max-width:900px){.links{display:none}.intro,.light,.enq{grid-template-columns:1fr;gap:36px}.method,.jr{grid-template-columns:1fr 1fr}.slide{flex-basis:84%}.inv{padding:48px 0;margin-left:0;margin-right:0;border-radius:28px}}
+@media(max-width:600px){.wrap{padding:0 16px}.method,.jr,.two{grid-template-columns:1fr}section{padding-top:80px}.idx li{grid-template-columns:30px 1fr}.idx .m{display:none}.idx .th{grid-column:1/-1}.sl{margin-top:72px}}
+
+/* TMX art direction v2: warm porcelain, oxblood, rich editorial photography */
+.hero{border-radius:6px;height:min(83vh,790px)}
+.hero:after{background:linear-gradient(90deg,rgba(22,15,19,.55),rgba(22,15,19,.08) 65%),linear-gradient(0deg,rgba(22,15,19,.47),transparent 55%)}
+.hero-photo{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:saturate(.88) contrast(1.04)}
+.hero h1{font-size:clamp(52px,9.3vw,137px);max-width:9ch;letter-spacing:-.065em}
+.hero .side{max-width:330px}
+.pill{border-radius:4px}
+.chip{border-radius:4px}
+.ar{border-radius:5px}
+.logo i{border-radius:1px;transform:rotate(45deg)}
+.inv{border-radius:6px;background:#4B252F}
+.slide .ph,.jr .ph,.idx .th,.stage{border-radius:4px}
+.idx .th img,.pv img,.slide .ph img,.jr .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.slide:hover .ph img,.jr a:hover .ph img{transform:scale(1.045)}
+.pv img{height:100%}
+.moodscene{position:relative;width:100%;height:100%;overflow:hidden}
+.moodscene img{display:block;width:100%;height:100%;object-fit:cover}
+.moodtint{position:absolute;inset:0;mix-blend-mode:multiply;pointer-events:none;transition:background .22s}
+.enq{border-radius:6px}
+form input,form select,form textarea{border-radius:4px}
+@media(prefers-reduced-motion:no-preference){.hero .hero-photo{animation:photoReveal 1.2s ease-out both}@keyframes photoReveal{from{transform:scale(1.055);opacity:.5}to{transform:scale(1);opacity:1}}}
+@media(max-width:600px){.hero{min-height:570px}.hero .in{align-items:flex-start}.hero h1{font-size:clamp(54px,14vw,88px)}.hero .side{max-width:300px}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+<a class="logo" href="#top"><i></i>Atelier Noor</a>
+<div class="links"><a href="#work">Work</a><a href="#light">Light study</a><a href="#method">Method</a><a href="#journal">Journal</a></div>
+<a class="pill" href="#contact">Start a project</a>
+</div></nav>
+
+<main id="top">
+<div class="wrap">
+<div class="hero"><div id="heroArt" style="position:absolute;inset:0"></div>
+<div class="in"><h1>Where space finds its soul.</h1>
+<div class="side"><p>An independent architecture and interiors studio creating spaces with warmth, character and quiet permanence.</p><a class="pill" href="#work">View work</a></div></div></div>
+
+<section class="intro" style="padding-top:96px">
+<p class="big">We believe architecture should be felt before it is understood — rooted in material, proportion, atmosphere and the rituals of everyday life.</p>
+<div class="facts"><div><b>6</b><span>concept projects shown here</span></div><div><b>3</b><span>sectors: residential, hospitality, commercial</span></div><div><b>4</b><span>stages from first call to handover</span></div></div>
+</section>
+
+<section id="work">
+<div class="head"><h2>Selected work</h2><div class="chips" id="chips" role="group" aria-label="Filter projects"></div></div>
+<ul class="idx" id="idx"></ul>
+<div class="sl"><div class="bar"><span class="mono" id="count">01 / 06</span><div class="ct"><button class="ar" id="prev" aria-label="Previous project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button><button class="ar" id="next" aria-label="Next project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
+<div class="track" id="track" tabindex="0" aria-label="Featured projects"></div></div>
+</section>
+</div>
+
+<div class="inv" id="light"><div class="wrap light">
+<div><h2>A study in atmosphere.</h2><p>Explore the shifting mood of a space across the day. Move the slider to experience three tonal interpretations of one architectural photograph.</p>
+<div class="ctl"><input type="range" id="tm" min="0" max="100" value="30" aria-label="Time of day"><div class="row mono"><span id="per">Morning</span><span id="clk">09:00</span></div></div></div>
+<div class="stage" id="stage" role="img" aria-label="Architectural interior photograph with interactive time-of-day mood treatment"></div>
+</div></div>
+
+<div class="wrap">
+<section id="method"><div class="head"><h2>How a project runs</h2></div>
+<div class="method">
+<div><span class="mono">01</span><h3>Listen</h3><p>We listen carefully to the site, your needs and the stories that make a space personal.</p></div>
+<div><span class="mono">02</span><h3>Draft</h3><p>We explore proportion, layout and spatial rhythm through considered concepts.</p></div>
+<div><span class="mono">03</span><h3>Detail</h3><p>We refine the materials, bespoke details and technical drawings that bring ideas to life.</p></div>
+<div><span class="mono">04</span><h3>Build</h3><p>We collaborate through delivery, protecting the design intent from concept to completion.</p></div>
+</div></section>
+
+<section id="journal"><div class="head"><h2>Journal</h2></div>
+<div class="jr" id="jr"></div></section>
+
+<section id="contact"><div class="enq">
+<div><h2>Tell us about the site.</h2><p>Share the location, the type of project and a rough budget. We reply within three working days.</p></div>
+<form id="f" novalidate>
+<input id="fn" placeholder="Full name" autocomplete="name" aria-label="Full name">
+<input id="fe" type="email" placeholder="Email address" autocomplete="email" aria-label="Email address">
+<div class="two"><select id="ft" aria-label="Project type"><option value="">Project type</option><option>Residential</option><option>Hospitality</option><option>Commercial</option></select>
+<select id="fb" aria-label="Budget range"><option value="">Budget range</option><option>Under $250k</option><option>$250k – $1M</option><option>$1M – $5M</option><option>Over $5M</option></select></div>
+<textarea id="fm" placeholder="Where is the site and what do you have in mind?" aria-label="Project notes"></textarea>
+<div class="err" id="err" role="alert"></div>
+<button class="pill" type="submit" style="justify-content:center;padding:15px">Send enquiry</button>
+</form></div></section>
+</div>
+
+<footer><div class="wrap">
+<div class="fc"><div><b>Atelier Noor</b><span>Architecture and interiors</span><span>12 Plaster Yard, Demo City</span></div>
+<div><b>Pages</b><a href="#work">Work</a><a href="#light">Light study</a><a href="#journal">Journal</a></div>
+<div><b>Contact</b><a href="#contact">Start a project</a><span>hello@ateliernoor.example</span></div></div>
+<div class="giant" aria-hidden="true">NOOR</div>
+<p class="note">Atelier Noor is a TMX Digital Solutions concept project. Projects, places and figures are demo content. Photography is sourced from Unsplash and used as illustrative stock imagery, not as documentation of completed studio projects.</p>
+</div></footer>
+<div class="pv" id="pv"></div>
+
+<script>
+var $=function(i){return document.getElementById(i)};
+var P=[
+{n:"Alba House",c:"Residential",l:"Porto",y:2024,a:"310 m²"},
+{n:"Kiln Hotel",c:"Hospitality",l:"Oaxaca",y:2024,a:"2,400 m²"},
+{n:"Mirror Pavilion",c:"Commercial",l:"Seoul",y:2023,a:"900 m²"},
+{n:"Salt Residence",c:"Residential",l:"Cape Town",y:2023,a:"420 m²"},
+{n:"Tide Café",c:"Hospitality",l:"Lisbon",y:2022,a:"140 m²"},
+{n:"North Gallery",c:"Commercial",l:"Copenhagen",y:2022,a:"1,150 m²"}];
+var J=[["How a window changes the way a room is used","Method"],["Lime plaster, honestly explained","Materials"],["Designing for the winter sun","Daylight"]];
+// Public Unsplash stock photography, used for this fictional portfolio concept.
+var PHOTOS=[
+  'photo-1600607687939-ce8a6c25118c',
+  'photo-1600566753190-17f0baa2a6c3',
+  'photo-1600585154340-be6161a56a0c',
+  'photo-1600607687920-4e2a09cf159d',
+  'photo-1600566753086-00f18fb6b3ea',
+  'photo-1600607687644-c7171b42498f'
+];
+var HERO_PHOTO='photo-1600607687920-4e2a09cf159d';
+var JOURNAL_PHOTOS=['photo-1600210492486-724fe5c67fb0','photo-1600607687920-4e2a09cf159d','photo-1600566753051-f0b89df2dd90'];
+function photo(id,w){return 'https://images.unsplash.com/'+id+'?auto=format&fit=crop&w='+(w||1000)+'&q=85'}
+function plate(k){return '<img src="'+photo(PHOTOS[k],1000)+'" alt="Architectural stock photography for '+P[k].n+' concept" loading="lazy" decoding="async">'}
+function mix(a,b,f){var A=a.match(/\w\w/g).map(function(x){return parseInt(x,16)}),B=b.match(/\w\w/g).map(function(x){return parseInt(x,16)});return "#"+A.map(function(v,i){return Math.round(v+(B[i]-v)*f).toString(16).padStart(2,"0")}).join("")}
+function room(t){
+ var opacity=(.09+Math.abs(t-.45)*.47).toFixed(2);
+ var overlay=t<.45?'rgba(69,87,112,'+opacity+')':t<.72?'rgba(208,167,118,'+opacity+')':'rgba(143,69,51,'+opacity+')';
+ return '<div class="moodscene"><img src="'+photo('photo-1600210492486-724fe5c67fb0',1300)+'" alt="Sunlit architectural interior photograph"/><div class="moodtint" style="background:'+overlay+'"></div></div>';
+}
+function per(t){return t<.25?"Early morning":t<.45?"Morning":t<.6?"Midday":t<.8?"Afternoon":"Evening"}
+function setT(){var t=$("tm").value/100,h=7+t*12,hh=Math.floor(h),mm=Math.floor((h-hh)*60);$("stage").innerHTML=room(t);$("per").textContent=per(t);$("clk").textContent=String(hh).padStart(2,"0")+":"+String(mm).padStart(2,"0")}
+$("tm").oninput=setT;setT();
+$("heroArt").innerHTML='<img class="hero-photo" src="'+photo(HERO_PHOTO,1800)+'" alt="Contemporary interior architecture with sculptural furniture and natural materials" fetchpriority="high">';
+var cat="all";
+function list(){return P.map(function(p,i){p.i=i;return p}).filter(function(p){return cat=="all"||p.c==cat})}
+function pad(n){return String(n).padStart(2,"0")}
+function render(){var L=list();
+$("chips").innerHTML=["all","Residential","Hospitality","Commercial"].map(function(c){return '<button class="chip" data-c="'+c+'" aria-pressed="'+(cat==c)+'">'+(c=="all"?"All":c)+'</button>'}).join("");
+$("idx").innerHTML=L.length?L.map(function(p,n){return '<li tabindex="0" data-i="'+p.i+'"><span class="mono">'+pad(n+1)+'</span><span class="nm">'+p.n+'</span><span class="m">'+p.c+'</span><span class="m">'+p.l+'</span><span class="m mono">'+p.y+'</span><div class="th">'+plate(p.i)+'</div></li>'}).join(""):'<li class="empty">No projects in this category.</li>';
+$("track").innerHTML=L.map(function(p){return '<article class="slide"><div class="ph">'+plate(p.i)+'</div><div class="cap"><h3>'+p.n+'</h3><span class="mono">'+p.l+' · '+p.a+' · '+p.y+'</span></div></article>'}).join("");
+$("track").scrollLeft=0;cnt()}
+function cnt(){var T=$("track"),s=T.firstElementChild,n=T.children.length;if(!s){$("count").textContent="00 / 00";return}var i=Math.min(n-1,Math.round(T.scrollLeft/(s.offsetWidth+20)));$("count").textContent=pad(i+1)+" / "+pad(n)}
+$("chips").onclick=function(e){var b=e.target.closest(".chip");if(!b)return;cat=b.dataset.c;render()};
+$("track").onscroll=cnt;
+function step(d){var T=$("track"),s=T.firstElementChild;if(s)T.scrollBy({left:d*(s.offsetWidth+20),behavior:"smooth"})}
+$("prev").onclick=function(){step(-1)};$("next").onclick=function(){step(1)};
+var pv=$("pv"),idx=$("idx"),cur=-1;
+idx.addEventListener("mousemove",function(e){var li=e.target.closest("li[data-i]");if(!li){pv.style.opacity=0;return}
+var i=+li.dataset.i;if(i!==cur){pv.innerHTML=plate(i);cur=i}pv.style.opacity=1;pv.style.transform="translate("+(e.clientX+24)+"px,"+(e.clientY-110)+"px)"});
+idx.addEventListener("mouseleave",function(){pv.style.opacity=0;cur=-1});
+idx.addEventListener("keydown",function(e){var li=e.target.closest("li[data-i]");if(li&&(e.key=="Enter"||e.key==" ")){e.preventDefault();$("track").scrollIntoView({behavior:"smooth",block:"center"})}});
+idx.onclick=function(e){var li=e.target.closest("li[data-i]");if(!li)return;var L=list(),n=L.findIndex(function(p){return p.i==+li.dataset.i}),T=$("track"),s=T.firstElementChild;T.scrollTo({left:n*(s.offsetWidth+20),behavior:"smooth"});T.scrollIntoView({behavior:"smooth",block:"center"})};
+$("jr").innerHTML=J.map(function(j,i){return '<a href="#journal" aria-label="'+j[0]+'"><div class="ph"><img src="'+photo(JOURNAL_PHOTOS[i],900)+'" loading="lazy" alt="Architectural editorial stock photography"></div><h3>'+j[0]+'</h3><span class="mono">'+j[1]+'</span></a>'}).join("");
+$("f").onsubmit=function(e){e.preventDefault();var er=$("err");
+if(!$("fn").value.trim())return er.textContent="Enter your name.";
+if(!/^\S+@\S+\.\S+$/.test($("fe").value.trim()))return er.textContent="Enter a valid email address.";
+if(!$("ft").value)return er.textContent="Choose a project type.";
+if(!$("fb").value)return er.textContent="Choose a budget range.";
+er.textContent="";var n=$("fn").value.trim().split(" ")[0];this.innerHTML='<div class="ok" role="status">Thank you, '+n.replace(/[<>&]/g,"")+'. Your '+$("ft").value.toLowerCase()+' enquiry is noted and we will reply within three working days. (Demo only: nothing was transmitted.)</div>'};
+render();
+</script>
+</body>
+</html>
