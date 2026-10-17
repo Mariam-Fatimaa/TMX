@@ -104,7 +104,7 @@ export default function Hero() {
           >
             {/* Background image */}
             <Image
-              src="/images/projects/slate-signal.png"
+              src="/Images/projects/slate-signal.png"
               alt="Slate & Signal — Creative Agency Website"
               fill
               priority
