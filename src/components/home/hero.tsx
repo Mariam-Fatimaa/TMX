@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { ArrowDownRight } from "lucide-react";
+
 
 export default function Hero() {
   return (
@@ -85,7 +87,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Project preview */}
+        {/* Featured Project Preview */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,35 +98,68 @@ export default function Hero() {
           }}
           className="mt-16 md:mt-20"
         >
-          <div
-            className="
-              relative
-              aspect-[16/9]
-              overflow-hidden
-              rounded-[24px]
-              border
-              border-black/10
-              bg-neutral-200
-            "
+          <Link
+            href="/work/plinth"
+            className="group relative block aspect-[16/9] overflow-hidden rounded-[28px] border border-black/10 bg-neutral-100"
           >
-            {/* Temporary visual until we add a real project */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-[12px] uppercase tracking-[0.16em] text-neutral-500">
-                  Featured Project
-                </p>
+            {/* Background image */}
+            <Image
+              src="/images/projects/Preview Img.png"
+              alt="Slate & Signal — Creative Agency Website"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 1440px"
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            />
 
-                <h2 className="mt-3 text-3xl font-medium tracking-[-0.04em] md:text-5xl">
-                  Project Preview
-                </h2>
+            {/* Base dark gradient for readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent" />
+
+            {/* Glass hover card */}
+            <div
+              className="
+        absolute bottom-5 left-5 right-5
+        rounded-[24px]
+        border border-white/12
+        bg-black/45
+        backdrop-blur-xl
+        shadow-[0_8px_30px_rgba(0,0,0,0.25)]
+        transition-all duration-500 ease-out
+        opacity-0 translate-y-4
+        group-hover:opacity-100 group-hover:translate-y-0
+        md:bottom-6 md:left-6 md:right-6
+      "
+            >
+              <div className="p-6 md:p-7">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h2 className="text-[30px] font-medium tracking-[-0.04em] text-white md:text-[36px]">
+                      Slate Signal
+                    </h2>
+                    <p className="mt-2 text-[15px] text-white/80 md:text-[16px]">
+                       Creative Agency / Web Design & Development
+                    </p>
+                  </div>
+
+                  <p className="text-[22px] font-medium text-white/90 md:text-[24px]">
+                    2026
+                  </p>
+                </div>
+
+                <div className="mt-6 border-t border-white/12 pt-5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[18px] font-medium text-white md:text-[20px]">
+                      View Project
+                    </span>
+
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/5 text-white transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                      <ArrowDownRight size={20} />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-
-            {/* Project label */}
-            <div className="absolute bottom-5 left-5 rounded-full bg-white/90 px-4 py-2 text-[12px] font-medium backdrop-blur-md">
-              UI/UX · Development
-            </div>
-          </div>
+          </Link>
         </motion.div>
 
       </div>
