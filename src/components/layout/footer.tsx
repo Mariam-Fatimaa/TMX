@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { siteConfig } from "@/constants/site";
 
 const navigation = [
-  { label: "Work", href: "/work" },
+  ...(siteConfig.showWork ? [{ label: "Work", href: "/work" }] : []),
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },

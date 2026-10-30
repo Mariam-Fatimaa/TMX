@@ -1,8 +1,7 @@
+import { siteConfig } from "@/constants/site";
+
 export const navigation = [
-  {
-    label: "Work",
-    href: "/work",
-  },
+  ...(siteConfig.showWork ? [{ label: "Work", href: "/work" }] : []),
   {
     label: "Services",
     href: "/services",

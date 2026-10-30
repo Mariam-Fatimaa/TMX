@@ -1,4 +1,6 @@
 export const siteConfig = {
+  showWork: false,
+
   name: "TMX Digital Solutions",
 
   shortName: "TMX",

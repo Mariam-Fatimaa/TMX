@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X, ArrowUpRight} from "lucide-react";
 import Image from "next/image";
+import { siteConfig } from "@/constants/site";
 
 const navItems = [
-  { label: "Work", href: "/work" },
+  ...(siteConfig.showWork ? [{ label: "Work", href: "/work" }] : []),
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
 ];

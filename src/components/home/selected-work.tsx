@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { siteConfig } from "@/constants/site";
 
 const projects = [
   {
@@ -42,13 +43,14 @@ export default function SelectedWork() {
               for itself.
             </h2>
           </div>
-
-          <Link
-            href="/work"
-            className="text-[14px] font-medium text-neutral-700 transition-colors hover:text-black"
-          >
-            View all work ↗
-          </Link>
+          {siteConfig.showWork && (
+            <Link
+              href="/work"
+              className="text-[14px] font-medium text-neutral-700 transition-colors hover:text-black"
+            >
+              View all work ↗
+            </Link>
+          )}
         </div>
 
 

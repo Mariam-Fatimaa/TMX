@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { projects } from "@/data/projects";
+import { siteConfig } from "@/constants/site";
 
 interface ProjectPageProps {
   params: Promise<{
@@ -11,11 +12,12 @@ interface ProjectPageProps {
 export default async function ProjectPage({
   params,
 }: ProjectPageProps) {
-  const { slug } = await params;
+  if (!siteConfig.showWork) {
+    notFound();
+  }
 
-  const project = projects.find(
-    (item) => item.slug === slug
-  );
+  const { slug } = await params;
+  const project = projects.find((item) => item.slug === slug);
 
   if (!project) {
     notFound();
@@ -24,8 +26,6 @@ export default async function ProjectPage({
   return (
     <main className="px-5 pb-28 pt-40 md:px-8 lg:px-12 xl:px-16">
       <div className="mx-auto max-w-[1440px]">
-
-        {/* Back */}
         <Link
           href="/work"
           className="text-[13px] font-medium text-neutral-500 transition-colors hover:text-black"
@@ -33,7 +33,6 @@ export default async function ProjectPage({
           ← Back to work
         </Link>
 
-        {/* Hero */}
         <section className="pb-14 pt-12">
           <p className="mb-5 text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
             {project.category}
@@ -50,26 +49,15 @@ export default async function ProjectPage({
 
             <div className="grid grid-cols-2 gap-6 text-[13px]">
               <div>
-                <p className="text-neutral-400">
-                  Year
-                </p>
-
-                <p className="mt-2 font-medium">
-                  {project.year}
-                </p>
+                <p className="text-neutral-400">Year</p>
+                <p className="mt-2 font-medium">{project.year}</p>
               </div>
 
               <div>
-                <p className="text-neutral-400">
-                  Services
-                </p>
-
+                <p className="text-neutral-400">Services</p>
                 <div className="mt-2 space-y-1">
                   {project.services.map((service) => (
-                    <p
-                      key={service}
-                      className="font-medium"
-                    >
+                    <p key={service} className="font-medium">
                       {service}
                     </p>
                   ))}
@@ -79,7 +67,6 @@ export default async function ProjectPage({
           </div>
         </section>
 
-        {/* Hero image */}
         <section>
           <div className="aspect-[16/9] overflow-hidden rounded-[24px] bg-neutral-200">
             <img
@@ -90,7 +77,6 @@ export default async function ProjectPage({
           </div>
         </section>
 
-        {/* Overview */}
         <section className="grid gap-10 border-b border-black/10 border-t border-black/10 py-20 md:mt-24 md:grid-cols-[0.45fr_1fr]">
           <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
             Overview
@@ -110,7 +96,6 @@ export default async function ProjectPage({
           </div>
         </section>
 
-        {/* Challenge */}
         <section className="grid gap-10 border-b border-black/10 py-20 md:grid-cols-[0.45fr_1fr]">
           <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
             The challenge
@@ -130,12 +115,10 @@ export default async function ProjectPage({
           </div>
         </section>
 
-        {/* Visual placeholder */}
         <section className="py-20">
           <div className="aspect-[16/10] rounded-[24px] bg-neutral-200" />
         </section>
 
-        {/* Approach */}
         <section className="grid gap-10 border-b border-black/10 border-t border-black/10 py-20 md:grid-cols-[0.45fr_1fr]">
           <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-neutral-500">
             Approach
@@ -154,7 +137,6 @@ export default async function ProjectPage({
           </div>
         </section>
 
-        {/* Next project */}
         <section className="py-24">
           <p className="mb-5 text-[12px] uppercase tracking-[0.18em] text-neutral-500">
             Next project
@@ -165,13 +147,11 @@ export default async function ProjectPage({
             className="group inline-flex items-center gap-4 text-4xl font-medium tracking-[-0.045em] md:text-6xl"
           >
             Explore more work
-
             <span className="transition-transform duration-300 group-hover:translate-x-2">
               →
             </span>
           </Link>
         </section>
-
       </div>
     </main>
   );
