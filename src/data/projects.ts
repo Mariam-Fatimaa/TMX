@@ -1,75 +1,46 @@
+import data from "./projects.json";
+
+// Single source of truth for all portfolio projects.
+// Each project has a live demo at public/demos/<slug>.html.
+// Add a project to projects.json, then run `npm run covers`
+// (and `npm run one-pagers -- <slug>` / `npm run portfolio` for the PDFs).
+
+export const categories = ["Websites", "E-commerce", "SaaS", "Mobile Apps"] as const;
+export type Category = (typeof categories)[number];
+
 export type Project = {
   slug: string;
   title: string;
-  category: string;
-  year: string;
+  category: Category;
+  type: string;
   description: string;
+  summary: string;
   services: string[];
-  image: string;
   featured?: boolean;
+  year: string;
+  /** Live demo page */
+  demo: string;
+  /** One-page PDF of the full demo */
+  pdf: string;
+  /** 4:5 cover for cards */
+  cover: string;
+  /** 16:10 image for wide layouts */
+  wide: string;
 };
 
-export const projects: Project[] = [
-  {
-    slug: "fitlayer",
-    title: "FitLayer",
-    category: "UI/UX",
+export const projects: Project[] = (data as Omit<Project, "year" | "demo" | "pdf" | "cover" | "wide">[]).map(
+  (p) => ({
+    ...p,
     year: "2026",
-    description:
-      "An AI-powered virtual try-on experience designed for fashion retailers.",
-    services: ["UI/UX Design", "Frontend Development"],
-    image: "/images/projects/fitlayer-cover.jpg",
-    featured: true,
-  },
-  {
-    slug: "bylt",
-    title: "BYLT",
-    category: "Web Apps",
-    year: "2026",
-    description:
-      "A digital platform for passive fire protection workflows and documentation.",
-    services: ["Product Design", "UI/UX"],
-    image: "/images/projects/bylt-cover.jpg",
-    featured: true,
-  },
-  {
-    slug: "commerce-platform",
-    title: "Commerce Platform",
-    category: "Websites",
-    year: "2026",
-    description:
-      "A modern commerce experience focused on product discovery and conversion.",
-    services: ["Web Design", "Development"],
-    image: "/images/projects/ecommerce-cover.jpg",
-  },
-  {
-    slug: "mobile-banking",
-    title: "Mobile Banking App",
-    category: "Mobile Apps",
-    year: "2026",
-    description:
-      "A clean mobile banking experience focused on speed, clarity, and usability.",
-    services: ["UI/UX Design", "Mobile Product Design"],
-    image: "/images/projects/mobile-banking.jpg",
-  },
-  {
-    slug: "identity-system",
-    title: "Identity System",
-    category: "Branding",
-    year: "2026",
-    description:
-      "A modern visual identity system designed for consistency across digital channels.",
-    services: ["Branding", "Visual Design"],
-    image: "/images/projects/identity-system.jpg",
-  },
-  {
-    slug: "analytics-dashboard",
-    title: "Analytics Dashboard",
-    category: "Web Apps",
-    year: "2026",
-    description:
-      "A data-heavy dashboard simplified into a clear and usable product interface.",
-    services: ["Product Design", "Dashboard UI"],
-    image: "/images/projects/analytics-dashboard.jpg",
-  },
-];
+    demo: `/demos/${p.slug}.html`,
+    pdf: `/demos/one-pagers/${p.slug}.pdf`,
+    cover: `/Images/projects/covers/${p.slug}.webp`,
+    wide: `/Images/projects/wide/${p.slug}.webp`,
+  })
+);
+
+export const featuredProjects = projects.filter((p) => p.featured);
+
+export function getProject(slug: string) {
+  return projects.find((p) => p.slug === slug);
+}

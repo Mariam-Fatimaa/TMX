@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f5ede0">
+<title>Casa Verdant — 24-room boutique hotel on the Costa Verdana hillside</title>
+<meta name="description" content="Casa Verdant is a 24-room boutique hotel with a seasonal restaurant and a small spa, set on a terraced hillside above the sea. Book rooms, tables and treatments online. Designed &amp; developed by TMX Digital Solutions.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--sand:#f5ede0;--cream:#fbf7f0;--paper:#fffdf9;--terra:#b4532d;--terra-d:#8f3f20;--terra-l:#e08a62;--olive:#5b6a37;--olive-d:#3d4824;--olive-l:#9aa86c;--sea:#5f8f99;--ink:#2b241e;--muted:#6b5f51;--line:#e4d7c3;--r:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--cream);color:var(--ink);font:300 17px/1.7 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:4px}
+h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.05;letter-spacing:-.01em;margin:0 0 .4em}
+h2{font-size:clamp(36px,4.6vw,58px)}h3{font-size:27px}
+p{margin:0 0 1em}strong,b{font-weight:500}
+.wrap{width:min(1200px,calc(100% - 40px));margin:auto}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;z-index:99}.skip:focus{left:8px}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);margin-bottom:14px}
+.eyebrow:before{content:"";width:26px;height:1px;background:currentColor}
+.lede{font-size:19px;color:var(--muted);max-width:620px}
+em.t{font-style:italic;color:var(--terra)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:14px 26px;font-weight:500;font-size:15.5px;letter-spacing:.02em;text-decoration:none;transition:transform .2s,background .2s,color .2s}
+.btn-terra{background:var(--terra);color:#fff}.btn-terra:hover{background:var(--terra-d);transform:translateY(-1px)}
+.btn-line{border:1px solid var(--ink);color:var(--ink);background:transparent}.btn-line:hover{background:var(--ink);color:var(--cream)}
+section{padding:110px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:50px}
+.sec-head .lede{margin:0}
+.reveal{transition:opacity .8s ease,transform .8s ease}
+.js .reveal:not(.in){opacity:0;transform:translateY(24px)}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}.js .reveal:not(.in){opacity:1;transform:none}}
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
+.nav.solid{background:rgba(251,247,240,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:27px;font-weight:600;letter-spacing:.02em}
+.logo svg{width:30px;height:30px}
+.nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:15px}
+.nav ul a{text-decoration:none;opacity:.85}.nav ul a:hover{opacity:1;color:var(--terra)}
+.nav .btn{padding:10px 20px;font-size:14.5px}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;align-items:center;justify-content:center}
+@media (max-width:960px){.nav ul{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--cream);border-bottom:1px solid var(--line);padding:8px 20px 18px}.nav ul.open{display:flex}.nav ul a{display:block;padding:12px 0}.menu-btn{display:inline-flex}.nav .btn.book{display:none}}
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:118px 0 32px;overflow:hidden;background:#f8e3cc;isolation:isolate}
+.hero-art{position:absolute;inset:0;z-index:-1}
+.hero-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(251,243,232,.55) 0%,rgba(251,243,232,0) 48%)}
+.sun{transform-origin:1080px 300px;animation:glow 7s ease-in-out infinite alternate}
+@keyframes glow{to{opacity:.75;transform:scale(1.06)}}
+.sparkle{animation:shim 4s ease-in-out infinite alternate}
+@keyframes shim{to{opacity:.25}}
+.bird{animation:fly 14s ease-in-out infinite alternate}
+@keyframes fly{to{transform:translate(60px,-14px)}}
+.hero-copy{max-width:740px}
+.hero h1{font-size:clamp(44px,5.5vw,80px);font-weight:500;line-height:1;margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--terra)}
+.hero .lede{color:#4f4438;font-size:19px;max-width:520px;margin-bottom:24px}
+.hero-meta{display:flex;gap:8px 26px;flex-wrap:wrap;font-size:14px;color:#3f362c;margin-top:22px}
+.hero-meta span{display:flex;align-items:center;gap:8px}
+.hero-meta i{width:7px;height:7px;border-radius:50%;background:var(--olive);display:inline-block}
+.booking{display:grid;grid-template-columns:1.1fr 1.1fr .9fr .8fr auto;gap:0;align-items:stretch;background:rgba(255,253,249,.97);border-radius:22px;box-shadow:0 24px 60px -24px rgba(60,40,20,.45);padding:10px;margin-top:28px}
+.booking .f{padding:10px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;min-width:0}
+.booking label,.booking .lbl{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.booking input,.booking select{border:0;background:transparent;padding:4px 0 0;font-size:17px;font-weight:400;width:100%;outline:none;min-width:0}
+.booking .f:focus-within{background:var(--sand);border-radius:12px}
+.booking .nights{font-family:"Cormorant Garamond",serif;font-size:28px;line-height:1.1;color:var(--terra);font-weight:600}
+.booking .nights small{font-family:Jost,sans-serif;font-size:13px;color:var(--muted);font-weight:400;display:block;line-height:1.3}
+.booking .btn{border-radius:14px;padding:16px 26px;margin-left:10px}
+.booking .err{grid-column:1/-1;color:#a3341a;font-size:14px;padding:6px 20px 0;min-height:0}
+.booking .err:empty{display:none}
+@media (max-width:900px){.booking{grid-template-columns:1fr 1fr}.booking .f{border-right:0;border-bottom:1px solid var(--line)}.booking .btn{grid-column:1/-1;margin:10px 0 0}}
+@media (max-width:700px){.hero{padding-top:104px;background:linear-gradient(180deg,#f5d9bd,#fae8d5 60%)}.hero-copy-wrap{order:1}.hero-art{order:2;position:relative;inset:auto;height:300px;margin:-30px 0 -70px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 35%);mask-image:linear-gradient(180deg,transparent,#000 35%)}.hero-art:after{display:none}.hero>.wrap:last-child{order:3;position:relative}}
+/* rooms */
+.rooms{background:var(--cream)}
+.rooms-grid{display:grid;grid-template-columns:1fr 380px;gap:36px;align-items:start}
+.room-list{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.room{display:block;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:0;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .2s}
+.room:hover{transform:translateY(-3px);box-shadow:0 18px 40px -26px rgba(60,40,20,.5)}
+.room[aria-pressed="true"]{border-color:var(--terra);box-shadow:0 0 0 2px var(--terra)}
+.room-art{position:relative;height:170px;overflow:hidden}
+.room-art:before{content:"";position:absolute;left:50%;bottom:0;width:96px;height:128px;transform:translateX(-50%);border-radius:48px 48px 0 0;background:linear-gradient(180deg,#f4d3b2 0 45%,#7fa7ad 45% 70%,#5d8b93 70%);box-shadow:0 0 0 10px rgba(255,250,242,.85)}
+.room-art:after{content:"";position:absolute;left:0;right:0;bottom:0;height:16px;background:rgba(0,0,0,.06)}
+.ra1{background:linear-gradient(160deg,#e8dcc6,#d8c6a8)}.ra2{background:linear-gradient(160deg,#ecd4bd,#dcb193)}
+.ra3{background:linear-gradient(160deg,#d6dcc0,#b5bf91)}.ra4{background:linear-gradient(160deg,#e9c3a9,#c98564)}
+.room-art .tag{position:absolute;top:14px;left:14px;background:rgba(255,253,249,.92);border-radius:99px;padding:4px 12px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.room-body{padding:20px 22px 22px}
+.room-body h3{margin-bottom:6px}
+.room-body p{font-size:15px;color:var(--muted);margin-bottom:12px}
+.room-specs{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--olive-d);margin-bottom:14px}
+.room-price{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:12px}
+.room-price b{font-family:"Cormorant Garamond",serif;font-size:28px;font-weight:600}
+.room-price span{font-size:13px;color:var(--muted)}
+.calc{position:sticky;top:100px;background:var(--olive-d);color:#f4eedf;border-radius:22px;padding:30px}
+.calc h3{color:#fff;font-size:30px}
+.calc .sel{font-size:15px;color:#cfd3b8;margin-bottom:22px}
+.calc-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:15px}
+.stepper{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.08);border-radius:99px;padding:4px}
+.stepper button{width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:18px;line-height:1}
+.stepper button:hover{background:var(--terra)}
+.stepper output{min-width:34px;text-align:center;font-weight:500}
+.calc label.chk{display:flex;gap:10px;align-items:center;cursor:pointer}
+.calc input[type=checkbox]{accent-color:var(--terra);width:18px;height:18px}
+.calc dl{margin:16px 0 0;font-size:15px}
+.calc dl div{display:flex;justify-content:space-between;padding:5px 0;color:#d9dcc6}
+.calc dl dd{margin:0}
+.calc .total{border-top:1px solid rgba(255,255,255,.25);margin-top:10px;padding-top:14px;color:#fff;align-items:baseline}
+.calc .total dd{font-family:"Cormorant Garamond",serif;font-size:40px;font-weight:600}
+.calc .note{font-size:13px;color:#b8bd9c;margin:10px 0 18px}
+.calc .btn{width:100%}
+@media (max-width:1020px){.rooms-grid{grid-template-columns:1fr}.calc{position:static}}
+@media (max-width:620px){.room-list{grid-template-columns:1fr}section{padding:80px 0}}
+/* day */
+.day{background:var(--sand)}
+.timeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:18px;position:relative}
+.timeline:before{content:"";position:absolute;left:0;right:0;top:27px;height:1px;background:repeating-linear-gradient(90deg,var(--terra) 0 6px,transparent 6px 12px);opacity:.6}
+.timeline li{position:relative}
+.t-ico{width:56px;height:56px;border-radius:50%;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;margin-bottom:18px;position:relative}
+.t-ico svg{width:26px;height:26px}
+.timeline time{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:600;color:var(--terra);display:block;line-height:1}
+.timeline h3{font-size:22px;margin:8px 0 6px}
+.timeline p{font-size:14.5px;color:var(--muted);margin:0}
+@media (max-width:1020px){.timeline{grid-template-columns:repeat(3,1fr);row-gap:40px}.timeline:before{display:none}}
+@media (max-width:620px){.timeline{grid-template-columns:1fr}.timeline li{display:grid;grid-template-columns:56px 1fr;column-gap:18px}.t-ico{grid-row:span 3;margin:0}}
+/* menu */
+.menu-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+.plate{aspect-ratio:1;max-width:420px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#fffdf9 0 52%,#efe4d2 53% 62%,#fffdf9 63% 66%,#e6d7bf 67%);box-shadow:0 30px 60px -30px rgba(60,40,20,.5);position:relative;margin-top:30px}
+.plate svg{position:absolute;inset:18%;width:64%;height:64%}
+.tabs{display:inline-flex;background:var(--sand);border-radius:99px;padding:5px;margin-bottom:26px;flex-wrap:wrap}
+.tabs button{border:0;background:none;padding:9px 20px;border-radius:99px;font-size:15px}
+.tabs button[aria-selected="true"]{background:var(--olive-d);color:#fff}
+.dish{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.dish h4{font-size:23px;margin:0}
+.dish .pr{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:600;color:var(--terra)}
+.dish p{grid-column:1/-1;font-size:15px;color:var(--muted);margin:0}
+.dish .v{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);border:1px solid var(--olive-l);border-radius:99px;padding:1px 8px;margin-left:8px;vertical-align:middle;font-family:Jost,sans-serif}
+.menu-foot{font-size:14.5px;color:var(--muted);margin-top:18px}
+@media (max-width:900px){.menu-wrap{grid-template-columns:1fr;gap:20px}.plate{max-width:280px;margin:0 auto}}
+/* spa */
+.spa{background:#ece4d3}
+.spa-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.treat{background:var(--paper);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;border:1px solid var(--line)}
+.treat .dur{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--olive);font-weight:500}
+.treat h3{font-size:26px;margin:10px 0 8px}
+.treat p{font-size:15px;color:var(--muted);flex:1}
+.treat .pr{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:14px;font-size:14px;color:var(--muted)}
+.treat .pr b{font-family:"Cormorant Garamond",serif;font-size:28px;color:var(--ink);font-weight:600}
+.spa-note{display:flex;gap:30px;flex-wrap:wrap;margin-top:30px;font-size:15px;color:var(--muted)}
+@media (max-width:900px){.spa-grid{grid-template-columns:1fr 1fr}}@media (max-width:620px){.spa-grid{grid-template-columns:1fr}}
+/* offers */
+.offer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:22px}
+.offer{border-radius:22px;padding:32px;display:flex;flex-direction:column;min-height:340px;position:relative;overflow:hidden;border:1px solid var(--line);background:var(--paper)}
+.offer.feat{background:var(--terra);color:#fff;border:0}
+.offer.feat p,.offer.feat li{color:#fbe3d6}
+.offer .when{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--olive)}
+.offer.feat .when{color:#fde7da}
+.offer h3{font-size:32px;margin:12px 0 10px}
+.offer p{font-size:15.5px;color:var(--muted)}
+.offer ul{margin:0 0 20px;padding-left:18px;font-size:15px;color:var(--muted);flex:1}
+.offer .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.offer .foot b{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:600}
+.offer .foot small{display:block;font-size:13px;opacity:.8}
+.offer.feat .btn{background:#fff;color:var(--terra-d)}
+.offer.feat:after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(255,255,255,.3);box-shadow:0 0 0 30px rgba(255,255,255,.05)}
+.offer .btn{padding:11px 20px;font-size:14.5px}
+@media (max-width:1020px){.offer-grid{grid-template-columns:1fr 1fr}.offer.feat{grid-column:1/-1}}@media (max-width:620px){.offer-grid{grid-template-columns:1fr}}
+/* reviews */
+.reviews{background:var(--olive-d);color:#f2ecdc}
+.reviews h2{color:#fff}.reviews .eyebrow{color:var(--terra-l)}.reviews .lede{color:#cfd3b8}
+.score{display:flex;align-items:center;gap:22px}
+.score b{font-family:"Cormorant Garamond",serif;font-size:76px;line-height:1;color:#fff;font-weight:600}
+.score .stars{color:#f0b07f;font-size:20px;letter-spacing:3px}
+.score small{display:block;color:#cfd3b8;font-size:14px}
+.bars{display:grid;gap:8px;margin-top:22px;max-width:360px}
+.bar{display:grid;grid-template-columns:110px 1fr 34px;gap:12px;align-items:center;font-size:14px;color:#cfd3b8}
+.bar i{height:6px;border-radius:9px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}
+.bar i:after{content:"";position:absolute;inset:0;width:var(--w);background:var(--terra-l);border-radius:9px}
+.rev-wrap{display:grid;grid-template-columns:380px 1fr;gap:60px;align-items:start}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.quote{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:26px;margin:0}
+.quote blockquote{margin:0 0 16px;font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1.35;color:#fff}
+.quote figcaption{font-size:14px;color:#cfd3b8}
+.quote .stars{color:#f0b07f;letter-spacing:2px;font-size:14px;margin-bottom:10px}
+@media (max-width:1020px){.rev-wrap{grid-template-columns:1fr;gap:40px}}@media (max-width:620px){.quotes{grid-template-columns:1fr}}
+/* location */
+.loc-wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:50px;align-items:center}
+.map{background:#e9dfcb;border-radius:24px;overflow:hidden;border:1px solid var(--line)}
+.map svg{display:block;width:100%;height:auto}
+.dist{list-style:none;padding:0;margin:24px 0 0}
+.dist li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px}
+.dist li span:last-child{color:var(--muted);white-space:nowrap}
+.addr{font-size:15px;color:var(--muted);margin-top:20px}
+@media (max-width:900px){.loc-wrap{grid-template-columns:1fr}}
+/* faq */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
+.qa{border-bottom:1px solid var(--line)}
+.qa h3{margin:0;font-size:inherit}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;background:none;border:0;padding:22px 0;text-align:left;font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:500}
+.qa button span{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .3s,background .3s;font-family:Jost,sans-serif;font-size:18px;color:var(--terra)}
+.qa button[aria-expanded="true"] span{transform:rotate(45deg);background:var(--sand)}
+.qa .ans{display:grid;grid-template-rows:1fr;transition:grid-template-rows .35s ease}.js .qa .ans{grid-template-rows:0fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{color:var(--muted);font-size:16px;padding-bottom:22px;margin:0;max-width:640px}
+.js .qa h3:has(button[aria-expanded="true"])+.ans{grid-template-rows:1fr}
+@media (max-width:900px){.faq-wrap{grid-template-columns:1fr;gap:20px}}
+/* enquiry */
+.enquiry{background:var(--sand)}
+.enq-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.contact-list{list-style:none;padding:0;margin:26px 0 0;font-size:16px}
+.contact-list li{padding:10px 0;border-bottom:1px solid var(--line)}
+.contact-list b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.form{background:var(--paper);border-radius:24px;padding:36px;box-shadow:0 30px 70px -40px rgba(60,40,20,.45)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fld{display:flex;flex-direction:column;gap:6px}.fld.full{grid-column:1/-1}
+.fld label{font-size:14px;font-weight:500}
+.fld input,.fld select,.fld textarea{border:1px solid #d6c8b1;border-radius:12px;padding:12px 14px;background:#fff;font-size:16px;font-weight:300;width:100%}
+.fld textarea{min-height:110px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--terra);box-shadow:0 0 0 3px rgba(180,83,45,.18)}
+.fld .msg{font-size:13px;color:#a3341a;min-height:0}
+.fld.bad input,.fld.bad select,.fld.bad textarea{border-color:#a3341a}
+.form .row-end{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:24px}
+.form .row-end p{font-size:13.5px;color:var(--muted);margin:0;max-width:300px}
+.success{text-align:center;padding:30px 10px}
+.success .tick{width:72px;height:72px;border-radius:50%;background:var(--olive);display:grid;place-items:center;margin:0 auto 20px}
+.success h3{font-size:36px}.success p{color:var(--muted)}
+@media (max-width:900px){.enq-wrap{grid-template-columns:1fr;gap:30px}}@media (max-width:560px){.fgrid{grid-template-columns:1fr}.form{padding:24px}}
+/* footer */
+footer{background:var(--ink);color:#d8cdbd;padding:70px 0 30px;font-size:15px}
+.f-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px}
+footer .logo{color:#fff;margin-bottom:12px}
+footer h4{font-family:Jost,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#a99c89;font-weight:500;margin-bottom:14px}
+footer ul{list-style:none;padding:0;margin:0}footer li{padding:4px 0}footer a{text-decoration:none}footer a:hover{color:var(--terra-l)}
+.f-bot{border-top:1px solid #463c33;padding-top:24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:#b3a692}
+.f-bot strong{color:#fff;font-weight:500}
+@media (max-width:900px){.f-top{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav"><div class="wrap">
+<a class="logo" href="#top" aria-label="Casa Verdant home"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="#b4532d" stroke-width="1.4"/><path d="M16 25c0-7 0-11 0-15M16 14c-3-3-6-3-8-2 2 3 5 4 8 2zm0 4c3-3 6-3 8-2-2 3-5 4-8 2zm0-8c-2-2-2-4-1-6 2 1 2 4 1 6z" fill="#5b6a37" stroke="#5b6a37" stroke-width="1"/></svg>Casa Verdant</a>
+<nav aria-label="Main"><ul id="navlist">
+<li><a href="#rooms">Rooms</a></li><li><a href="#day">A day here</a></li><li><a href="#menu">Restaurant</a></li><li><a href="#spa">Spa</a></li><li><a href="#offers">Offers</a></li><li><a href="#location">Location</a></li>
+</ul></nav>
+<div style="display:flex;gap:10px;align-items:center"><a class="btn btn-terra book" href="#enquiry">Book a stay</a><button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navlist"><svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h20" stroke="#2b241e" stroke-width="1.6"/></svg></button></div>
+</div></header>
+<main id="main">
+<section class="hero" id="top" aria-labelledby="hero-h">
+<div class="hero-art" aria-hidden="true">
+<svg viewBox="0 0 1440 900" preserveAspectRatio="xMaxYMax slice">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d2b2"/><stop offset=".55" stop-color="#fae8d5"/><stop offset="1" stop-color="#f7e3cc"/></linearGradient>
+<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9dbdbd"/><stop offset="1" stop-color="#5f8f99"/></linearGradient>
+<radialGradient id="sunG"><stop offset="0" stop-color="#f6c08f"/><stop offset=".6" stop-color="#f3b07d" stop-opacity=".55"/><stop offset="1" stop-color="#f3b07d" stop-opacity="0"/></radialGradient>
+<linearGradient id="h1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b7bd8a"/><stop offset="1" stop-color="#9aa46d"/></linearGradient>
+<linearGradient id="h2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8b9658"/><stop offset="1" stop-color="#6f7c44"/></linearGradient>
+<linearGradient id="h3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5f6d35"/><stop offset="1" stop-color="#46532a"/></linearGradient>
+</defs>
+<rect width="1440" height="900" fill="url(#sky)"/>
+<circle class="sun" cx="1080" cy="300" r="190" fill="url(#sunG)"/>
+<circle cx="1080" cy="300" r="62" fill="#f2b384"/>
+<g fill="none" stroke="#c9a88a" stroke-width="1.6" stroke-linecap="round"><path class="bird" d="M900 200q8-7 16 0q8-7 16 0"/><path class="bird" d="M950 172q6-5 12 0q6-5 12 0"/><path d="M872 236q5-4 10 0q5-4 10 0"/></g>
+<path d="M0 470 C120 420 210 430 300 452 S470 440 560 470Z" fill="#c9bfae" opacity=".8"/>
+<path d="M1260 470 C1320 440 1390 432 1440 440 V470Z" fill="#c4b9a7" opacity=".7"/>
+<rect y="468" width="1440" height="250" fill="url(#sea)"/>
+<g class="sparkle" stroke="#e9f1ec" stroke-width="2" stroke-linecap="round" opacity=".8"><path d="M980 395"/><path d="M1040 490h60M1010 505h40M1070 520h70M1030 540h36M1100 556h48M760 500h40M820 530h30M300 510h44M380 540h28"/></g>
+<path d="M0 610 C180 548 380 552 600 584 S1000 520 1180 500 S1380 470 1440 468 V900 H0Z" fill="url(#h1)"/>
+<g>
+<rect x="926" y="545" width="118" height="80" fill="#fbf3e6"/><rect x="1044" y="550" width="22" height="75" fill="#ead8c0"/>
+<path d="M922 545h126" stroke="#c0663f" stroke-width="6"/>
+<g fill="#7a8a4a"><rect x="930" y="532" width="3" height="13"/><rect x="980" y="532" width="3" height="13"/><rect x="1030" y="532" width="3" height="13"/><rect x="926" y="530" width="112" height="3"/></g>
+<rect x="1004" y="470" width="176" height="150" fill="#fdf6ea"/><rect x="1180" y="478" width="40" height="142" fill="#ecdac3"/>
+<path d="M994 472 L1092 440 L1190 472Z" fill="#c0663f"/><path d="M1190 472 L1228 480 L1180 455Z" fill="#a4532f"/>
+<rect x="1058" y="398" width="48" height="80" fill="#fdf6ea"/><rect x="1106" y="404" width="14" height="74" fill="#ecdac3"/>
+<path d="M1052 400 L1082 374 L1112 400Z" fill="#c0663f"/>
+<rect x="1072" y="416" width="20" height="30" rx="10" fill="#6a5847"/>
+<g fill="#6a5847"><rect x="1020" y="494" width="22" height="34" rx="11"/><rect x="1058" y="494" width="22" height="34" rx="11"/><rect x="1096" y="494" width="22" height="34" rx="11"/><rect x="1134" y="494" width="22" height="34" rx="11"/><rect x="1020" y="550" width="22" height="34" rx="11"/><rect x="1058" y="550" width="22" height="34" rx="11"/><rect x="1134" y="550" width="22" height="34" rx="11"/><rect x="944" y="566" width="18" height="28" rx="9"/><rect x="976" y="566" width="18" height="28" rx="9"/><rect x="1008" y="566" width="18" height="28" rx="9"/></g>
+<rect x="1094" y="546" width="26" height="74" rx="13" fill="#8a5a3c"/>
+<rect x="1228" y="512" width="96" height="98" fill="#fbf3e6"/><rect x="1324" y="518" width="24" height="92" fill="#ead8c0"/>
+<path d="M1222 512 L1276 488 L1330 512Z" fill="#c0663f"/>
+<g fill="#6a5847"><rect x="1242" y="530" width="18" height="28" rx="9"/><rect x="1290" y="530" width="18" height="28" rx="9"/></g>
+<g fill="#d9785a"><circle cx="1004" cy="540" r="9"/><circle cx="1014" cy="530" r="7"/><circle cx="996" cy="528" r="6"/><circle cx="1226" cy="560" r="8"/><circle cx="1234" cy="548" r="6"/><circle cx="1180" cy="520" r="7"/></g>
+<g fill="#3d4824"><ellipse cx="906" cy="560" rx="10" ry="46"/><ellipse cx="1206" cy="520" rx="9" ry="44"/><ellipse cx="1360" cy="540" rx="11" ry="54"/><ellipse cx="1384" cy="556" rx="9" ry="42"/><ellipse cx="1150" cy="410" rx="8" ry="36"/></g>
+</g>
+<path d="M0 712 C220 650 460 652 700 690 S1100 640 1260 612 S1400 600 1440 598 V900 H0Z" fill="url(#h2)"/>
+<rect x="1130" y="640" width="150" height="18" rx="9" fill="#86c0c4" stroke="#f2e6d4" stroke-width="4"/>
+<g fill="none" stroke="#7a8749" stroke-width="2" opacity=".7"><path d="M60 740 C260 690 460 692 680 724"/><path d="M40 770 C260 724 480 724 700 756"/><path d="M860 690 C980 666 1080 656 1180 668"/></g>
+<g><g fill="#8c9a5e"><circle cx="760" cy="700" r="22"/><circle cx="782" cy="690" r="18"/><circle cx="800" cy="704" r="16"/></g><rect x="776" y="712" width="5" height="22" fill="#6a5847"/>
+<g fill="#93a165"><circle cx="880" cy="676" r="18"/><circle cx="898" cy="668" r="15"/><circle cx="912" cy="680" r="13"/></g><rect x="893" y="688" width="4" height="18" fill="#6a5847"/>
+<g fill="#869456"><circle cx="1330" cy="650" r="20"/><circle cx="1350" cy="640" r="16"/><circle cx="1366" cy="654" r="14"/></g><rect x="1345" y="662" width="4" height="18" fill="#6a5847"/></g>
+<path d="M0 820 C260 760 560 770 860 800 S1260 760 1440 752 V900 H0Z" fill="url(#h3)"/>
+<g fill="#2f3a1c"><ellipse cx="840" cy="752" rx="13" ry="72"/><ellipse cx="866" cy="770" rx="10" ry="56"/><ellipse cx="1420" cy="700" rx="14" ry="80"/></g>
+<g fill="#e08a62"><circle cx="120" cy="842" r="4"/><circle cx="160" cy="850" r="3"/><circle cx="700" cy="826" r="4"/><circle cx="740" cy="834" r="3"/><circle cx="1180" cy="800" r="4"/><circle cx="1220" cy="808" r="3"/><circle cx="1300" cy="790" r="3"/></g>
+<g fill="#f2d9a0"><circle cx="140" cy="860" r="3"/><circle cx="720" cy="846" r="3"/><circle cx="1200" cy="820" r="3"/></g>
+</svg>
+</div>
+<div class="wrap hero-copy-wrap">
+<div class="hero-copy">
+<span class="eyebrow">Boutique hotel · Costa Verdana</span>
+<h1 id="hero-h">Twenty-four rooms, <em>one hillside</em>, and the sea below.</h1>
+<p class="lede">Whitewashed rooms among old olive terraces, a kitchen that cooks what the valley grows, and a small stone spa. Three hundred metres up, eight minutes from the beach.</p>
+<a class="btn btn-terra" href="#rooms">See the rooms</a> <a class="btn btn-line" href="#day" style="margin-left:6px">A day here</a>
+<div class="hero-meta"><span><i></i>Open March – November</span><span><i></i>4.9 from 1,240 guest reviews</span></div>
+</div>
+</div>
+<div class="wrap">
+<form class="booking" id="bookingBar" novalidate aria-label="Check availability">
+<div class="f"><label for="bIn">Check-in</label><input type="date" id="bIn" value="2026-11-26" required></div>
+<div class="f"><label for="bOut">Check-out</label><input type="date" id="bOut" value="2026-11-29" required></div>
+<div class="f"><label for="bGuests">Guests</label><select id="bGuests"><option value="1">1 adult</option><option value="2" selected>2 adults</option><option value="3">2 adults, 1 child</option><option value="4">2 adults, 2 children</option></select></div>
+<div class="f" aria-live="polite"><span class="lbl">Your stay</span><span class="nights" id="bNights">3 nights<small>Thu 26 – Sun 29 Nov</small></span></div>
+<button class="btn btn-terra" type="submit">Check availability</button>
+<p class="err" id="bErr" role="alert"></p>
+</form>
+</div>
+</section>
+<section class="rooms" id="rooms" aria-labelledby="rooms-h">
+<div class="wrap">
+<div class="sec-head reveal"><div><span class="eyebrow">Rooms &amp; suites</span><h2 id="rooms-h">Choose a room, <em class="t">see the price</em></h2></div><p class="lede">Every room has a terrace or balcony, linen from a mill in the valley and no television unless you ask for one. Prices are per room, per night, breakfast included.</p></div>
+<div class="rooms-grid">
+<div class="room-list" role="group" aria-label="Room types">
+<button class="room reveal" type="button" data-room="Garden Room" data-rate="185" aria-pressed="false"><div class="room-art ra1"><span class="tag">8 rooms</span></div><div class="room-body"><h3>Garden Room</h3><p>Ground floor, opening onto the lemon garden. Queen bed, rain shower.</p><div class="room-specs"><span>22 m²</span><span>Up to 2</span><span>Garden terrace</span></div><div class="room-price"><span>from</span><b>€185</b></div></div></button>
+<button class="room reveal" type="button" data-room="Sea View Double" data-rate="240" aria-pressed="true"><div class="room-art ra2"><span class="tag">Most booked</span></div><div class="room-body"><h3>Sea View Double</h3><p>First floor, balcony facing west over the bay. King bed, deep bath.</p><div class="room-specs"><span>26 m²</span><span>Up to 3</span><span>Sea balcony</span></div><div class="room-price"><span>from</span><b>€240</b></div></div></button>
+<button class="room reveal" type="button" data-room="Terrace Suite" data-rate="360" aria-pressed="false"><div class="room-art ra3"><span class="tag">6 suites</span></div><div class="room-body"><h3>Terrace Suite</h3><p>Separate sitting room, a 30 m² private terrace and an outdoor shower.</p><div class="room-specs"><span>42 m²</span><span>Up to 4</span><span>Private terrace</span></div><div class="room-price"><span>from</span><b>€360</b></div></div></button>
+<button class="room reveal" type="button" data-room="Tower Suite" data-rate="520" aria-pressed="false"><div class="room-art ra4"><span class="tag">Only one</span></div><div class="room-body"><h3>Tower Suite</h3><p>Two floors inside the old bell tower, with windows on all four sides.</p><div class="room-specs"><span>55 m²</span><span>Up to 2</span><span>Roof deck</span></div><div class="room-price"><span>from</span><b>€520</b></div></div></button>
+</div>
+<aside class="calc reveal" aria-labelledby="calc-h">
+<h3 id="calc-h">Your stay</h3>
+<p class="sel" id="cRoom">Sea View Double · €240 per night</p>
+<div class="calc-row"><span>Nights</span><div class="stepper"><button type="button" id="nMinus" aria-label="One night fewer">−</button><output id="cNights" aria-live="polite">3</output><button type="button" id="nPlus" aria-label="One night more">+</button></div></div>
+<div class="calc-row"><span>Guests</span><div class="stepper"><button type="button" id="gMinus" aria-label="One guest fewer">−</button><output id="cGuests" aria-live="polite">2</output><button type="button" id="gPlus" aria-label="One guest more">+</button></div></div>
+<div class="calc-row"><label class="chk"><input type="checkbox" id="cDinner"> Half board (+€48 per guest, per night)</label></div>
+<dl aria-live="polite">
+<div><dt id="lRate">Room · 3 × €240</dt><dd id="vRate">€720.00</dd></div>
+<div><dt>Half board</dt><dd id="vDinner">€0.00</dd></div>
+<div><dt>VAT 10%</dt><dd id="vVat">€72.00</dd></div>
+<div><dt>Tourist tax (€2.50 pp/night)</dt><dd id="vTax">€15.00</dd></div>
+<div class="total"><dt>Total</dt><dd id="vTotal">€807.00</dd></div>
+</dl>
+<p class="note">Free cancellation up to 14 days before arrival. No deposit taken online.</p>
+<a class="btn btn-terra" href="#enquiry" id="calcBook">Request these dates</a>
+</aside>
+</div>
+</div>
+</section>
+<section class="day" id="day" aria-labelledby="day-h">
+<div class="wrap">
+<div class="sec-head reveal"><div><span class="eyebrow">A day at Casa Verdant</span><h2 id="day-h">Nothing is scheduled. <em class="t">This is just how it tends to go.</em></h2></div></div>
+<ol class="timeline">
+<li class="reveal"><div class="t-ico"><svg viewBox="0 0 26 26" fill="none" stroke="#b4532d" stroke-width="1.5" aria-hidden="true"><circle cx="13" cy="15" r="5"/><path d="M13 4v3M4 15h3M19 15h3M6.5 8.5l2 2M19.5 8.5l-2 2M3 21h20"/></svg></div><time>7:30</time><h3>Sunrise swim</h3><p>The pool is heated to 28° from April. Robes and towels wait on the loungers.</p></li>
+<li class="reveal"><div class="t-ico"><svg viewBox="0 0 26 26" fill="none" stroke="#b4532d" stroke-width="1.5" aria-hidden="true"><path d="M5 11h14v4a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6zM19 12h2a2 2 0 0 1 0 4h-2M9 4c0 2 2 2 2 4M14 4c0 2 2 2 2 4"/></svg></div><time>8:30</time><h3>Breakfast on the terrace</h3><p>Eggs from the farm next door, figs, sheep's yoghurt and bread baked at six.</p></li>
+<li class="reveal"><div class="t-ico"><svg viewBox="0 0 26 26" fill="none" stroke="#b4532d" stroke-width="1.5" aria-hidden="true"><path d="M3 20c4-8 8-12 10-12s6 4 10 12M8 20l3-5 3 3 3-4"/></svg></div><time>10:30</time><h3>Walk to the cove</h3><p>A marked path through the olive groves, 25 minutes down, a little longer back.</p></li>
+<li class="reveal"><div class="t-ico"><svg viewBox="0 0 26 26" fill="none" stroke="#b4532d" stroke-width="1.5" aria-hidden="true"><path d="M5 18c2-6 6-9 8-9s6 3 8 9M13 9V5M9 22h8"/><circle cx="13" cy="4" r="1.2"/></svg></div><time>15:00</time><h3>Spa or siesta</h3><p>A massage in the stone treatment rooms, or two hours with a book in the shade.</p></li>
+<li class="reveal"><div class="t-ico"><svg viewBox="0 0 26 26" fill="none" stroke="#b4532d" stroke-width="1.5" aria-hidden="true"><path d="M8 4h10l-1 7a4 4 0 0 1-8 0zM13 15v7M9 22h8"/></svg></div><time>19:00</time><h3>Aperitivo at sunset</h3><p>Vermouth from the cellar and warm olives on the west terrace.</p></li>
+<li class="reveal"><div class="t-ico"><svg viewBox="0 0 26 26" fill="none" stroke="#b4532d" stroke-width="1.5" aria-hidden="true"><path d="M18 5a8 8 0 1 0 3 12A7 7 0 0 1 18 5z"/></svg></div><time>20:30</time><h3>Dinner at Olivar</h3><p>Five courses or à la carte, under the vine pergola until the end of October.</p></li>
+</ol>
+</div>
+</section>
+<section class="menu" id="menu" aria-labelledby="menu-h">
+<div class="wrap menu-wrap">
+<div class="reveal">
+<span class="eyebrow">Olivar, the restaurant</span>
+<h2 id="menu-h">The menu changes when <em class="t">the garden does</em></h2>
+<p class="lede">Chef Inés Valcárcel cooks for forty covers a night. Most of the vegetables come from our own terraces; the fish comes up from the harbour at Port Esca every morning.</p>
+<div class="plate" aria-hidden="true"><svg viewBox="0 0 200 200"><ellipse cx="100" cy="104" rx="62" ry="40" fill="#e9c7a0"/><path d="M50 100c20-24 80-24 100 0-20 18-80 18-100 0z" fill="#d9894f"/><g fill="#5b6a37"><ellipse cx="78" cy="88" rx="10" ry="4" transform="rotate(-30 78 88)"/><ellipse cx="122" cy="90" rx="10" ry="4" transform="rotate(30 122 90)"/><ellipse cx="100" cy="80" rx="9" ry="3.5"/></g><g fill="#b4532d"><circle cx="88" cy="106" r="5"/><circle cx="112" cy="110" r="4"/><circle cx="100" cy="116" r="3.5"/></g><path d="M66 128c14 8 54 8 68 0" stroke="#7d8a4f" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+</div>
+<div class="reveal">
+<div class="tabs" role="tablist" aria-label="Season">
+<button role="tab" id="t-spring" aria-controls="p-spring" aria-selected="false" tabindex="-1">Spring</button>
+<button role="tab" id="t-summer" aria-controls="p-summer" aria-selected="false" tabindex="-1">Summer</button>
+<button role="tab" id="t-autumn" aria-controls="p-autumn" aria-selected="true">Autumn</button>
+</div>
+<div role="tabpanel" id="p-spring" aria-labelledby="t-spring" hidden>
+<div class="dish"><h4>Broad beans, mint &amp; fresh cheese</h4><span class="pr">€14</span><p>First beans of April, sheep's curd from Mas Feliu, lemon oil.</p></div>
+<div class="dish"><h4>Wild asparagus tortilla <span class="v">Veg</span></h4><span class="pr">€13</span><p>Picked on the hillside by the kitchen team, slow-set eggs, green garlic.</p></div>
+<div class="dish"><h4>Red mullet, saffron broth</h4><span class="pr">€29</span><p>Fennel from the lower terrace, new potatoes, aioli on the side.</p></div>
+<div class="dish"><h4>Roast lamb shoulder for two</h4><span class="pr">€58</span><p>Twelve hours in the wood oven, spring onions, rosemary salt.</p></div>
+<div class="dish"><h4>Loquat &amp; almond tart</h4><span class="pr">€11</span><p>From the two loquat trees by the car park, almond cream, honey ice.</p></div>
+</div>
+<div role="tabpanel" id="p-summer" aria-labelledby="t-summer" hidden>
+<div class="dish"><h4>Tomatoes from the terrace <span class="v">Veg</span></h4><span class="pr">€13</span><p>Six varieties, sliced thick, salt, our own olive oil. Nothing else.</p></div>
+<div class="dish"><h4>Chilled almond soup</h4><span class="pr">€12</span><p>Ajo blanco with green grapes and a few drops of sherry vinegar.</p></div>
+<div class="dish"><h4>Grilled sardines</h4><span class="pr">€19</span><p>Landed at Port Esca that morning, charred peppers, toasted bread.</p></div>
+<div class="dish"><h4>Rice with prawns &amp; courgette flower</h4><span class="pr">€32</span><p>Cooked in a wide pan for two, crust on the bottom. Allow 30 minutes.</p></div>
+<div class="dish"><h4>Peaches in vermouth</h4><span class="pr">€10</span><p>White peaches, house vermouth, crème fraîche, crushed pistachio.</p></div>
+</div>
+<div role="tabpanel" id="p-autumn" aria-labelledby="t-autumn">
+<div class="dish"><h4>Roast squash, brown butter, sage <span class="v">Veg</span></h4><span class="pr">€14</span><p>Squash from the upper garden, toasted seeds, aged goat's cheese.</p></div>
+<div class="dish"><h4>Wild mushrooms on toast <span class="v">Veg</span></h4><span class="pr">€16</span><p>Saffron milk caps from the pine woods above the village, garlic, parsley.</p></div>
+<div class="dish"><h4>Sea bream baked in salt</h4><span class="pr">€34</span><p>Opened at the table, with fennel, olive oil and a green herb sauce.</p></div>
+<div class="dish"><h4>Pork cheek, quince &amp; chestnut</h4><span class="pr">€28</span><p>Braised in red wine from the cooperative at Vilaroca.</p></div>
+<div class="dish"><h4>Fig leaf ice cream</h4><span class="pr">€10</span><p>With roasted figs and an olive oil biscuit. The one guests ask about.</p></div>
+</div>
+<p class="menu-foot">Five-course tasting menu €68, wine pairing €42. Dinner 19:30–22:30, open to non-residents by reservation.</p>
+</div>
+</div>
+</section>
+<section class="spa" id="spa" aria-labelledby="spa-h">
+<div class="wrap">
+<div class="sec-head reveal"><div><span class="eyebrow">The spa</span><h2 id="spa-h">Two treatment rooms, <em class="t">one stone bath</em></h2></div><p class="lede">Built into the old olive press. We use oils pressed on the estate and a small range made by a herbalist in Vilaroca.</p></div>
+<div class="spa-grid">
+<article class="treat reveal"><span class="dur">60 min</span><h3>Olive press massage</h3><p>Full-body massage with warm estate olive oil and rosemary. Our most booked treatment.</p><div class="pr"><span>Per person</span><b>€95</b></div></article>
+<article class="treat reveal"><span class="dur">45 min</span><h3>Sea salt scrub</h3><p>Salt from the Esca flats mixed with lemon peel, followed by a rinse and light oil.</p><div class="pr"><span>Per person</span><b>€70</b></div></article>
+<article class="treat reveal"><span class="dur">75 min</span><h3>Fig &amp; honey facial</h3><p>Cleanse, gentle exfoliation and a mask of fig and local honey. Suits sensitive skin.</p><div class="pr"><span>Per person</span><b>€110</b></div></article>
+<article class="treat reveal"><span class="dur">90 min</span><h3>Hillside ritual</h3><p>Scrub, 60-minute massage and a scalp treatment, then tea in the courtyard.</p><div class="pr"><span>Per person</span><b>€150</b></div></article>
+<article class="treat reveal"><span class="dur">2 × 60 min</span><h3>Side by side</h3><p>Two olive press massages in the same room, with a bottle of cava after.</p><div class="pr"><span>Per couple</span><b>€195</b></div></article>
+<article class="treat reveal"><span class="dur">50 min</span><h3>Stone bath, private</h3><p>The thermal bath and steam room to yourselves. Book the last slot for the sunset.</p><div class="pr"><span>Up to 2</span><b>€45</b></div></article>
+</div>
+<div class="spa-note reveal"><span>Open 10:00–20:00 daily</span><span>Book at reception or in your enquiry</span><span>Bath and steam room free for hotel guests 8:00–10:00</span></div>
+</div>
+</section>
+<section class="offers" id="offers" aria-labelledby="offers-h">
+<div class="wrap">
+<div class="sec-head reveal"><div><span class="eyebrow">Offers &amp; packages</span><h2 id="offers-h">Stay a little longer</h2></div><p class="lede">Packages are added on top of your room. Mention the one you want in your enquiry and we'll hold it for you.</p></div>
+<div class="offer-grid">
+<article class="offer feat reveal"><span class="when">March – May, Sept – Nov</span><h3>Fourth night on us</h3><p>Book three nights in any room and the fourth is free, breakfast included. The quiet months are when the hillside is at its greenest.</p><ul><li>Any room type, subject to availability</li><li>Late checkout until 14:00</li></ul><div class="foot"><div><b>Save 25%</b><small>on a four-night stay</small></div><a class="btn" href="#enquiry" data-offer="Fourth night on us">Ask for this offer</a></div></article>
+<article class="offer reveal"><span class="when">Two nights</span><h3>Slow weekend</h3><ul><li>Dinner for two at Olivar on one night</li><li>Two 60-minute olive press massages</li><li>A bottle of estate wine in the room</li></ul><div class="foot"><div><b>+€310</b><small>per couple</small></div><a class="btn btn-line" href="#enquiry" data-offer="Slow weekend">Ask</a></div></article>
+<article class="offer reveal"><span class="when">Five nights or more</span><h3>The walker's week</h3><ul><li>Three guided walks with a local guide</li><li>Packed lunches on walking days</li><li>Luggage transfer to Port Esca</li></ul><div class="foot"><div><b>+€240</b><small>per person</small></div><a class="btn btn-line" href="#enquiry" data-offer="The walker's week">Ask</a></div></article>
+</div>
+</div>
+</section>
+<section class="reviews" id="reviews" aria-labelledby="rev-h">
+<div class="wrap rev-wrap">
+<div class="reveal">
+<span class="eyebrow">Guest reviews</span>
+<h2 id="rev-h">What guests write after they leave</h2>
+<div class="score"><b>4.9</b><div><span class="stars" aria-hidden="true">★★★★★</span><small>Average of 1,240 verified stays since 2021</small></div></div>
+<div class="bars" aria-label="Ratings by category">
+<div class="bar"><span>Staff</span><i style="--w:99%"></i><span>5.0</span></div>
+<div class="bar"><span>Cleanliness</span><i style="--w:98%"></i><span>4.9</span></div>
+<div class="bar"><span>Food</span><i style="--w:96%"></i><span>4.8</span></div>
+<div class="bar"><span>Location</span><i style="--w:96%"></i><span>4.8</span></div>
+<div class="bar"><span>Value</span><i style="--w:90%"></i><span>4.5</span></div>
+</div>
+</div>
+<div class="quotes">
+<figure class="quote reveal"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>We booked two nights and stayed five. The sea view room is worth the extra; we ate breakfast on the balcony every day.</blockquote><figcaption>Hanna &amp; Mats, Gothenburg · May 2026</figcaption></figure>
+<figure class="quote reveal"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>Dinner at Olivar was the best meal of our trip. Ask for a table at the edge of the pergola.</blockquote><figcaption>Daniel O., Leeds · September 2026</figcaption></figure>
+<figure class="quote reveal"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>Quiet, kind staff who remembered our names on day one. The walk down to the cove is steep but lovely.</blockquote><figcaption>Claire &amp; Rémi, Lyon · June 2026</figcaption></figure>
+<figure class="quote reveal"><div class="stars" aria-label="4 out of 5">★★★★☆</div><blockquote>Beautiful place. The road up is narrow, so take the transfer from the station if you're not a confident driver.</blockquote><figcaption>Priya S., Bristol · October 2026</figcaption></figure>
+</div>
+</div>
+</section>
+<section class="location" id="location" aria-labelledby="loc-h" style="background:var(--sand)">
+<div class="wrap loc-wrap">
+<div class="map reveal">
+<svg viewBox="0 0 600 440" role="img" aria-labelledby="map-t"><title id="map-t">Illustrated map: Casa Verdant on the hillside above Cala Morta cove, between Port Esca and Vilaroca</title>
+<rect width="600" height="440" fill="#ece2cd"/>
+<path d="M0 260 C60 250 90 300 140 310 S220 290 250 330 S300 420 380 440 H0Z" fill="#a9c7c6"/>
+<path d="M0 285 C60 276 86 322 136 334 S214 316 240 352 S286 430 340 440" fill="none" stroke="#c4dad6" stroke-width="2" stroke-dasharray="4 6"/>
+<g fill="none" stroke="#c9bc9f" stroke-width="1.2"><path d="M180 60 C260 40 360 70 420 120 S540 180 600 170"/><path d="M200 100 C270 84 350 110 400 150 S520 210 600 205"/><path d="M230 150 C290 136 340 160 380 190 S500 250 600 245"/><path d="M260 200 C300 192 340 210 370 232 S470 290 560 300"/></g>
+<g fill="#b7bd8a" opacity=".55"><circle cx="300" cy="120" r="9"/><circle cx="318" cy="112" r="8"/><circle cx="336" cy="124" r="9"/><circle cx="460" cy="250" r="8"/><circle cx="476" cy="242" r="9"/><circle cx="492" cy="256" r="7"/><circle cx="420" cy="320" r="8"/><circle cx="438" cy="330" r="9"/></g>
+<path d="M120 300 C170 270 230 250 300 236 S420 200 470 150 S540 90 600 70" fill="none" stroke="#fffaf0" stroke-width="7" stroke-linecap="round"/>
+<path d="M120 300 C170 270 230 250 300 236 S420 200 470 150 S540 90 600 70" fill="none" stroke="#d6c7a9" stroke-width="1"/>
+<path d="M300 236 C320 210 340 190 352 170" fill="none" stroke="#fffaf0" stroke-width="5" stroke-linecap="round"/>
+<path d="M352 170 C330 230 300 280 268 330" fill="none" stroke="#b4532d" stroke-width="2" stroke-dasharray="3 5"/>
+<path d="M420 440 L460 330 L520 260 L600 230" fill="none" stroke="#8b7d66" stroke-width="2"/><path d="M420 440 L460 330 L520 260 L600 230" fill="none" stroke="#ece2cd" stroke-width="2" stroke-dasharray="6 6"/>
+<g><rect x="104" y="290" width="22" height="18" fill="#fbf3e6" stroke="#8b7d66"/><rect x="88" y="300" width="14" height="12" fill="#fbf3e6" stroke="#8b7d66"/><path d="M70 330 l30-6" stroke="#8b7d66" stroke-width="3"/><path d="M60 318 q8 6 16 0" stroke="#5f8f99" fill="none"/></g>
+<g><rect x="500" y="56" width="16" height="14" fill="#fbf3e6" stroke="#8b7d66"/><rect x="518" y="60" width="12" height="10" fill="#fbf3e6" stroke="#8b7d66"/><rect x="510" y="40" width="8" height="16" fill="#fbf3e6" stroke="#8b7d66"/></g>
+<circle cx="268" cy="334" r="5" fill="#5f8f99"/>
+<g class="pin"><circle cx="352" cy="170" r="22" fill="#b4532d" opacity=".18"/><path d="M352 172 c-12-14-14-20-14-26a14 14 0 0 1 28 0c0 6-2 12-14 26z" fill="#b4532d"/><circle cx="352" cy="146" r="5" fill="#fff"/></g>
+<g font-family="Jost,sans-serif" font-size="13" fill="#4f4438"><text x="372" y="166" font-size="16" font-family="Cormorant Garamond,serif" font-weight="600" fill="#2b241e">Casa Verdant</text><text x="372" y="182" font-size="11.5">320 m above sea level</text><text x="66" y="282">Port Esca</text><text x="476" y="94">Vilaroca</text><text x="218" y="356">Cala Morta</text><text x="456" y="300" transform="rotate(-38 456 300)" font-size="11">Railway</text><text x="40" y="410" font-style="italic" fill="#5f8f99" font-size="15" font-family="Cormorant Garamond,serif">Mar Verdana</text></g>
+<g transform="translate(556 380)" fill="none" stroke="#6b5f51"><circle r="18"/><path d="M0-14 L4 0 L0 14 L-4 0Z" fill="#6b5f51"/></g>
+</svg>
+</div>
+<div class="reveal">
+<span class="eyebrow">Getting here</span>
+<h2 id="loc-h">Above the cove, <em class="t">below the village</em></h2>
+<p class="lede">The hotel sits on its own on the coast road between Port Esca and Vilaroca. We run a free transfer from Port Esca station for every train between 9:00 and 21:00.</p>
+<ul class="dist">
+<li><span>Cala Morta cove, on foot</span><span>25 min</span></li>
+<li><span>Port Esca harbour &amp; station</span><span>12 min drive</span></li>
+<li><span>Vilaroca village &amp; market</span><span>8 min drive</span></li>
+<li><span>Santa Aurea airport</span><span>55 min drive</span></li>
+</ul>
+<p class="addr">Camí de les Oliveres 14, Vilaroca · Parking for 20 cars, two EV chargers</p>
+</div>
+</div>
+</section>
+<section class="faq" id="faq" aria-labelledby="faq-h">
+<div class="wrap faq-wrap">
+<div class="reveal"><span class="eyebrow">Before you book</span><h2 id="faq-h">Questions guests ask</h2><p class="lede">Anything else, write to us. Reception answers emails within a few hours, 8:00–22:00.</p></div>
+<div class="reveal" id="faqList">
+<div class="qa"><h3><button type="button" aria-expanded="true" aria-controls="a1" id="q1">What time are check-in and check-out?<span aria-hidden="true">+</span></button></h3><div class="ans" id="a1" role="region" aria-labelledby="q1"><div><p>Check-in from 15:00, check-out by 11:00. If your room is free we'll let you in early, and you can always leave bags and use the pool and showers.</p></div></div></div>
+<div class="qa"><h3><button type="button" aria-expanded="false" aria-controls="a2" id="q2">Are children welcome?<span aria-hidden="true">+</span></button></h3><div class="ans" id="a2" role="region" aria-labelledby="q2"><div><p>Yes, in the Sea View Doubles and Terrace Suites, which fit a cot or an extra bed. Children under 4 stay free. The spa is for guests 16 and over.</p></div></div></div>
+<div class="qa"><h3><button type="button" aria-expanded="false" aria-controls="a3" id="q3">Can you cater for dietary needs?<span aria-hidden="true">+</span></button></h3><div class="ans" id="a3" role="region" aria-labelledby="q3"><div><p>The kitchen cooks vegetarian, vegan, gluten-free and dairy-free versions of most dishes. Tell us in your enquiry so the chef can plan ahead.</p></div></div></div>
+<div class="qa"><h3><button type="button" aria-expanded="false" aria-controls="a4" id="q4">Is the hotel accessible?<span aria-hidden="true">+</span></button></h3><div class="ans" id="a4" role="region" aria-labelledby="q4"><div><p>Two Garden Rooms are step-free with roll-in showers, and there is a lift to the restaurant terrace. The cove path is steep and not suitable for wheelchairs.</p></div></div></div>
+<div class="qa"><h3><button type="button" aria-expanded="false" aria-controls="a5" id="q5">Do you take dogs?<span aria-hidden="true">+</span></button></h3><div class="ans" id="a5" role="region" aria-labelledby="q5"><div><p>One well-behaved dog per Garden Room, €20 a night. We have bowls, a bed and a list of walks they're allowed on.</p></div></div></div>
+<div class="qa"><h3><button type="button" aria-expanded="false" aria-controls="a6" id="q6">What is your cancellation policy?<span aria-hidden="true">+</span></button></h3><div class="ans" id="a6" role="region" aria-labelledby="q6"><div><p>Free cancellation up to 14 days before arrival. After that we charge the first night, unless we can re-let the room.</p></div></div></div>
+</div>
+</div>
+</section>
+<section class="enquiry" id="enquiry" aria-labelledby="enq-h">
+<div class="wrap enq-wrap">
+<div class="reveal">
+<span class="eyebrow">Booking enquiry</span>
+<h2 id="enq-h">Tell us when, <em class="t">we'll do the rest</em></h2>
+<p class="lede">Send your dates and we'll reply with availability and a confirmed price within four hours. Nothing is charged until you confirm.</p>
+<ul class="contact-list">
+<li><b>Reception</b>+34 972 418 260</li>
+<li><b>Email</b>stay@casaverdant.example</li>
+<li><b>Season</b>14 March – 30 November 2026</li>
+</ul>
+</div>
+<div class="form reveal" id="formBox">
+<form id="enqForm" novalidate>
+<div class="fgrid">
+<div class="fld"><label for="eName">Full name</label><input id="eName" name="name" autocomplete="name" required><span class="msg" aria-live="polite"></span></div>
+<div class="fld"><label for="eEmail">Email</label><input id="eEmail" name="email" type="email" autocomplete="email" required><span class="msg" aria-live="polite"></span></div>
+<div class="fld"><label for="eIn">Arrival</label><input id="eIn" name="in" type="date" required><span class="msg" aria-live="polite"></span></div>
+<div class="fld"><label for="eOut">Departure</label><input id="eOut" name="out" type="date" required><span class="msg" aria-live="polite"></span></div>
+<div class="fld"><label for="eRoom">Room</label><select id="eRoom" name="room"><option>Garden Room</option><option selected>Sea View Double</option><option>Terrace Suite</option><option>Tower Suite</option><option>Not sure yet</option></select><span class="msg"></span></div>
+<div class="fld"><label for="eGuests">Guests</label><select id="eGuests" name="guests"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option></select><span class="msg"></span></div>
+<div class="fld full"><label for="eOffer">Package (optional)</label><select id="eOffer" name="offer"><option value="">None</option><option>Fourth night on us</option><option>Slow weekend</option><option>The walker's week</option></select><span class="msg"></span></div>
+<div class="fld full"><label for="eNote">Anything we should know?</label><textarea id="eNote" name="note" placeholder="Arrival time, dietary needs, a special occasion…"></textarea><span class="msg"></span></div>
+</div>
+<div class="row-end"><p>We only use your details to reply to this enquiry.</p><button class="btn btn-terra" type="submit">Send enquiry</button></div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="wrap">
+<div class="f-top">
+<div><a class="logo" href="#top">Casa Verdant</a><p>A 24-room hotel, restaurant and spa on the hillside above Cala Morta. Open March to November.</p></div>
+<div><h4>Stay</h4><ul><li><a href="#rooms">Rooms &amp; suites</a></li><li><a href="#offers">Offers</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+<div><h4>Eat &amp; rest</h4><ul><li><a href="#menu">Olivar restaurant</a></li><li><a href="#spa">The spa</a></li><li><a href="#day">A day here</a></li></ul></div>
+<div><h4>Visit</h4><ul><li>Camí de les Oliveres 14</li><li>Vilaroca</li><li><a href="#location">Directions</a></li></ul></div>
+</div>
+<div class="f-bot"><span><strong>Designed &amp; developed by TMX Digital Solutions.</strong></span><span>Concept project with demo content. Casa Verdant and all names, prices and reviews are fictional.</span></div>
+</div>
+</footer>
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+/* nav */
+var nav=$('#nav'),mb=$('#menuBtn'),nl=$('#navlist');
+function onScroll(){nav.classList.toggle('solid',window.scrollY>40)}onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+mb.addEventListener('click',function(){var o=nl.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+nl.addEventListener('click',function(e){if(e.target.tagName==='A'){nl.classList.remove('open');mb.setAttribute('aria-expanded','false')}});
+/* reveal */
+var rv=$$('.reveal');
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});rv.forEach(function(el){io.observe(el)})}else{rv.forEach(function(el){el.classList.add('in')})}
+/* dates */
+var DAY=864e5,DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function parse(v){if(!v)return null;var p=v.split('-');var d=Date.UTC(+p[0],+p[1]-1,+p[2]);return isNaN(d)?null:d}
+function iso(t){return new Date(t).toISOString().slice(0,10)}
+function fmt(t){var d=new Date(t);return DN[d.getUTCDay()]+' '+d.getUTCDate()+' '+MN[d.getUTCMonth()]}
+var now=new Date(),today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());
+var bIn=$('#bIn'),bOut=$('#bOut'),bG=$('#bGuests'),bN=$('#bNights'),bErr=$('#bErr');
+bIn.value=iso(today+14*DAY);bOut.value=iso(today+17*DAY);bIn.min=iso(today);bOut.min=iso(today+DAY);
+function stayNights(){var a=parse(bIn.value),b=parse(bOut.value);if(a===null||b===null)return 0;return Math.round((b-a)/DAY)}
+function updateBar(){var a=parse(bIn.value),b=parse(bOut.value),n=stayNights();
+if(a!==null){bOut.min=iso(a+DAY)}
+if(n>0){bN.innerHTML=n+' night'+(n>1?'s':'')+'<small>'+fmt(a)+' – '+fmt(b)+'</small>'}else{bN.innerHTML='—<small>Pick your dates</small>'}}
+bIn.addEventListener('change',function(){var a=parse(bIn.value),b=parse(bOut.value);if(a!==null&&(b===null||b<=a)){bOut.value=iso(a+3*DAY)}bErr.textContent='';updateBar()});
+bOut.addEventListener('change',function(){bErr.textContent='';updateBar()});
+updateBar();
+/* calculator */
+var MAX={'Garden Room':2,'Sea View Double':3,'Terrace Suite':4,'Tower Suite':2};
+var st={room:'Sea View Double',rate:240,nights:3,guests:2,dinner:false};
+var eur=function(v){return '€'+v.toLocaleString('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2})};
+function calc(){var max=MAX[st.room];if(st.guests>max)st.guests=max;
+var room=st.rate*st.nights,din=st.dinner?48*st.guests*st.nights:0,vat=(room+din)*.1,tax=2.5*st.guests*st.nights;
+$('#cRoom').textContent=st.room+' · €'+st.rate+' per night · up to '+max+' guests';
+$('#cNights').textContent=st.nights;$('#cGuests').textContent=st.guests;
+$('#lRate').textContent='Room · '+st.nights+' × €'+st.rate;$('#vRate').textContent=eur(room);
+$('#vDinner').textContent=eur(din);$('#vVat').textContent=eur(vat);$('#vTax').textContent=eur(tax);$('#vTotal').textContent=eur(room+din+vat+tax);
+$('#nMinus').disabled=st.nights<=1;$('#nPlus').disabled=st.nights>=21;$('#gMinus').disabled=st.guests<=1;$('#gPlus').disabled=st.guests>=max}
+$$('.room').forEach(function(b){b.addEventListener('click',function(){$$('.room').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');st.room=b.dataset.room;st.rate=+b.dataset.rate;calc()})});
+$('#nMinus').addEventListener('click',function(){if(st.nights>1){st.nights--;calc()}});
+$('#nPlus').addEventListener('click',function(){if(st.nights<21){st.nights++;calc()}});
+$('#gMinus').addEventListener('click',function(){if(st.guests>1){st.guests--;calc()}});
+$('#gPlus').addEventListener('click',function(){if(st.guests<MAX[st.room]){st.guests++;calc()}});
+$('#cDinner').addEventListener('change',function(e){st.dinner=e.target.checked;calc()});
+calc();
+$('#bookingBar').addEventListener('submit',function(e){e.preventDefault();var a=parse(bIn.value),n=stayNights();
+if(a===null||parse(bOut.value)===null){bErr.textContent='Please choose both an arrival and a departure date.';return}
+if(a<today){bErr.textContent='Arrival can’t be in the past.';return}
+if(n<1){bErr.textContent='Departure must be at least one night after arrival.';return}
+if(n>21){bErr.textContent='For stays over 21 nights, please send us an enquiry.';return}
+bErr.textContent='';st.nights=n;st.guests=Math.min(+bG.value,4);
+if(st.guests>MAX[st.room]){var t=$('.room[data-room="Terrace Suite"]');t.click()}
+calc();$('#eIn').value=bIn.value;$('#eOut').value=bOut.value;$('#eGuests').value=String(st.guests);
+document.getElementById('rooms').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
+window.__cv={st:st,$:$,$$:$$,parse:parse,iso:iso,today:today,DAY:DAY,bIn:bIn,bOut:bOut};
+})();
+(function(){
+var C=window.__cv,$=C.$,$$=C.$$;
+/* menu tabs */
+var tabs=$$('[role=tab]');
+function sel(t,focus){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on});if(focus)t.focus()}
+tabs.forEach(function(t,i){t.addEventListener('click',function(){sel(t)});t.addEventListener('keydown',function(e){var k=e.key,j=-1;if(k==='ArrowRight')j=(i+1)%tabs.length;else if(k==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;else if(k==='Home')j=0;else if(k==='End')j=tabs.length-1;if(j>-1){e.preventDefault();sel(tabs[j],true)}})});
+/* faq */
+$$('.qa button').forEach(function(b){b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!o)})});
+/* links that prefill the enquiry */
+$$('[data-offer]').forEach(function(a){a.addEventListener('click',function(){$('#eOffer').value=a.dataset.offer})});
+$('#calcBook').addEventListener('click',function(){$('#eRoom').value=C.st.room;$('#eGuests').value=String(C.st.guests);
+if(!$('#eIn').value)$('#eIn').value=C.bIn.value;var a=C.parse($('#eIn').value);if(a!==null)$('#eOut').value=C.iso(a+C.st.nights*C.DAY)});
+/* enquiry form */
+var f=$('#enqForm');
+function setErr(el,m){var w=el.closest('.fld');w.classList.toggle('bad',!!m);w.querySelector('.msg').textContent=m||'';el.setAttribute('aria-invalid',m?'true':'false')}
+function check(){var ok=true,first=null;
+function v(el,m){setErr(el,m);if(m){ok=false;if(!first)first=el}}
+var n=$('#eName'),em=$('#eEmail'),i=$('#eIn'),o=$('#eOut'),a=C.parse(i.value),b=C.parse(o.value);
+v(n,n.value.trim().length<2?'Please enter your name.':'');
+v(em,!em.value.trim()?'Please enter your email.':(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em.value.trim())?'That email doesn’t look right.':''));
+v(i,a===null?'Choose an arrival date.':(a<C.today?'Arrival can’t be in the past.':''));
+v(o,b===null?'Choose a departure date.':(a!==null&&b<=a?'Must be after arrival.':''));
+return {ok:ok,first:first}}
+f.addEventListener('submit',function(e){e.preventDefault();var r=check();if(!r.ok){r.first.focus();return}
+var a=C.parse($('#eIn').value),b=C.parse($('#eOut').value),n=Math.round((b-a)/C.DAY),name=$('#eName').value.trim().split(' ')[0];
+var box=$('#formBox');f.hidden=true;box.insertAdjacentHTML('beforeend','<div class="success" role="status" tabindex="-1"><div class="tick"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#fff" stroke-width="2.4" aria-hidden="true"><path d="M8 18l6 6 12-13"/></svg></div><h3>Thank you, '+name.replace(/[<>&"]/g,'')+'</h3><p>We have your enquiry for a '+$('#eRoom').value+', '+n+' night'+(n>1?'s':'')+' from '+new Date(a).toLocaleDateString('en-GB',{day:'numeric',month:'long',timeZone:'UTC'})+'.<br>Reception will email you within four hours with availability and a confirmed price.</p><button class="btn btn-line" type="button" id="again">Send another enquiry</button></div>');
+box.querySelector('.success').focus();
+$('#again').addEventListener('click',function(){box.querySelector('.success').remove();f.reset();f.hidden=false;$('#eName').focus()})});
+f.addEventListener('input',function(e){var w=e.target.closest('.fld');if(w&&w.classList.contains('bad'))setErr(e.target,'')});
+})();
+</script>
+</body>
+</html>

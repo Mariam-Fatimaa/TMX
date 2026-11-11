@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff7ee">
+<title>Tripnest — Plan the trip together, then actually take it</title>
+<meta name="description" content="Tripnest is a travel planning app for groups: shared itineraries, boarding passes and bookings in one wallet, a split budget and a packing list everyone can tick. Designed &amp; developed by TMX Digital Solutions.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff7ee;--card:#fff;--ink:#14213d;--muted:#5a6478;--line:#ecdfd0;--coral:#ff5a36;--coral-d:#e0401d;--coral-l:#ffe4da;--sun:#ffc145;--sun-l:#fff1c9;--sky:#3a86ff;--sky-l:#dde9ff;--mint:#13a37f;--mint-l:#d6f3ea;--plum:#7b4bd6;--r:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque','DM Sans',sans-serif;font-weight:700;line-height:1.08;margin:0;letter-spacing:-.02em}
+p{margin:0}a{color:inherit}button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;z-index:99}.skip:focus{left:16px}
+.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
+section{padding:104px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--coral-d)}
+.eyebrow::before{content:"";width:22px;height:2px;background:currentColor;border-radius:2px}
+.h2{font-size:clamp(34px,4.4vw,54px);margin:14px 0 16px;max-width:760px}
+.lead{color:var(--muted);max-width:600px;font-size:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:15px 24px;font-weight:700;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-p{background:var(--coral);color:#fff;box-shadow:0 10px 24px #ff5a3640}.btn-p:hover{background:var(--coral-d);transform:translateY(-2px)}
+.btn-s{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}.btn-s:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.nav{position:fixed;inset:0 0 auto;z-index:50;height:72px;display:flex;align-items:center;background:#fff7eee6;backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.scrolled{border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;font:800 22px/1 'Bricolage Grotesque',sans-serif;text-decoration:none;letter-spacing:-.02em}
+.logo-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--coral),var(--sun));display:grid;place-items:center}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-weight:600;font-size:15px}
+.nav ul a{text-decoration:none;color:var(--muted)}.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:11px 18px;font-size:15px}
+.reveal{transition:opacity .7s ease,transform .7s ease}
+.js .reveal{opacity:0;transform:translateY(24px)}.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.js .reveal{opacity:1;transform:none}}
+.hero{padding:96px 0 48px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-180px;top:-140px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,#ffd99a 0,#ffc14555 40%,transparent 70%);z-index:-1}
+.hero::after{content:"";position:absolute;left:-200px;bottom:-260px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,#bcd6ff88,transparent 65%);z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center}
+.hero-copy{max-width:560px}
+.hero .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:100px;padding:6px 14px 6px 6px;font-size:14px;font-weight:600;color:var(--muted)}
+.hero .pill b{background:var(--mint-l);color:var(--mint);border-radius:100px;padding:3px 10px;font-size:12px;letter-spacing:.04em}
+.hero h1{font-size:clamp(46px,6vw,82px);font-weight:800;margin:22px 0 18px;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--coral);position:relative;white-space:nowrap}
+.hero h1 em svg{position:absolute;left:0;bottom:-10px;width:100%;height:14px}
+.hero .pitch{font-size:21px;font-weight:600;margin-bottom:12px}
+.hero p.lead{margin-bottom:30px}
+.stores{display:flex;gap:12px;flex-wrap:wrap}
+.store{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;border-radius:13px;padding:10px 18px 10px 14px;transition:transform .2s,background .2s}
+.store:hover{transform:translateY(-2px);background:#22335a}
+.store small{display:block;font-size:11px;opacity:.75;line-height:1.1}.store strong{display:block;font-size:17px;line-height:1.2}
+.stats{display:flex;gap:36px;margin-top:38px;padding-top:26px;border-top:1px dashed #e2cfba}
+.stats strong{display:block;font:800 30px/1 'Bricolage Grotesque',sans-serif}.stats span{font-size:14px;color:var(--muted)}
+/* phone frame */
+.phone-slot{--s:.9;width:calc(414px * var(--s));height:calc(868px * var(--s));position:relative;flex:none}
+#phone,.dev{position:absolute;left:0;top:0;width:414px;height:868px;transform:scale(var(--s));transform-origin:0 0;border-radius:62px;padding:12px;background:linear-gradient(145deg,#2a2f3a,#0d1018);box-shadow:0 0 0 2px #454b58 inset,0 40px 80px -20px #14213d66,0 18px 30px -12px #14213d40}
+#phone::before,.dev::before{content:"";position:absolute;right:-3px;top:180px;width:3px;height:80px;border-radius:0 3px 3px 0;background:#2a2f3a}
+.screen{width:390px;height:844px;border-radius:50px;overflow:hidden;position:relative;background:#fbf8f4;color:var(--ink);font-size:15px;line-height:1.4}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:122px;height:35px;background:#000;border-radius:20px;z-index:20}
+.sbar{height:54px;display:flex;align-items:center;justify-content:space-between;padding:6px 30px 0 36px;font-weight:700;font-size:16px;position:relative;z-index:10}
+.sbar .ic{display:flex;gap:6px;align-items:center}
+.view{position:absolute;top:54px;bottom:84px;left:0;right:0;overflow-y:auto;padding:8px 20px 24px;display:none;scrollbar-width:none}
+.view::-webkit-scrollbar{display:none}
+.view.on{display:block;animation:vin .35s ease}
+@keyframes vin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ah{display:flex;align-items:center;justify-content:space-between;margin:4px 0 16px}
+.ah small{display:block;color:var(--muted);font-size:13px;font-weight:600}
+.ah h3{font-size:26px;letter-spacing:-.025em}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;color:#fff;flex:none}
+.av.m{background:var(--coral)}.av.t{background:var(--sky)}.av.p{background:var(--plum)}.av.j{background:var(--mint)}
+.avs{display:flex}.avs .av{width:28px;height:28px;font-size:10px;letter-spacing:-.03em;border:2px solid #fff;margin-left:-8px}.avs .av:first-child{margin-left:0}
+.lbl{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px}
+.card{background:#fff;border-radius:20px;box-shadow:0 1px 0 #efe4d6,0 6px 18px -8px #14213d22}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:84px;background:#fffffff2;backdrop-filter:blur(10px);border-top:1px solid #efe4d6;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px 0;z-index:15}
+.tabbar::after{content:"";position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:var(--ink)}
+.tab{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:600;color:#8a93a6;padding:4px 0;border-radius:12px}
+.tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tab[aria-selected=true]{color:var(--coral)}
+.tab[aria-selected=true] svg{fill:var(--coral-l)}
+/* trips */
+.trip-hero{overflow:hidden;position:relative}
+.trip-hero .art{height:200px;display:block;width:100%}
+.trip-hero .tb{padding:14px 16px 16px}
+.trip-hero h4{font-size:22px}
+.meta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:14px;margin-top:4px}
+.count{position:absolute;top:14px;left:14px;background:#fff;border-radius:100px;padding:5px 12px;font-size:13px;font-weight:700;box-shadow:0 4px 10px #0002}
+.count b{color:var(--coral)}
+.bar{height:8px;border-radius:8px;background:#f1e8dc;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--coral),var(--sun));border-radius:8px;transition:width .4s}
+.bar-l{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-top:12px}
+.nextup{display:flex;gap:12px;align-items:center;padding:12px 14px;margin-top:12px}
+.nextup .ico{width:40px;height:40px;border-radius:12px;background:var(--sky-l);color:var(--sky);display:grid;place-items:center;flex:none}
+.nextup b{display:block;font-size:15px}.nextup span{font-size:13px;color:var(--muted)}
+.mini-trips{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mt{overflow:hidden}.mt svg{display:block;width:100%;height:96px}
+.mt div{padding:10px 12px 12px}.mt b{display:block;font-size:15px}.mt span{font-size:13px;color:var(--muted)}
+/* itinerary */
+.days{display:flex;gap:8px;overflow-x:auto;margin:0 -20px 16px;padding:2px 20px;scrollbar-width:none}
+.day{flex:none;border:0;width:56px;padding:8px 0;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1.5px #efe4d6;font-size:12px;font-weight:600;color:var(--muted)}
+.day b{display:block;font:800 20px/1.2 'Bricolage Grotesque',sans-serif;color:var(--ink)}
+.day[aria-pressed=true]{background:var(--ink);color:#ffd99a;box-shadow:none}.day[aria-pressed=true] b{color:#fff}
+.dayhead{padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:16px;background:linear-gradient(120deg,var(--sun-l),#fff)}
+.dayhead .wx{font:800 22px/1 'Bricolage Grotesque',sans-serif}.dayhead small{display:block;color:var(--muted);font-size:13px}
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:44px;top:8px;bottom:8px;border-left:2px dashed #e5d5c2}
+.tl li{display:grid;grid-template-columns:38px 14px 1fr;gap:10px;align-items:start;margin-bottom:12px}
+.tl time{font-size:13px;font-weight:700;color:var(--muted);padding-top:12px;text-align:right}
+.tl .dot{width:14px;height:14px;border-radius:50%;border:3px solid #fff;margin-top:13px;box-shadow:0 0 0 2px currentColor;background:currentColor}
+.tl .ev{padding:10px 12px}.tl .ev b{display:block;font-size:15px}.tl .ev span{font-size:13px;color:var(--muted)}
+.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:2px 7px;margin-top:6px}
+.c-coral{color:var(--coral)}.c-sky{color:var(--sky)}.c-mint{color:var(--mint)}.c-plum{color:var(--plum)}.c-sun{color:#e3a01a}
+.tag.c-coral{background:var(--coral-l)}.tag.c-sky{background:var(--sky-l)}.tag.c-mint{background:var(--mint-l)}.tag.c-plum{background:#ece3fb}.tag.c-sun{background:var(--sun-l)}
+/* wallet */
+.seg{display:grid;grid-template-columns:1fr 1fr;background:#f1e8dc;border-radius:12px;padding:3px;margin-bottom:16px}
+.seg button{border:0;background:none;border-radius:10px;padding:8px;font-size:14px;font-weight:700;color:var(--muted)}
+.seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 2px 6px #0001}
+.bp{border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 10px 24px -10px #14213d40;margin-bottom:14px}
+.bp-top{background:linear-gradient(135deg,#14213d,#2c3f6e);color:#fff;padding:16px 18px 18px;position:relative;overflow:hidden}
+.bp-top::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:#ffc14530}
+.bp-air{display:flex;justify-content:space-between;font-size:13px;font-weight:600;opacity:.85}
+.bp-route{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.bp-route b{font:800 38px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}.bp-route small{display:block;font-size:13px;opacity:.7}
+.bp-route .r{text-align:right}
+.bp-route svg{flex:1;height:24px;margin:0 8px;color:var(--sun)}
+.bp-cut{height:22px;position:relative;background:#fff;border-top:2px dashed #e7dccd;margin-top:-1px}
+.bp-cut::before,.bp-cut::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:#fbf8f4}
+.bp-cut::before{left:-11px}.bp-cut::after{right:-11px}
+.bp-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:4px;padding:0 18px 14px}
+.bp-grid small{display:block;font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}.bp-grid b{font-size:16px}
+.bp-code{display:flex;align-items:center;gap:14px;padding:0 18px 16px}
+.qr{width:72px;height:72px;flex:none;border-radius:8px;background:#fff;padding:5px;box-shadow:inset 0 0 0 1.5px #efe4d6}
+.bp-code p{font-size:13px;color:var(--muted)}.bp-code p b{color:var(--ink);display:block;font-size:14px}
+.stay{display:flex;gap:12px;padding:12px;align-items:center;margin-bottom:12px}
+.stay .th{width:72px;height:72px;border-radius:14px;flex:none;overflow:hidden}
+.stay b{display:block;font-size:15px}.stay span{font-size:13px;color:var(--muted);display:block}
+.stay .tag{margin-top:4px}
+/* budget */
+.bud-top{padding:16px;background:linear-gradient(135deg,var(--mint),#0b7d61);color:#fff;border-radius:20px;margin-bottom:14px}
+.bud-top small{font-size:13px;opacity:.85;font-weight:600}.bud-top strong{display:block;font:800 34px/1.1 'Bricolage Grotesque',sans-serif;margin:2px 0 6px}
+.bud-top .bar{background:#ffffff40}.bud-top .bar i{background:#fff}
+.bud-top .bar-l{font-size:12px;opacity:.9}
+.bal{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.bal div{background:#fff;border-radius:16px;padding:10px 4px;text-align:center;box-shadow:0 1px 0 #efe4d6}
+.bal .av{margin:0 auto 6px;width:34px;height:34px;font-size:12px;color:#fff}
+.bal b{display:block;font-size:14px;transition:color .3s}.bal span{font-size:11px;color:var(--muted)}
+.pos{color:var(--mint)}.neg{color:var(--coral-d)}
+.exp-form{padding:12px;display:grid;grid-template-columns:1fr 84px;gap:8px;margin-top:12px}
+.exp-form label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.exp-form input,.exp-form select{border:1.5px solid #efe4d6;border-radius:12px;padding:9px 10px;font-size:14px;background:#fbf8f4;min-width:0;width:100%}
+.exp-form input:focus,.exp-form select:focus{outline:none;border-color:var(--sky)}
+.exp-form button{border:0;background:var(--ink);color:#fff;border-radius:12px;font-weight:700;font-size:14px;padding:9px}
+.exp{list-style:none;margin:0;padding:0}
+.exp li{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f0e6da;font-size:14px}
+.exp li:last-child{border:0}
+.exp .ei{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none;font-size:16px}
+.exp li div{flex:1;min-width:0}.exp li b{display:block;font-size:15px}.exp li span{color:var(--muted);font-size:13px}
+.exp li strong{font-size:15px}
+.exp li.new{animation:flash 1.2s ease}
+@keyframes flash{from{background:var(--sun-l)}to{background:transparent}}
+/* packing */
+.pk-top{display:flex;align-items:center;gap:16px;padding:14px 16px;margin-bottom:6px}
+.ring{width:64px;height:64px;flex:none;position:relative}
+.ring svg{width:64px;height:64px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:7}.ring .rb{stroke:#f1e8dc}.ring .rf{stroke:var(--coral);stroke-linecap:round;transition:stroke-dashoffset .4s}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:15px}
+.pk-top strong{display:block;font-size:17px}.pk-top span{font-size:13px;color:var(--muted)}
+.chk{list-style:none;margin:0;padding:0 14px}
+.chk li{border-bottom:1px solid #f0e6da}.chk li:last-child{border:0}
+.chk label{display:flex;align-items:center;gap:12px;padding:11px 0;cursor:pointer;font-size:15px}
+.chk input{appearance:none;width:22px;height:22px;border-radius:7px;border:2px solid #d9cbb9;flex:none;display:grid;place-items:center;margin:0;transition:background .2s,border-color .2s}
+.chk input:checked{background:var(--mint);border-color:var(--mint)}
+.chk input:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.chk input:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.chk input:checked+span{color:var(--muted);text-decoration:line-through}
+.chk em{margin-left:auto;font-style:normal;font-size:12px;color:var(--muted)}
+/* map */
+.map{height:560px;border-radius:22px;overflow:hidden;position:relative}
+.map svg{width:100%;height:100%;display:block}
+.place{display:flex;gap:12px;align-items:center;padding:12px;margin-top:-60px;position:relative;margin-inline:10px}
+.sec-head{margin-bottom:48px}
+.gallery{background:#fff;border-block:1px solid var(--line)}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;justify-items:center}
+.shot{margin:0;text-align:center}
+.shot .phone-slot{--s:.62;margin:0 auto}
+.dev{box-shadow:0 0 0 2px #454b58 inset,0 24px 40px -18px #14213d55}
+.dev .view{display:block;animation:none;overflow:hidden}
+.shot .screen{text-align:left}
+.dev .tabbar{pointer-events:none}
+.shot figcaption{margin-top:18px;max-width:260px}
+.shot figcaption b{display:block;font-size:17px}.shot figcaption span{font-size:15px;color:var(--muted)}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat{background:#fff;border-radius:var(--r);padding:28px;border:1px solid var(--line)}
+.feat .fi{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px}
+.feat .fi svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat h3{font-size:21px;margin-bottom:8px}.feat p{color:var(--muted);font-size:16px}
+.design{background:var(--ink);color:#fff}
+.design .eyebrow{color:var(--sun)}.design .lead{color:#c6cddb}
+.dgrid{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:20px}
+.dcard{background:#1d2c4d;border-radius:var(--r);padding:28px;border:1px solid #2c3d63}
+.dcard h3{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#9fb0cf;margin-bottom:20px;font-family:'DM Sans',sans-serif}
+.ts div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #2c3d63}
+.ts div:last-child{border:0}.ts span{font-size:13px;color:#9fb0cf;white-space:nowrap}
+.sw{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sw div{font-size:12px;color:#c6cddb}.sw i{display:block;height:58px;border-radius:14px;margin-bottom:8px;border:1px solid #ffffff1a}
+.sw b{display:block;color:#fff;font-size:13px}
+.comp{display:flex;flex-direction:column;gap:14px}
+.comp .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{background:#ffffff14;border-radius:100px;padding:6px 12px;font-size:13px;font-weight:600}
+.chip.on{background:var(--coral);color:#fff}
+.flow ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:f}
+.flow li{counter-increment:f;position:relative;padding:24px 20px;background:#fff;border-radius:var(--r);border:1px solid var(--line)}
+.flow li::before{content:counter(f,decimal-leading-zero);font:800 34px/1 'Bricolage Grotesque',sans-serif;color:var(--coral);display:block;margin-bottom:14px}
+.flow li b{display:block;font-size:17px;margin-bottom:4px}.flow li span{font-size:15px;color:var(--muted)}
+.reviews{background:linear-gradient(180deg,var(--bg),#ffeedd)}
+.rv-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.score{display:flex;align-items:center;gap:16px}
+.score strong{font:800 64px/1 'Bricolage Grotesque',sans-serif}
+.stars{color:var(--sun);letter-spacing:2px;font-size:20px}
+.score span{display:block;font-size:14px;color:var(--muted)}
+.rvs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rv{background:#fff;border-radius:var(--r);padding:28px;border:1px solid var(--line);display:flex;flex-direction:column;gap:16px;margin:0}
+.rv blockquote{margin:0;font-size:17px}
+.rv footer{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted);margin-top:auto}.rv footer b{display:block;color:var(--ink);font-size:15px}
+.cta-box{background:linear-gradient(120deg,var(--coral),#ff8a3d 60%,var(--sun));border-radius:32px;padding:64px;color:#fff;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.cta-box h2{font-size:clamp(34px,4vw,52px);font-weight:800}
+.cta-box p{font-size:18px;margin-top:14px;opacity:.95}
+.cta-box .stores{justify-content:flex-end}
+.cta{padding-top:24px}
+.site-foot{padding:48px 0;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.site-foot .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.site-foot strong{color:var(--ink)}
+@media (max-width:1180px){.shots{grid-template-columns:repeat(2,1fr);row-gap:48px}.flow ol{grid-template-columns:repeat(3,1fr)}.dgrid{grid-template-columns:1fr 1fr}.dgrid .dcard:first-child{grid-column:1/-1}}
+@media (max-width:960px){
+.hero-grid{grid-template-columns:1fr;justify-items:center;text-align:left}
+.hero-copy{max-width:640px}
+.feats,.rvs{grid-template-columns:1fr 1fr}
+.cta-box{grid-template-columns:1fr;padding:44px}.cta-box .stores{justify-content:flex-start}
+.nav ul{display:none}}
+@media (max-width:640px){
+body{font-size:16px}
+section{padding:72px 0}
+.wrap{width:calc(100% - 32px)}
+.hero{padding-top:100px}
+.hero h1{font-size:44px}
+.hero .pitch{font-size:18px}
+.stats{gap:20px;flex-wrap:wrap}.stats strong{font-size:24px}
+.shots{grid-template-columns:1fr 1fr;gap:28px 12px}
+.shot .phone-slot{--s:.37}
+.shot figcaption b{font-size:15px}.shot figcaption span{font-size:13px}
+.feats,.rvs,.dgrid,.flow ol{grid-template-columns:1fr}
+.cta-box{padding:32px 24px;border-radius:24px}
+.nav .btn{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+<div class="wrap">
+<a class="logo" href="#main" aria-label="Tripnest home"><span class="logo-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></span>Tripnest</a>
+<nav aria-label="Primary"><ul><li><a href="#screens">Screens</a></li><li><a href="#features">Features</a></li><li><a href="#design">Design</a></li><li><a href="#reviews">Reviews</a></li></ul></nav>
+<a class="btn btn-p" href="#get">Get the app</a>
+</div>
+</header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+<div class="wrap hero-grid">
+<div class="hero-copy">
+<span class="pill"><b>NEW</b> Shared budgets now settle in 14 currencies</span>
+<h1 id="hero-title">Trips that <em>actually<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 C 50 2, 120 2, 198 8" stroke="#ffc145" stroke-width="5" fill="none" stroke-linecap="round"/></svg></em> leave the group chat.</h1>
+<p class="pitch">One app for the plan, the tickets, the money and the packing list.</p>
+<p class="lead">Tripnest keeps your group's itinerary, boarding passes and hotel bookings in one place, splits every shared cost as you go and reminds everyone what to pack. It works offline once you land.</p>
+<div class="stores">
+<a class="store" href="#" aria-label="Download on the App Store"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.8zM14.1 5.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><strong>App Store</strong></span></a>
+<a class="store" href="#" aria-label="Get it on Google Play"><svg width="22" height="24" viewBox="0 0 22 24" aria-hidden="true"><path d="M1 1l12 11L1 23z" fill="#3a86ff"/><path d="M1 1l15 8.5-3 2.5z" fill="#13a37f"/><path d="M1 23l15-8.5-3-2.5z" fill="#ff5a36"/><path d="M16 9.5l4 2.3c.8.5.8 1.1 0 1.6l-4 2.3-3-3.7z" fill="#ffc145"/></svg><span><small>Get it on</small><strong>Google Play</strong></span></a>
+</div>
+<div class="stats">
+<div><strong>4.8</strong><span>App Store, 11k ratings</span></div>
+<div><strong>310k</strong><span>trips planned</span></div>
+<div><strong>2 min</strong><span>to split a dinner bill</span></div>
+</div>
+</div>
+<div class="phone-slot" id="phoneSlot">
+<div id="phone" role="region" aria-label="Interactive Tripnest app preview">
+<div class="screen">
+<div class="island" aria-hidden="true"></div>
+<div class="sbar" aria-hidden="true"><span>9:41</span><span class="ic"><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="#14213d"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#14213d"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="#14213d"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#14213d"/></svg><svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 11.5 5.6 9a3.4 3.4 0 0 1 4.8 0zM3.2 6.7a6.8 6.8 0 0 1 9.6 0l-1.2 1.2a5.1 5.1 0 0 0-7.2 0zM.8 4.3a10.2 10.2 0 0 1 14.4 0L14 5.5a8.5 8.5 0 0 0-12 0z" fill="#14213d"/></svg><svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#14213d" opacity=".4"/><rect x="2" y="2" width="17" height="9" rx="2" fill="#14213d"/><rect x="24.5" y="4.5" width="2" height="4" rx="1" fill="#14213d" opacity=".4"/></svg></span></div>
+<div class="view on" id="v-trips" role="tabpanel" aria-label="Trips">
+<div class="ah"><div><small>Wednesday, 22 February</small><h3>Hi Maya, 3 trips ahead</h3></div><span class="av m" aria-hidden="true">MA</span></div>
+<article class="card trip-hero">
+<svg class="art" viewBox="0 0 350 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of Lisbon rooftops and a yellow tram">
+<defs><linearGradient id="lsk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb37a"/><stop offset=".6" stop-color="#ffd9a8"/><stop offset="1" stop-color="#fff0d6"/></linearGradient></defs>
+<rect width="350" height="200" fill="url(#lsk)"/><circle cx="262" cy="70" r="30" fill="#ffe08a"/><circle cx="262" cy="70" r="44" fill="#ffe08a" opacity=".35"/>
+<path d="M0 120 Q60 92 120 108 T240 100 T350 112 V200 H0z" fill="#f4a36b" opacity=".55"/>
+<g fill="#fff6ea"><rect x="18" y="104" width="34" height="50"/><rect x="58" y="94" width="30" height="60"/><rect x="94" y="110" width="40" height="44"/><rect x="200" y="98" width="32" height="56"/><rect x="238" y="108" width="44" height="46"/><rect x="288" y="96" width="34" height="58"/></g>
+<g fill="#e0592e"><path d="M14 106 35 92 56 106z"/><path d="M55 96 73 82 91 96z"/><path d="M90 112 114 98 138 112z"/><path d="M196 100 216 86 236 100z"/><path d="M234 110 260 96 286 110z"/><path d="M284 98 305 84 326 98z"/></g>
+<g fill="#7fb3e8"><rect x="26" y="116" width="7" height="9"/><rect x="38" y="116" width="7" height="9"/><rect x="64" y="106" width="7" height="9"/><rect x="76" y="106" width="7" height="9"/><rect x="104" y="122" width="8" height="9"/><rect x="118" y="122" width="8" height="9"/><rect x="208" y="110" width="7" height="9"/><rect x="246" y="120" width="8" height="9"/><rect x="262" y="120" width="8" height="9"/><rect x="296" y="108" width="7" height="9"/><rect x="309" y="108" width="7" height="9"/></g>
+<rect x="148" y="70" width="40" height="84" fill="#fff6ea"/><path d="M144 72h48l-24-26z" fill="#e0592e"/><circle cx="168" cy="92" r="8" fill="#7fb3e8"/>
+<path d="M0 154h350v46H0z" fill="#3a86ff"/><path d="M0 154h350v8H0z" fill="#9cc3ff"/>
+<g transform="translate(118 128)"><line x1="40" y1="-18" x2="52" y2="-30" stroke="#14213d" stroke-width="2"/><rect x="0" y="-12" width="96" height="34" rx="8" fill="#ffc145"/><rect x="0" y="12" width="96" height="10" rx="3" fill="#e0592e"/><g fill="#fff"><rect x="8" y="-6" width="14" height="12" rx="2"/><rect x="28" y="-6" width="14" height="12" rx="2"/><rect x="48" y="-6" width="14" height="12" rx="2"/><rect x="68" y="-6" width="20" height="12" rx="2"/></g><circle cx="18" cy="25" r="5" fill="#14213d"/><circle cx="78" cy="25" r="5" fill="#14213d"/></g>
+<path d="M0 182 Q40 176 80 182 T160 182 T240 182 T350 180" stroke="#cfe1ff" stroke-width="2" fill="none"/>
+</svg>
+<span class="count">Leaves in <b>18 days</b></span>
+<div class="tb">
+<h4>Lisbon &amp; Porto</h4>
+<div class="meta"><span>12 – 19 Mar · 4 travellers</span><span class="avs" aria-hidden="true"><span class="av m">MA</span><span class="av t">TH</span><span class="av p">PR</span><span class="av j">JO</span></span></div>
+<div class="bar-l"><span>Plan ready</span><span id="planPct">72%</span></div>
+<div class="bar" aria-hidden="true"><i style="width:72%"></i></div>
+</div>
+</article>
+<div class="card nextup"><span class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span><div><b>BZ 412 · London → Lisbon</b><span>Online check-in opens 11 Mar, 07:05</span></div></div>
+<p class="lbl">Later this year</p>
+<div class="mini-trips">
+<div class="card mt"><svg viewBox="0 0 170 96" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="170" height="96" fill="#ffd6e0"/><circle cx="120" cy="34" r="16" fill="#ff8fa8"/><path d="M0 70 40 36 72 64 104 30 170 72V96H0z" fill="#b993e8"/><g fill="#14213d"><rect x="38" y="44" width="4" height="40"/><path d="M26 50h28l-14-10zM28 60h24l-12-8zM30 70h20l-10-7z"/></g><rect y="84" width="170" height="12" fill="#7b4bd6"/></svg><div><b>Kyoto</b><span>3 – 10 May · 2 people</span></div></div>
+<div class="card mt"><svg viewBox="0 0 170 96" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="170" height="96" fill="#cfe6ff"/><circle cx="40" cy="28" r="12" fill="#ffc145"/><path d="M0 70 30 50h20l10-18h70l12 20 28 18V96H0z" fill="#13a37f"/><path d="M60 32h70l-4 6H64z" fill="#0b7d61"/><rect y="76" width="170" height="20" fill="#3a86ff"/></svg><div><b>Cape Town</b><span>14 – 24 Sep · 5 people</span></div></div>
+</div>
+</div>
+<div class="view" id="v-itin" role="tabpanel" aria-label="Itinerary">
+<div class="ah"><div><small>Lisbon &amp; Porto · 8 days</small><h3>Itinerary</h3></div><span class="avs" aria-hidden="true"><span class="av m">MA</span><span class="av t">TH</span><span class="av p">PR</span></span></div>
+<div class="days" role="group" aria-label="Choose a day" id="days"></div>
+<div class="card dayhead" id="dayHead"></div>
+<ol class="tl" id="timeline"></ol>
+</div>
+<div class="view" id="v-wallet" role="tabpanel" aria-label="Wallet">
+<div class="ah"><div><small>Lisbon &amp; Porto</small><h3>Wallet</h3></div><span class="av t" aria-hidden="true">4</span></div>
+<div class="seg" role="group" aria-label="Wallet filter"><button type="button" aria-pressed="true" data-w="fl">Flights · 2</button><button type="button" aria-pressed="false" data-w="st">Stays · 2</button></div>
+<div id="w-fl">
+<div class="bp">
+<div class="bp-top"><div class="bp-air"><span>Brisa Air · BZ 412</span><span>Sun 12 Mar</span></div>
+<div class="bp-route"><div><b>LGW</b><small>London 07:05</small></div><svg viewBox="0 0 100 24" aria-hidden="true"><path d="M2 12h96" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4"/><path d="M50 4l7 8-7 8" fill="none" stroke="currentColor" stroke-width="2"/></svg><div class="r"><b>LIS</b><small>Lisbon 09:50</small></div></div></div>
+<div class="bp-cut" aria-hidden="true"></div>
+<div class="bp-grid"><div><small>Passenger</small><b>M. Akande</b></div><div><small>Gate</small><b>22</b></div><div><small>Seat</small><b>14A</b></div><div><small>Boards</small><b>06:25</b></div></div>
+<div class="bp-code"><span class="qr" aria-hidden="true"></span><p><b>Booking ref QX7P2M</b>Bag drop closes 06:20. Your 23 kg bag is included.</p></div>
+</div>
+<div class="bp">
+<div class="bp-top" style="background:linear-gradient(135deg,#7b4bd6,#4b2c99)"><div class="bp-air"><span>Brisa Air · BZ 1907</span><span>Sun 19 Mar</span></div>
+<div class="bp-route"><div><b>OPO</b><small>Porto 18:40</small></div><svg viewBox="0 0 100 24" aria-hidden="true"><path d="M2 12h96" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4"/><path d="M50 4l7 8-7 8" fill="none" stroke="currentColor" stroke-width="2"/></svg><div class="r"><b>LGW</b><small>London 21:15</small></div></div></div>
+<div class="bp-cut" aria-hidden="true"></div>
+<div class="bp-grid"><div><small>Passenger</small><b>M. Akande</b></div><div><small>Gate</small><b>–</b></div><div><small>Seat</small><b>9C</b></div><div><small>Boards</small><b>18:00</b></div></div>
+</div>
+</div>
+<div id="w-st" hidden>
+<div class="card stay"><span class="th" aria-hidden="true"><svg viewBox="0 0 72 72" width="72" height="72"><rect width="72" height="72" fill="#ffd9a8"/><rect x="14" y="26" width="44" height="46" fill="#fff6ea"/><path d="M10 28 36 10l26 18z" fill="#e0592e"/><rect x="22" y="36" width="10" height="12" fill="#7fb3e8"/><rect x="40" y="36" width="10" height="12" fill="#7fb3e8"/><rect x="31" y="54" width="10" height="18" fill="#3a86ff"/></svg></span><div><b>Casa do Mirante, Alfama</b><span>12 – 16 Mar · 4 nights · 2 rooms</span><span class="tag c-mint">Check-in from 15:00 · code in app</span></div></div>
+<div class="card stay"><span class="th" aria-hidden="true"><svg viewBox="0 0 72 72" width="72" height="72"><rect width="72" height="72" fill="#cfe6ff"/><rect x="8" y="20" width="56" height="52" fill="#fff"/><g fill="#3a86ff"><rect x="14" y="26" width="8" height="8"/><rect x="32" y="26" width="8" height="8"/><rect x="50" y="26" width="8" height="8"/><rect x="14" y="42" width="8" height="8"/><rect x="32" y="42" width="8" height="8"/><rect x="50" y="42" width="8" height="8"/></g><rect x="30" y="58" width="12" height="14" fill="#14213d"/></svg></span><div><b>Ribeira Loft, Porto</b><span>16 – 19 Mar · 3 nights · whole flat</span><span class="tag c-sky">Self check-in · lockbox 4471</span></div></div>
+<div class="card nextup"><span class="ico" aria-hidden="true" style="background:var(--sun-l);color:#c98a00">€</span><div><b>€1,284 paid for stays</b><span>Split 4 ways in Budget</span></div></div>
+</div>
+</div>
+<div class="view" id="v-budget" role="tabpanel" aria-label="Budget">
+<div class="ah"><div><small>Lisbon &amp; Porto · split 4 ways</small><h3>Budget</h3></div><span class="av j" aria-hidden="true">€</span></div>
+<div class="bud-top"><small>Spent so far</small><strong id="bTotal">€0</strong>
+<div class="bar-l"><span id="bLeft">of €3,200 budget</span><span id="bPct">0%</span></div><div class="bar" aria-hidden="true"><i id="bBar" style="width:0"></i></div></div>
+<div class="bal" id="bal" aria-live="polite"></div>
+<form class="card exp-form" id="expForm">
+<label for="eDesc">What was it?</label><input id="eDesc" placeholder="e.g. Pastéis de nata" required maxlength="40">
+<label for="eAmt">Amount in euros</label><input id="eAmt" type="number" min="1" step="0.01" placeholder="€" required inputmode="decimal">
+<label for="eWho">Paid by</label><select id="eWho"><option value="0">Maya paid</option><option value="1">Theo paid</option><option value="2">Priya paid</option><option value="3">Jonah paid</option></select>
+<button type="submit">Add &amp; split</button>
+</form>
+<p class="lbl">Expenses</p>
+<ul class="card exp" id="expList" style="padding:4px 14px"></ul>
+</div>
+<div class="view" id="v-pack" role="tabpanel" aria-label="Packing">
+<div class="ah"><div><small>Lisbon · 14–19°C, light rain Thursday</small><h3>Packing</h3></div><span class="av p" aria-hidden="true">PR</span></div>
+<div class="card pk-top"><div class="ring"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="rb" cx="32" cy="32" r="27"/><circle class="rf" id="ringF" cx="32" cy="32" r="27" stroke-dasharray="169.6" stroke-dashoffset="169.6"/></svg><b id="pkPct">0%</b></div><div><strong id="pkCount">0 of 0 packed</strong><span>Carry-on only for Maya. Bags close Saturday night.</span></div></div>
+<p class="lbl">Documents</p>
+<ul class="card chk"><li><label><input type="checkbox" checked><span>Passport</span><em>exp. 2031</em></label></li><li><label><input type="checkbox" checked><span>Travel insurance PDF</span><em>offline</em></label></li><li><label><input type="checkbox"><span>EU plug adapter ×2</span><em>Theo has one</em></label></li></ul>
+<p class="lbl">Clothes</p>
+<ul class="card chk"><li><label><input type="checkbox" checked><span>Walking shoes (hills!)</span></label></li><li><label><input type="checkbox"><span>Rain jacket</span><em>Thu forecast</em></label></li><li><label><input type="checkbox"><span>Swimwear for Cascais</span></label></li><li><label><input type="checkbox" checked><span>Light layers ×5</span></label></li></ul>
+<p class="lbl">Shared</p>
+<ul class="card chk"><li><label><input type="checkbox"><span>Portable charger</span><em>Jonah</em></label></li><li><label><input type="checkbox"><span>Card game for the train</span><em>Priya</em></label></li></ul>
+</div>
+<nav class="tabbar" role="tablist" aria-label="App sections">
+<button class="tab" role="tab" aria-selected="true" data-v="trips"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V20H3z"/><path d="M10 20v-5h4v5"/></svg>Trips</button>
+<button class="tab" role="tab" aria-selected="false" data-v="itin"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Itinerary</button>
+<button class="tab" role="tab" aria-selected="false" data-v="wallet"><svg viewBox="0 0 24 24"><path d="M4 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a1 1 0 0 1-1-1z"/><path d="M4 7l11-3v3"/><circle cx="16" cy="13.5" r="1.3"/></svg>Wallet</button>
+<button class="tab" role="tab" aria-selected="false" data-v="budget"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.4 6.4"/></svg>Budget</button>
+<button class="tab" role="tab" aria-selected="false" data-v="pack"><svg viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="14" rx="3"/><path d="M9 7V4h6v3M9 12h6"/></svg>Packing</button>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="gallery" id="screens" aria-labelledby="sc-title">
+<div class="wrap">
+<div class="sec-head reveal"><span class="eyebrow">Screens</span><h2 class="h2" id="sc-title">Four screens your group will open most.</h2><p class="lead">We watched twelve groups plan real trips before drawing anything. These are the moments they kept coming back to: at the gate, on the day, at the dinner bill and when someone asks "where was that place?"</p></div>
+<div class="shots">
+<figure class="shot reveal"><div class="phone-slot"><div class="dev"><div class="screen"><div class="island"></div><div class="sbar"><span>9:41</span><span class="ic"><svg width="27" height="13" viewBox="0 0 27 13"><rect x="2" y="2" width="17" height="9" rx="2" fill="#14213d"/><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#14213d" opacity=".4"/></svg></span></div>
+<div class="view"><div class="ah"><div><small>Today · 06:02</small><h3>Boarding soon</h3></div><span class="av m">MA</span></div>
+<div class="bp"><div class="bp-top"><div class="bp-air"><span>Brisa Air · BZ 412</span><span>Gate open</span></div><div class="bp-route"><div><b>LGW</b><small>07:05</small></div><svg viewBox="0 0 100 24"><path d="M2 12h96" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4"/><path d="M50 4l7 8-7 8" fill="none" stroke="currentColor" stroke-width="2"/></svg><div class="r"><b>LIS</b><small>09:50</small></div></div></div><div class="bp-cut"></div>
+<div class="bp-grid"><div><small>Gate</small><b>22</b></div><div><small>Seat</small><b>14A</b></div><div><small>Group</small><b>3</b></div><div><small>Boards</small><b>06:25</b></div></div>
+<div class="bp-code"><span class="qr"></span><p><b>Walk time 9 min</b>Gate 22 is past security, North Terminal.</p></div></div>
+<div class="card nextup"><span class="ico">4</span><div><b>All 4 travellers checked in</b><span>Theo and Priya are at gate 22</span></div></div>
+<p class="lbl">Tonight</p>
+<div class="card stay"><span class="th"><svg viewBox="0 0 72 72" width="72" height="72"><rect width="72" height="72" fill="#ffd9a8"/><rect x="14" y="26" width="44" height="46" fill="#fff6ea"/><path d="M10 28 36 10l26 18z" fill="#e0592e"/><rect x="22" y="36" width="10" height="12" fill="#7fb3e8"/><rect x="40" y="36" width="10" height="12" fill="#7fb3e8"/><rect x="31" y="54" width="10" height="18" fill="#3a86ff"/></svg></span><div><b>Casa do Mirante, Alfama</b><span>Check-in from 15:00</span><span class="tag c-mint">Door code arrives 14:00</span></div></div></div>
+</div></div></div><figcaption><b>Boarding pass</b><span>Gate, seat and walk time, readable without signal.</span></figcaption></figure>
+<figure class="shot reveal"><div class="phone-slot"><div class="dev"><div class="screen"><div class="island"></div><div class="sbar"><span>9:41</span><span class="ic"><svg width="27" height="13" viewBox="0 0 27 13"><rect x="2" y="2" width="17" height="9" rx="2" fill="#14213d"/><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#14213d" opacity=".4"/></svg></span></div>
+<div class="view"><div class="ah"><div><small>Lisbon &amp; Porto</small><h3>Day 3 · Sintra</h3></div></div>
+<div class="card dayhead"><span class="wx">15°</span><div><b>Cloudy, dry until 17:00</b><small>Bring a layer for the palace hill</small></div></div>
+<ol class="tl"><li class="c-sky"><time>08:40</time><span class="dot"></span><div class="card ev"><b>Train from Rossio</b><span>40 min · €2.40 each way</span><br><span class="tag c-sky">Transport</span></div></li>
+<li class="c-plum"><time>10:00</time><span class="dot"></span><div class="card ev"><b>Pena Palace gardens</b><span>Timed entry · tickets in Wallet</span><br><span class="tag c-plum">Sight</span></div></li>
+<li class="c-mint"><time>13:30</time><span class="dot"></span><div class="card ev"><b>Picnic at Monserrate</b><span>Priya brings the bread</span><br><span class="tag c-mint">Free</span></div></li>
+<li class="c-sky"><time>18:10</time><span class="dot"></span><div class="card ev"><b>Train back to Rossio</b><span>Last fast train 19:10</span><br><span class="tag c-sky">Transport</span></div></li>
+<li class="c-coral"><time>20:30</time><span class="dot"></span><div class="card ev"><b>Dinner in Mouraria</b><span>2 votes yes, 1 maybe</span><br><span class="tag c-coral">Food</span></div></li></ol></div>
+</div></div></div><figcaption><b>Itinerary day</b><span>One timeline per day, with weather and who is bringing what.</span></figcaption></figure>
+<figure class="shot reveal"><div class="phone-slot"><div class="dev"><div class="screen"><div class="island"></div><div class="sbar"><span>9:41</span><span class="ic"><svg width="27" height="13" viewBox="0 0 27 13"><rect x="2" y="2" width="17" height="9" rx="2" fill="#14213d"/><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#14213d" opacity=".4"/></svg></span></div>
+<div class="view"><div class="ah"><div><small>Split 4 ways</small><h3>Settle up</h3></div></div>
+<div class="bud-top"><small>Trip total</small><strong>€1,578.90</strong><div class="bar-l"><span>€1,621.10 left of €3,200</span><span>49%</span></div><div class="bar"><i style="width:49%"></i></div></div>
+<div class="bal"><div><span class="av m">MA</span><b class="pos">+€443.78</b><span>is owed</span></div><div><span class="av t">TH</span><b class="pos">+€147.28</b><span>is owed</span></div><div><span class="av p">PR</span><b class="neg">−€276.33</b><span>owes</span></div><div><span class="av j">JO</span><b class="neg">−€314.73</b><span>owes</span></div></div>
+<p class="lbl">Fewest payments</p>
+<ul class="card exp" style="padding:4px 14px"><li><span class="ei tag c-plum" style="margin:0">PR</span><div><b>Priya → Maya</b><span>Covers stays and dinner</span></div><strong>€276.33</strong></li>
+<li><span class="ei tag c-mint" style="margin:0">JO</span><div><b>Jonah → Maya</b><span>Part of Casa do Mirante</span></div><strong>€167.45</strong></li>
+<li><span class="ei tag c-mint" style="margin:0">JO</span><div><b>Jonah → Theo</b><span>Ribeira Loft share</span></div><strong>€147.28</strong></li></ul>
+<div class="card nextup"><span class="ico" style="background:var(--mint-l);color:var(--mint)">✓</span><div><b>Remind Priya and Jonah</b><span>Sends a payment link by message</span></div></div></div>
+</div></div></div><figcaption><b>Budget split</b><span>Three transfers settle the whole trip, not twelve.</span></figcaption></figure>
+<figure class="shot reveal"><div class="phone-slot"><div class="dev"><div class="screen"><div class="island"></div><div class="sbar"><span>9:41</span><span class="ic"><svg width="27" height="13" viewBox="0 0 27 13"><rect x="2" y="2" width="17" height="9" rx="2" fill="#14213d"/><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#14213d" opacity=".4"/></svg></span></div>
+<div class="view"><div class="ah"><div><small>Lisbon · 14 saved</small><h3>Saved places</h3></div></div>
+<div class="map"><svg viewBox="0 0 350 470" preserveAspectRatio="xMidYMid slice">
+<rect width="350" height="470" fill="#f3ece1"/>
+<path d="M0 380 Q90 350 180 372 T350 350 V470 H0z" fill="#9cc3ff"/>
+<path d="M30 60h110v90H30zM190 40h120v70H190zM40 200h80v100H40zM210 160h100v120H210z" fill="#ffe9cc"/>
+<path d="M150 170h50v80h-50z" fill="#c8ead9"/><path d="M210 290h70v40h-70z" fill="#c8ead9"/>
+<g stroke="#fff" stroke-width="10" fill="none" stroke-linecap="round"><path d="M0 170 Q120 160 350 140"/><path d="M160 0 Q170 180 140 360"/><path d="M0 320 Q140 300 350 300"/><path d="M60 0 L120 360"/></g>
+<path d="M60 340 Q150 250 240 210 T300 90" stroke="#ff5a36" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
+<g><circle cx="300" cy="90" r="16" fill="#ff5a36"/><circle cx="300" cy="90" r="6" fill="#fff"/></g>
+<g><circle cx="240" cy="210" r="13" fill="#7b4bd6"/><circle cx="240" cy="210" r="5" fill="#fff"/></g>
+<g><circle cx="120" cy="110" r="13" fill="#13a37f"/><circle cx="120" cy="110" r="5" fill="#fff"/></g>
+<g><circle cx="60" cy="340" r="13" fill="#3a86ff"/><circle cx="60" cy="340" r="5" fill="#fff"/></g>
+<g><circle cx="180" cy="260" r="11" fill="#ffc145"/><circle cx="180" cy="260" r="4" fill="#fff"/></g>
+<text x="214" y="420" font-size="13" font-weight="700" fill="#1f5fbf" font-family="DM Sans,sans-serif">Rio Tejo</text>
+</svg></div>
+<div class="card place"><span class="av m" style="border-radius:12px">★</span><div><b style="display:block">Miradouro da Graça</b><span style="font-size:13px;color:#5a6478">Viewpoint · saved by Maya · 12 min walk</span></div></div></div>
+</div></div></div><figcaption><b>Saved places map</b><span>Everyone's pins on one map, with a walking route between them.</span></figcaption></figure>
+</div>
+</div>
+</section>
+<section id="features" aria-labelledby="ft-title">
+<div class="wrap">
+<div class="sec-head reveal"><span class="eyebrow">Features</span><h2 class="h2" id="ft-title">Built for the trip with four opinions and one card machine.</h2><p class="lead">Every feature came from something that went wrong on a real group trip: a lost booking email, a forgotten adapter, a dinner nobody remembered paying for.</p></div>
+<div class="feats">
+<article class="feat reveal"><span class="fi" style="background:var(--sky-l);color:var(--sky)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span><h3>Shared day-by-day plan</h3><p>Add a stop and the whole group sees it with travel time from the last one. Vote on maybes instead of arguing in the chat.</p></article>
+<article class="feat reveal"><span class="fi" style="background:var(--coral-l);color:var(--coral)"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"/><path d="M4 11h16M9 15h2"/></svg></span><h3>Forward it, it's filed</h3><p>Forward booking emails to your trip address. Flights, stays and tickets land in Wallet with codes, times and the right day.</p></article>
+<article class="feat reveal"><span class="fi" style="background:var(--mint-l);color:var(--mint)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.4 6.4"/></svg></span><h3>Split as you spend</h3><p>Log a cost in two taps, split it evenly or by item, in any of 14 currencies. Tripnest works out the fewest payments to settle.</p></article>
+<article class="feat reveal"><span class="fi" style="background:var(--sun-l);color:#c98a00"><svg viewBox="0 0 24 24"><path d="M12 2v2M4.9 4.9l1.4 1.4M2 12h2M20 12h2M17.7 6.3l1.4-1.4"/><circle cx="12" cy="13" r="4"/><path d="M5 20h14"/></svg></span><h3>Packing that reads the forecast</h3><p>Lists start from your destination's weather and plans. Shared items are assigned once so nobody brings three hairdryers.</p></article>
+<article class="feat reveal"><span class="fi" style="background:#ece3fb;color:var(--plum)"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><h3>One map of everyone's saves</h3><p>Pins from the whole group on one map, filtered by day. Long-press to add a place to the itinerary.</p></article>
+<article class="feat reveal"><span class="fi" style="background:#e4e7ef;color:var(--ink)"><svg viewBox="0 0 24 24"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.6a10 10 0 0 1 14 0M8.5 16.3a5 5 0 0 1 7 0"/><path d="M3 3l18 18"/></svg></span><h3>Works with no signal</h3><p>Passes, maps, the plan and the budget are stored on the phone. Changes sync when anyone's back online.</p></article>
+</div>
+</div>
+</section>
+<section class="design" id="design" aria-labelledby="ds-title">
+<div class="wrap">
+<div class="sec-head reveal"><span class="eyebrow">Design notes</span><h2 class="h2" id="ds-title">Bright enough for holiday, ordered enough for a 06:25 boarding time.</h2><p class="lead">A warm paper background, one loud coral for actions, and a colour per kind of plan so a busy day can be read at a glance.</p></div>
+<div class="dgrid">
+<div class="dcard reveal"><h3>Type scale</h3><div class="ts">
+<div><span style="font:800 34px/1 'Bricolage Grotesque',sans-serif">LGW → LIS</span><span>Display · 38/40</span></div>
+<div><span style="font:700 26px/1.1 'Bricolage Grotesque',sans-serif">Itinerary</span><span>Title · 26/30</span></div>
+<div><span style="font:700 17px/1.3 'DM Sans',sans-serif">Pena Palace gardens</span><span>Heading · 17/22</span></div>
+<div><span style="font:400 15px/1.4 'DM Sans',sans-serif">Timed entry 10:00</span><span>Body · 15/21</span></div>
+<div><span style="font:600 13px/1.3 'DM Sans',sans-serif;color:#c6cddb">Online check-in opens 11 Mar</span><span>Caption · 13/18</span></div>
+</div></div>
+<div class="dcard reveal"><h3>Colour</h3><div class="sw">
+<div><i style="background:#ff5a36"></i><b>Coral</b>Actions</div><div><i style="background:#ffc145"></i><b>Sun</b>Highlights</div><div><i style="background:#14213d"></i><b>Night</b>Text, passes</div>
+<div><i style="background:#3a86ff"></i><b>Sky</b>Transport</div><div><i style="background:#13a37f"></i><b>Palm</b>Money, stays</div><div><i style="background:#7b4bd6"></i><b>Dusk</b>Sights</div>
+</div></div>
+<div class="dcard reveal"><h3>Components</h3><div class="comp">
+<div class="row"><span class="chip on">Day 3</span><span class="chip">Day 4</span><span class="chip">Day 5</span></div>
+<div class="row"><span class="tag c-sky">Transport</span><span class="tag c-plum">Sight</span><span class="tag c-coral">Food</span><span class="tag c-mint">Stay</span></div>
+<div class="row"><span class="avs"><span class="av m">MA</span><span class="av t">TH</span><span class="av p">PR</span><span class="av j">JO</span></span><span style="font-size:14px;color:#c6cddb">Traveller stack</span></div>
+<div class="bar" style="background:#2c3d63"><i style="width:72%"></i></div>
+<p style="font-size:14px;color:#c6cddb">8pt grid · 20px card radius · 44px minimum touch targets · tab bar icons at 24px.</p>
+</div></div>
+</div>
+</div>
+</section>
+<section class="flow" aria-labelledby="fl-title">
+<div class="wrap">
+<div class="sec-head reveal"><span class="eyebrow">User flow</span><h2 class="h2" id="fl-title">From "we should go somewhere" to settled up.</h2></div>
+<ol class="reveal">
+<li><b>Start a trip</b><span>Pick a city and dates, share one invite link.</span></li>
+<li><b>Fill the plan</b><span>Add stops, vote on maybes, see travel times.</span></li>
+<li><b>Forward bookings</b><span>Emails turn into passes and stays in Wallet.</span></li>
+<li><b>Travel and log costs</b><span>Split each bill at the table, offline if needed.</span></li>
+<li><b>Settle up</b><span>Fewest transfers, sent on the flight home.</span></li>
+</ol>
+</div>
+</section>
+<section class="reviews" id="reviews" aria-labelledby="rv-title">
+<div class="wrap">
+<div class="rv-top reveal"><div><span class="eyebrow">Reviews</span><h2 class="h2" id="rv-title">Fewer spreadsheets, more trips.</h2></div>
+<div class="score"><strong>4.8</strong><div><span class="stars" aria-hidden="true">★★★★★</span><span>11,240 ratings on the App Store</span></div></div></div>
+<div class="rvs">
+<figure class="rv reveal"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"Six of us in Lisbon and nobody had to chase anyone for money. The settle-up screen said three transfers and that was it."</blockquote><footer><span class="av t" aria-hidden="true">RK</span><div><b>Rhea K.</b>Hen weekend organiser, Leeds</div></footer></figure>
+<figure class="rv reveal"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"I forward the booking emails and forget about them. At the airport the boarding pass was just there, even in flight mode."</blockquote><footer><span class="av j" aria-hidden="true">DO</span><div><b>Daniel O.</b>Travels monthly for work and fun</div></footer></figure>
+<figure class="rv reveal"><span class="stars" aria-label="4 out of 5 stars">★★★★☆</span><blockquote>"The packing list caught the rain jacket I'd have left at home. I'd like more train operators in Wallet, but it's my go-to now."</blockquote><footer><span class="av p" aria-hidden="true">SM</span><div><b>Sofia M.</b>Interrailed 9 cities last summer</div></footer></figure>
+</div>
+</div>
+</section>
+<section class="cta" id="get" aria-labelledby="cta-title">
+<div class="wrap"><div class="cta-box reveal">
+<div><h2 id="cta-title">Your next trip already has a group chat. Give it a plan.</h2><p>Free for trips up to 6 people. Tripnest Plus adds unlimited travellers and receipt scanning for £3.49 a month.</p></div>
+<div class="stores">
+<a class="store" href="#" aria-label="Download Tripnest on the App Store"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.8zM14.1 5.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg><span><small>Download on the</small><strong>App Store</strong></span></a>
+<a class="store" href="#" aria-label="Get Tripnest on Google Play"><svg width="22" height="24" viewBox="0 0 22 24" aria-hidden="true"><path d="M1 1l12 11L1 23z" fill="#3a86ff"/><path d="M1 1l15 8.5-3 2.5z" fill="#13a37f"/><path d="M1 23l15-8.5-3-2.5z" fill="#ff5a36"/><path d="M16 9.5l4 2.3c.8.5.8 1.1 0 1.6l-4 2.3-3-3.7z" fill="#ffc145"/></svg><span><small>Get it on</small><strong>Google Play</strong></span></a>
+</div>
+</div></div>
+</section>
+</main>
+<footer class="site-foot">
+<div class="wrap">
+<a class="logo" href="#main"><span class="logo-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></span>Tripnest</a>
+<div><p><strong>Designed &amp; developed by TMX Digital Solutions.</strong></p><p>Tripnest is a concept project. Names, trips, bookings and reviews are demo content.</p></div>
+</div>
+</footer>
+<script>
+(function(){
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+/* phone scale */
+var slot=$('#phoneSlot');
+function fit(){var w=document.documentElement.clientWidth,h=window.innerHeight,s;
+if(w>960){s=Math.min(1,(h-112)/868)}else{s=Math.min(.9,(w-32)/414)}
+slot.style.setProperty('--s',Math.max(.5,s).toFixed(3))}
+fit();window.addEventListener('resize',fit);
+/* tabs */
+var tabs=$$('.tab');
+function show(v,focus){tabs.forEach(function(t){var on=t.dataset.v===v;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus()});
+$$('#phone .view').forEach(function(x){x.classList.toggle('on',x.id==='v-'+v);if(x.id==='v-'+v)x.scrollTop=0})}
+tabs.forEach(function(t,i){t.addEventListener('click',function(){show(t.dataset.v)});
+t.addEventListener('keydown',function(e){var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();show(tabs[(i+d+tabs.length)%tabs.length].dataset.v,true)}})});
+show('trips');
+/* itinerary */
+var D=[
+{d:'Sun',n:12,c:'Lisbon',w:'17°',s:'Sunny · arrive and settle in',e:[['09:50','Land at LIS, Terminal 1','Metro red line to Alameda, 25 min','sky','Transport'],['12:30','Lunch at Taberna da Rua','Book for 4 · ref 5521','coral','Food'],['15:00','Check in, Casa do Mirante','Door code arrives at 14:00','mint','Stay'],['19:30','Sunset at Miradouro da Graça','10 min walk uphill','sun','Sight']]},
+{d:'Mon',n:13,c:'Lisbon',w:'18°',s:'Sunny · Belém day',e:[['09:30','Tram 15E to Belém','Board at Praça da Figueira','sky','Transport'],['10:30','Jerónimos Monastery','Tickets in Wallet · 4 × €12','plum','Sight'],['12:00','Pastéis at the old bakery','Queue moves fast, go anyway','coral','Food'],['16:00','LX Factory bookshop','Theo’s pick','sun','Shop']]},
+{d:'Tue',n:14,c:'Sintra',w:'15°',s:'Cloudy · day trip',e:[['08:40','Train from Rossio to Sintra','40 min · €2.40 each way','sky','Transport'],['10:00','Pena Palace gardens','Timed entry 10:00','plum','Sight'],['13:30','Picnic at Monserrate','Priya brings the bread','mint','Free'],['18:10','Train back to Rossio','Last fast train 19:10','sky','Transport']]},
+{d:'Wed',n:15,c:'Cascais',w:'19°',s:'Sunny · beach afternoon',e:[['10:15','Train along the coast','Sit on the left for the sea','sky','Transport'],['11:30','Praia da Rainha','Small beach, go early','mint','Free'],['14:00','Grilled fish lunch','About €22 each','coral','Food']]},
+{d:'Thu',n:16,c:'To Porto',w:'14°',s:'Light rain · travel day',e:[['10:00','Check out of Casa do Mirante','Leave keys in the box','mint','Stay'],['11:09','Alfa Pendular to Porto','Coach 3 · seats 41–44','sky','Transport'],['16:00','Ribeira Loft check-in','Lockbox code in Wallet','mint','Stay'],['20:00','Francesinha dinner','Jonah has the table','coral','Food']]},
+{d:'Fri',n:17,c:'Porto',w:'16°',s:'Partly cloudy · old town',e:[['10:00','Livraria and Clérigos tower','Tower slot 11:20','plum','Sight'],['15:00','Port cellar tour in Gaia','4 × €18 · tasting included','sun','Tour']]},
+{d:'Sat',n:18,c:'Douro',w:'18°',s:'Sunny · river valley',e:[['08:30','Douro valley minibus','Pickup at Ribeira Loft','sky','Tour'],['13:00','Lunch at the quinta','Vegetarian option booked','coral','Food'],['21:00','Pack bags','Checklist in Packing','mint','Free']]},
+{d:'Sun',n:19,c:'Home',w:'17°',s:'Sunny · fly home',e:[['11:00','Check out, store bags','Luggage room until 16:00','mint','Stay'],['16:30','Metro to OPO airport','Purple line, 35 min','sky','Transport'],['18:40','BZ 1907 to London','Seat 9C','sky','Flight']]}];
+var days=$('#days'),head=$('#dayHead'),tl=$('#timeline');
+D.forEach(function(x,i){var b=document.createElement('button');b.type='button';b.className='day';b.setAttribute('aria-pressed',i===0);b.setAttribute('aria-label',x.d+' '+x.n+' March, '+x.c);b.innerHTML=x.d+'<b>'+x.n+'</b>';b.addEventListener('click',function(){pick(i)});days.appendChild(b)});
+function pick(i){var x=D[i];$$('.day',days).forEach(function(b,j){b.setAttribute('aria-pressed',j===i)});
+head.innerHTML='<span class="wx">'+x.w+'</span><div><b>Day '+(i+1)+' · '+x.c+'</b><small>'+x.s+'</small></div>';
+tl.innerHTML=x.e.map(function(e){return '<li class="c-'+e[3]+'"><time>'+e[0]+'</time><span class="dot"></span><div class="card ev"><b>'+e[1]+'</b><span>'+e[2]+'</span><br><span class="tag c-'+e[3]+'">'+e[4]+'</span></div></li>'}).join('')}
+pick(0);
+/* wallet */
+$$('.seg button').forEach(function(b){b.addEventListener('click',function(){$$('.seg button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});$('#w-fl').hidden=b.dataset.w!=='fl';$('#w-st').hidden=b.dataset.w!=='st'})});
+/* qr */
+var q='',seed=7;for(var y=0;y<21;y++)for(var x=0;x<21;x++){seed=(seed*9301+49297)%233280;var f=(x<7&&y<7)||(x>13&&y<7)||(x<7&&y>13);
+if(f){var cx=x>13?x-14:x,cy=y>13?y-14:y;if(!(cx===0||cx===6||cy===0||cy===6||(cx>1&&cx<5&&cy>1&&cy<5)))continue}else if(seed/233280<.52)continue;q+='<rect x="'+x+'" y="'+y+'" width="1" height="1"/>'}
+$$('.qr').forEach(function(e){e.innerHTML='<svg viewBox="0 0 21 21" width="62" height="62" fill="#14213d" shape-rendering="crispEdges">'+q+'</svg>'});
+var A=['wallet','itin','budget','trips'];
+$$('.dev .screen').forEach(function(s,i){var t=$('#phone .tabbar').cloneNode(true);t.removeAttribute('role');t.removeAttribute('aria-label');t.setAttribute('aria-hidden','true');t.setAttribute('inert','');
+$$('.tab',t).forEach(function(b){b.removeAttribute('role');b.tabIndex=-1;b.setAttribute('aria-selected',b.dataset.v===A[i])});s.appendChild(t)});
+window.__tn={$:$,$$:$$};
+})();
+(function(){
+var $=window.__tn.$,$$=window.__tn.$$;
+/* budget */
+var P=[['Maya','MA','m'],['Theo','TH','t'],['Priya','PR','p'],['Jonah','JO','j']],COL=['coral','sky','plum','mint'],BUDGET=3200;
+var E=[['Taberna da Rua dinner',96.5,0,'12 Mar'],['Pena Palace tickets',80,3,'14 Mar'],['Train to Porto, 4 seats',118.4,2,'16 Mar'],['Ribeira Loft, 3 nights',542,1,'Booked'],['Casa do Mirante, 4 nights',742,0,'Booked']];
+var eur=function(n){return '€'+Math.abs(n).toLocaleString('en-GB',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})};
+function renderB(fresh){var tot=E.reduce(function(a,e){return a+e[1]},0),share=tot/4,paid=[0,0,0,0];E.forEach(function(e){paid[e[2]]+=e[1]});
+$('#bTotal').textContent=eur(Math.round(tot*100)/100);var pct=Math.min(100,Math.round(tot/BUDGET*100));
+$('#bPct').textContent=pct+'%';$('#bBar').style.width=pct+'%';$('#bLeft').textContent=eur(Math.max(0,BUDGET-tot))+' left of '+eur(BUDGET);
+$('#bal').innerHTML=P.map(function(p,i){var b=Math.round((paid[i]-share)*100)/100;return '<div><span class="av '+p[2]+'" aria-hidden="true">'+p[1]+'</span><b class="'+(b>=0?'pos':'neg')+'">'+(b>=0?'+':'−')+eur(b)+'</b><span>'+p[0]+(b>=0?' is owed':' owes')+'</span></div>'}).join('');
+$('#expList').innerHTML=E.map(function(e,i){return '<li'+(fresh&&i===0?' class="new"':'')+'><span class="ei c-'+COL[e[2]]+' tag" style="margin:0;font-size:14px">'+P[e[2]][1]+'</span><div><b>'+e[0]+'</b><span>'+P[e[2]][0]+' paid · '+e[3]+' · '+eur(e[1]/4)+' each</span></div><strong>'+eur(e[1])+'</strong></li>'}).join('')}
+renderB();
+$('#expForm').addEventListener('submit',function(ev){ev.preventDefault();var d=$('#eDesc').value.trim(),a=parseFloat($('#eAmt').value);if(!d||!(a>0))return;
+E.unshift([d,Math.round(a*100)/100,+$('#eWho').value,'Today']);renderB(true);this.reset()});
+/* packing */
+var boxes=$$('#v-pack input[type=checkbox]');
+function renderP(){var n=boxes.filter(function(b){return b.checked}).length,t=boxes.length,p=Math.round(n/t*100);
+$('#pkPct').textContent=p+'%';$('#pkCount').textContent=n+' of '+t+' packed';$('#ringF').style.strokeDashoffset=(169.6*(1-n/t)).toFixed(1)}
+boxes.forEach(function(b){b.addEventListener('change',renderP)});renderP();
+/* nav + reveal */
+var nav=$('#nav');function sc(){nav.classList.toggle('scrolled',window.scrollY>8)}sc();window.addEventListener('scroll',sc,{passive:true});
+var rv=$$('.reveal');
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});rv.forEach(function(r){io.observe(r)})}
+else rv.forEach(function(r){r.classList.add('in')});
+})();
+</script>
+</body>
+</html>

@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/data/projects";
 
-interface ProjectGridProps {                    
+interface ProjectGridProps {
   activeCategory: string;
 }
 
@@ -32,9 +33,12 @@ export default function ProjectGrid({
               {/* Image */}
               <div
                 className={`
+                  relative
                   overflow-hidden
                   rounded-[22px]
-                  bg-neutral-200
+                  border
+                  border-black/5
+                  bg-neutral-100
                   ${
                     isLarge
                       ? "aspect-[16/8]"
@@ -42,13 +46,15 @@ export default function ProjectGrid({
                   }
                 `}
               >
-                <img
-                  src={project.image}
+                <Image
+                  src={project.wide}
                   alt={project.title}
+                  fill
+                  sizes={isLarge ? "(min-width: 1440px) 1360px, 100vw" : "(min-width: 768px) 50vw, 100vw"}
+                  loading={index < 2 ? "eager" : "lazy"}
                   className="
-                    h-full
-                    w-full
                     object-cover
+                    object-top
                     transition-transform
                     duration-[900ms]
                     ease-[cubic-bezier(0.16,1,0.3,1)]
@@ -64,12 +70,14 @@ export default function ProjectGrid({
                     {project.title}
                   </h2>
 
-                  <p className="mt-1 text-[14px] text-neutral-500">
-                    {project.category}
+                  <p className="mt-1 max-w-[520px] text-[14px] text-neutral-500">
+                    {project.description}
                   </p>
                 </div>
 
-                <p className="text-[13px] text-neutral-400">
+                <p className="shrink-0 text-right text-[13px] text-neutral-400">
+                  {project.type}
+                  <br />
                   {project.year}
                 </p>
               </div>

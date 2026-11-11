@@ -22,6 +22,10 @@ const EXCLUDE = new Set(["tmx-portfolio"]);
 
 const WIDTH = 1440; // desktop layout width
 const SCALE = 1.5; // pixel density, for sharp text when zooming in
+const BAR = 64; // height of the credit bar above the screenshot
+const BASE_URL = (
+  process.env.DEMO_BASE_URL || "https://tmx-digital-solutions.vercel.app/demos/"
+).replace(/\/?$/, "/");
 
 const chromeCandidates = [
   process.env.CHROME_PATH,
@@ -75,20 +79,36 @@ async function captureFullPage(browser, file) {
 async function toPdf(browser, file, { shot, height }) {
   const page = await browser.newPage();
   const htmlPath = path.join(workDir, `${file}-pdf.html`);
+  const live = `${BASE_URL}${file}.html`;
+  const total = height + BAR;
   await fs.writeFile(
     htmlPath,
-    `<!doctype html><html><head><style>
-      @page{size:${WIDTH}px ${height}px;margin:0}
-      html,body{margin:0;padding:0}
+    `<!doctype html><html><head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      @page{size:${WIDTH}px ${total}px;margin:0}
+      html,body{margin:0;padding:0;background:#fff}
+      .bar{height:${BAR}px;box-sizing:border-box;padding:0 48px;display:flex;align-items:center;justify-content:space-between;
+        font:400 17px/1 Inter,Helvetica,Arial,sans-serif;color:#111;border-bottom:1px solid #e5e5e5}
+      .bar b{font-weight:600}
+      .bar span{color:#777}
+      .bar a{color:#111;text-decoration:none;border-bottom:1px solid #111;padding-bottom:2px}
       img{display:block;width:${WIDTH}px;height:${height}px}
-    </style></head><body><img src="${pathToFileURL(shot).href}"></body></html>`
+    </style></head><body>
+      <div class="bar">
+        <div><b>Designed &amp; developed by TMX Digital Solutions</b></div>
+        <div><span>View live demo&nbsp;&nbsp;</span><a href="${live}">${live.replace(/^https?:\/\//, "")}</a></div>
+      </div>
+      <img src="${pathToFileURL(shot).href}">
+    </body></html>`
   );
-  await page.goto(pathToFileURL(htmlPath).href, { waitUntil: "load" });
+  await page.goto(pathToFileURL(htmlPath).href, { waitUntil: "networkidle0" });
+  await page.evaluate(() => document.fonts.ready);
   const out = path.join(outDir, `${file}.pdf`);
   await page.pdf({
     path: out,
     width: `${WIDTH}px`,
-    height: `${height}px`,
+    height: `${total}px`,
     printBackground: true,
     pageRanges: "1",
   });

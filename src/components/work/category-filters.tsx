@@ -1,11 +1,11 @@
-const categories = [
-  "All",
-  "Websites",
-  "Web Apps",
-  "Mobile Apps",
-  "UI/UX",
-  "Branding",
-];
+import { categories, projects } from "@/data/projects";
+
+const filters = ["All", ...categories];
+
+const countFor = (category: string) =>
+  category === "All"
+    ? projects.length
+    : projects.filter((project) => project.category === category).length;
 
 interface CategoryFiltersProps {
   activeCategory: string;
@@ -18,14 +18,15 @@ export default function CategoryFilters({
 }: CategoryFiltersProps) {
   return (
     <section className="py-10">
-      <div className="flex flex-wrap gap-2">
-        {categories.map((category) => {
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter projects">
+        {filters.map((category) => {
           const isActive = activeCategory === category;
 
           return (
             <button
               key={category}
               type="button"
+              aria-pressed={isActive}
               onClick={() => setActiveCategory(category)}
               className={`
                 rounded-full
@@ -44,6 +45,9 @@ export default function CategoryFilters({
               `}
             >
               {category}
+              <span className={`ml-1.5 text-[11px] ${isActive ? "text-white/60" : "text-neutral-400"}`}>
+                {countFor(category)}
+              </span>
             </button>
           );
         })}

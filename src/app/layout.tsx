@@ -11,6 +11,7 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tmx-digital-solutions.vercel.app"),
   title: {
     default: "TMX Digital Solutions",
     template: "%s | TMX Digital Solutions",

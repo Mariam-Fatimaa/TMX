@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4f3fa">
+<title>Pocketly — Everyday banking that adds up</title>
+<meta name="description" content="Pocketly is a personal finance and everyday banking app: one balance view, spending insights, instant transfers and card controls you can change in a tap. Designed &amp; developed by TMX Digital Solutions.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f3fa;--card:#fff;--ink:#16142b;--muted:#5b5872;--line:#e2e0ec;--vi:#5a3ff0;--vi-d:#4329d1;--vi-l:#ebe7ff;--mint:#0e8f6a;--mint-l:#dcf6ec;--coral:#e8553a;--coral-l:#ffe7e0;--r:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;line-height:1.05;margin:0;letter-spacing:-.025em}
+p{margin:0}a{color:inherit}button,input{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--vi);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;z-index:99}.skip:focus{left:16px}
+.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
+section{padding:104px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--vi)}
+.eyebrow::before{content:"";width:18px;height:2px;background:currentColor;border-radius:2px}
+.h2{font-size:clamp(34px,4.2vw,54px);margin:14px 0 16px}
+.lead{color:var(--muted);max-width:580px;font-size:18px}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:14px;padding:15px 24px;font-weight:700;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-p{background:var(--vi);color:#fff}.btn-p:hover{background:var(--vi-d);transform:translateY(-2px);box-shadow:0 12px 26px #5a3ff040}
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;height:72px;display:flex;align-items:center;background:#f4f3facc;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.sc{border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;font:700 22px 'Bricolage Grotesque',sans-serif;text-decoration:none;letter-spacing:-.02em}
+.logo i{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--vi),#9a7bff);display:grid;place-items:center;font-style:normal;color:#fff;font-size:17px}
+.nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-weight:600;font-size:15px}
+.nav ul a{text-decoration:none;color:var(--muted)}.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:11px 18px;font-size:15px}
+/* hero */
+.hero{padding:88px 0 32px;min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:820px;height:820px;right:-160px;top:50%;transform:translateY(-50%);background:radial-gradient(circle,#c9bdff 0,#e3dcff55 42%,transparent 68%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;position:relative}
+.tag{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:100px;padding:6px 14px 6px 6px;font-size:14px;font-weight:600;color:var(--muted)}
+.tag b{background:var(--mint-l);color:var(--mint);padding:3px 10px;border-radius:100px;font-size:12px}
+.hero h1{font-size:clamp(52px,6.6vw,96px);margin:22px 0 18px}
+.hero h1 span{color:var(--vi)}
+.pitch{font-size:22px;font-weight:600;margin-bottom:12px}
+.hero p.lead{margin-bottom:30px}
+.stores{display:flex;flex-wrap:wrap;gap:12px}
+.store{display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;text-decoration:none;border-radius:14px;padding:10px 20px 10px 16px;transition:transform .2s}
+.store:hover{transform:translateY(-2px)}
+.store svg{width:26px;height:26px;flex:none}
+.store small{display:block;font-size:11px;opacity:.75;line-height:1.2}.store b{display:block;font-size:17px;line-height:1.2}
+.stats{display:flex;gap:40px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
+.stats b{display:block;font:700 30px 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}
+.stats span{font-size:14px;color:var(--muted)}
+.stage{display:flex;justify-content:center}
+.reveal{transition:opacity .7s ease,transform .7s ease}
+.js .reveal:not(.in){opacity:0;transform:translateY(24px)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.js .reveal:not(.in){opacity:1;transform:none}}
+/* phone */
+.phone-fit{--s:.86;width:calc(414px*var(--s));height:calc(868px*var(--s));position:relative;flex:none}
+.device{position:absolute;left:0;top:0;width:414px;height:868px;padding:12px;border-radius:62px;background:linear-gradient(145deg,#2c2a3d,#0b0a14 40%,#1d1b2b);box-shadow:inset 0 0 0 2px #3a3850,0 50px 90px -30px #2a1a7a66,0 20px 40px -20px #0006;transform:scale(var(--s));transform-origin:0 0}
+.screen{--a-bg:#0e0d1a;--a-c:#181629;--a-c2:#221f38;--a-t:#f3f2fb;--a-m:#a6a3c2;--a-vi:#8b7bff;--a-mint:#3ee0b0;--a-coral:#ff8466;--a-amb:#ffc04d;width:390px;height:844px;border-radius:50px;overflow:hidden;position:relative;background:var(--a-bg);color:var(--a-t);font:15px/1.4 'Manrope',system-ui,sans-serif;isolation:isolate}
+.screen button{background:none;border:0;padding:0;color:inherit}
+.screen :focus-visible{outline:2px solid var(--a-vi);outline-offset:2px}
+.sbar{height:54px;display:flex;align-items:center;justify-content:space-between;padding:4px 30px 0 40px;font-weight:700;font-size:16px;position:relative;z-index:3}
+.island{position:absolute;left:50%;top:11px;width:122px;height:35px;margin-left:-61px;background:#000;border-radius:20px}
+.sicons{display:flex;gap:6px;align-items:center}
+.views{position:absolute;top:54px;left:0;right:0;bottom:84px;overflow-y:auto;scrollbar-width:none}
+.views::-webkit-scrollbar{display:none}
+.view{padding:8px 20px 24px;animation:vin .35s ease}
+.view[hidden]{display:none}
+@keyframes vin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:84px;display:flex;justify-content:space-around;padding:8px 8px 26px;background:#0e0d1aeb;backdrop-filter:blur(12px);border-top:1px solid #ffffff12;z-index:4}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--a-m)!important;border-radius:12px}
+.tab svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tab.on{color:var(--a-t)!important}.tab.on svg{stroke:var(--a-vi)}
+.tab[data-v="home"].on svg{fill:#8b7bff33}
+/* home */
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.hi{display:flex;align-items:center;gap:12px}.hi small{display:block;color:var(--a-m);font-size:13px}.hi b{font-size:17px}
+.av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:15px;background:linear-gradient(135deg,#ffb38a,#ff7f8e);color:#2a0f14}
+.ibtn{width:44px;height:44px;border-radius:50%;background:var(--a-c)!important;display:grid;place-items:center;position:relative}
+.ibtn svg{width:22px;height:22px;fill:none;stroke:var(--a-t);stroke-width:1.8;stroke-linejoin:round}
+.ibtn i{position:absolute;top:10px;right:11px;width:9px;height:9px;border-radius:50%;background:var(--a-coral);box-shadow:0 0 0 2px var(--a-c)}
+.bal{border-radius:28px;padding:20px 20px 0;background:radial-gradient(120% 90% at 100% 0,#b3a6ff 0,transparent 50%),linear-gradient(140deg,#6d55ff,#4a2fd6 60%,#3a22b0);overflow:hidden;box-shadow:0 20px 40px -18px #6d55ffaa}
+.bal-h{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600;color:#e7e3ff}
+.eye{width:32px;height:32px;border-radius:10px;background:#ffffff22!important;display:grid;place-items:center}
+.eye svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:1.8}
+.eye[aria-pressed="true"]{background:#ffffff40!important}
+.amt{font:700 40px/1.1 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;margin:6px 0 6px;color:#fff}
+.amt small{font-size:24px;opacity:.7}
+.bal-f{font-size:13px;color:#e1dcff}.up{background:#ffffff26;padding:2px 8px;border-radius:8px;font-weight:700;color:#fff;margin-right:4px}
+.spark{height:48px;margin:10px -20px 0}.spark svg{width:100%;height:100%;display:block}
+.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:20px 0 24px}
+.qa button{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px;font-weight:600}
+.qa i{width:56px;height:56px;border-radius:18px;background:var(--a-c);display:grid;place-items:center;transition:background .2s}
+.qa button:hover i{background:var(--a-c2)}
+.qa svg{width:22px;height:22px;fill:none;stroke:var(--a-t);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.qa button:first-child i{background:var(--a-mint)}.qa button:first-child svg{stroke:#06281d}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}.sec-h b{font-size:17px}.sec-h span{font-size:13px;color:var(--a-m);font-weight:600}
+.accts{display:flex;gap:12px;overflow-x:auto;margin:0 -20px 24px;padding:0 20px;scrollbar-width:none}
+.acct{flex:none;width:148px;background:var(--a-c);border-radius:20px;padding:16px}
+.acct i{display:block;width:10px;height:10px;border-radius:50%;margin-bottom:16px}
+.acct small{display:block;color:var(--a-m);font-size:13px}.acct b{display:block;font-size:17px;margin:2px 0}.acct span{font-size:12px;color:var(--a-m)}
+.tx{list-style:none;margin:0;padding:4px 16px;background:var(--a-c);border-radius:22px}
+.tx li{display:flex;align-items:center;gap:12px;padding:12px 0}.tx li+li{border-top:1px solid #ffffff0f}
+.tx i{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:13px;flex:none}
+.c1{background:#ff846633;color:#ffb39f}.c2{background:#5ec8ff2b;color:#9fdcff}.c3{background:#3ee0b02b;color:var(--a-mint)}.c4{background:#ffc04d2b;color:var(--a-amb)}
+.tx div{flex:1;min-width:0}.tx b{display:block;font-size:15px}.tx small{color:var(--a-m);font-size:13px}
+.tx em{font-style:normal;font-weight:700;font-size:15px}.tx em.in{color:var(--a-mint)}
+.masked .amt,.masked .acct b{filter:blur(9px)}
+.vt{font-size:28px;margin:4px 0 16px;letter-spacing:-.02em}
+/* insights */
+.month{display:flex;align-items:center;justify-content:space-between;background:var(--a-c);border-radius:16px;padding:6px;margin-bottom:8px}
+.month button{width:40px;height:40px;border-radius:12px;font-size:22px;background:var(--a-c2)!important}
+.month button:disabled{opacity:.35;cursor:default}.month b{font-size:15px}
+.donut-w{position:relative;width:216px;height:216px;margin:16px auto 20px}
+.donut{width:100%;height:100%}.donut circle{transition:stroke-dasharray .6s ease,stroke-dashoffset .6s ease}
+.donut-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.donut-c small{color:var(--a-m);font-size:13px}.donut-c b{font:700 34px/1.1 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em}
+.dl{font-size:12px;font-weight:700;color:var(--a-mint);margin-top:4px}.dl.bad{color:var(--a-coral)}
+.cats{list-style:none;margin:0 0 16px;padding:4px 16px;background:var(--a-c);border-radius:22px}
+.cats li{display:grid;grid-template-columns:12px 1fr auto;gap:4px 12px;align-items:center;padding:10px 0}
+.cats li+li{border-top:1px solid #ffffff0f}
+.cats i{width:10px;height:10px;border-radius:4px}.cats b{font-size:15px;font-weight:600}.cats em{font-style:normal;font-weight:700}
+.cats .bar{grid-column:2/4;height:6px;border-radius:6px;background:#ffffff12;overflow:hidden}.cats .bar span{display:block;height:100%;border-radius:6px;transition:width .6s ease}
+.tip{background:#3ee0b01a;border:1px solid #3ee0b040;border-radius:18px;padding:14px 16px;font-size:14px;color:#c9f5e7}.tip b{color:var(--a-mint)}
+/* pay */
+.contacts{display:flex;gap:12px;overflow-x:auto;margin:0 -20px;padding:4px 20px 8px;scrollbar-width:none}
+.ct{flex:none;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--a-m)!important;width:58px}
+.ct i{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;color:#15132b;box-shadow:0 0 0 0 var(--a-vi);transition:box-shadow .2s}
+.ct.on{color:var(--a-t)!important}.ct.on i{box-shadow:0 0 0 3px var(--a-bg),0 0 0 5px var(--a-vi)}
+.pamt{text-align:center;font:700 64px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.04em;margin:28px 0 8px;white-space:nowrap}
+.pamt .cur{font-size:36px;color:var(--a-m);vertical-align:top;margin-right:4px;position:relative;top:6px}
+.pamt.shake{animation:shake .3s}@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.pnote{text-align:center;color:var(--a-m);font-size:13px;margin-bottom:18px}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.keys button{height:58px;border-radius:16px;font:600 24px 'Manrope',sans-serif;transition:background .15s}
+.keys button:hover{background:var(--a-c)!important}.keys button:active{background:var(--a-c2)!important}
+.send{width:100%;height:56px;border-radius:18px;background:var(--a-vi)!important;color:#fff!important;font-weight:800;font-size:16px;transition:opacity .2s}
+.send:disabled{opacity:.4;cursor:not-allowed}
+/* cards */
+.card{position:relative;height:208px;border-radius:24px;padding:20px 22px;color:#fff;overflow:hidden;margin-bottom:20px;background:radial-gradient(80% 120% at 0 100%,#3ee0b0aa 0,transparent 55%),radial-gradient(70% 90% at 100% 0,#ff8466 0,transparent 60%),linear-gradient(135deg,#5a3ff0,#2a1a8c);box-shadow:0 24px 40px -20px #5a3ff0;transition:filter .4s}
+.card-t{display:flex;justify-content:space-between;font:700 20px 'Bricolage Grotesque',sans-serif}.card-t span{font:600 13px 'Manrope';opacity:.8}
+.chip{width:42px;height:32px;border-radius:7px;background:linear-gradient(135deg,#ffe39a,#d6a640);margin:22px 0 18px}
+.card-n{font-size:17px;letter-spacing:.12em;font-weight:600}
+.card-f{display:flex;justify-content:space-between;font-size:13px;font-weight:600;opacity:.85;margin-top:10px;letter-spacing:.06em}
+.frost{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:16px;background:#c9e6ff55;backdrop-filter:blur(10px);opacity:0;transition:opacity .4s}
+.frost svg{width:34px;height:34px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round}
+.card.frozen .frost{opacity:1}.card.frozen{filter:saturate(.4)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--a-c);border-radius:18px;padding:14px 16px;margin-bottom:8px}
+.row b{display:block;font-size:15px}.row small{color:var(--a-m);font-size:13px}
+.sw{width:52px;height:32px;border-radius:20px;background:#3a3755!important;position:relative;flex:none;transition:background .2s}
+.sw i{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 2px 6px #0004}
+.sw.on{background:var(--a-mint)!important}.sw.on i{transform:translateX(20px)}
+#freeze.on{background:#5ec8ff!important}
+.lim{background:var(--a-c);border-radius:18px;padding:14px 16px;margin-bottom:8px}
+.lim-h{display:flex;justify-content:space-between;align-items:center}.lim-h output{font-weight:800;color:var(--a-vi);font-size:17px}
+.lim input{width:100%;margin:14px 0 8px;accent-color:#8b7bff;height:6px;cursor:pointer}
+.lim-bar{display:flex;justify-content:space-between;font-size:13px;color:var(--a-m)}
+/* profile */
+.prof{display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 0 24px}
+.av.big{width:88px;height:88px;font-size:28px;margin-bottom:12px}.prof b{font-size:20px}.prof small{color:var(--a-m);font-size:13px}
+.plan{margin-top:12px;font-size:12px;font-weight:800;padding:5px 12px;border-radius:20px;background:#8b7bff2e;color:#c6bdff;letter-spacing:.04em}
+.menu{list-style:none;margin:0;padding:4px 8px;background:var(--a-c);border-radius:22px}
+.menu li+li{border-top:1px solid #ffffff0f}
+.menu button{width:100%;display:flex;align-items:center;gap:14px;padding:14px 8px;font-size:15px;font-weight:600;text-align:left}
+.menu i{width:36px;height:36px;border-radius:12px;background:var(--a-c2);display:grid;place-items:center;font-style:normal;font-size:16px}
+.menu span{margin-left:auto;color:var(--a-m);font-size:20px}
+.ver{text-align:center;color:var(--a-m);font-size:12px;margin-top:20px}
+.toast{position:absolute;left:20px;right:20px;bottom:100px;background:#f3f2fb;color:#15132b;font-weight:700;font-size:14px;padding:14px 16px;border-radius:16px;box-shadow:0 12px 30px #0008;z-index:6;opacity:0;transform:translateY(12px);transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+/* mini screens */
+.sh{max-width:720px;margin-bottom:56px}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;justify-items:center}
+.gal figure{margin:0;display:flex;flex-direction:column;align-items:center}
+.gal figcaption{margin-top:20px;font-size:15px;color:var(--muted);max-width:250px}.gal figcaption b{display:block;color:var(--ink);font-size:17px;margin-bottom:4px}
+.views.full{bottom:0;padding:8px 20px 24px}
+.ob{display:flex;flex-direction:column;background:radial-gradient(90% 50% at 50% 20%,#4a2fd655,transparent)}
+.ob-art{position:relative;height:330px;margin:10px 0 16px}
+.ob-art span{position:absolute;border-radius:50%}
+.o1{width:220px;height:220px;left:30px;top:40px;background:linear-gradient(135deg,#8b7bff,#4a2fd6);box-shadow:0 30px 60px -20px #6d55ff}
+.o2{width:120px;height:120px;right:24px;top:10px;background:linear-gradient(135deg,#3ee0b0,#1a9d7a)}
+.o3{width:96px;height:96px;right:56px;bottom:20px;background:#ff8466;display:grid;place-items:center;font:700 44px 'Bricolage Grotesque';color:#2a0f14}
+.dots{display:flex;gap:6px;margin-bottom:16px}.dots i{width:8px;height:8px;border-radius:8px;background:#ffffff30}.dots i.on{width:24px;background:var(--a-vi)}
+.ob h3{font-size:32px;line-height:1.05;margin-bottom:12px}.ob p{color:var(--a-m);font-size:16px;margin-bottom:auto}
+.mbtn{display:block;text-align:center;background:var(--a-vi);color:#fff;font-weight:800;border-radius:18px;padding:16px;margin-top:10px;font-size:16px}
+.mbtn.ghost{background:var(--a-c);color:var(--a-t)}
+.bk{color:var(--a-vi);font-weight:700;font-size:16px;margin:4px 0 12px}
+.td-h{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 0 24px}
+.td-h i{width:72px;height:72px;border-radius:24px;background:#3ee0b02b;color:var(--a-mint);display:grid;place-items:center;font-style:normal;font-weight:800;font-size:22px;margin-bottom:6px}
+.td-h b{font-size:17px}.td-amt{font:700 44px 'Bricolage Grotesque';letter-spacing:-.03em}
+.chipc{font-size:13px;font-weight:700;padding:4px 12px;border-radius:20px;background:#3ee0b02b;color:var(--a-mint)}
+.kv{list-style:none;margin:0 0 16px;padding:4px 16px;background:var(--a-c);border-radius:22px}
+.kv li{display:flex;justify-content:space-between;padding:13px 0;font-size:15px}.kv li+li{border-top:1px solid #ffffff0f}.kv span{color:var(--a-m)}.kv .ok{color:var(--a-mint)}
+.mrow{display:grid;grid-template-columns:1.6fr 1fr;gap:8px}.mrow .mbtn{margin:0}
+.ring{position:relative;width:220px;height:220px;margin:8px auto 24px}.ring svg{width:100%;height:100%}
+.ring div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring b{font:700 44px 'Bricolage Grotesque'}.ring small{color:var(--a-m);font-size:14px}
+.pill{font-size:13px;font-weight:800;color:#06281d;background:var(--a-mint);border-radius:20px;padding:4px 12px}
+.note{font-size:14px;color:#c9f5e7;background:#3ee0b01a;border-radius:16px;padding:14px 16px;margin-top:8px}
+.note.warn{color:#ffd2c6;background:#ff846622}
+.bud-sum{background:var(--a-c);border-radius:22px;padding:18px;margin-bottom:12px}.bud-sum small{color:var(--a-m);font-size:13px}
+.bud-sum b{display:block;font:700 34px 'Bricolage Grotesque'}.bud-sum b span{font:500 15px 'Manrope';color:var(--a-m)}
+.bud{list-style:none;margin:0 0 8px;padding:0}
+.bud li{background:var(--a-c);border-radius:18px;padding:14px 16px;margin-bottom:8px}
+.bud li div{display:flex;justify-content:space-between;margin-bottom:10px;font-size:15px}.bud span{color:var(--a-m)}.bud .over{color:#ff8a8a;font-weight:700}
+.bud i{display:block;height:8px;border-radius:8px;background:#ffffff12;overflow:hidden}.bud s{display:block;height:100%;border-radius:8px}
+/* features */
+.feat{background:#fff;border-block:1px solid var(--line)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fc{border:1px solid var(--line);border-radius:var(--r);padding:28px;background:var(--bg)}
+.fi{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:14px;font-weight:800;font-size:15px;margin-bottom:20px}
+.fc h3{font-size:22px;margin-bottom:10px}.fc p{color:var(--muted);font-size:16px}
+/* design */
+.dgrid{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:20px}
+.dc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px}.dc h3{font-size:20px;margin-bottom:20px}
+.ts{display:flex;flex-direction:column;gap:4px;padding:12px 0;border-top:1px solid var(--line)}.ts small{font-size:13px;color:var(--muted)}
+.sw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.sw-grid i{display:block;height:64px;border-radius:14px;margin-bottom:8px;box-shadow:inset 0 0 0 1px #0000000f}.sw-grid b{display:block;font-size:14px}.sw-grid span{font-size:12px;color:var(--muted)}
+.dc.dark{background:#0e0d1a;color:#f3f2fb;border-color:#0e0d1a}
+.comp{display:flex;flex-direction:column;gap:16px}
+.cbtn{background:#8b7bff;color:#fff;border-radius:16px;padding:14px;text-align:center;font-weight:800}
+.crow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.csw{width:52px;height:32px;border-radius:20px;background:#3a3755;position:relative}.csw i{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff}
+.csw.on{background:#3ee0b0}.csw.on i{left:23px}
+.cchip{font-size:13px;font-weight:700;padding:5px 12px;border-radius:20px;background:#ff846633;color:#ffb39f}.cchip.m{background:#3ee0b02b;color:#3ee0b0}
+.ckeys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ckeys span{background:#181629;border-radius:14px;height:52px;display:grid;place-items:center;font-weight:600;font-size:22px}
+.comp p{font-size:14px;color:#a6a3c2}
+/* flow */
+.flow{background:var(--ink);color:#fff}.flow .eyebrow{color:#b3a6ff}.flow .lead{color:#c3c0d8}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.steps li{position:relative;background:#211e3a;border-radius:var(--r);padding:28px}
+.steps li:not(:last-child)::after{content:"→";position:absolute;right:-17px;top:36px;color:#8b7bff;font-weight:800;z-index:1}
+.sn{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#8b7bff;font:700 20px 'Bricolage Grotesque';margin-bottom:20px}
+.steps .done .sn{background:#3ee0b0;color:#06281d}
+.steps h3{font-size:21px;margin-bottom:8px}.steps p{color:#c3c0d8;font-size:15px}
+.try{margin-top:32px;color:#c3c0d8}.try a{color:#3ee0b0;font-weight:700}
+/* reviews */
+.rev-top{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:48px;flex-wrap:wrap}
+.score{text-align:right}.score b{display:block;font:700 72px/1 'Bricolage Grotesque'}.score small{display:block;color:var(--muted);font-size:14px}
+.stars{color:#e89a00;letter-spacing:2px}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rc{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:16px}
+.rc blockquote{margin:0;font-size:17px;flex:1}.rc figcaption{font-size:14px;color:var(--muted)}.rc figcaption b{color:var(--ink)}
+/* cta + footer */
+.cta-s{padding-top:0}
+.cta{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;border-radius:32px;padding:56px;color:#fff;background:radial-gradient(60% 120% at 100% 0,#9a7bff,transparent 60%),linear-gradient(135deg,#5a3ff0,#3a22b0)}
+.cta h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:12px}.cta p{color:#e1dcff;max-width:520px}
+.store.light{background:#fff;color:var(--ink)}
+.foot{padding:40px 0 48px;border-top:1px solid var(--line)}
+.foot .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;font-size:15px;color:var(--muted)}
+.credit{font-weight:700;color:var(--ink)}
+/* responsive */
+@media (max-width:1100px){.gal{grid-template-columns:repeat(2,1fr);row-gap:56px}.steps{grid-template-columns:repeat(2,1fr)}.steps li::after{display:none}.dgrid{grid-template-columns:1fr 1fr}.dc.dark{grid-column:1/-1}}
+@media (max-width:980px){.hero{min-height:0;padding-top:112px}.hero .wrap{grid-template-columns:1fr;gap:56px}.nav ul{display:none}.fgrid,.rgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){section{padding:72px 0}.wrap{width:calc(100% - 32px)}.hero h1{font-size:50px}.pitch{font-size:19px}.stats{gap:20px}.stats b{font-size:24px}.gal,.fgrid,.rgrid,.dgrid,.steps{grid-template-columns:1fr}.cta{padding:32px 24px}.score{text-align:left}.nav .btn{padding:10px 14px;font-size:14px}.sw-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav"><div class="wrap">
+<a class="logo" href="#top" aria-label="Pocketly home"><i>P</i>Pocketly</a>
+<nav aria-label="Primary"><ul><li><a href="#screens">Screens</a></li><li><a href="#features">Features</a></li><li><a href="#design">Design</a></li><li><a href="#flow">User flow</a></li></ul></nav>
+<a class="btn btn-p" href="#get">Get the app</a>
+</div></header>
+<main id="main">
+<section class="hero" id="top" aria-labelledby="hero-h">
+<div class="wrap">
+<div class="hero-copy">
+<span class="tag"><b>New</b> Shared spaces for couples and housemates</span>
+<h1 id="hero-h">Pocketly.<br><span>Money, sorted.</span></h1>
+<p class="pitch">Everyday banking that shows you where every pound went.</p>
+<p class="lead">One balance across your accounts, spending grouped by category without you lifting a finger, transfers that land in seconds and card controls you can change from the bus stop.</p>
+<div class="stores">
+<a class="store" href="#" aria-label="Download on the App Store"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.1-.5 2.8-1.3z"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+<a class="store" href="#" aria-label="Get it on Google Play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.8 13.6 12 4 21.2c-.4-.2-.6-.6-.6-1.1V3.9c0-.5.2-.9.6-1.1z" fill="#3ee0b0"/><path d="m16.8 8.8-3.2 3.2L4 2.8l.3-.1c.4-.1.8 0 1.2.2z" fill="#8b7bff"/><path d="m16.8 15.2-11.3 6.5c-.4.2-.8.3-1.2.2L4 21.2l9.6-9.2z" fill="#ff8466"/><path d="m20.3 10.8-3.5-2-3.2 3.2 3.2 3.2 3.5-2c.9-.5.9-1.9 0-2.4z" fill="#ffc04d"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
+</div>
+<div class="stats"><div><b>4.8★</b><span>11,200 ratings</span></div><div><b>210k</b><span>active members</span></div><div><b>6 sec</b><span>average transfer</span></div></div>
+</div>
+<div class="stage">
+<div class="phone-fit" id="phone">
+<div class="device"><div class="screen" id="app">
+<div class="sbar" aria-hidden="true"><span class="time">9:41</span><span class="island"></span><span class="sicons"><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg><svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.5c2.3 0 4.4.9 5.9 2.4l1.1-1.1A9.8 9.8 0 0 0 8 1 9.8 9.8 0 0 0 1 3.8l1.1 1.1A8.3 8.3 0 0 1 8 2.5zm0 3.2c1.4 0 2.7.5 3.6 1.4l1.1-1.1A6.6 6.6 0 0 0 8 4.2c-1.8 0-3.5.7-4.7 1.8l1.1 1.1c1-.9 2.2-1.4 3.6-1.4zM8 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" fill="currentColor"/></svg><svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="17" height="9" rx="2" fill="currentColor"/><rect x="25" y="4.5" width="1.5" height="4" rx=".75" fill="currentColor" opacity=".4"/></svg></span></div>
+<div class="views">
+<div class="view on" data-view="home">
+<div class="top"><div class="hi"><span class="av">AK</span><div><small>Good morning</small><b>Amira Khan</b></div></div><button class="ibtn" aria-label="Notifications, 2 new"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0"/></svg><i></i></button></div>
+<div class="bal">
+<div class="bal-h"><span>Total balance</span><button class="eye" id="eye" aria-pressed="false" aria-label="Hide balance"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+<div class="amt" id="balAmt">£8,426<small>.19</small></div>
+<div class="bal-f"><span class="up">▲ £312.40</span> in since Monday</div>
+<div class="spark" aria-hidden="true"><svg viewBox="0 0 300 48" preserveAspectRatio="none"><path d="M0 38 L30 34 L60 36 L90 28 L120 30 L150 22 L180 25 L210 16 L240 18 L270 9 L300 6" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/><path d="M0 38 L30 34 L60 36 L90 28 L120 30 L150 22 L180 25 L210 16 L240 18 L270 9 L300 6 V48 H0z" fill="#fff" opacity=".12"/></svg></div>
+</div>
+<div class="qa">
+<button data-go="pay"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></i>Send</button>
+<button class="js-toast" data-msg="Request link copied"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 7 7 17M15 17H7V9"/></svg></i>Request</button>
+<button class="js-toast" data-msg="Top up with Apple Pay or bank transfer"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i>Top up</button>
+<button class="js-toast" data-msg="Pick a transaction to split"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M3 19c.8-2.5 2.7-4 5-4s4.2 1.5 5 4M11 19c.8-2.5 2.7-4 5-4s4.2 1.5 5 4"/></svg></i>Split</button>
+</div>
+<div class="sec-h"><b>Accounts</b><span>3</span></div>
+<div class="accts">
+<div class="acct"><i style="background:#8b7bff"></i><small>Everyday</small><b>£2,140.55</b><span>•• 4821</span></div>
+<div class="acct"><i style="background:#3ee0b0"></i><small>Rainy day pot</small><b>£6,120.00</b><span>3.9% AER</span></div>
+<div class="acct"><i style="background:#ffc04d"></i><small>Joint · with Sam</small><b>£165.64</b><span>Bills</span></div>
+</div>
+<div class="sec-h"><b>Recent</b><span>See all</span></div>
+<ul class="tx">
+<li><i class="c1">HB</i><div><b>Hartley's Bakery</b><small>Eating out · 8:12</small></div><em>−£4.80</em></li>
+<li><i class="c2">MT</i><div><b>Metro Transit</b><small>Transport · Yesterday</small></div><em>−£2.90</em></li>
+<li><i class="c3">BS</i><div><b>Brightwell Studio</b><small>Salary · 28 Oct</small></div><em class="in">+£2,860.00</em></li>
+<li><i class="c4">NE</i><div><b>Northgate Energy</b><small>Bills · 27 Oct</small></div><em>−£64.20</em></li>
+</ul>
+</div>
+<div class="view" data-view="insights" hidden>
+<h3 class="vt">Insights</h3>
+<div class="month"><button id="mPrev" aria-label="Previous month">‹</button><b id="mName" aria-live="polite">October 2026</b><button id="mNext" aria-label="Next month">›</button></div>
+<div class="donut-w">
+<svg class="donut" viewBox="0 0 120 120" aria-hidden="true"><g id="donut" transform="rotate(-90 60 60)"></g></svg>
+<div class="donut-c"><small>Spent</small><b id="mTotal">£1,486</b><span id="mDelta" class="dl">12% less than Sep</span></div>
+</div>
+<ul class="cats" id="cats"></ul>
+<div class="tip"><b>Eating out is down £48.</b> You're on track for your £250 monthly budget.</div>
+</div>
+<div class="view" data-view="pay" hidden>
+<h3 class="vt">Send money</h3>
+<div class="contacts" role="radiogroup" aria-label="Choose who to pay">
+<button role="radio" aria-checked="true" class="ct on" data-n="Sam"><i style="background:#ffc04d">SR</i>Sam</button>
+<button role="radio" aria-checked="false" class="ct" data-n="Leila"><i style="background:#ff8466">LM</i>Leila</button>
+<button role="radio" aria-checked="false" class="ct" data-n="Tomasz"><i style="background:#3ee0b0">TW</i>Tomasz</button>
+<button role="radio" aria-checked="false" class="ct" data-n="Priya"><i style="background:#8b7bff">PD</i>Priya</button>
+<button role="radio" aria-checked="false" class="ct" data-n="Dad"><i style="background:#5ec8ff">JK</i>Dad</button>
+</div>
+<div class="pamt"><span class="cur">£</span><span id="pAmt">0</span></div>
+<div class="pnote">From Everyday · £2,140.55 available</div>
+<div class="keys" id="keys">
+<button>1</button><button>2</button><button>3</button><button>4</button><button>5</button><button>6</button><button>7</button><button>8</button><button>9</button><button>.</button><button>0</button><button data-k="del" aria-label="Delete">⌫</button>
+</div>
+<button class="send" id="sendBtn" disabled>Send to Sam</button>
+</div>
+<div class="view" data-view="cards" hidden>
+<h3 class="vt">Cards</h3>
+<div class="card" id="card">
+<div class="card-t"><b>Pocketly</b><span>Debit</span></div>
+<div class="chip" aria-hidden="true"></div>
+<div class="card-n">•••• •••• •••• 4821</div>
+<div class="card-f"><span>AMIRA KHAN</span><span>09/29</span></div>
+<div class="frost" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M4 6l16 12M20 6 4 18"/></svg>Frozen</div>
+</div>
+<div class="row sw-row"><div><b>Freeze card</b><small id="frzTxt">Card is active</small></div><button class="sw" id="freeze" role="switch" aria-checked="false" aria-label="Freeze card"><i></i></button></div>
+<div class="lim">
+<div class="lim-h"><label for="limit"><b>Monthly spend limit</b></label><output id="limOut" for="limit">£1,200</output></div>
+<input type="range" id="limit" min="100" max="3000" step="50" value="1200">
+<div class="lim-bar"><span>£486 spent</span><span id="limLeft">£714 left</span></div>
+</div>
+<div class="row sw-row"><div><b>Online payments</b><small>Shops and subscriptions</small></div><button class="sw on" role="switch" aria-checked="true" aria-label="Online payments"><i></i></button></div>
+<div class="row sw-row"><div><b>Contactless</b><small>Up to £100 per tap</small></div><button class="sw on" role="switch" aria-checked="true" aria-label="Contactless"><i></i></button></div>
+<div class="row sw-row"><div><b>Cash withdrawals</b><small>ATMs abroad included</small></div><button class="sw" role="switch" aria-checked="false" aria-label="Cash withdrawals"><i></i></button></div>
+</div>
+<div class="view" data-view="profile" hidden>
+<div class="prof"><span class="av big">AK</span><b>Amira Khan</b><small>Member since March 2023</small><span class="plan">Pocketly Plus</span></div>
+<ul class="menu">
+<li><button class="js-toast" data-msg="Personal details are up to date"><i>👤</i>Personal details<span>›</span></button></li>
+<li><button class="js-toast" data-msg="Face ID is on for payments over £30"><i>🔒</i>Security &amp; Face ID<span>›</span></button></li>
+<li><button class="js-toast" data-msg="Notifications: payments and weekly summary"><i>🔔</i>Notifications<span>›</span></button></li>
+<li><button class="js-toast" data-msg="October statement ready as PDF"><i>📄</i>Statements<span>›</span></button></li>
+<li><button class="js-toast" data-msg="Chat replies in about 4 minutes"><i>💬</i>Help &amp; chat<span>›</span></button></li>
+</ul>
+<p class="ver">Pocketly 4.12 · Deposits protected up to £85,000</p>
+</div>
+</div>
+<nav class="tabbar" aria-label="App screens">
+<button class="tab on" data-v="home" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
+<button class="tab" data-v="insights"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Insights</button>
+<button class="tab" data-v="pay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>Pay</button>
+<button class="tab" data-v="cards"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6 15h4"/></svg>Cards</button>
+<button class="tab" data-v="profile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4 4.3-6 8-6s6.8 2 8 6"/></svg>Profile</button>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div></div>
+</div>
+</div>
+</div>
+</section>
+<section id="screens" aria-labelledby="scr-h">
+<div class="wrap">
+<div class="sh reveal"><span class="eyebrow">Screens</span><h2 class="h2" id="scr-h">Four screens people open every week</h2><p class="lead">Beyond the main tabs, these are the flows our testers came back to most: signing up, checking a payment, saving towards something and keeping a budget honest.</p></div>
+<div class="gal">
+<figure class="reveal"><div class="phone-fit" style="--s:.6"><div class="device"><div class="screen" aria-hidden="true">
+<div class="sbar"><span class="time">9:41</span><span class="island"></span><span></span></div>
+<div class="views full ob">
+<div class="ob-art"><span class="o1"></span><span class="o2"></span><span class="o3">£</span></div>
+<div class="dots"><i class="on"></i><i></i><i></i></div>
+<h3>Banking that shows its working.</h3>
+<p>See every payment sorted by category the moment it happens. No spreadsheets, no guessing.</p>
+<span class="mbtn">Open an account in 8 minutes</span>
+<span class="mbtn ghost">I already have an account</span>
+</div></div></div></div>
+<figcaption><b>Onboarding</b>Three cards, one clear promise, and a sign-up that takes under ten minutes with ID scan.</figcaption></figure>
+<figure class="reveal"><div class="phone-fit" style="--s:.6"><div class="device"><div class="screen" aria-hidden="true">
+<div class="sbar"><span class="time">9:41</span><span class="island"></span><span></span></div>
+<div class="views full">
+<div class="bk">‹ Recent</div>
+<div class="td-h"><i>CG</i><b>Corner Grocer</b><span class="td-amt">−£42.60</span><span class="chipc">Groceries</span></div>
+<ul class="kv"><li><span>Date</span><b>Tue 4 Nov, 18:22</b></li><li><span>Card</span><b>Debit •• 4821</b></li><li><span>Status</span><b class="ok">Completed</b></li><li><span>Location</span><b>Elm Row, Leeds</b></li><li><span>Reference</span><b>PKT-77C2-918</b></li></ul>
+<div class="mrow"><span class="mbtn">Split with Sam</span><span class="mbtn ghost">Report</span></div>
+</div></div></div></div>
+<figcaption><b>Transaction detail</b>Merchant, place and card on one screen, with split and dispute one tap away.</figcaption></figure>
+<figure class="reveal"><div class="phone-fit" style="--s:.6"><div class="device"><div class="screen" aria-hidden="true">
+<div class="sbar"><span class="time">9:41</span><span class="island"></span><span></span></div>
+<div class="views full">
+<div class="bk">‹ Pots</div>
+<h3 class="vt">Lisbon in March</h3>
+<div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#ffffff14" stroke-width="12"/><circle cx="60" cy="60" r="50" fill="none" stroke="#3ee0b0" stroke-width="12" stroke-linecap="round" stroke-dasharray="213.6 314.2" transform="rotate(-90 60 60)"/></svg><div><b>68%</b><small>£1,360 of £2,000</small></div></div>
+<div class="row"><div><b>Auto-save</b><small>£40 every Friday</small></div><span class="pill">On</span></div>
+<div class="row"><div><b>Round-ups</b><small>£18.32 added this month</small></div><span class="pill">On</span></div>
+<p class="note">At this pace you'll reach £2,000 on 6 March, eight days early.</p>
+</div></div></div></div>
+<figcaption><b>Savings goal</b>A pot with a date. Round-ups and a weekly auto-save do the work quietly.</figcaption></figure>
+<figure class="reveal"><div class="phone-fit" style="--s:.6"><div class="device"><div class="screen" aria-hidden="true">
+<div class="sbar"><span class="time">9:41</span><span class="island"></span><span></span></div>
+<div class="views full">
+<h3 class="vt">Budgets</h3>
+<div class="bud-sum"><small>November so far</small><b>£612 <span>of £1,350</span></b></div>
+<ul class="bud">
+<li><div><b>Groceries</b><span>£184 / £420</span></div><i><s style="width:44%;background:#3ee0b0"></s></i></li>
+<li><div><b>Eating out</b><span>£96 / £250</span></div><i><s style="width:38%;background:#ff8466"></s></i></li>
+<li><div><b>Shopping</b><span class="over">£262 / £250</span></div><i><s style="width:100%;background:#ff5d5d"></s></i></li>
+<li><div><b>Transport</b><span>£70 / £180</span></div><i><s style="width:39%;background:#5ec8ff"></s></i></li>
+</ul>
+<p class="note warn">Shopping is £12 over. We'll pause the nudge until the 1st if you'd like.</p>
+</div></div></div></div>
+<figcaption><b>Budget</b>Limits per category that warn early and never lecture.</figcaption></figure>
+</div>
+</div>
+</section>
+<section id="features" class="feat" aria-labelledby="feat-h">
+<div class="wrap">
+<div class="sh reveal"><span class="eyebrow">Key features</span><h2 class="h2" id="feat-h">Built for the ten seconds people actually spend in a banking app</h2></div>
+<div class="fgrid">
+<article class="fc reveal"><span class="fi" style="background:var(--vi-l);color:var(--vi)">01</span><h3>One balance, every account</h3><p>Everyday, savings pots and joint accounts add up on the home screen, with a weekly trend line underneath.</p></article>
+<article class="fc reveal"><span class="fi" style="background:var(--mint-l);color:var(--mint)">02</span><h3>Automatic categories</h3><p>Payments are sorted into groceries, bills, transport and more as they clear. Fix one and similar payments follow.</p></article>
+<article class="fc reveal"><span class="fi" style="background:var(--coral-l);color:var(--coral)">03</span><h3>Send in three taps</h3><p>Pick a person, type the amount, confirm with Face ID. Most transfers land in under ten seconds.</p></article>
+<article class="fc reveal"><span class="fi" style="background:#e3f4ff;color:#1a6fa3">04</span><h3>Card controls that stick</h3><p>Freeze a lost card, cap monthly spending or switch off cash withdrawals, and every change applies instantly.</p></article>
+<article class="fc reveal"><span class="fi" style="background:#fff3d6;color:#9a6400">05</span><h3>Pots with a deadline</h3><p>Savings goals with a target date, weekly auto-save and round-ups from everyday spending.</p></article>
+<article class="fc reveal"><span class="fi" style="background:#efedf5;color:var(--ink)">06</span><h3>Shared spaces</h3><p>Couples and housemates split bills from a joint pot and see who paid what, without the group chat maths.</p></article>
+</div>
+</div>
+</section>
+<section id="design" aria-labelledby="des-h">
+<div class="wrap">
+<div class="sh reveal"><span class="eyebrow">Design notes</span><h2 class="h2" id="des-h">A dark interface that stays calm about money</h2><p class="lead">The app runs on a near-black canvas so balances and colours carry the meaning. Each spending category keeps the same colour everywhere it appears: chart, list, budget and notification.</p></div>
+<div class="dgrid">
+<div class="dc reveal"><h3>Type scale</h3>
+<div class="ts"><span style="font:700 40px/1 'Bricolage Grotesque'">£8,426</span><small>Display · Bricolage 40/44</small></div>
+<div class="ts"><span style="font:700 28px/1.1 'Bricolage Grotesque'">Insights</span><small>Title · Bricolage 28/32</small></div>
+<div class="ts"><span style="font:700 17px 'Manrope'">Hartley's Bakery</span><small>Body bold · Manrope 17/24</small></div>
+<div class="ts"><span style="font:500 13px 'Manrope';color:var(--muted)">Eating out · 8:12</span><small>Caption · Manrope 13/18</small></div>
+</div>
+<div class="dc reveal"><h3>Colour</h3>
+<div class="sw-grid">
+<div><i style="background:#0e0d1a"></i><b>Night</b><span>#0E0D1A</span></div>
+<div><i style="background:#8b7bff"></i><b>Iris</b><span>#8B7BFF</span></div>
+<div><i style="background:#3ee0b0"></i><b>Mint</b><span>#3EE0B0</span></div>
+<div><i style="background:#ff8466"></i><b>Coral</b><span>#FF8466</span></div>
+<div><i style="background:#ffc04d"></i><b>Amber</b><span>#FFC04D</span></div>
+<div><i style="background:#5ec8ff"></i><b>Sky</b><span>#5EC8FF</span></div>
+</div></div>
+<div class="dc dark reveal"><h3>Components</h3>
+<div class="comp">
+<span class="cbtn">Send £25 to Sam</span>
+<div class="crow"><span class="csw on"><i></i></span><span class="csw"><i></i></span><span class="cchip">Groceries</span><span class="cchip m">+£2,860</span></div>
+<div class="ckeys"><span>1</span><span>2</span><span>3</span></div>
+<p>8pt grid · 16–28px radii · 44px minimum tap targets · tab bar clears the home indicator</p>
+</div></div>
+</div>
+</div>
+</section>
+<section id="flow" class="flow" aria-labelledby="flow-h">
+<div class="wrap">
+<div class="sh reveal"><span class="eyebrow">User flow</span><h2 class="h2" id="flow-h">Send money in 3 taps</h2><p class="lead">The old flow took seven screens. We cut it to three by remembering recent payees and moving confirmation into Face ID.</p></div>
+<ol class="steps">
+<li class="reveal"><span class="sn">1</span><h3>Tap a face</h3><p>Recent and favourite people sit at the top of Pay. No sort codes for someone you've paid before.</p></li>
+<li class="reveal"><span class="sn">2</span><h3>Type the amount</h3><p>A big keypad, available balance underneath and a gentle shake if you go over it.</p></li>
+<li class="reveal"><span class="sn">3</span><h3>Confirm with Face ID</h3><p>One glance sends it. Sam gets a notification and you get a receipt in Recent.</p></li>
+<li class="reveal done"><span class="sn">✓</span><h3>Arrived</h3><p>Average time from first tap to money landing: 6 seconds across 40,000 test transfers.</p></li>
+</ol>
+<p class="try reveal">Try it on the phone above: <a href="#top" id="tryPay">open Pay</a>, pick a contact and type an amount.</p>
+</div>
+</section>
+<section id="reviews" aria-labelledby="rev-h">
+<div class="wrap">
+<div class="rev-top reveal"><div><span class="eyebrow">Ratings</span><h2 class="h2" id="rev-h">4.8 out of 5 from 11,200 people</h2></div>
+<div class="score"><b>4.8</b><span class="stars" aria-label="4.8 out of 5 stars">★★★★★</span><small>App Store and Google Play, Oct 2026</small></div></div>
+<div class="rgrid">
+<figure class="rc reveal"><span class="stars" aria-hidden="true">★★★★★</span><blockquote>"I finally know what I spend on lunches. It was £190 last month. It's £120 now and I didn't need a spreadsheet."</blockquote><figcaption><b>Nadia F.</b> · Nurse, Manchester</figcaption></figure>
+<figure class="rc reveal"><span class="stars" aria-hidden="true">★★★★★</span><blockquote>"Lost my card at a gig, froze it before I'd even left the venue, found it in my jacket next morning and unfroze it. Two taps each way."</blockquote><figcaption><b>Owen P.</b> · Sound engineer, Bristol</figcaption></figure>
+<figure class="rc reveal"><span class="stars" aria-hidden="true">★★★★☆</span><blockquote>"The joint pot sorted out rent with my housemates. I'd like more control over notifications, but the basics are spot on."</blockquote><figcaption><b>Ruth A.</b> · Student, Glasgow</figcaption></figure>
+</div>
+</div>
+</section>
+<section id="get" class="cta-s" aria-labelledby="cta-h">
+<div class="wrap"><div class="cta reveal">
+<div><h2 id="cta-h">Open an account in about 8 minutes.</h2><p>Free everyday account, no monthly fee. Pocketly Plus is £3 a month if you want shared spaces and higher pot interest.</p></div>
+<div class="stores"><a class="store light" href="#" aria-label="Download Pocketly on the App Store"><span><small>Download on the</small><b>App Store</b></span></a><a class="store light" href="#" aria-label="Get Pocketly on Google Play"><span><small>Get it on</small><b>Google Play</b></span></a></div>
+</div></div>
+</section>
+</main>
+<footer class="foot"><div class="wrap">
+<a class="logo" href="#top"><i>P</i>Pocketly</a>
+<p>Concept project with demo content. Pocketly, its people, accounts and figures are fictional.</p>
+<p class="credit">Designed &amp; developed by TMX Digital Solutions.</p>
+</div></footer>
+<script>
+(function(){
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var app=$('#app'),toastEl=$('#toast'),tt;
+function toast(m){toastEl.textContent=m;toastEl.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+/* fit phone */
+var fit=$('#phone');
+function scalePhone(){var w=window.innerWidth,h=window.innerHeight,s;
+ if(w<=980){s=Math.min(1,(Math.min(w,520)-48)/414)}else{s=Math.min(1,(h-140)/868,((Math.min(w,1200)-48)*.45)/414)}
+ s=Math.max(.5,s);fit.style.setProperty('--s',s.toFixed(3))}
+scalePhone();window.addEventListener('resize',scalePhone);
+/* tabs */
+function go(v){$$('.view',app).forEach(function(el){el.hidden=el.dataset.view!==v});
+ $$('.tab',app).forEach(function(t){var on=t.dataset.v===v;t.classList.toggle('on',on);if(on)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')});
+ $('.views',app).scrollTop=0}
+$$('.tab',app).forEach(function(t){t.addEventListener('click',function(){go(t.dataset.v)})});
+$$('[data-go]',app).forEach(function(b){b.addEventListener('click',function(){go(b.dataset.go)})});
+$$('.js-toast',app).forEach(function(b){b.addEventListener('click',function(){toast(b.dataset.msg)})});
+/* hide balance */
+var eye=$('#eye');eye.addEventListener('click',function(){var on=eye.getAttribute('aria-pressed')!=='true';eye.setAttribute('aria-pressed',on);eye.setAttribute('aria-label',on?'Show balance':'Hide balance');app.classList.toggle('masked',on)});
+/* insights */
+var months=[
+ {n:'August 2026',d:'4% more than Jul',bad:1,c:[['Groceries',412],['Bills',386],['Eating out',298],['Transport',164],['Shopping',240],['Other',88]]},
+ {n:'September 2026',d:'3% less than Aug',c:[['Groceries',398],['Bills',386],['Eating out',250],['Transport',158],['Shopping',300],['Other',96]]},
+ {n:'October 2026',d:'12% less than Sep',c:[['Groceries',371],['Bills',392],['Eating out',202],['Transport',149],['Shopping',268],['Other',104]]}];
+var cols=['#3ee0b0','#8b7bff','#ff8466','#5ec8ff','#ffc04d','#c3bfd9'],mi=2,R=48,C=2*Math.PI*R;
+var g=$('#donut'),svgNS='http://www.w3.org/2000/svg',arcs=[];
+cols.forEach(function(c){var ci=document.createElementNS(svgNS,'circle');ci.setAttribute('cx',60);ci.setAttribute('cy',60);ci.setAttribute('r',R);ci.setAttribute('fill','none');ci.setAttribute('stroke',c);ci.setAttribute('stroke-width',14);g.appendChild(ci);arcs.push(ci)});
+function money(n){return '£'+n.toLocaleString('en-GB')}
+function renderM(){var m=months[mi],tot=m.c.reduce(function(a,x){return a+x[1]},0),off=0,max=Math.max.apply(null,m.c.map(function(x){return x[1]}));
+ $('#mName').textContent=m.n;$('#mTotal').textContent=money(tot);var d=$('#mDelta');d.textContent=m.d;d.classList.toggle('bad',!!m.bad);
+ m.c.forEach(function(x,i){var len=x[1]/tot*C,gap=2.5;arcs[i].setAttribute('stroke-dasharray',Math.max(0,len-gap)+' '+(C-len+gap));arcs[i].setAttribute('stroke-dashoffset',-off);off+=len});
+ $('#cats').innerHTML=m.c.map(function(x,i){return '<li><i style="background:'+cols[i]+'"></i><b>'+x[0]+'</b><em>'+money(x[1])+'</em><span class="bar"><span style="width:'+Math.round(x[1]/max*100)+'%;background:'+cols[i]+'"></span></span></li>'}).join('');
+ $('#mPrev').disabled=mi===0;$('#mNext').disabled=mi===months.length-1}
+$('#mPrev').addEventListener('click',function(){if(mi>0){mi--;renderM()}});
+$('#mNext').addEventListener('click',function(){if(mi<months.length-1){mi++;renderM()}});
+renderM();
+/* pay */
+var amt='0',who='Sam',pA=$('#pAmt'),sb=$('#sendBtn'),pw=$('.pamt');
+function upd(){pA.textContent=amt;var v=parseFloat(amt);sb.disabled=!(v>0);sb.textContent=v>0?'Send £'+amt+' to '+who:'Send to '+who}
+$$('.ct',app).forEach(function(b){b.addEventListener('click',function(){$$('.ct',app).forEach(function(x){x.classList.remove('on');x.setAttribute('aria-checked','false')});b.classList.add('on');b.setAttribute('aria-checked','true');who=b.dataset.n;upd()})});
+$$('#keys button').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.k||b.textContent;
+ if(k==='del'){amt=amt.length>1?amt.slice(0,-1):'0'}
+ else if(k==='.'){if(amt.indexOf('.')<0)amt+='.'}
+ else{var nx=amt==='0'?k:amt+k,dp=nx.split('.')[1];if((dp&&dp.length>2)||parseFloat(nx)>2140.55){pw.classList.remove('shake');void pw.offsetWidth;pw.classList.add('shake');return}amt=nx}
+ upd()})});
+sb.addEventListener('click',function(){toast('Sent £'+amt+' to '+who+' · arrived in 4 sec');amt='0';upd()});
+/* cards */
+var fz=$('#freeze'),card=$('#card');
+$$('.sw',app).forEach(function(s){s.addEventListener('click',function(){var on=s.getAttribute('aria-checked')!=='true';s.setAttribute('aria-checked',on);s.classList.toggle('on',on);
+ if(s===fz){card.classList.toggle('frozen',on);$('#frzTxt').textContent=on?'Frozen · no payments go through':'Card is active';toast(on?'Card frozen. Unfreeze any time.':'Card is active again')}})});
+var lim=$('#limit');function limU(){var v=+lim.value;$('#limOut').textContent=money(v);var left=v-486;$('#limLeft').textContent=left>=0?money(left)+' left':money(-left)+' over'}
+lim.addEventListener('input',limU);limU();
+})();
+(function(){
+var nav=document.getElementById('nav');function sc(){nav.classList.toggle('sc',window.scrollY>8)}sc();window.addEventListener('scroll',sc,{passive:true});
+var tp=document.getElementById('tryPay');tp.addEventListener('click',function(){var t=document.querySelector('.tab[data-v="pay"]');if(t)t.click()});
+var els=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});els.forEach(function(el){io.observe(el)})}
+else{els.forEach(function(el){el.classList.add('in')})}
+})();
+</script>
+</body>
+</html>

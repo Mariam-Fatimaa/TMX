@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "one-pagers": "node scripts/one-pagers/generate.mjs",
-    "portfolio": "node scripts/portfolio/generate.mjs"
+    "portfolio": "node scripts/portfolio/generate.mjs",
+    "covers": "node scripts/covers/generate.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.47.0",

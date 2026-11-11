@@ -1,0 +1,218 @@
+[
+  {
+    "slug": "saffron-and-salt",
+    "title": "Saffron & Salt",
+    "category": "Websites",
+    "type": "Restaurant website",
+    "description": "Restaurant website with menus, opening hours and table bookings.",
+    "summary": "A website for a modern South Asian restaurant in Manchester. Guests can browse a tabbed menu with dietary tags, see if the kitchen is open right now, and book a table without calling.",
+    "services": ["Web design", "Development", "Booking flow"],
+    "featured": true
+  },
+  {
+    "slug": "lumen-clinic",
+    "title": "Lumen Clinic",
+    "category": "Websites",
+    "type": "Healthcare website",
+    "description": "Dental and skin clinic website with online appointment booking.",
+    "summary": "A calm, trustworthy website for a dental and skin clinic, with treatment filters, specialist profiles, transparent prices and an online appointment booker.",
+    "services": ["Web design", "Development", "UI/UX"]
+  },
+  {
+    "slug": "northpeak-logistics",
+    "title": "Northpeak Logistics",
+    "category": "Websites",
+    "type": "Corporate website",
+    "description": "Corporate site for a freight company, with tracking and quotes.",
+    "summary": "A corporate website for a road, sea and air freight company, with an animated route map, shipment tracking and a fixed-price quote builder.",
+    "services": ["Web design", "Development", "Tracking UI"],
+    "featured": true
+  },
+  {
+    "slug": "plinth",
+    "title": "Plinth",
+    "category": "Websites",
+    "type": "Real estate website",
+    "description": "Property website with map search and viewing requests.",
+    "summary": "A real estate website for homes with character, with map-based search, current listings and a simple way to request a private viewing.",
+    "services": ["Web design", "Development", "Map search"],
+    "featured": true
+  },
+  {
+    "slug": "atelier-noor",
+    "title": "Atelier Noor",
+    "category": "Websites",
+    "type": "Studio portfolio",
+    "description": "Portfolio site for an architecture and interiors studio.",
+    "summary": "An editorial portfolio for an architecture and interiors studio, built around full-bleed project imagery, a clear process and a project enquiry form.",
+    "services": ["Web design", "Art direction", "Development"],
+    "featured": true
+  },
+  {
+    "slug": "slate-and-signal",
+    "title": "Slate & Signal",
+    "category": "Websites",
+    "type": "Agency website",
+    "description": "Website for an independent creative studio.",
+    "summary": "A bold, type-led website for an independent creative studio, with a selected work showcase, services and a journal.",
+    "services": ["Web design", "Typography", "Development"]
+  },
+  {
+    "slug": "halden-rowe",
+    "title": "Halden & Rowe",
+    "category": "Websites",
+    "type": "Law firm website",
+    "description": "Law firm website with practice areas and consultation booking.",
+    "summary": "A restrained, trustworthy website for a commercial and family law firm, with practice areas, fixed-fee pricing, partner profiles and consultation booking.",
+    "services": ["Web design", "Development", "Forms"]
+  },
+  {
+    "slug": "brightpath-academy",
+    "title": "Brightpath Academy",
+    "category": "Websites",
+    "type": "Education website",
+    "description": "Academy website with course filters, timetable and trial booking.",
+    "summary": "A friendly website for a tutoring and skills academy, with a filterable course catalogue, weekly timetable, fees and a free trial class booking form.",
+    "services": ["Web design", "Development", "UI/UX"]
+  },
+  {
+    "slug": "casa-verdant",
+    "title": "Casa Verdant",
+    "category": "Websites",
+    "type": "Hotel website",
+    "description": "Boutique hotel website with room pricing and direct booking.",
+    "summary": "A website for a 24-room boutique hotel, with a booking bar, a room price calculator, restaurant and spa pages, and a direct booking enquiry.",
+    "services": ["Web design", "Development", "Booking flow"],
+    "featured": true
+  },
+  {
+    "slug": "ironworks-gym",
+    "title": "Ironworks",
+    "category": "Websites",
+    "type": "Gym website",
+    "description": "Gym website with class timetable, memberships and free trial sign-up.",
+    "summary": "A bold website for an independent strength gym, with a filterable class timetable, membership plans with monthly and annual pricing, and free trial sign-up.",
+    "services": ["Web design", "Development", "Brand"]
+  },
+  {
+    "slug": "aurel-jewellery",
+    "title": "AUREL",
+    "category": "E-commerce",
+    "type": "Online store",
+    "description": "Online store for a fine jewellery brand.",
+    "summary": "A luxury fine jewellery storefront designed to feel as considered as the pieces, with editorial product stories and a curated shop.",
+    "services": ["E-commerce", "Art direction", "Development"],
+    "featured": true
+  },
+  {
+    "slug": "kiln-coffee",
+    "title": "Kiln Coffee",
+    "category": "E-commerce",
+    "type": "Online store",
+    "description": "Coffee roaster store with shop filters, cart and subscriptions.",
+    "summary": "An online store for a small-batch coffee roaster, with shop filters, a slide-out cart, a subscription builder and brew guides.",
+    "services": ["E-commerce", "Web design", "Development"],
+    "featured": true
+  },
+  {
+    "slug": "fluxboard",
+    "title": "Fluxboard",
+    "category": "SaaS",
+    "type": "SaaS landing page",
+    "description": "Marketing site for a goals and team analytics tool.",
+    "summary": "A launch site for a real-time OKR and team analytics platform, with a live dashboard in the hero, onboarding steps and tiered pricing.",
+    "services": ["Landing page", "Product UI", "Motion"],
+    "featured": true
+  },
+  {
+    "slug": "payroute",
+    "title": "Payroute",
+    "category": "SaaS",
+    "type": "Fintech landing page",
+    "description": "Website for an invoicing and international payments app.",
+    "summary": "A marketing site for an invoicing and global payments product for agencies, with an animated invoice and an interactive currency calculator.",
+    "services": ["Landing page", "Brand", "Interactive UI"]
+  },
+  {
+    "slug": "relaywise",
+    "title": "Relaywise",
+    "category": "SaaS",
+    "type": "AI product page",
+    "description": "Landing page for an AI-assisted customer support inbox.",
+    "summary": "A landing page for an AI-assisted support inbox that shows a reply drafting itself, with features, results and per-seat pricing.",
+    "services": ["Landing page", "Product UI", "Copywriting"]
+  },
+  {
+    "slug": "ledgerline-reimagined",
+    "title": "Ledgerline",
+    "category": "SaaS",
+    "type": "Product redesign",
+    "description": "Redesign concept for an everyday investing app.",
+    "summary": "A redesign concept for an investing app, focused on making money simple to understand for everyday users.",
+    "services": ["Product design", "Landing page"]
+  },
+  {
+    "slug": "inkwell-cms",
+    "title": "Inkwell",
+    "category": "SaaS",
+    "type": "CMS landing page",
+    "description": "Launch site for a headless CMS built for newsrooms.",
+    "summary": "A launch site for a headless CMS for editorial teams. Edit a headline on the page and watch the API response update live.",
+    "services": ["Landing page", "Developer UI", "Brand"]
+  },
+  {
+    "slug": "stacksite",
+    "title": "Stacksite",
+    "category": "SaaS",
+    "type": "Website builder",
+    "description": "Landing page for a small-business website builder.",
+    "summary": "A landing page for a no-code website builder for small businesses, with a working drag-and-drop preview and templates by trade.",
+    "services": ["Landing page", "Builder UI", "Templates"]
+  },
+  {
+    "slug": "pocketly-app",
+    "title": "Pocketly",
+    "category": "Mobile Apps",
+    "type": "Banking app",
+    "description": "Personal finance app for spending, budgets and savings goals.",
+    "summary": "A mobile banking and personal finance app with spending insights, budgets, savings goals, payments and card controls.",
+    "services": ["Mobile app design", "UI/UX", "Prototype"],
+    "featured": true
+  },
+  {
+    "slug": "forkful-app",
+    "title": "Forkful",
+    "category": "Mobile Apps",
+    "type": "Food delivery app",
+    "description": "Food delivery app with menus, basket and live order tracking.",
+    "summary": "A food delivery app for local restaurants, from browsing cuisines and menus to checkout and live courier tracking.",
+    "services": ["Mobile app design", "UI/UX", "Prototype"]
+  },
+  {
+    "slug": "stride-app",
+    "title": "Stride",
+    "category": "Mobile Apps",
+    "type": "Fitness app",
+    "description": "Running app with live run tracking, plans and progress.",
+    "summary": "A running and fitness tracking app with live run stats, training plans, progress charts and challenges with friends.",
+    "services": ["Mobile app design", "Data visualisation", "Prototype"]
+  },
+  {
+    "slug": "carely-app",
+    "title": "Carely",
+    "category": "Mobile Apps",
+    "type": "Healthcare app",
+    "description": "Doctor booking and video consultation app.",
+    "summary": "A doctor appointment and telehealth app: find a specialist, book a slot, join a video consultation and keep prescriptions in one place.",
+    "services": ["Mobile app design", "UI/UX", "Prototype"]
+  },
+  {
+    "slug": "tripnest-app",
+    "title": "Tripnest",
+    "category": "Mobile Apps",
+    "type": "Travel app",
+    "description": "Travel planner with itineraries, bookings and shared budgets.",
+    "summary": "A travel planning app with day-by-day itineraries, a bookings wallet, shared trip budgets and saved places.",
+    "services": ["Mobile app design", "UI/UX", "Prototype"]
+  }
+]

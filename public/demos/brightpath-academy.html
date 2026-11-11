@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fffaf1">
+<title>Brightpath Academy — Tutoring for O/A Levels, Coding &amp; Languages</title>
+<meta name="description" content="Brightpath Academy: small-group and one-to-one tutoring for O and A Levels, coding and languages, in person at two campuses or live online. Designed &amp; developed by TMX Digital Solutions.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fffaf1;--card:#fff;--ink:#1c2145;--muted:#545a78;--line:#ece4d4;--blue:#3a4be0;--blue-d:#2b39b8;--blue-l:#e8eaff;--sun:#ffc23d;--sun-l:#fff1cc;--coral:#ff7454;--coral-l:#ffe4dc;--mint:#1fa77a;--mint-l:#daf5ea;--err:#c2261b;--r:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Fredoka','Nunito',sans-serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:-.005em}
+p{margin:0}a{color:inherit}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;z-index:99}.skip:focus{left:12px}
+.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
+section{padding:96px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.eyebrow::before{content:"";width:18px;height:6px;border-radius:6px;background:var(--sun)}
+.h2{font-size:clamp(32px,4.2vw,50px);margin:14px 0 14px}
+.lead{color:var(--muted);max-width:580px;font-size:18px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:44px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:15px 24px;font-weight:800;text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s;font-size:16px}
+.btn-p{background:var(--blue);color:#fff;box-shadow:0 4px 0 var(--blue-d)}.btn-p:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--blue-d)}
+.btn-s{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}.btn-s:hover{box-shadow:inset 0 0 0 2px var(--ink)}
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;height:76px;display:flex;align-items:center;background:#fffaf1e6;backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.scrolled{border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 22px 'Fredoka',sans-serif}
+.logo-mark{width:38px;height:38px;border-radius:12px;background:var(--blue);display:grid;place-items:center;position:relative;overflow:hidden}
+.logo-mark::after{content:"";position:absolute;width:22px;height:22px;border-radius:50%;background:var(--sun);bottom:-9px;right:-6px}
+.logo-mark svg{position:relative;z-index:1}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-weight:700;font-size:15px}
+.nav ul a{text-decoration:none;color:var(--muted)}.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:11px 18px;font-size:15px}
+.menu-btn{display:none;background:#fff;border:2px solid var(--line);border-radius:12px;width:44px;height:44px;place-items:center}
+/* hero */
+.hero{padding:128px 0 72px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,var(--sun-l) 0,transparent 68%);top:-160px;right:-120px;z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--line);border-radius:100px;padding:6px 14px 6px 8px;font-size:14px;font-weight:700}
+.pill b{background:var(--mint-l);color:var(--mint);border-radius:100px;padding:2px 10px;font-size:12px}
+.hero h1{font-size:clamp(40px,5.4vw,68px);margin:22px 0 20px}
+.hero h1 .hl{position:relative;white-space:nowrap;color:var(--blue)}
+.hero h1 .hl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.04em;height:.2em;background:var(--sun);border-radius:8px;z-index:-1}
+.hero .lead{margin-bottom:30px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.trust{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap}
+.trust div{font-size:14px;color:var(--muted);font-weight:600}.trust b{display:block;font:600 28px 'Fredoka';color:var(--ink)}
+.hv{position:relative;height:540px}
+.hv-card{position:absolute;background:#fff;border-radius:var(--r);box-shadow:0 2px 0 var(--line),0 24px 48px -20px #1c214533;padding:20px}
+.hv-main{inset:20px 30px 130px 40px;background:var(--blue);color:#fff;padding:28px;overflow:hidden}
+.hv-main::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;border:40px solid #ffffff14;right:-90px;top:-90px}
+.hv-main small{font-weight:700;opacity:.8;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.hv-main h3{font-size:26px;margin:8px 0 4px}
+.hv-main p{opacity:.85;font-size:15px}
+.board{margin-top:20px;background:#ffffff14;border-radius:16px;padding:16px 18px;font:500 15px 'Fredoka';line-height:1.9;position:relative}
+.board i{font-style:normal;color:var(--sun)}
+.avatars{display:flex;margin-top:18px;align-items:center;gap:10px;font-size:14px;font-weight:700}
+.avatars span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:600 13px 'Fredoka';border:2px solid var(--blue);margin-right:-8px;color:var(--ink)}
+.avatars em{font-style:normal;margin-left:14px;opacity:.9}
+.hv-prog{left:0;bottom:0;width:250px}
+.hv-prog h4{font-size:15px;margin-bottom:12px}
+.bars{display:flex;align-items:end;gap:10px;height:84px}
+.bars div{flex:1;border-radius:8px 8px 4px 4px;background:#c5cbff;position:relative}
+.bars div:last-child{background:var(--mint)}
+.bars-l{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:6px;font-weight:700}
+.hv-next{right:0;bottom:30px;width:280px;display:flex;gap:12px;align-items:center}
+.hv-next .ic{width:46px;height:46px;border-radius:14px;background:var(--coral-l);display:grid;place-items:center;flex:none}
+.hv-next b{display:block;font-size:15px}.hv-next span{font-size:13px;color:var(--muted)}
+.hv-badge{right:0;top:0;background:var(--sun);font:600 15px 'Fredoka';padding:12px 16px;border-radius:16px;transform:rotate(4deg)}
+.hero h1{isolation:isolate}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* courses */
+.courses{background:#fff;border-block:1px solid var(--line)}
+.filters{display:flex;flex-wrap:wrap;gap:20px 32px;align-items:end;background:var(--bg);border:2px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-bottom:18px}
+.fgroup{display:flex;flex-direction:column;gap:8px;min-width:0}
+.flabel{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:2px solid var(--line);background:#fff;border-radius:100px;padding:7px 15px;font-weight:700;font-size:15px;transition:.15s}
+.chips button:hover{border-color:var(--ink)}
+.chips button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+select{appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%231c2145' stroke-width='2'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 14px center;border:2px solid var(--line);border-radius:12px;padding:9px 40px 9px 14px;font-weight:700;font-size:15px}
+.seg{display:inline-flex;background:#fff;border:2px solid var(--line);border-radius:12px;padding:3px}
+.seg button{border:0;background:none;border-radius:9px;padding:6px 14px;font-weight:700;font-size:15px;color:var(--muted)}
+.seg button[aria-pressed=true]{background:var(--sun);color:var(--ink)}
+.count{font-size:15px;color:var(--muted);font-weight:700;margin:0 0 18px}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.course{background:#fff;border:2px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px;transition:transform .2s,box-shadow .2s,border-color .2s;animation:pop .35s ease both}
+.course:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:0 5px 0 var(--ink)}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.c-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.c-ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font:600 18px 'Fredoka'}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:800;padding:3px 10px;border-radius:100px;background:var(--bg);border:1.5px solid var(--line);white-space:nowrap}
+.course h3{font-size:21px}
+.course .desc{color:var(--muted);font-size:15px}
+.meta{list-style:none;padding:14px 0 0;margin:auto 0 0;border-top:2px dashed var(--line);display:grid;gap:6px;font-size:14.5px}
+.meta li{display:flex;gap:8px;align-items:center}.meta svg{flex:none;color:var(--blue)}
+.c-foot{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.fee{font:600 20px 'Fredoka'}.fee small{font:700 13px 'Nunito';color:var(--muted)}
+.c-foot a{font-weight:800;font-size:15px;color:var(--blue);text-decoration:none}.c-foot a:hover{text-decoration:underline}
+.empty{grid-column:1/-1;text-align:center;padding:48px 20px;border:2px dashed var(--line);border-radius:var(--r);color:var(--muted)}
+.empty button{margin-top:12px}
+/* timetable */
+.legend{display:flex;gap:18px;font-weight:700;font-size:14px;color:var(--muted)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}.dot.g{background:var(--blue)}.dot.d{background:var(--coral)}.dot.o{background:var(--mint)}
+.tt-box{background:#fff;border:2px solid var(--line);border-radius:28px;padding:10px;box-shadow:0 20px 40px -28px #1c214540}
+.tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;background:var(--bg);border-radius:20px;padding:6px}
+.tabs button{border:0;background:none;border-radius:14px;padding:12px 6px;font-weight:800;font-size:15px;color:var(--muted);line-height:1.2}
+.tabs button small{display:block;font-weight:600;font-size:12px}
+.tabs button:hover{color:var(--ink);background:#fff}
+.tabs button[aria-selected=true]{background:var(--blue);color:#fff}
+.slots{padding:18px 12px 8px;display:grid;gap:10px}
+.slot{display:grid;grid-template-columns:120px 1fr auto auto;gap:20px;align-items:center;padding:14px 18px;border-radius:16px;background:var(--bg);border-left:6px solid var(--blue)}
+.slot.d{border-color:var(--coral)}.slot.o{border-color:var(--mint)}
+.slot time{font:600 17px 'Fredoka'}
+.slot b{display:block;font-size:16px}.slot span{font-size:14px;color:var(--muted)}
+.seats{font-size:13px;font-weight:800;padding:4px 10px;border-radius:100px;background:var(--mint-l);color:#0f6e4f;white-space:nowrap}
+.seats.low{background:var(--coral-l);color:#a63a1f}
+.slot a{font-weight:800;font-size:14px;color:var(--blue);text-decoration:none;white-space:nowrap}
+/* how */
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.step{background:#fff;border:2px solid var(--line);border-radius:var(--r);padding:26px 22px;position:relative}
+.step:not(:last-child)::after{content:"";position:absolute;top:44px;right:-22px;width:24px;border-top:3px dotted var(--ink);opacity:.3}
+.num{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font:600 22px 'Fredoka';background:var(--sun);margin-bottom:18px}
+.step:nth-child(2) .num{background:var(--coral-l)}.step:nth-child(3) .num{background:var(--blue-l)}.step:nth-child(4) .num{background:var(--mint-l)}
+.step h3{font-size:22px;margin-bottom:8px}.step p{color:var(--muted);font-size:15.5px;margin-bottom:16px}
+/* teachers */
+.teachers{background:#fff;border-block:1px solid var(--line)}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.teacher h3{font-size:22px;margin-top:18px}.teacher .role{color:var(--blue);font-weight:800;font-size:14px;margin:4px 0 8px}.teacher p:last-child{color:var(--muted);font-size:15.5px}
+.portrait{aspect-ratio:1/1.05;border-radius:var(--r);position:relative;overflow:hidden;display:grid;place-items:center}
+.portrait::before{content:"";position:absolute;width:58%;aspect-ratio:1;border-radius:50%;bottom:-24%;left:21%;background:#ffffff59}
+.portrait::after{content:"";position:absolute;width:30%;aspect-ratio:1;border-radius:50%;top:22%;left:35%;background:#ffffff59}
+.portrait span{position:absolute;right:14px;top:14px;font:600 20px 'Fredoka';background:#fff;border-radius:12px;padding:6px 10px;z-index:1}
+.p1{background:linear-gradient(150deg,#5a6bf0,var(--blue))}.p2{background:linear-gradient(150deg,#ff9476,var(--coral))}.p3{background:linear-gradient(150deg,#3cc597,var(--mint))}.p4{background:linear-gradient(150deg,#ffd36f,#f4ac16)}
+/* results */
+.res-box{background:var(--ink);color:#fff;border-radius:32px;padding:52px;position:relative;overflow:hidden}
+.res-box::after{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:var(--blue);right:-120px;top:-160px;opacity:.55}
+.res-box .eyebrow{color:var(--sun)}
+.res-head{position:relative;z-index:1;max-width:620px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:28px;position:relative;z-index:1}
+.stats>div{border-top:2px solid #ffffff2e;padding-top:20px}
+.stats b,.stats span{font:600 56px/1 'Fredoka';color:var(--sun)}
+.stats span{font-size:36px}
+.stats p{color:#d4d7ea;font-size:15.5px;margin-top:10px;max-width:220px}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px}
+.quote{margin:0;background:#fff;border:2px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.quote blockquote{margin:0;font-size:16.5px}
+.quote figcaption{display:flex;gap:12px;align-items:center;font-size:14px;color:var(--muted)}
+.quote figcaption b{display:block;color:var(--ink);font-size:15px}
+.qa{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:600 15px 'Fredoka';color:var(--ink);flex:none}
+/* fees */
+.table-wrap{overflow-x:auto;border:2px solid var(--line);border-radius:var(--r);background:#fff}
+.ftable{width:100%;border-collapse:collapse;min-width:620px}
+.ftable th,.ftable td{padding:18px 22px;text-align:left;border-bottom:1px solid var(--line)}
+.ftable tbody tr:last-child>*{border-bottom:0}
+.ftable thead th{background:var(--bg);font:600 17px 'Fredoka';vertical-align:bottom}
+.ftable thead th small{display:block;font:700 12.5px 'Nunito';color:var(--muted);margin-top:2px}
+.ftable thead th:nth-child(3){background:var(--sun-l)}
+.ftable td:nth-child(3){background:#fffbef;font-weight:800}
+.ftable tbody th{font-weight:800}
+.ftable td{font-variant-numeric:tabular-nums}
+.ftable tbody tr:hover>*{background:var(--blue-l)}
+.fnote{margin-top:16px;color:var(--muted);font-size:15px}
+/* faq */
+.faq{background:#fff;border-block:1px solid var(--line)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.acc{display:grid;gap:12px}
+.qa-item{border:2px solid var(--line);border-radius:18px;background:var(--bg);transition:border-color .2s}
+.qa-item.open{border-color:var(--ink)}
+.qa-item h3{font-size:inherit}
+.qa-item button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;padding:18px 20px;text-align:left;font:600 18px 'Fredoka';border-radius:16px}
+.qa-item button i{flex:none;width:28px;height:28px;border-radius:9px;background:#fff;border:2px solid var(--line);position:relative}
+.qa-item button i::before,.qa-item button i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2.5px;background:var(--ink);border-radius:2px;transform:translate(-50%,-50%);transition:transform .2s}
+.qa-item button i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.qa-item.open button i{background:var(--sun);border-color:var(--sun)}
+.qa-item.open button i::after{transform:translate(-50%,-50%) rotate(0)}
+.ans{padding:0 20px 20px;color:var(--muted)}
+/* booking */
+.book{background:linear-gradient(180deg,var(--bg),var(--blue-l))}
+.book-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+.book-copy p{color:var(--muted);font-size:18px}
+.ticks{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px;font-weight:700}
+.ticks li{display:flex;gap:12px;align-items:center}
+.ticks li::before{content:"";width:24px;height:24px;flex:none;border-radius:8px;background:var(--mint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center no-repeat}
+.form-card{background:#fff;border:2px solid var(--line);border-radius:28px;padding:32px;box-shadow:0 30px 60px -36px #1c214566}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin:0 0 6px;min-width:0;border:0;padding:0}
+.field label,.field legend{display:block;font-weight:800;font-size:14.5px;margin-bottom:6px;padding:0}
+.field input:not([type=radio]),.field select{width:100%;border:2px solid var(--line);border-radius:12px;padding:12px 14px;background-color:#fff;font-size:16px;transition:border-color .15s}
+.field select{padding-right:40px}
+.field input:focus,.field select:focus{border-color:var(--blue);outline:none;box-shadow:0 0 0 4px var(--blue-l)}
+.field.bad input,.field.bad select{border-color:var(--err)}
+.err{color:var(--err);font-size:13.5px;font-weight:700;min-height:20px;margin:4px 0 4px}
+.radios{display:flex;gap:10px;flex-wrap:wrap}
+.radios label{display:flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;margin:0}
+.radios label:has(input:checked){border-color:var(--blue);background:var(--blue-l)}
+.radios input{accent-color:var(--blue);width:18px;height:18px;margin:0}
+.submit{width:100%;margin-top:18px;padding:17px}
+.small{font-size:13.5px;color:var(--muted);text-align:center;margin-top:12px}
+.success{text-align:center;padding:30px 10px}
+.success:focus{outline:none}
+.ok-ic{width:72px;height:72px;border-radius:24px;background:var(--mint);display:grid;place-items:center;margin:0 auto 20px;animation:pop .4s ease both}
+.success h3{font-size:28px;margin-bottom:10px}.success p{color:var(--muted);max-width:420px;margin:0 auto 24px}
+/* contact */
+.camps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.camp{background:#fff;border:2px solid var(--line);border-radius:var(--r);overflow:hidden}
+.map{height:160px;position:relative;background-color:#eef0fb;background-image:linear-gradient(90deg,#fff 0 10px,transparent 10px),linear-gradient(#fff 0 8px,transparent 8px);background-size:90px 100%,100% 70px;background-position:30px 0,0 40px}
+.m2{background-color:#fdebe4;background-size:70px 100%,100% 90px;background-position:12px 0,0 20px}
+.map::before{content:"";position:absolute;width:120px;height:60px;border-radius:20px;background:#cdeedd;left:58%;top:18%}
+.pin{position:absolute;left:44%;top:30%;width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--blue);box-shadow:0 6px 12px #1c214544}
+.m2 .pin{background:var(--coral)}
+.pin::after{content:"";position:absolute;inset:11px;border-radius:50%;background:#fff}
+.m3{background:var(--mint-l)}.m3::before{display:none}
+.screen{position:absolute;inset:22px 50px;background:var(--ink);border-radius:14px;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px}
+.screen i{border-radius:8px;background:#3a4070}.screen i:nth-child(1){background:var(--sun)}.screen i:nth-child(4){background:var(--mint)}
+.camp-b{padding:22px}
+.camp h3{font-size:21px;margin-bottom:6px}.camp p{color:var(--muted);font-size:15.5px}
+.hrs{font-weight:700;color:var(--ink)!important;margin:8px 0}
+.camp a{font-weight:800;color:var(--blue);text-decoration:none;font-size:15.5px;word-break:break-word}
+/* footer */
+.site-f{background:var(--ink);color:#d4d7ea;padding:56px 0 32px}
+.site-f .logo{color:#fff}
+.f-top{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;padding-bottom:32px;border-bottom:1px solid #ffffff22}
+.f-about{margin-top:12px;max-width:360px;font-size:15px}
+.f-links{list-style:none;padding:0;margin:0;display:flex;gap:24px;flex-wrap:wrap;font-weight:700}
+.f-links a{text-decoration:none}.f-links a:hover{color:#fff}
+.f-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-size:14px}
+.credit{color:var(--sun);font-weight:800}
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal{opacity:1;transform:none;transition:none}*{animation:none!important;transition:none!important}}
+/* responsive */
+@media (max-width:1100px){.nav ul{gap:18px}.cgrid{grid-template-columns:repeat(2,1fr)}.tgrid,.steps{grid-template-columns:repeat(2,1fr)}.step::after{display:none}.stats{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:960px){
+  .nav ul{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:#fff;border-bottom:2px solid var(--line);padding:8px 24px 16px}
+  .nav ul.open{display:flex}.nav ul a{display:block;padding:12px 0}
+  .menu-btn{display:grid}.nav .btn{margin-left:auto}
+  .hero-grid,.faq-grid,.book-grid{grid-template-columns:1fr}
+  .hv{height:480px;max-width:560px;width:100%;margin:0 auto}
+  .quotes,.camps{grid-template-columns:1fr}
+  .slot{grid-template-columns:90px 1fr;row-gap:8px}.slot .seats{justify-self:start}.slot a{justify-self:end}
+}
+@media (max-width:640px){
+  body{font-size:16px}section{padding:68px 0}.wrap{width:calc(100% - 32px)}
+  .nav .btn{display:none}
+  .hero{padding:104px 0 56px}.trust{gap:20px}.trust b{font-size:24px}
+  .hv{height:440px}.hv-main{inset:16px 0 110px 0;padding:22px}.hv-main h3{font-size:21px}.board{font-size:14px}
+  .hv-prog{width:200px}.hv-next{width:210px;bottom:0;padding:14px}.hv-badge{right:-4px;top:-6px}
+  .bars{height:60px}
+  .cgrid,.tgrid,.steps,.stats{grid-template-columns:1fr}
+  .filters{padding:16px}.seg{width:100%}.seg button{flex:1}
+  .tabs{grid-template-columns:repeat(3,1fr)}
+  .slot{grid-template-columns:1fr;gap:6px}.slot a{justify-self:start}
+  .res-box{padding:32px 22px;border-radius:24px}.stats b{font-size:46px}
+  .row2{grid-template-columns:1fr;gap:0}.form-card{padding:22px}
+  .ftable th,.ftable td{padding:14px 16px}
+  .f-bot{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#main" aria-label="Brightpath Academy home"><span class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18c4 0 6-3 8-6s4-6 8-6"/><circle cx="20" cy="6" r="1.4" fill="#fff"/></svg></span>Brightpath</a>
+    <nav aria-label="Main"><ul id="menu">
+      <li><a href="#courses">Courses</a></li><li><a href="#timetable">Timetable</a></li><li><a href="#teachers">Teachers</a></li><li><a href="#fees">Fees</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Campuses</a></li>
+    </ul></nav>
+    <a class="btn btn-p" href="#book">Book a free trial</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><b>New</b> Spring term starts 12 January — 40 seats left</span>
+      <h1 id="hero-h">Steady progress, <span class="hl">week by week.</span></h1>
+      <p class="lead">Small-group and one-to-one tutoring for O and A Levels, coding and languages. Classes at our Gulberg and DHA campuses or live online, with a written progress report every four weeks.</p>
+      <div class="hero-cta">
+        <a class="btn btn-p" href="#book">Book a free trial class <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-s" href="#courses">Browse courses</a>
+      </div>
+      <div class="trust">
+        <div><b>1,240</b>students this year</div>
+        <div><b>8 max</b>per group class</div>
+        <div><b>4.9/5</b>parent rating</div>
+      </div>
+    </div>
+    <div class="hv" aria-hidden="true">
+      <div class="hv-card hv-main">
+        <small>Today · 5:00 pm · Room 3 &amp; online</small>
+        <h3>A-Level Physics — Circular motion</h3>
+        <p>Group P2 · Mr. Farhan Malik · 6 students</p>
+        <div class="board">F = m v² / r<br><i>v</i> = 2πr / T &nbsp;→&nbsp; T = 2.4 s<br>Past paper Q4, May 2025 ✓</div>
+        <div class="avatars"><span style="background:var(--sun)">AK</span><span style="background:var(--coral-l)">ZR</span><span style="background:var(--mint-l)">HN</span><span style="background:#fff">+3</span><em>joined</em></div>
+      </div>
+      <div class="hv-card hv-badge">Free first class</div>
+      <div class="hv-card hv-prog">
+        <h4>Ayesha’s mock scores</h4>
+        <div class="bars"><div style="height:42%"></div><div style="height:55%"></div><div style="height:63%"></div><div style="height:81%"></div></div>
+        <div class="bars-l"><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec · A</span></div>
+      </div>
+      <div class="hv-card hv-next">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff7454" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+        <div><b>Progress report sent</b><span>to parents · every 4 weeks</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="courses" class="courses" aria-labelledby="courses-h">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Course catalogue</span><h2 class="h2" id="courses-h">Find the right class</h2><p class="lead">Every course runs in groups of up to eight, or one-to-one if you prefer. Filter by subject, level and where you’d like to learn.</p></div>
+    </div>
+    <div class="filters reveal" role="group" aria-label="Filter courses">
+      <div class="fgroup"><span class="flabel" id="fl-sub">Subject</span><div class="chips" data-filter="subject" role="group" aria-labelledby="fl-sub">
+        <button type="button" aria-pressed="true" data-v="all">All</button><button type="button" aria-pressed="false" data-v="sciences">Sciences</button><button type="button" aria-pressed="false" data-v="maths">Maths</button><button type="button" aria-pressed="false" data-v="english">English</button><button type="button" aria-pressed="false" data-v="coding">Coding</button><button type="button" aria-pressed="false" data-v="languages">Languages</button>
+      </div></div>
+      <div class="fgroup"><label class="flabel" for="f-level">Level</label>
+        <select id="f-level" data-filter="level"><option value="all">All levels</option><option value="o">O Level / IGCSE</option><option value="a">A Level</option><option value="open">Open to all ages</option></select>
+      </div>
+      <div class="fgroup"><span class="flabel" id="fl-mode">Format</span><div class="seg" data-filter="mode" role="group" aria-labelledby="fl-mode">
+        <button type="button" aria-pressed="true" data-v="all">Both</button><button type="button" aria-pressed="false" data-v="campus">In person</button><button type="button" aria-pressed="false" data-v="online">Online</button>
+      </div></div>
+    </div>
+    <p class="count" id="courseCount" aria-live="polite"></p>
+    <div class="cgrid" id="courseGrid"></div>
+  </div>
+</section>
+<section id="timetable" class="tt" aria-labelledby="tt-h">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Weekly timetable</span><h2 class="h2" id="tt-h">What’s on this week</h2><p class="lead">After-school slots on weekdays, longer sessions on Saturdays. Online classes run on the same timetable as campus groups.</p></div>
+      <div class="legend" aria-hidden="true"><span><i class="dot g"></i>Gulberg</span><span><i class="dot d"></i>DHA</span><span><i class="dot o"></i>Online</span></div>
+    </div>
+    <div class="tt-box reveal">
+      <div class="tabs" role="tablist" aria-label="Day of the week" id="dayTabs"></div>
+      <div id="dayPanel" role="tabpanel" tabindex="0" class="slots"></div>
+    </div>
+  </div>
+</section>
+<section id="how" class="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><span class="eyebrow">How it works</span><h2 class="h2" id="how-h">A clear plan from the first week</h2></div><p class="lead">No guesswork for parents. You’ll always know what your child is working on, and why.</p></div>
+    <ol class="steps">
+      <li class="step reveal"><span class="num">1</span><h3>Assessment</h3><p>A 40-minute diagnostic in the trial class shows us exactly which topics are solid and which need work.</p><span class="tag">Week 1 · free</span></li>
+      <li class="step reveal"><span class="num">2</span><h3>Learning plan</h3><p>You get a one-page plan: target grade, topic order, and how many sessions a week make sense.</p><span class="tag">Within 3 days</span></li>
+      <li class="step reveal"><span class="num">3</span><h3>Classes</h3><p>Small groups or one-to-one, with past-paper practice built into every session and homework marked in 48 hours.</p><span class="tag">2–3 per week</span></li>
+      <li class="step reveal"><span class="num">4</span><h3>Progress reports</h3><p>Every four weeks: a short written report, a mock score, and a 15-minute call with the teacher if you want one.</p><span class="tag">Every 4 weeks</span></li>
+    </ol>
+  </div>
+</section>
+<section id="teachers" class="teachers" aria-labelledby="t-h">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><span class="eyebrow">Our teachers</span><h2 class="h2" id="t-h">People your child will look forward to seeing</h2></div><p class="lead">Every teacher is subject-qualified, background-checked and observed in class each term.</p></div>
+    <div class="tgrid">
+      <article class="teacher reveal"><div class="portrait p1" aria-hidden="true"><span>FM</span></div><h3>Farhan Malik</h3><p class="role">Physics &amp; Maths · A Level</p><p>MSc Physics, 11 years teaching. Former Cambridge examiner; known for making mechanics click.</p></article>
+      <article class="teacher reveal"><div class="portrait p2" aria-hidden="true"><span>SH</span></div><h3>Sadia Hameed</h3><p class="role">English Language &amp; Literature</p><p>MA English, 9 years. Runs our essay clinic and the Year 11 comprehension bootcamp.</p></article>
+      <article class="teacher reveal"><div class="portrait p3" aria-hidden="true"><span>OQ</span></div><h3>Omar Qadir</h3><p class="role">Coding · Python &amp; Web</p><p>Software engineer for 7 years before teaching. Students ship a real project every term.</p></article>
+      <article class="teacher reveal"><div class="portrait p4" aria-hidden="true"><span>LB</span></div><h3>Léa Bernard</h3><p class="role">French &amp; Spanish · DELF prep</p><p>Native French speaker, DELF-certified examiner. Conversation-first, grammar second.</p></article>
+    </div>
+  </div>
+</section>
+<section id="results" class="results" aria-labelledby="r-h">
+  <div class="wrap">
+    <div class="res-box reveal">
+      <div class="res-head"><span class="eyebrow">Results · May/June 2025 series</span><h2 class="h2" id="r-h">The numbers parents ask about</h2></div>
+      <div class="stats">
+        <div><b data-count="78">78</b><span>%</span><p>of A Level students got A*–B</p></div>
+        <div><b data-count="1.6">1.6</b><p>grades average improvement from first mock to final</p></div>
+        <div><b data-count="92">92</b><span>%</span><p>of families re-enrol for the next term</p></div>
+        <div><b data-count="34">34</b><p>students placed at their first-choice university</p></div>
+      </div>
+    </div>
+    <div class="quotes">
+      <figure class="quote reveal"><blockquote>“Hamza went from a D in his October mock to a B in May. The four-weekly reports meant we were never surprised, good or bad.”</blockquote><figcaption><span class="qa" style="background:var(--sun-l)">RA</span><span><b>Rabia A.</b>Parent · O Level Maths</span></figcaption></figure>
+      <figure class="quote reveal"><blockquote>“Mr. Omar treats us like junior developers. I built a timetable app for my school and now I’m doing freelance work in the holidays.”</blockquote><figcaption><span class="qa" style="background:var(--mint-l)">DS</span><span><b>Daniyal S.</b>Student, 16 · Python &amp; Web</span></figcaption></figure>
+      <figure class="quote reveal"><blockquote>“We live in Islamabad, so online was the only option. The classes are just as structured as campus ones, and the camera is always on.”</blockquote><figcaption><span class="qa" style="background:var(--coral-l)">NK</span><span><b>Nida K.</b>Parent · A Level Chemistry, online</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+<section id="fees" class="fees" aria-labelledby="f-h">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><span class="eyebrow">Fees</span><h2 class="h2" id="f-h">Monthly fees, all in</h2></div><p class="lead">Prices are per subject, per month, and include materials, past papers and progress reports. Siblings get 10% off.</p></div>
+    <div class="table-wrap reveal">
+      <table class="ftable">
+        <caption class="sr">Monthly fees by level and class type, in Pakistani rupees</caption>
+        <thead><tr><th scope="col">Level</th><th scope="col">Group class<small>max 8 · 2×/week</small></th><th scope="col">Small group<small>max 4 · 2×/week</small></th><th scope="col">One-to-one<small>2×/week</small></th></tr></thead>
+        <tbody>
+          <tr><th scope="row">O Level / IGCSE</th><td>Rs 14,500</td><td>Rs 21,000</td><td>Rs 36,000</td></tr>
+          <tr><th scope="row">A Level (AS &amp; A2)</th><td>Rs 17,500</td><td>Rs 25,000</td><td>Rs 42,000</td></tr>
+          <tr><th scope="row">Coding (ages 10–18)</th><td>Rs 12,000</td><td>Rs 18,500</td><td>Rs 30,000</td></tr>
+          <tr><th scope="row">Languages (all ages)</th><td>Rs 11,000</td><td>Rs 16,500</td><td>Rs 28,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fnote reveal">Online classes are Rs 1,500 less per month. Registration fee Rs 5,000, one time. No charge for the trial class.</p>
+  </div>
+</section>
+<section id="faq" class="faq" aria-labelledby="q-h">
+  <div class="wrap faq-grid">
+    <div class="reveal"><span class="eyebrow">FAQ</span><h2 class="h2" id="q-h">Questions parents usually ask</h2><p class="lead">Can’t see yours? Call the front desk on 042 3571 8800, Monday to Saturday, 11 am to 8 pm.</p></div>
+    <div class="acc" id="faqList">
+      <div class="qa-item reveal"><h3><button type="button" aria-expanded="false" aria-controls="a1" id="q1">What happens in the free trial class?<i aria-hidden="true"></i></button></h3><div class="ans" id="a1" role="region" aria-labelledby="q1" hidden><p>Your child joins a real class for the subject, then spends 40 minutes on a short diagnostic with the teacher. Within three days you get the results and a suggested plan. There’s no obligation to enrol.</p></div></div>
+      <div class="qa-item reveal"><h3><button type="button" aria-expanded="false" aria-controls="a2" id="q2">Can we switch between online and campus?<i aria-hidden="true"></i></button></h3><div class="ans" id="a2" role="region" aria-labelledby="q2" hidden><p>Yes. Online and campus groups follow the same timetable and syllabus, so you can switch at the start of any month with a week’s notice.</p></div></div>
+      <div class="qa-item reveal"><h3><button type="button" aria-expanded="false" aria-controls="a3" id="q3">What if my child misses a class?<i aria-hidden="true"></i></button></h3><div class="ans" id="a3" role="region" aria-labelledby="q3" hidden><p>Every class is recorded for enrolled students, and teachers hold a free catch-up slot on Saturday mornings. One-to-one sessions can be rescheduled with 24 hours’ notice.</p></div></div>
+      <div class="qa-item reveal"><h3><button type="button" aria-expanded="false" aria-controls="a4" id="q4">How are teachers chosen?<i aria-hidden="true"></i></button></h3><div class="ans" id="a4" role="region" aria-labelledby="q4" hidden><p>Candidates teach a demo lesson to a real group, pass a subject test and a background check. About one in nine applicants is hired, and every teacher is observed once a term.</p></div></div>
+      <div class="qa-item reveal"><h3><button type="button" aria-expanded="false" aria-controls="a5" id="q5">How do I pay, and can I cancel?<i aria-hidden="true"></i></button></h3><div class="ans" id="a5" role="region" aria-labelledby="q5" hidden><p>Fees are paid monthly by bank transfer or card before the 5th. You can stop at the end of any month; just tell the front desk two weeks ahead.</p></div></div>
+    </div>
+  </div>
+</section>
+<section id="book" class="book" aria-labelledby="b-h">
+  <div class="wrap book-grid">
+    <div class="book-copy reveal">
+      <span class="eyebrow">Free trial class</span><h2 class="h2" id="b-h">Book a free trial class</h2>
+      <p>Pick a subject and a time that suits you. We’ll call within one working day to confirm the group and send joining details.</p>
+      <ul class="ticks"><li>One real class plus a 40-minute assessment</li><li>Written results and a suggested plan</li><li>No payment details needed</li></ul>
+    </div>
+    <div class="form-card reveal">
+      <form id="trialForm" novalidate>
+        <div class="row2">
+          <div class="field"><label for="pname">Parent / guardian name</label><input id="pname" name="pname" autocomplete="name" required><p class="err" id="pname-e"></p></div>
+          <div class="field"><label for="sname">Student’s first name</label><input id="sname" name="sname" required><p class="err" id="sname-e"></p></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="phone">Mobile number</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="03xx xxxxxxx" required><p class="err" id="phone-e"></p></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required><p class="err" id="email-e"></p></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="subject">Subject</label><select id="subject" name="subject" required><option value="">Choose a subject</option><option>O Level Maths</option><option>O Level Physics</option><option>O Level English</option><option>A Level Physics</option><option>A Level Chemistry</option><option>A Level Maths</option><option>A Level English Literature</option><option>Python &amp; Web (coding)</option><option>Scratch to Python (ages 10–13)</option><option>French</option><option>Spanish</option></select><p class="err" id="subject-e"></p></div>
+          <div class="field"><label for="slot">Preferred day</label><select id="slot" name="slot" required><option value="">Choose a day</option><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select><p class="err" id="slot-e"></p></div>
+        </div>
+        <fieldset class="field"><legend>Where would you like to learn?</legend>
+          <div class="radios"><label><input type="radio" name="mode" value="Gulberg campus" checked> Gulberg</label><label><input type="radio" name="mode" value="DHA campus"> DHA</label><label><input type="radio" name="mode" value="online"> Online</label></div>
+        </fieldset>
+        <button class="btn btn-p submit" type="submit">Request my trial class</button>
+        <p class="small">We’ll only use these details to arrange the trial.</p>
+      </form>
+      <div class="success" id="success" hidden tabindex="-1">
+        <div class="ok-ic" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3>You’re booked in, <span id="okName"></span>!</h3>
+        <p id="okMsg"></p>
+        <button class="btn btn-s" type="button" id="again">Book another student</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact" class="contact" aria-labelledby="c-h">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><span class="eyebrow">Campuses &amp; contact</span><h2 class="h2" id="c-h">Two campuses, one online classroom</h2></div></div>
+    <div class="camps">
+      <article class="camp reveal"><div class="map m1" aria-hidden="true"><span class="pin"></span></div><div class="camp-b"><h3>Gulberg campus</h3><p>14-C Main Boulevard, Gulberg III, Lahore</p><p class="hrs">Mon–Fri 3–9 pm · Sat 9 am–6 pm</p><a href="tel:+924235718800">042 3571 8800</a></div></article>
+      <article class="camp reveal"><div class="map m2" aria-hidden="true"><span class="pin"></span></div><div class="camp-b"><h3>DHA campus</h3><p>92 Commercial Area, Phase 5, DHA, Lahore</p><p class="hrs">Mon–Fri 3–9 pm · Sat 9 am–6 pm</p><a href="tel:+924235718811">042 3571 8811</a></div></article>
+      <article class="camp online reveal"><div class="map m3" aria-hidden="true"><span class="screen"><i></i><i></i><i></i><i></i></span></div><div class="camp-b"><h3>Online classroom</h3><p>Live classes with cameras on, shared whiteboard and recordings.</p><p class="hrs">Same timetable as campus groups</p><a href="mailto:hello@brightpath.example">hello@brightpath.example</a></div></article>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-f">
+  <div class="wrap">
+    <div class="f-top">
+      <div><a class="logo" href="#main"><span class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18c4 0 6-3 8-6s4-6 8-6"/><circle cx="20" cy="6" r="1.4" fill="#fff"/></svg></span>Brightpath Academy</a><p class="f-about">Tutoring for O and A Levels, coding and languages. Lahore and online since 2014.</p></div>
+      <nav aria-label="Footer"><ul class="f-links"><li><a href="#courses">Courses</a></li><li><a href="#timetable">Timetable</a></li><li><a href="#fees">Fees</a></li><li><a href="#faq">FAQ</a></li><li><a href="#book">Free trial</a></li></ul></nav>
+    </div>
+    <div class="f-bot">
+      <p>© 2026 Brightpath Academy. Concept project — all names, prices and results are demo content.</p>
+      <p class="credit">Designed &amp; developed by TMX Digital Solutions.</p>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+var C=[
+ {t:'O Level Mathematics (4024)',s:'maths',l:'o',m:['campus','online'],d:'Full syllabus over two terms, with a timed past paper every third week.',dur:'2 terms · 48 sessions',sch:'Mon & Wed · 4:30–6:00 pm',fee:'14,500'},
+ {t:'A Level Physics (9702)',s:'sciences',l:'a',m:['campus','online'],d:'AS and A2 mechanics, fields and practical skills, taught by a former examiner.',dur:'3 terms · 72 sessions',sch:'Tue & Thu · 5:00–6:30 pm',fee:'17,500'},
+ {t:'A Level Chemistry (9701)',s:'sciences',l:'a',m:['online'],d:'Organic mechanisms drilled until they stick, plus data-response practice.',dur:'3 terms · 72 sessions',sch:'Mon & Thu · 7:00–8:30 pm',fee:'16,000'},
+ {t:'O Level Physics (5054)',s:'sciences',l:'o',m:['campus'],d:'Concepts first, then structured answers. Lab demos at the Gulberg campus.',dur:'2 terms · 48 sessions',sch:'Tue & Fri · 4:00–5:30 pm',fee:'14,500'},
+ {t:'O Level English Language (1123)',s:'english',l:'o',m:['campus','online'],d:'Essay planning, summary writing and comprehension, with weekly marked writing.',dur:'2 terms · 48 sessions',sch:'Wed & Sat · 4:00–5:30 pm',fee:'14,500'},
+ {t:'A Level Mathematics (9709)',s:'maths',l:'a',m:['campus'],d:'Pure 1 & 3, Mechanics and Statistics, sequenced to match your school’s order.',dur:'3 terms · 72 sessions',sch:'Mon & Wed · 6:30–8:00 pm',fee:'17,500'},
+ {t:'Python & Web Development',s:'coding',l:'open',m:['campus','online'],d:'Ages 14–18. Python basics to a deployed web app you can show universities.',dur:'12 weeks · 24 sessions',sch:'Sat · 10:00 am–12:00 pm',fee:'12,000'},
+ {t:'Scratch to Python (ages 10–13)',s:'coding',l:'open',m:['campus'],d:'Games and puzzles first, then real Python. Laptops provided on campus.',dur:'10 weeks · 20 sessions',sch:'Fri · 4:00–5:30 pm',fee:'12,000'},
+ {t:'French for beginners (A1–A2)',s:'languages',l:'open',m:['online'],d:'Speak from week one. Prepares students for the DELF A2 exam.',dur:'16 weeks · 32 sessions',sch:'Tue & Thu · 6:00–7:00 pm',fee:'11,000'},
+ {t:'Spanish conversation (A2–B1)',s:'languages',l:'open',m:['campus','online'],d:'Small conversation groups for teens and adults, built around real situations.',dur:'12 weeks · 24 sessions',sch:'Sat · 12:30–2:00 pm',fee:'11,000'},
+ {t:'A Level English Literature (9695)',s:'english',l:'a',m:['online'],d:'Close reading, unseen poetry and essay structure for Paper 1 and 2.',dur:'3 terms · 72 sessions',sch:'Wed & Fri · 6:00–7:30 pm',fee:'17,500'},
+ {t:'Additional Mathematics (4037)',s:'maths',l:'o',m:['campus','online'],d:'For strong O Level students heading to A Level Maths or Physics.',dur:'2 terms · 48 sessions',sch:'Thu & Sat · 2:00–3:30 pm',fee:'14,500'}
+];
+var IC={maths:['∑','var(--blue-l)','#2b39b8'],sciences:['⚛','var(--mint-l)','#0f6e4f'],english:['Aa','var(--coral-l)','#a63a1f'],coding:['</>','var(--ink)','#ffc23d'],languages:['¡Hi','var(--sun-l)','#8a5a00']};
+var LV={o:'O Level',a:'A Level',open:'All ages'};
+var st={subject:'all',level:'all',mode:'all'};
+var grid=document.getElementById('courseGrid'),cnt=document.getElementById('courseCount');
+var clk='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+var cal='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>';
+function render(){
+  var list=C.filter(function(c){return(st.subject==='all'||c.s===st.subject)&&(st.level==='all'||c.l===st.level)&&(st.mode==='all'||c.m.indexOf(st.mode)>-1)});
+  cnt.textContent='Showing '+list.length+' of '+C.length+' courses';
+  if(!list.length){grid.innerHTML='<div class="empty"><p>No courses match those filters yet. Ask us about one-to-one sessions instead.</p><button type="button" class="btn btn-s" id="resetF">Clear filters</button></div>';document.getElementById('resetF').onclick=reset;return}
+  grid.innerHTML=list.map(function(c,i){var ic=IC[c.s];return '<article class="course" style="animation-delay:'+(i*40)+'ms"><div class="c-top"><span class="c-ic" aria-hidden="true" style="background:'+ic[1]+';color:'+ic[2]+'">'+ic[0]+'</span><div class="tags"><span class="tag">'+LV[c.l]+'</span>'+c.m.map(function(m){return '<span class="tag">'+(m==='campus'?'In person':'Online')+'</span>'}).join('')+'</div></div><h3>'+c.t+'</h3><p class="desc">'+c.d+'</p><ul class="meta"><li>'+cal+'<span>'+c.dur+'</span></li><li>'+clk+'<span>'+c.sch+'</span></li></ul><div class="c-foot"><span class="fee">Rs '+c.fee+' <small>/ month</small></span><a href="#book" data-course="'+c.t+'">Try a class →</a></div></article>'}).join('');
+}
+function sync(){
+  document.querySelectorAll('[data-filter] button').forEach(function(b){b.setAttribute('aria-pressed',String(st[b.parentNode.dataset.filter]===b.dataset.v))});
+  document.getElementById('f-level').value=st.level;render();
+}
+function reset(){st={subject:'all',level:'all',mode:'all'};sync()}
+document.querySelectorAll('[data-filter] button').forEach(function(b){b.addEventListener('click',function(){st[b.parentNode.dataset.filter]=b.dataset.v;sync()})});
+document.getElementById('f-level').addEventListener('change',function(e){st.level=e.target.value;render()});
+var MAP={'O Level Mathematics (4024)':'O Level Maths','Additional Mathematics (4037)':'O Level Maths','A Level Physics (9702)':'A Level Physics','A Level Chemistry (9701)':'A Level Chemistry','O Level Physics (5054)':'O Level Physics','O Level English Language (1123)':'O Level English','A Level English Literature (9695)':'A Level English Literature','A Level Mathematics (9709)':'A Level Maths','Python & Web Development':'Python & Web (coding)','Scratch to Python (ages 10–13)':'Scratch to Python (ages 10–13)','French for beginners (A1–A2)':'French','Spanish conversation (A2–B1)':'Spanish'};
+grid.addEventListener('click',function(e){var a=e.target.closest('a[data-course]');if(!a)return;var v=MAP[a.dataset.course],sel=document.getElementById('subject');for(var i=0;i<sel.options.length;i++){if(sel.options[i].text===v){sel.selectedIndex=i;break}}});
+render();
+})();
+(function(){
+/* nav */
+var nav=document.getElementById('nav'),mb=document.getElementById('menuBtn'),menu=document.getElementById('menu');
+addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>10)},{passive:true});
+mb.addEventListener('click',function(){var o=menu.classList.toggle('open');mb.setAttribute('aria-expanded',String(o));mb.setAttribute('aria-label',o?'Close menu':'Open menu')});
+menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');mb.setAttribute('aria-expanded','false')}});
+/* timetable: [time, class, teacher, campus g/d/o, seats left] */
+var T={
+ Mon:[['4:30 pm','O Level Mathematics','Ms. Hina Arshad · Group M1','g',3],['5:00 pm','A Level Physics (AS)','Mr. Farhan Malik · Group P1','d',2],['6:30 pm','A Level Mathematics','Mr. Usman Tariq · Group M4','g',5],['7:00 pm','A Level Chemistry','Dr. Ammara Sheikh · Online C2','o',4]],
+ Tue:[['4:00 pm','O Level Physics','Mr. Bilal Aziz · Group P3','g',1],['5:00 pm','A Level Physics (A2)','Mr. Farhan Malik · Group P2','o',2],['6:00 pm','French A1–A2','Mme. Léa Bernard · Online F1','o',6]],
+ Wed:[['4:00 pm','O Level English Language','Ms. Sadia Hameed · Group E1','d',4],['4:30 pm','O Level Mathematics','Ms. Hina Arshad · Group M1','g',3],['6:00 pm','A Level English Literature','Ms. Sadia Hameed · Online L1','o',5],['6:30 pm','A Level Mathematics','Mr. Usman Tariq · Group M4','g',5]],
+ Thu:[['2:00 pm','Additional Mathematics','Mr. Usman Tariq · Group AM1','d',4],['5:00 pm','A Level Physics (A2)','Mr. Farhan Malik · Group P2','o',2],['6:00 pm','French A1–A2','Mme. Léa Bernard · Online F1','o',6],['7:00 pm','A Level Chemistry','Dr. Ammara Sheikh · Online C2','o',4]],
+ Fri:[['4:00 pm','Scratch to Python (10–13)','Mr. Omar Qadir · Group K1','g',2],['4:00 pm','O Level Physics','Mr. Bilal Aziz · Group P3','g',1],['6:00 pm','A Level English Literature','Ms. Sadia Hameed · Online L1','o',5]],
+ Sat:[['10:00 am','Python & Web Development','Mr. Omar Qadir · Group W1','d',3],['10:00 am','Catch-up clinic (all subjects)','Rotating teachers · drop-in','g',8],['12:30 pm','Spanish conversation','Sr. Diego Lafuente · Group S1','d',5],['2:00 pm','Additional Mathematics','Mr. Usman Tariq · Group AM1','d',4],['4:00 pm','O Level English Language','Ms. Sadia Hameed · Group E1','d',4]]
+};
+var NAMES={Mon:'Monday',Tue:'Tuesday',Wed:'Wednesday',Thu:'Thursday',Fri:'Friday',Sat:'Saturday'};
+var PLACE={g:'Gulberg',d:'DHA',o:'Online'};
+var tabs=document.getElementById('dayTabs'),panel=document.getElementById('dayPanel'),days=Object.keys(T);
+tabs.innerHTML=days.map(function(d){return '<button type="button" role="tab" id="tab-'+d+'" aria-controls="dayPanel" aria-selected="false" tabindex="-1" data-d="'+d+'">'+d+'<small>'+T[d].length+' classes</small></button>'}).join('');
+function show(d,focus){
+  tabs.querySelectorAll('button').forEach(function(b){var on=b.dataset.d===d;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;if(on&&focus)b.focus()});
+  panel.setAttribute('aria-labelledby','tab-'+d);
+  panel.innerHTML=T[d].map(function(s){return '<div class="slot '+s[3]+'"><time>'+s[0]+'</time><div><b>'+s[1]+'</b><span>'+s[2]+' · '+PLACE[s[3]]+'</span></div><span class="seats'+(s[4]<3?' low':'')+'">'+(s[4]===1?'1 seat left':s[4]+' seats left')+'</span><a href="#book" data-day="'+NAMES[d]+'">Try this class →</a></div>'}).join('');
+}
+tabs.addEventListener('click',function(e){var b=e.target.closest('button');if(b)show(b.dataset.d)});
+tabs.addEventListener('keydown',function(e){var i=days.indexOf(document.activeElement.dataset.d);if(i<0)return;if(e.key==='ArrowRight'){show(days[(i+1)%days.length],1);e.preventDefault()}if(e.key==='ArrowLeft'){show(days[(i+days.length-1)%days.length],1);e.preventDefault()}});
+panel.addEventListener('click',function(e){var a=e.target.closest('a[data-day]');if(a)document.getElementById('slot').value=a.dataset.day});
+var today=['Mon','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()];show(today);
+/* faq */
+document.querySelectorAll('.qa-item button').forEach(function(b){b.addEventListener('click',function(){var open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));document.getElementById(b.getAttribute('aria-controls')).hidden=open;b.closest('.qa-item').classList.toggle('open',!open)})});
+/* form */
+var f=document.getElementById('trialForm'),ok=document.getElementById('success');
+var rules={pname:function(v){return v.trim().length<2?'Please enter your name.':''},sname:function(v){return v.trim()?'':'Please enter the student’s first name.'},phone:function(v){return /^(\+92|0)3\d{2}[\s-]?\d{7}$/.test(v.trim())?'':'Enter a mobile number like 0321 4567890.'},email:function(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?'':'Enter a valid email address.'},subject:function(v){return v?'':'Choose a subject.'},slot:function(v){return v?'':'Choose a preferred day.'}};
+function check(id){var el=f.elements[id],msg=rules[id](el.value),wrap=el.closest('.field');document.getElementById(id+'-e').textContent=msg;wrap.classList.toggle('bad',!!msg);el.setAttribute('aria-invalid',String(!!msg));if(msg)el.setAttribute('aria-describedby',id+'-e');else el.removeAttribute('aria-describedby');return !msg}
+Object.keys(rules).forEach(function(id){var el=f.elements[id];el.addEventListener('blur',function(){if(el.value)check(id)});el.addEventListener('input',function(){if(el.closest('.field').classList.contains('bad'))check(id)});el.addEventListener('change',function(){if(el.tagName==='SELECT')check(id)})});
+f.addEventListener('submit',function(e){e.preventDefault();var first=null;Object.keys(rules).forEach(function(id){if(!check(id)&&!first)first=f.elements[id]});if(first){first.focus();return}
+  var mode=f.elements.mode.value;document.getElementById('okName').textContent=f.elements.sname.value.trim();
+  document.getElementById('okMsg').textContent='We’ve reserved a trial seat in '+f.elements.subject.value+' on '+f.elements.slot.value+' ('+(mode==='online'?'online':'at our '+mode)+'). Our front desk will call '+f.elements.phone.value.trim()+' within one working day to confirm the time.';
+  f.hidden=true;ok.hidden=false;ok.focus()});
+document.getElementById('again').addEventListener('click',function(){f.reset();f.querySelectorAll('.bad').forEach(function(x){x.classList.remove('bad')});ok.hidden=true;f.hidden=false;f.elements.sname.focus()});
+/* reveal + counters */
+var els=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{rootMargin:'0px 0px -8% 0px'});els.forEach(function(el){io.observe(el)})}else els.forEach(function(el){el.classList.add('in')});
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!rm&&'IntersectionObserver' in window){var co=new IntersectionObserver(function(en){en.forEach(function(x){if(!x.isIntersecting)return;co.unobserve(x.target);var el=x.target,end=parseFloat(el.dataset.count),dec=el.dataset.count.indexOf('.')>-1,t0=performance.now();(function step(t){var p=Math.min((t-t0)/1200,1),v=end*(1-Math.pow(1-p,3));el.textContent=dec?v.toFixed(1):Math.round(v);if(p<1)requestAnimationFrame(step)})(t0)})},{threshold:.6});document.querySelectorAll('[data-count]').forEach(function(el){co.observe(el)})}
+})();
+</script>
+</body>
+</html>

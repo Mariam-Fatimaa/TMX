@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f6fc">
+<title>Carely — Book a doctor, see them by video, keep your records in one place</title>
+<meta name="description" content="Carely is a doctor appointment and telehealth app concept: find a GP or specialist, book a slot in under a minute, join video consultations and keep prescriptions and reminders together. Designed &amp; developed by TMX Digital Solutions.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fc;--card:#fff;--ink:#141c3a;--ink2:#3a4466;--muted:#5d6687;--line:#e2e6f2;--blue:#3d5af1;--blue-d:#2b44c9;--blue-l:#e8ecfe;--blue-xl:#f2f4ff;--lilac:#b9a6f5;--lilac-l:#efeaff;--sun:#f6b73c;--sun-l:#fff4dc;--ok:#13875f;--ok-l:#e2f5ec;--rose:#e0567a;--rose-l:#fde9ef;--r:20px;--s:.86}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Plus Jakarta Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}button,input{font:inherit;color:inherit}button{cursor:pointer}img,svg{display:block}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:99}.skip:focus{left:12px}
+.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
+h1,h2,h3{margin:0;line-height:1.1}
+.serif{font-family:Newsreader,Georgia,serif;font-weight:500;letter-spacing:-.01em}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-d)}
+.eyebrow::before{content:"";width:18px;height:2px;background:currentColor;border-radius:2px}
+.sec{padding:104px 0}.sec-h{max-width:640px;margin-bottom:48px}.sec-h h2{font-size:clamp(32px,4vw,48px);margin:14px 0 14px}.sec-h p{color:var(--muted);margin:0;font-size:17px}
+/* header */
+.top{position:sticky;top:0;z-index:20;background:rgba(244,246,252,.86);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+.top.scrolled{border-color:var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;text-decoration:none;letter-spacing:-.02em}
+.logo-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(140deg,var(--blue),#7b6cf6);display:grid;place-items:center}
+.nav{display:flex;gap:28px;font-size:15px;font-weight:600;color:var(--ink2)}.nav a{text-decoration:none}.nav a:hover{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 22px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .15s,background .15s}
+.btn-p{background:var(--blue);color:#fff}.btn-p:hover{background:var(--blue-d);transform:translateY(-1px)}
+.btn-g{background:#fff;color:var(--ink);border:1px solid var(--line)}
+/* hero */
+.hero{position:relative;padding:40px 0 64px;overflow:hidden}
+.hero::before{content:"";position:absolute;width:760px;height:760px;right:-120px;top:-180px;background:radial-gradient(closest-side,#dfe5ff 0,#ece6ff 45%,rgba(236,230,255,0) 100%);z-index:-1}
+.hero .wrap{display:grid;grid-template-columns:1fr auto;align-items:center;gap:56px}
+.hero h1{font-size:clamp(44px,5.6vw,76px);letter-spacing:-.03em;margin:18px 0 18px}
+.hero h1 em{font-family:Newsreader,Georgia,serif;font-weight:500;font-style:italic;color:var(--blue)}
+.pitch{font-size:21px;font-weight:600;color:var(--ink2);margin:0 0 12px}
+.lead{font-size:17px;color:var(--muted);max-width:520px;margin:0 0 28px}
+.stores{display:flex;gap:12px;flex-wrap:wrap}
+.store{display:flex;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;border-radius:14px;padding:9px 18px 9px 14px;min-width:168px;transition:transform .15s}
+.store:hover{transform:translateY(-2px)}.store small{display:block;font-size:11px;opacity:.75;line-height:1.2}.store b{font-size:17px;line-height:1.2}
+.stats{display:flex;gap:36px;margin-top:36px;padding-top:28px;border-top:1px solid var(--line)}
+.stats b{display:block;font-size:28px;font-weight:800;letter-spacing:-.02em}.stats span{font-size:14px;color:var(--muted)}
+/* phone stage */
+.stage{width:calc(414px*var(--s));height:calc(868px*var(--s));position:relative}
+#phone{position:absolute;left:0;top:0;width:414px;height:868px;transform:scale(var(--s));transform-origin:0 0;border-radius:64px;padding:12px;background:linear-gradient(150deg,#2a3150,#0d1122 60%);box-shadow:0 0 0 2px #454d6e inset,0 40px 80px -20px rgba(30,40,100,.35),0 18px 30px -18px rgba(20,28,58,.5)}
+@media (max-height:960px){:root{--s:.8}}
+@media (max-height:860px){:root{--s:.74}}
+@media (min-height:1040px){:root{--s:.9}}
+/* app UI */
+.scr{position:relative;width:390px;height:844px;border-radius:52px;overflow:hidden;background:#f6f7fc;color:var(--ink);font-size:15px;line-height:1.4;text-align:left}
+.sb{position:absolute;top:0;left:0;right:0;height:50px;display:flex;align-items:center;justify-content:space-between;padding:6px 30px 0 36px;font-size:15px;font-weight:700;z-index:5}
+.sb::after{content:"";position:absolute;left:50%;top:11px;width:122px;height:34px;margin-left:-61px;background:#05070f;border-radius:20px}
+.sb i{display:flex;gap:6px;align-items:center;font-style:normal}
+.view{position:absolute;top:50px;left:0;right:0;bottom:84px;overflow-y:auto;padding:8px 20px 24px;scrollbar-width:none;display:none}
+.view::-webkit-scrollbar{display:none}.view.on{display:block;animation:vin .28s ease}
+@keyframes vin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.tabs{position:absolute;left:0;right:0;bottom:0;height:84px;background:rgba(255,255,255,.96);border-top:1px solid #e8ebf5;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px 22px}
+.tab{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:600;color:#8a91ad;border-radius:12px;padding:2px 0}
+.tab svg{width:24px;height:24px}.tab[aria-selected=true]{color:var(--blue)}
+.ah{display:flex;align-items:center;justify-content:space-between;margin:6px 0 18px}
+.ah small{display:block;color:var(--muted);font-size:13px;font-weight:500}.ah b{font-size:22px;letter-spacing:-.02em}
+.av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px;color:#fff;flex:none}
+.av.a1{background:linear-gradient(135deg,#7b8cf8,#3d5af1)}.av.a2{background:linear-gradient(135deg,#f3a7c0,#e0567a)}.av.a3{background:linear-gradient(135deg,#9fdcc2,#13875f)}.av.a4{background:linear-gradient(135deg,#ffd68a,#e39a17)}.av.a5{background:linear-gradient(135deg,#cbbcfb,#7b5ce6)}.av.me{background:#e6e9f7;color:var(--ink)}
+.ibtn{width:44px;height:44px;border-radius:14px;background:#fff;border:1px solid #e8ebf5;display:grid;place-items:center;position:relative}
+.ibtn .dot{position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:50%;background:var(--rose);border:2px solid #fff}
+.search{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e8ebf5;border-radius:16px;padding:0 14px;height:48px;color:#8a91ad;font-size:15px;margin-bottom:20px}
+.appt{border-radius:24px;padding:18px;color:#fff;background:radial-gradient(circle at 92% 0,#7b6cf6 0,transparent 55%),linear-gradient(150deg,#3d5af1,#2b3fb8);box-shadow:0 14px 28px -14px rgba(61,90,241,.7)}
+.appt .row{display:flex;gap:12px;align-items:center}.appt .av{background:rgba(255,255,255,.22)}
+.appt b{font-size:16px;display:block}.appt small{font-size:13px;opacity:.82}
+.appt .when{display:flex;gap:8px;margin:16px 0 14px;background:rgba(255,255,255,.14);border-radius:14px;padding:10px 12px;font-size:13px;font-weight:600;justify-content:space-between}
+.appt .when span{display:flex;gap:6px;align-items:center}
+.appt .acts{display:flex;gap:8px}.appt .acts button{flex:1;height:40px;border-radius:12px;border:0;font-weight:700;font-size:14px}
+.appt .join{background:#fff;color:var(--blue-d)}.appt .ghost{background:rgba(255,255,255,.16);color:#fff}
+.h3{display:flex;justify-content:space-between;align-items:baseline;margin:24px 0 12px}.h3 b{font-size:17px}.h3 a,.h3 button{font-size:13px;font-weight:700;color:var(--blue);text-decoration:none;background:none;border:0;padding:0}
+.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.qa button{background:#fff;border:1px solid #e8ebf5;border-radius:18px;padding:12px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--ink2)}
+.qa i{width:40px;height:40px;border-radius:13px;display:grid;place-items:center}
+.card{background:#fff;border:1px solid #e8ebf5;border-radius:20px;padding:14px}
+.tip{display:flex;gap:12px;align-items:center;background:var(--sun-l);border-radius:20px;padding:14px;font-size:13px;color:#6b4b07}.tip b{display:block;font-size:14px;color:#4a3303}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:0 -20px 16px;padding:0 20px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;height:36px;padding:0 14px;border-radius:999px;border:1px solid #e1e5f2;background:#fff;font-size:13px;font-weight:600;color:var(--ink2)}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.doc{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.doc .av{width:56px;height:56px;border-radius:18px;font-size:17px}
+.doc .mid{flex:1;min-width:0}.doc b{font-size:15px;display:block}.doc small{font-size:13px;color:var(--muted);display:block}
+.meta{display:flex;gap:10px;font-size:13px;font-weight:600;margin-top:4px;color:var(--ink2)}.meta .st{color:#b07a0b}
+.fee{text-align:right;font-size:13px;color:var(--muted)}.fee b{font-size:15px;color:var(--ink)}
+.avail{display:inline-block;font-size:11px;font-weight:700;color:var(--ok);background:var(--ok-l);border-radius:6px;padding:2px 6px;margin-top:4px}
+.empty{font-size:14px;color:var(--muted);text-align:center;padding:24px}
+.title{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}.sub{font-size:14px;color:var(--muted);margin:0 0 18px}
+.dates{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:8px}
+.date{border:1px solid #e1e5f2;background:#fff;border-radius:16px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;font-weight:600;color:var(--muted)}
+.date b{font-size:17px;color:var(--ink)}.date[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#dfe5ff}.date[aria-pressed=true] b{color:#fff}
+.date:disabled{opacity:.4;cursor:not-allowed}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.slot{height:40px;border-radius:12px;border:1px solid #e1e5f2;background:#fff;font-size:14px;font-weight:600}
+.slot[aria-pressed=true]{background:var(--blue-l);border-color:var(--blue);color:var(--blue-d)}.slot:disabled{text-decoration:line-through;color:#b4b9cf;cursor:not-allowed}
+.type{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.type button{border:1px solid #e1e5f2;background:#fff;border-radius:14px;padding:10px 12px;text-align:left;font-size:13px;color:var(--muted)}.type button b{display:block;font-size:14px;color:var(--ink)}
+.type button[aria-pressed=true]{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset}
+.cta{width:100%;height:52px;border:0;border-radius:16px;background:var(--blue);color:#fff;font-weight:700;font-size:16px;margin-top:20px}
+.cta:disabled{background:#c9cfe6;color:#f3f5fb;cursor:not-allowed}
+.hint{text-align:center;font-size:13px;color:var(--muted);margin:8px 0 0}
+.done{position:absolute;inset:0;background:#f6f7fc;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 28px;z-index:3}
+.done.on{display:flex;animation:vin .3s ease}
+.tick{width:84px;height:84px;border-radius:50%;background:var(--ok-l);display:grid;place-items:center;margin-bottom:20px}
+.done h3{font-size:22px;margin-bottom:8px}.done p{font-size:14px;color:var(--muted);margin:0 0 20px}
+.done .card{width:100%;text-align:left;font-size:14px}.done .card div{display:flex;justify-content:space-between;padding:6px 0}.done .card span{color:var(--muted)}
+.seg{display:flex;background:#e9ecf6;border-radius:14px;padding:4px;margin-bottom:16px}.seg button{flex:1;height:36px;border:0;border-radius:11px;background:none;font-size:13px;font-weight:700;color:var(--muted)}.seg button[aria-selected=true]{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(20,28,58,.08)}
+.rx{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #eef0f7}.rx:last-child{border:0}
+.rx i{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex:none}.rx .mid{flex:1}.rx b{font-size:15px;display:block}.rx small{font-size:13px;color:var(--muted)}
+.tg{position:relative;width:48px;height:28px;border-radius:999px;border:0;background:#d4d8e8;flex:none;transition:background .2s}
+.tg::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
+.tg[aria-checked=true]{background:var(--ok)}.tg[aria-checked=true]::after{transform:translateX(20px)}
+.pill{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px}.p-ok{background:var(--ok-l);color:var(--ok)}.p-bl{background:var(--blue-l);color:var(--blue-d)}.p-li{background:var(--lilac-l);color:#5b3fc4}
+.prof{text-align:center;padding:8px 0 18px}.prof .av{width:84px;height:84px;font-size:26px;margin:0 auto 12px}.prof b{font-size:20px;display:block}.prof small{color:var(--muted);font-size:13px}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}.kv div{background:#fff;border:1px solid #e8ebf5;border-radius:16px;padding:10px;text-align:center;font-size:12px;color:var(--muted)}.kv b{display:block;font-size:16px;color:var(--ink)}
+.list{background:#fff;border:1px solid #e8ebf5;border-radius:20px;overflow:hidden}
+.list button{width:100%;display:flex;align-items:center;gap:12px;padding:14px;border:0;background:none;border-bottom:1px solid #eef0f7;text-align:left;font-size:15px;font-weight:600}.list button:last-child{border:0}
+.list i{width:36px;height:36px;border-radius:11px;background:var(--blue-xl);display:grid;place-items:center;color:var(--blue)}.list span{flex:1}.list em{font-style:normal;font-size:13px;color:var(--muted);font-weight:500}
+/* video call */
+.vid{background:radial-gradient(circle at 50% 30%,#3a4a7a,#141a33 70%);color:#fff}
+.vid .sb{color:#fff}
+.who{position:absolute;inset:0;display:grid;place-items:center}
+.big{width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,#f3a7c0,#e0567a);display:grid;place-items:center;font-size:48px;font-weight:700;box-shadow:0 0 0 14px rgba(255,255,255,.06),0 0 0 30px rgba(255,255,255,.04)}
+.self{position:absolute;right:18px;top:110px;width:104px;height:148px;border-radius:20px;background:linear-gradient(160deg,#c7d0f5,#7b8cf8);border:2px solid rgba(255,255,255,.5);display:grid;place-items:end center;padding-bottom:10px;font-size:12px;font-weight:700}
+.vtop{position:absolute;top:62px;left:22px;font-size:13px}.vtop b{display:block;font-size:18px}
+.vbar{position:absolute;left:24px;right:24px;bottom:44px;display:flex;justify-content:space-between}
+.vbar span{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center}.vbar .end{background:#e0475f}
+/* gallery */
+.sl{display:grid;place-items:center}.slot.on{background:var(--blue-l);border-color:var(--blue);color:var(--blue-d)}.date.on{background:var(--blue);border-color:var(--blue);color:#dfe5ff}.date.on b{color:#fff}
+.cta.sl{display:flex;align-items:center;justify-content:center}
+.dp-hero{padding:62px 20px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;background:linear-gradient(180deg,var(--rose-l),#f6f7fc)}
+.dp-hero b{font-size:20px;margin-top:10px}.dp-hero small{font-size:13px;color:var(--muted)}
+.kvr{display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid #eef0f7}.kvr span{color:var(--muted)}
+.qr{width:64px;height:64px;flex:none;border-radius:8px;background:conic-gradient(var(--ink) 25%,#fff 0 50%,var(--ink) 0 75%,#fff 0) 0 0/16px 16px;box-shadow:0 0 0 4px #fff,0 0 0 5px #e8ebf5}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.gal figure{margin:0}
+.tg[data-on]::after{transform:translateX(20px)}
+.mini{width:252px;height:527px;max-width:100%;margin:0 auto;border-radius:42px;padding:8px;background:#141a33;box-shadow:0 24px 48px -24px rgba(30,40,100,.4);overflow:hidden}
+.mini .scr{transform:scale(.6051);transform-origin:0 0;border-radius:56px}
+.gal figcaption{font-size:15px;color:var(--muted);margin:20px auto 0;max-width:252px}.gal figcaption b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+/* features */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.f{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.f i{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px}
+.f h3{font-size:19px;margin-bottom:8px}.f p{margin:0;color:var(--muted);font-size:15px}
+/* design */
+.design{background:#fff;border-block:1px solid var(--line)}
+.dgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:28px}
+.panel{border:1px solid var(--line);border-radius:var(--r);padding:28px;background:var(--bg)}
+.panel h3{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:18px}
+.ts div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line)}.ts div:last-child{border:0}
+.ts span:last-child{font-size:13px;color:var(--muted);white-space:nowrap}.ts div>:first-child{min-width:0}.dgrid>*{min-width:0}
+.sw{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sw div{border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line);font-size:13px}.sw i{display:block;height:64px}.sw p{margin:0;padding:8px 10px;line-height:1.35}.sw b{display:block;font-size:14px}
+.comp{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:28px}
+/* flow */
+.flow{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:st}
+.flow li{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px 20px;counter-increment:st}
+.flow li::before{content:counter(st);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;margin-bottom:14px}
+.flow b{display:block;font-size:16px;margin-bottom:6px}.flow p{margin:0;font-size:14px;color:var(--muted)}.flow em{display:block;margin-top:12px;font-style:normal;font-size:13px;font-weight:700;color:var(--blue-d)}
+/* reviews */
+.revs{display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:20px;align-items:stretch}
+.score{background:var(--ink);color:#fff;border-radius:var(--r);padding:28px;min-width:220px}.score b{font-size:56px;line-height:1;display:block;letter-spacing:-.03em}.score .stars{color:var(--sun);font-size:20px;letter-spacing:2px;margin:8px 0}.score p{margin:0;font-size:14px;color:#c3c9e4}
+.rev{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;margin:0}.rev .stars{color:#b07a0b;letter-spacing:2px}.rev p{margin:10px 0 16px;font-size:15px}.rev footer{font-size:14px;color:var(--muted)}.rev footer b{color:var(--ink);display:block}
+/* cta + footer */
+.cta-b{border-radius:32px;padding:64px;background:radial-gradient(circle at 85% 20%,#7b6cf6 0,transparent 45%),linear-gradient(140deg,#2b3fb8,#3d5af1);color:#fff;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+.cta-b h2{font-size:clamp(32px,4vw,48px);margin-bottom:14px}.cta-b p{margin:0;color:#dfe4ff;font-size:17px}
+.cta-b .stores{justify-content:flex-end}.cta-b .store{background:#fff;color:var(--ink)}.cta-b .store svg[fill="#fff"]{fill:var(--ink)}
+.foot{padding:48px 0;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.foot .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}.foot p{margin:0}.foot b{color:var(--ink)}
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .reveal{opacity:1;transform:none}}
+/* responsive */
+@media (max-width:1100px){.gal{grid-template-columns:repeat(2,1fr)}.feat{grid-template-columns:1fr 1fr}.flow{grid-template-columns:repeat(3,1fr)}.revs{grid-template-columns:1fr 1fr}.dgrid{grid-template-columns:1fr}}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;justify-items:center}.hero-copy{max-width:640px}.nav{display:none}.cta-b{grid-template-columns:1fr;padding:40px 28px}.cta-b .stores{justify-content:flex-start}:root{--s:.8}}
+@media (max-width:600px){.wrap{width:calc(100% - 32px)}.sec{padding:72px 0}.hero{padding-top:24px}.stats{gap:20px}.stats b{font-size:22px}.gal,.feat,.flow,.revs{grid-template-columns:1fr}.top .btn{padding:10px 16px;font-size:14px}.sw{grid-template-columns:repeat(2,1fr)}.panel{padding:20px}}
+@media (max-width:420px){:root{--s:.76}.store{min-width:0;flex:1}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top" id="top">
+<div class="wrap">
+<a class="logo" href="#main" aria-label="Carely home"><span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>Carely</a>
+<nav class="nav" aria-label="Page sections"><a href="#screens">Screens</a><a href="#features">Features</a><a href="#design">Design</a><a href="#flow">User flow</a></nav>
+<a class="btn btn-p" href="#get">Get the app</a>
+</div>
+</header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-h">
+<div class="wrap">
+<div class="hero-copy">
+<span class="eyebrow">Mobile app · iOS &amp; Android</span>
+<h1 id="hero-h">Carely. A doctor, <em>when you need one.</em></h1>
+<p class="pitch">Book a GP or specialist in under a minute, then see them by video or in clinic.</p>
+<p class="lead">Carely puts appointments, video consultations, prescriptions and medication reminders in one calm app. We designed it for people booking care for themselves, their children or an older parent, often on a bad day and with one hand free.</p>
+<div class="stores">
+<a class="store" href="#"><svg width="22" height="26" viewBox="0 0 24 28" fill="#fff" aria-hidden="true"><path d="M19.6 14.9c0-3 2.5-4.5 2.6-4.6-1.4-2.1-3.6-2.4-4.4-2.4-1.9-.2-3.6 1.1-4.6 1.1-.9 0-2.4-1.1-4-1-2 0-3.9 1.2-5 3-2.1 3.7-.5 9.2 1.5 12.2 1 1.5 2.2 3.1 3.8 3 1.5-.1 2.1-1 3.9-1s2.4 1 4 1c1.6 0 2.7-1.5 3.7-3 1.2-1.7 1.6-3.3 1.7-3.4-.1 0-3.2-1.2-3.2-4.9zM16.6 5.9c.8-1 1.4-2.4 1.2-3.8-1.2.1-2.6.8-3.5 1.8-.8.9-1.4 2.3-1.2 3.7 1.3.1 2.6-.7 3.5-1.7z"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+<a class="store" href="#"><svg width="22" height="24" viewBox="0 0 24 26" aria-hidden="true"><path fill="#7bd4a7" d="M1.2.6 13.4 13 1.2 25.4c-.4-.2-.7-.7-.7-1.3V1.9c0-.6.3-1.1.7-1.3z"/><path fill="#ffd166" d="m17.5 8.9-4.1 4.1 4.1 4.1 4.6-2.6c1.3-.8 1.3-2.2 0-3z"/><path fill="#ef6f8c" d="M13.4 13 1.2 25.4c.4.3 1 .3 1.7-.1l14.6-8.2z"/><path fill="#7aa2ff" d="M13.4 13 17.5 8.9 2.9.7C2.2.3 1.6.3 1.2.6z"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
+</div>
+<div class="stats">
+<div><b>48 sec</b><span>median time to book</span></div>
+<div><b>4.8</b><span>average test rating</span></div>
+<div><b>5 tabs</b><span>one-thumb navigation</span></div>
+</div>
+</div>
+<div class="stage">
+<div id="phone">
+<div class="scr" id="app">
+<div class="sb"><span>9:41</span><i aria-hidden="true"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.2-1.3C13.3 1.5 10.8.4 8 .4S2.7 1.5.8 3.3L2 4.6c1.6-1.5 3.7-2.4 6-2.4zm0 3.5c1.3 0 2.5.5 3.5 1.4l1.2-1.3C11.4 4.6 9.8 3.9 8 3.9s-3.4.7-4.7 1.9l1.2 1.3c1-.9 2.2-1.4 3.5-1.4zM8 9.2l2-2.1c-.5-.5-1.2-.8-2-.8s-1.5.3-2 .8z"/></svg><svg width="27" height="13" viewBox="0 0 27 13" fill="none"><rect x=".5" y=".5" width="23" height="12" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="9" rx="2" fill="currentColor"/><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2z" fill="currentColor" opacity=".5"/></svg></i></div>
+<div class="view on" id="v-home" role="tabpanel" aria-label="Home">
+<div class="ah"><div style="display:flex;gap:12px;align-items:center"><span class="av me">HP</span><div><small>Good morning</small><b>Hannah Price</b></div></div><button class="ibtn" type="button" aria-label="Notifications, 1 unread"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span class="dot"></span></button></div>
+<button class="search" type="button" data-go="doctors" style="width:100%"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search doctors, symptoms, clinics</button>
+<div class="appt">
+<div class="row"><span class="av">AO</span><div style="flex:1"><b>Dr Amara Okafor</b><small>General practitioner · Video</small></div><span class="pill" style="background:rgba(255,255,255,.2);color:#fff">Tomorrow</span></div>
+<div class="when"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Thu, 13 Nov</span><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10:30 – 10:45</span></div>
+<div class="acts"><button class="ghost" type="button" data-go="appts">Reschedule</button><button class="join" type="button" id="joinBtn">Join waiting room</button></div>
+</div>
+<div class="h3"><b>Quick actions</b></div>
+<div class="qa">
+<button type="button" data-go="doctors" data-spec="GP"><i style="background:var(--blue-l);color:var(--blue)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 3v6a4 4 0 0 0 8 0V3M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg></i>Book GP</button>
+<button type="button" data-go="doctors"><i style="background:var(--lilac-l);color:#6a4ee0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="2" y="6" width="14" height="12" rx="3"/><path d="m16 10 6-3v10l-6-3"/></svg></i>Video call</button>
+<button type="button" data-go="records"><i style="background:var(--ok-l);color:var(--ok)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-45 12 12.5)"/><path d="m9 9 6 6"/></svg></i>Repeat Rx</button>
+<button type="button" data-go="records"><i style="background:var(--rose-l);color:var(--rose)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h4"/></svg></i>Results</button>
+</div>
+<div class="h3"><b>Today</b><button type="button" data-go="records">See all</button></div>
+<div class="tip"><i style="width:40px;height:40px;border-radius:13px;background:#fff;display:grid;place-items:center;flex:none;font-style:normal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c98a0c" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><div><b>Amlodipine 5 mg at 8:00 pm</b>One tablet with water. Reminder is on.</div></div>
+<div class="card" style="display:flex;gap:12px;align-items:center;margin-top:10px"><span class="av a4" style="width:40px;height:40px;font-size:14px">L</span><div style="flex:1"><b style="font-size:14px;display:block">Leo, 6-month check-up</b><small style="font-size:13px;color:var(--muted)">Due in December · Paediatrics</small></div><button type="button" class="pill p-bl" data-go="doctors" data-spec="Paediatrics" style="border:0;font-size:13px;padding:8px 12px">Book</button></div>
+</div>
+<div class="view" id="v-doctors" role="tabpanel" aria-label="Doctors">
+<p class="title">Find a doctor</p><p class="sub">Available this week · near Leeds LS6 or by video</p>
+<div class="chips" role="group" aria-label="Filter by specialty">
+<button class="chip" type="button" aria-pressed="true" data-spec="All">All</button>
+<button class="chip" type="button" aria-pressed="false" data-spec="GP">GP</button>
+<button class="chip" type="button" aria-pressed="false" data-spec="Paediatrics">Paediatrics</button>
+<button class="chip" type="button" aria-pressed="false" data-spec="Dermatology">Dermatology</button>
+<button class="chip" type="button" aria-pressed="false" data-spec="Physio">Physio</button>
+<button class="chip" type="button" aria-pressed="false" data-spec="Mental health">Mental health</button>
+</div>
+<div id="docList">
+<div class="card doc" data-spec="GP"><span class="av a1">AO</span><div class="mid"><b>Dr Amara Okafor</b><small>GP · 12 yrs · Video &amp; clinic</small><div class="meta"><span class="st">★ 4.9</span><span>312 reviews</span></div><span class="avail">Today 4:15 pm</span></div><div class="fee"><b>£39</b><br>15 min</div></div>
+<div class="card doc" data-spec="GP"><span class="av a4">TB</span><div class="mid"><b>Dr Tom Brennan</b><small>GP · 8 yrs · Video</small><div class="meta"><span class="st">★ 4.8</span><span>198 reviews</span></div><span class="avail">Today 6:00 pm</span></div><div class="fee"><b>£35</b><br>15 min</div></div>
+<div class="card doc" data-spec="Paediatrics"><span class="av a2">SL</span><div class="mid"><b>Dr Sofia Lindqvist</b><small>Paediatrician · 15 yrs</small><div class="meta"><span class="st">★ 4.9</span><span>241 reviews</span></div><span class="avail">Tomorrow 9:00 am</span></div><div class="fee"><b>£65</b><br>20 min</div></div>
+<div class="card doc" data-spec="Dermatology"><span class="av a5">RM</span><div class="mid"><b>Dr Rohan Mehta</b><small>Dermatologist · 10 yrs</small><div class="meta"><span class="st">★ 4.7</span><span>156 reviews</span></div><span class="avail">Fri 11:30 am</span></div><div class="fee"><b>£85</b><br>20 min</div></div>
+<div class="card doc" data-spec="Physio"><span class="av a3">JW</span><div class="mid"><b>Jess Whitfield</b><small>Physiotherapist · Clinic</small><div class="meta"><span class="st">★ 4.8</span><span>87 reviews</span></div><span class="avail">Tomorrow 2:40 pm</span></div><div class="fee"><b>£48</b><br>30 min</div></div>
+<div class="card doc" data-spec="Mental health"><span class="av a1">YR</span><div class="mid"><b>Dr Yusuf Rahman</b><small>Psychologist · Video</small><div class="meta"><span class="st">★ 4.9</span><span>132 reviews</span></div><span class="avail">Mon 5:30 pm</span></div><div class="fee"><b>£70</b><br>50 min</div></div>
+</div>
+</div>
+<div class="view" id="v-appts" role="tabpanel" aria-label="Appointments">
+<p class="title">Book an appointment</p><p class="sub">Pick a day and a time. You can change it up to 2 hours before.</p>
+<div class="card doc" style="margin-bottom:16px"><span class="av a1">AO</span><div class="mid"><b>Dr Amara Okafor</b><small>GP · Headingley Health, Leeds</small><div class="meta"><span class="st">★ 4.9</span><span>£39 · 15 min</span></div></div></div>
+<div class="type" role="group" aria-label="Consultation type" style="margin-bottom:16px">
+<button type="button" aria-pressed="true" data-type="Video call"><b>Video call</b>From home</button>
+<button type="button" aria-pressed="false" data-type="In clinic"><b>In clinic</b>0.8 mi away</button>
+</div>
+<div class="h3" style="margin-top:0"><b>November 2026</b></div>
+<div class="dates" role="group" aria-label="Choose a date">
+<button class="date" type="button" aria-pressed="false" data-d="Wed 12 Nov">Wed<b>12</b></button>
+<button class="date" type="button" aria-pressed="false" data-d="Thu 13 Nov">Thu<b>13</b></button>
+<button class="date" type="button" aria-pressed="false" data-d="Fri 14 Nov">Fri<b>14</b></button>
+<button class="date" type="button" aria-pressed="false" data-d="Sat 15 Nov">Sat<b>15</b></button>
+<button class="date" type="button" disabled aria-label="Sun 16, no availability">Sun<b>16</b></button>
+<button class="date" type="button" aria-pressed="false" data-d="Mon 17 Nov">Mon<b>17</b></button>
+</div>
+<div class="h3"><b>Available times</b><span style="font-size:13px;color:var(--muted)">UK time</span></div>
+<div class="slots" role="group" aria-label="Choose a time">
+<button class="slot" type="button" aria-pressed="false">09:00</button>
+<button class="slot" type="button" disabled aria-label="09:15, booked">09:15</button>
+<button class="slot" type="button" aria-pressed="false">09:45</button>
+<button class="slot" type="button" aria-pressed="false">10:30</button>
+<button class="slot" type="button" aria-pressed="false">11:15</button>
+<button class="slot" type="button" disabled aria-label="12:00, booked">12:00</button>
+<button class="slot" type="button" aria-pressed="false">14:30</button>
+<button class="slot" type="button" aria-pressed="false">16:15</button>
+<button class="slot" type="button" aria-pressed="false">17:45</button>
+</div>
+<button class="cta" type="button" id="confirm" disabled>Confirm booking · £39</button>
+<p class="hint" id="hint" aria-live="polite">Choose a date and time to continue</p>
+<div class="done" id="done" role="status">
+<div class="tick"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#13875f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+<h3>You're booked in</h3><p>We've sent the details to hannah.price@example.com and added it to your calendar.</p>
+<div class="card"><div><span>Doctor</span><b>Dr Amara Okafor</b></div><div><span>When</span><b id="dWhen">Thu 13 Nov, 10:30</b></div><div><span>Type</span><b id="dType">Video call</b></div><div><span>Fee</span><b>£39, paid by Apple Pay</b></div></div>
+<button class="cta" type="button" id="doneBtn">Back to home</button>
+<button class="hint" type="button" id="againBtn" style="background:none;border:0;margin-top:12px;font-weight:700;color:var(--blue)">Book another</button>
+</div>
+</div>
+<div class="view" id="v-records" role="tabpanel" aria-label="Records">
+<p class="title">Records</p><p class="sub">Everything your doctors have shared with you.</p>
+<div class="seg" role="tablist" aria-label="Record type"><button type="button" role="tab" aria-selected="true" data-seg="rx">Prescriptions</button><button type="button" role="tab" aria-selected="false" data-seg="rep">Reports</button></div>
+<div id="seg-rx">
+<div class="card" style="padding:4px 14px">
+<div class="rx"><i style="background:var(--blue-l);color:var(--blue)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-45 12 12.5)"/></svg></i><div class="mid"><b>Amlodipine 5 mg</b><small>Once daily · 8:00 pm · 21 left</small></div><button class="tg" type="button" role="switch" aria-checked="true" aria-label="Reminder for Amlodipine"></button></div>
+<div class="rx"><i style="background:var(--lilac-l);color:#6a4ee0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="8"/><path d="M8 12h8"/></svg></i><div class="mid"><b>Vitamin D3 1,000 IU</b><small>Once daily · 8:00 am · 46 left</small></div><button class="tg" type="button" role="switch" aria-checked="true" aria-label="Reminder for Vitamin D3"></button></div>
+<div class="rx"><i style="background:var(--sun-l);color:#c98a0c"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 3h6v4l3 3v11H6V10l3-3z"/></svg></i><div class="mid"><b>Cetirizine 10 mg</b><small>As needed · hay fever</small></div><button class="tg" type="button" role="switch" aria-checked="false" aria-label="Reminder for Cetirizine"></button></div>
+</div>
+<div class="h3"><b>Repeat requests</b></div>
+<div class="card" style="display:flex;justify-content:space-between;align-items:center"><div><b style="font-size:15px;display:block">Amlodipine 5 mg × 28</b><small style="color:var(--muted);font-size:13px">Sent to Dr Okafor · 10 Nov</small></div><span class="pill p-ok">Approved</span></div>
+<p class="hint" id="remHint" aria-live="polite" style="margin-top:14px">2 reminders on</p>
+</div>
+<div id="seg-rep" hidden>
+<div class="card" style="padding:4px 14px">
+<div class="rx"><i style="background:var(--rose-l);color:var(--rose)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 3h7l5 5v13H7z"/></svg></i><div class="mid"><b>Full blood count</b><small>Leeds Path Lab · 4 Nov</small></div><span class="pill p-ok">Reviewed</span></div>
+<div class="rx"><i style="background:var(--blue-l);color:var(--blue)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></i><div class="mid"><b>Blood pressure log</b><small>14 readings · Oct</small></div><span class="pill p-bl">Shared</span></div>
+<div class="rx"><i style="background:var(--lilac-l);color:#6a4ee0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 3h7l5 5v13H7z"/><path d="M10 13h6M10 17h4"/></svg></i><div class="mid"><b>Consultation notes</b><small>Dr Okafor · 28 Oct</small></div><span class="pill p-li">New</span></div>
+</div>
+</div>
+</div>
+<div class="view" id="v-profile" role="tabpanel" aria-label="Profile">
+<div class="prof"><span class="av a5">HP</span><b>Hannah Price</b><small>Member since March 2025 · NHS no. on file</small></div>
+<div class="kv"><div><b>7</b>Visits</div><div><b>3</b>Doctors</div><div><b>2</b>Family</div></div>
+<div class="list">
+<button type="button"><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3.2 2.6 3.5 5.5"/></svg></i><span>Family members</span><em>Leo, Margaret</em></button>
+<button type="button"><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18"/></svg></i><span>Payment</span><em>Apple Pay</em></button>
+<button type="button"><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/></svg></i><span>Insurance</span><em>Bluefield Health</em></button>
+<button type="button"><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/></svg></i><span>Notifications</span><em>On</em></button>
+<button type="button"><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></i><span>Privacy &amp; Face ID</span><em>On</em></button>
+</div>
+</div>
+<nav class="tabs" role="tablist" aria-label="App sections">
+<button class="tab" type="button" role="tab" aria-selected="true" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5V20h-5v-6h-6v6H4z"/></svg>Home</button>
+<button class="tab" type="button" role="tab" aria-selected="false" data-tab="doctors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Doctors</button>
+<button class="tab" type="button" role="tab" aria-selected="false" data-tab="appts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Book</button>
+<button class="tab" type="button" role="tab" aria-selected="false" data-tab="records"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h4"/></svg>Records</button>
+<button class="tab" type="button" role="tab" aria-selected="false" data-tab="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>Profile</button>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="sec" id="screens" aria-labelledby="scr-h">
+<div class="wrap">
+<div class="sec-h reveal"><span class="eyebrow">Screens</span><h2 id="scr-h" class="serif">Four screens that do most of the work</h2><p>Most people open Carely to do one of four things: check a doctor, book a slot, join a call or find a prescription. Each of those gets a screen built around a single main action.</p></div>
+<div class="gal">
+<figure class="reveal"><div class="mini"><div class="scr" aria-hidden="true">
+<div class="sb"><span>9:41</span></div>
+<div class="dp-hero"><span class="av a2" style="width:96px;height:96px;font-size:30px;border-radius:30px">SL</span><b>Dr Sofia Lindqvist</b><small>Paediatrician · Headingley Health</small>
+<div class="kv" style="width:100%;margin:16px 0 0"><div><b>15 yrs</b>Experience</div><div><b>★ 4.9</b>241 reviews</div><div><b>£65</b>20 min</div></div></div>
+<div style="padding:20px">
+<div class="h3" style="margin-top:0"><b>About</b></div><p style="margin:0;font-size:14px;color:var(--muted)">Children's GP-style care from newborns to 16. Rashes, fevers, feeding, sleep and growth checks. Speaks English and Swedish.</p>
+<div class="h3"><b>Next available</b></div>
+<div class="slots"><span class="slot sl">09:00</span><span class="slot sl on">09:20</span><span class="slot sl">10:40</span></div>
+<span class="cta sl" style="margin-top:24px">Book with Dr Lindqvist</span></div>
+</div></div><figcaption><b>Doctor profile</b>Fees, experience and the next free slot, above the fold.</figcaption></figure>
+<figure class="reveal"><div class="mini"><div class="scr" aria-hidden="true">
+<div class="sb"><span>9:41</span></div>
+<div style="padding:58px 20px 0"><p class="title">Choose a time</p><p class="sub">Dr Tom Brennan · GP · Video</p>
+<div class="dates"><span class="date">Wed<b>12</b></span><span class="date on">Thu<b>13</b></span><span class="date">Fri<b>14</b></span><span class="date">Sat<b>15</b></span><span class="date">Sun<b>16</b></span><span class="date">Mon<b>17</b></span></div>
+<div class="h3"><b>Morning</b></div><div class="slots"><span class="slot sl">08:30</span><span class="slot sl">09:15</span><span class="slot sl on">10:00</span></div>
+<div class="h3"><b>Evening</b></div><div class="slots"><span class="slot sl">18:00</span><span class="slot sl">18:30</span><span class="slot sl">19:15</span></div>
+<div class="card" style="margin-top:20px;font-size:14px;display:flex;justify-content:space-between"><span style="color:var(--muted)">Thu 13 Nov, 10:00</span><b>£35</b></div>
+<span class="cta sl">Confirm booking</span></div>
+</div></div><figcaption><b>Booking</b>Date strip and time chips. The button stays disabled until both are picked.</figcaption></figure>
+<figure class="reveal"><div class="mini"><div class="scr vid" aria-hidden="true">
+<div class="sb"><span>9:41</span></div>
+<div class="who"><span class="big">AO</span></div>
+<div class="vtop"><b>Dr Amara Okafor</b>06:42 · Connection good</div>
+<div class="self">You</div>
+<div class="vbar"><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="6" width="14" height="12" rx="3"/><path d="m16 10 6-3v10l-6-3"/></svg></span><span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/></svg></span><span class="end"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M3 14.5c5-4.6 13-4.6 18 0l-2.4 2.6-3.6-1.6V13a10 10 0 0 0-6 0v2.5L5.4 17z"/></svg></span></div>
+</div></div><figcaption><b>Video consultation</b>Large controls, a visible timer and chat for spelling out medicine names.</figcaption></figure>
+<figure class="reveal"><div class="mini"><div class="scr" aria-hidden="true">
+<div class="sb"><span>9:41</span></div>
+<div style="padding:58px 20px 0"><p class="title">Prescription</p><p class="sub">Issued 28 Oct 2026 · Ref CRX-48213</p>
+<div class="card"><div class="rx" style="padding-top:4px"><i style="background:var(--blue-l);color:var(--blue)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-45 12 12.5)"/></svg></i><div class="mid"><b>Amlodipine 5 mg</b><small>28 tablets · 1 repeat left</small></div></div>
+<div style="font-size:14px;padding-top:8px"><div class="kvr"><span>Dose</span><b>One tablet daily</b></div><div class="kvr"><span>Time</span><b>8:00 pm</b></div><div class="kvr"><span>Prescriber</span><b>Dr A. Okafor</b></div></div></div>
+<div class="card" style="margin-top:12px;display:flex;gap:12px;align-items:center"><div class="qr"></div><div style="font-size:13px;color:var(--muted)"><b style="display:block;color:var(--ink);font-size:15px">Show at pharmacy</b>Or send to Kirkstall Pharmacy</div></div>
+<span class="cta sl">Request repeat</span></div>
+</div></div><figcaption><b>Prescription</b>Dose, repeats and a pharmacy code, readable at arm's length.</figcaption></figure>
+</div>
+</div>
+</section>
+<section class="sec" id="features" aria-labelledby="f-h" style="padding-top:24px">
+<div class="wrap">
+<div class="sec-h reveal"><span class="eyebrow">Key features</span><h2 id="f-h" class="serif">Built for the moments people actually book care</h2><p>We spoke to 14 patients and 5 clinic receptionists before drawing a screen. Most bookings happen in the evening, on a phone, for someone else.</p></div>
+<div class="feat">
+<article class="f reveal"><i style="background:var(--blue-l);color:var(--blue)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></i><h3>Two-tap booking</h3><p>Pick a day, pick a time, confirm. Saved payment and patient details mean there is no form to fill in on the way.</p></article>
+<article class="f reveal"><i style="background:var(--lilac-l);color:#6a4ee0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="14" height="12" rx="3"/><path d="m16 10 6-3v10l-6-3"/></svg></i><h3>Video consultations</h3><p>A waiting room opens 10 minutes early with a camera and connection check, so the first minute isn't spent on "can you hear me?".</p></article>
+<article class="f reveal"><i style="background:var(--ok-l);color:var(--ok)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><h3>Medication reminders</h3><p>Every prescription can switch on its own reminder. Times follow the dose the doctor wrote, and you can move them.</p></article>
+<article class="f reveal"><i style="background:var(--rose-l);color:var(--rose)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7"/></svg></i><h3>Family profiles</h3><p>Book for a child or a parent from one account. Each person keeps their own records, and switching takes one tap.</p></article>
+<article class="f reveal"><i style="background:var(--sun-l);color:#b07a0b"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h4"/></svg></i><h3>Records in one place</h3><p>Prescriptions, test results and consultation notes, sorted by date and searchable. Share a file with a new doctor in a tap.</p></article>
+<article class="f reveal"><i style="background:var(--blue-xl);color:var(--blue-d)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/></svg></i><h3>Clear prices upfront</h3><p>Every doctor card shows the fee and the appointment length before you tap in. No surprises at checkout.</p></article>
+</div>
+</div>
+</section>
+<section class="sec design" id="design" aria-labelledby="d-h">
+<div class="wrap">
+<div class="sec-h reveal"><span class="eyebrow">Design notes</span><h2 id="d-h" class="serif">Calm, clinical, and still human</h2><p>A soft periwinkle blue does the work of a clinic's white walls without feeling cold. Warm accents mark the things that need you: reminders, ratings and results.</p></div>
+<div class="dgrid">
+<div class="panel reveal"><h3>Type scale · Plus Jakarta Sans</h3>
+<div class="ts">
+<div><b style="font-size:28px;letter-spacing:-.02em">Find a doctor</b><span>Title · 24/800</span></div>
+<div><b style="font-size:20px">Dr Amara Okafor</b><span>Heading · 20/700</span></div>
+<div><b style="font-size:17px">Available times</b><span>Section · 17/700</span></div>
+<div><span style="font-size:15px;color:var(--ink)">Once daily at 8:00 pm, 21 tablets left</span><span>Body · 15/500</span></div>
+<div><span style="font-size:13px;color:var(--muted)">GP · 12 yrs · Video &amp; clinic</span><span>Caption · 13/500</span></div>
+</div>
+<div class="comp" aria-label="Component samples">
+<span class="chip" style="display:inline-grid;place-items:center;background:var(--ink);color:#fff;border-color:var(--ink)">GP</span><span class="chip" style="display:inline-grid;place-items:center">Dermatology</span>
+<span class="slot sl on" style="width:84px">10:30</span><span class="slot sl" style="width:84px">11:15</span>
+<span class="pill p-ok">Approved</span><span class="pill p-li">New</span>
+<span class="tg" aria-hidden="true" data-on="1" style="display:inline-block;background:var(--ok)"></span>
+</div>
+</div>
+<div class="panel reveal"><h3>Colour</h3>
+<div class="sw">
+<div><i style="background:#3d5af1"></i><p><b>Carely blue</b>#3D5AF1</p></div>
+<div><i style="background:#141c3a"></i><p><b>Night ink</b>#141C3A</p></div>
+<div><i style="background:#b9a6f5"></i><p><b>Lilac</b>#B9A6F5</p></div>
+<div><i style="background:#13875f"></i><p><b>Confirmed</b>#13875F</p></div>
+<div><i style="background:#f6b73c"></i><p><b>Reminder</b>#F6B73C</p></div>
+<div><i style="background:#f4f6fc"></i><p><b>Mist</b>#F4F6FC</p></div>
+</div>
+<p style="margin:20px 0 0;font-size:14px;color:var(--muted)">All text pairs meet WCAG AA. Touch targets are at least 44 px, and every state (booked, unavailable, selected) has a shape or label change, not just a colour change.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="sec" id="flow" aria-labelledby="fl-h">
+<div class="wrap">
+<div class="sec-h reveal"><span class="eyebrow">User flow</span><h2 id="fl-h" class="serif">Book a GP in under a minute</h2><p>We timed this flow with 14 test users on their own phones. The median was 48 seconds from opening the app to a confirmed booking.</p></div>
+<ol class="flow">
+<li class="reveal"><b>Open Carely</b><p>Home shows your next appointment and a "Book GP" shortcut.</p><em>0:00</em></li>
+<li class="reveal"><b>Tap Book GP</b><p>Doctors opens pre-filtered to GPs, sorted by soonest slot.</p><em>0:06</em></li>
+<li class="reveal"><b>Choose a doctor</b><p>Rating, fee and next free time are on the card, no need to open a profile.</p><em>0:18</em></li>
+<li class="reveal"><b>Pick day and time</b><p>Booked slots are struck through. Confirm unlocks once both are set.</p><em>0:34</em></li>
+<li class="reveal"><b>Confirm</b><p>Saved card, calendar invite and a reminder 30 minutes before.</p><em>0:48</em></li>
+</ol>
+</div>
+</section>
+<section class="sec" id="reviews" aria-labelledby="r-h" style="padding-top:0">
+<div class="wrap">
+<div class="sec-h reveal"><span class="eyebrow">What testers said</span><h2 id="r-h" class="serif">Rated 4.8 in usability testing</h2></div>
+<div class="revs">
+<div class="score reveal"><b>4.8</b><div class="stars" aria-hidden="true">★★★★★</div><p>Average from 14 moderated sessions and a 2-week beta with 60 users.</p></div>
+<blockquote class="rev reveal"><div class="stars" aria-label="5 out of 5">★★★★★</div><p>"I booked my son in while he was asleep on me. I didn't have to type anything, which at 11 pm is all I wanted."</p><footer><b>Priya N.</b>Parent of two, beta tester</footer></blockquote>
+<blockquote class="rev reveal"><div class="stars" aria-label="5 out of 5">★★★★★</div><p>"Seeing the price on the list saved me opening five profiles. And the struck-out times made it obvious what was gone."</p><footer><b>Martin O.</b>Usability session 6</footer></blockquote>
+<blockquote class="rev reveal"><div class="stars" aria-label="4 out of 5">★★★★☆</div><p>"I set up Mum's reminders on my phone and she gets them on hers. The text is big enough for her without zooming."</p><footer><b>Claire D.</b>Cares for her mother</footer></blockquote>
+</div>
+</div>
+</section>
+<section class="sec" id="get" aria-labelledby="c-h" style="padding-top:0">
+<div class="wrap">
+<div class="cta-b reveal"><div><h2 id="c-h" class="serif">See a doctor without the phone queue.</h2><p>Carely is free to download. You pay only for the appointments you book, at the price shown.</p></div>
+<div class="stores">
+<a class="store" href="#"><svg width="22" height="26" viewBox="0 0 24 28" fill="#fff" aria-hidden="true"><path d="M19.6 14.9c0-3 2.5-4.5 2.6-4.6-1.4-2.1-3.6-2.4-4.4-2.4-1.9-.2-3.6 1.1-4.6 1.1-.9 0-2.4-1.1-4-1-2 0-3.9 1.2-5 3-2.1 3.7-.5 9.2 1.5 12.2 1 1.5 2.2 3.1 3.8 3 1.5-.1 2.1-1 3.9-1s2.4 1 4 1c1.6 0 2.7-1.5 3.7-3 1.2-1.7 1.6-3.3 1.7-3.4-.1 0-3.2-1.2-3.2-4.9zM16.6 5.9c.8-1 1.4-2.4 1.2-3.8-1.2.1-2.6.8-3.5 1.8-.8.9-1.4 2.3-1.2 3.7 1.3.1 2.6-.7 3.5-1.7z"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+<a class="store" href="#"><svg width="22" height="24" viewBox="0 0 24 26" aria-hidden="true"><path fill="#13875f" d="M1.2.6 13.4 13 1.2 25.4c-.4-.2-.7-.7-.7-1.3V1.9c0-.6.3-1.1.7-1.3z"/><path fill="#f6b73c" d="m17.5 8.9-4.1 4.1 4.1 4.1 4.6-2.6c1.3-.8 1.3-2.2 0-3z"/><path fill="#e0567a" d="M13.4 13 1.2 25.4c.4.3 1 .3 1.7-.1l14.6-8.2z"/><path fill="#3d5af1" d="M13.4 13 17.5 8.9 2.9.7C2.2.3 1.6.3 1.2.6z"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
+</div></div>
+</div>
+</section>
+</main>
+<footer class="foot">
+<div class="wrap">
+<a class="logo" href="#main" aria-label="Carely, back to top"><span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>Carely</a>
+<div><p><b>Designed &amp; developed by TMX Digital Solutions.</b></p><p>Carely is a concept project. Doctors, patients, prices and reviews are demo content, and nothing here is medical advice.</p></div>
+</div>
+</footer>
+<script>
+(function(){
+var app=document.getElementById('app');if(!app)return;
+var $=function(s,r){return (r||app).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||app).querySelectorAll(s))};
+var tabs=$$('.tab');
+function go(name){
+  tabs.forEach(function(t){t.setAttribute('aria-selected',t.dataset.tab===name?'true':'false')});
+  $$('.view').forEach(function(v){var on=v.id==='v-'+name;v.classList.toggle('on',on);if(on)v.scrollTop=0});
+}
+tabs.forEach(function(t){t.addEventListener('click',function(){go(t.dataset.tab)})});
+tabs.forEach(function(t,i){t.addEventListener('keydown',function(e){var k=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!k)return;var n=tabs[(i+k+tabs.length)%tabs.length];n.focus();n.click()})});
+// specialty filter
+var chips=$$('.chip',$('#v-doctors')),docs=$$('#docList .doc');
+function filter(sp){
+  chips.forEach(function(c){c.setAttribute('aria-pressed',c.dataset.spec===sp?'true':'false')});
+  docs.forEach(function(d){d.hidden=!(sp==='All'||d.dataset.spec===sp)});
+}
+chips.forEach(function(c){c.addEventListener('click',function(){filter(c.dataset.spec)})});
+$$('[data-go]').forEach(function(b){b.addEventListener('click',function(){if(b.dataset.go==='doctors')filter(b.dataset.spec||'All');go(b.dataset.go)})});
+// toast
+var toast=document.createElement('div');toast.setAttribute('role','status');
+toast.style.cssText='position:absolute;left:20px;right:20px;bottom:100px;background:#141c3a;color:#fff;border-radius:16px;padding:14px 16px;font-size:14px;z-index:6;opacity:0;transform:translateY(8px);transition:.25s;pointer-events:none';
+app.appendChild(toast);var tt;
+function say(m){toast.textContent=m;toast.style.opacity=1;toast.style.transform='none';clearTimeout(tt);tt=setTimeout(function(){toast.style.opacity=0;toast.style.transform='translateY(8px)'},2600)}
+$('#joinBtn').addEventListener('click',function(){say('The waiting room opens at 10:20 tomorrow. We will send a reminder.')});
+$$('.list button').forEach(function(b){b.addEventListener('click',function(){say(b.querySelector('span').textContent+' settings are not part of this demo.')})});
+docs.forEach(function(d){d.tabIndex=0;d.setAttribute('role','button');d.style.cursor='pointer';
+  function open(){var n=d.querySelector('b').textContent;if(n==='Dr Amara Okafor'){go('appts')}else{say(n+' is in the full app. This demo books Dr Okafor.');}}
+  d.addEventListener('click',open);d.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+});
+})();
+(function(){
+var app=document.getElementById('app');if(!app)return;
+var $=function(s){return app.querySelector(s)},$$=function(s){return Array.prototype.slice.call(app.querySelectorAll(s))};
+var dates=$$('.dates .date:not(:disabled)'),slots=$$('.slots .slot:not(:disabled)'),types=$$('.type button');
+var confirm=$('#confirm'),hint=$('#hint'),done=$('#done'),d=null,s=null,ty='Video call';
+function pick(list,el){list.forEach(function(x){x.setAttribute('aria-pressed',x===el?'true':'false')})}
+function upd(){
+  var ok=d&&s;confirm.disabled=!ok;
+  hint.textContent=ok?d+' at '+s+' · '+ty:(d?'Now choose a time':(s?'Now choose a date':'Choose a date and time to continue'));
+}
+dates.forEach(function(b){b.addEventListener('click',function(){pick(dates,b);d=b.dataset.d;upd()})});
+slots.forEach(function(b){b.addEventListener('click',function(){pick(slots,b);s=b.textContent;upd()})});
+types.forEach(function(b){b.addEventListener('click',function(){pick(types,b);ty=b.dataset.type;upd()})});
+confirm.addEventListener('click',function(){
+  if(!d||!s)return;
+  $('#dWhen').textContent=d+', '+s;$('#dType').textContent=ty;
+  var v=$('#v-appts');v.scrollTop=0;done.classList.add('on');$('#doneBtn').focus();
+});
+function reset(){done.classList.remove('on');d=s=null;dates.concat(slots).forEach(function(x){x.setAttribute('aria-pressed','false')});upd()}
+$('#againBtn').addEventListener('click',reset);
+$('#doneBtn').addEventListener('click',function(){reset();var t=app.querySelector('.tab[data-tab=home]');t.click();t.focus()});
+// records
+$$('.seg button').forEach(function(b){b.addEventListener('click',function(){
+  $$('.seg button').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false')});
+  $('#seg-rx').hidden=b.dataset.seg!=='rx';$('#seg-rep').hidden=b.dataset.seg!=='rep';
+})});
+var tgs=$$('#v-records .tg');
+tgs.forEach(function(t){t.addEventListener('click',function(){
+  t.setAttribute('aria-checked',t.getAttribute('aria-checked')==='true'?'false':'true');
+  var n=tgs.filter(function(x){return x.getAttribute('aria-checked')==='true'}).length;
+  $('#remHint').textContent=n===0?'All reminders off':n+(n===1?' reminder on':' reminders on');
+})});
+})();
+(function(){
+var top=document.getElementById('top');
+function sc(){top.classList.toggle('scrolled',window.scrollY>8)}window.addEventListener('scroll',sc,{passive:true});sc();
+var els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body></html>
