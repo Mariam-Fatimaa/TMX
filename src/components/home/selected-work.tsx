@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const projects = [
@@ -5,22 +6,92 @@ const projects = [
     title: "Plinth",
     category: "Real Estate / Web Development",
     year: "2026",
-    image: "/Images/projects/plinth.png",
+    image: "/Images/projects/covers/plinth.webp",
     href: "/demos/plinth.html",
   },
   {
     title: "AUREL",
     category: "Jewellery / E-Commerce Development",
     year: "2026",
-    image: "/Images/projects/aurel-jewellery.png",
+    image: "/Images/projects/covers/aurel-jewellery.webp",
     href: "/demos/aurel-jewellery.html",
   },
   {
     title: "Atelier Noor",
     category: "Web Development",
     year: "2026",
-    image: "/Images/projects/atelier-noor.png",
+    image: "/Images/projects/covers/atelier-noor.webp",
     href: "/demos/atelier-noor.html",
+  },
+  {
+    title: "Slate & Signal",
+    category: "Creative Studio / Web Development",
+    year: "2026",
+    image: "/Images/projects/covers/slate-and-signal.webp",
+    href: "/demos/slate-and-signal.html",
+  },
+  {
+    title: "Ledgerline",
+    category: "Fintech / Website Redesign",
+    year: "2026",
+    image: "/Images/projects/covers/ledgerline-reimagined.webp",
+    href: "/demos/ledgerline-reimagined.html",
+  },
+  {
+    title: "Saffron & Salt",
+    category: "Restaurant / Web Development",
+    year: "2026",
+    image: "/Images/projects/covers/saffron-and-salt.webp",
+    href: "/demos/saffron-and-salt.html",
+  },
+  {
+    title: "Lumen Clinic",
+    category: "Healthcare / Web Development",
+    year: "2026",
+    image: "/Images/projects/covers/lumen-clinic.webp",
+    href: "/demos/lumen-clinic.html",
+  },
+  {
+    title: "Northpeak Logistics",
+    category: "Logistics / Web Development",
+    year: "2026",
+    image: "/Images/projects/covers/northpeak-logistics.webp",
+    href: "/demos/northpeak-logistics.html",
+  },
+  {
+    title: "Fluxboard",
+    category: "SaaS / Landing Page",
+    year: "2026",
+    image: "/Images/projects/covers/fluxboard.webp",
+    href: "/demos/fluxboard.html",
+  },
+  {
+    title: "Payroute",
+    category: "Fintech SaaS / Landing Page",
+    year: "2026",
+    image: "/Images/projects/covers/payroute.webp",
+    href: "/demos/payroute.html",
+  },
+  {
+    title: "Relaywise",
+    category: "AI SaaS / Landing Page",
+    year: "2026",
+    image: "/Images/projects/covers/relaywise.webp",
+    href: "/demos/relaywise.html",
+  },
+  {
+    title: "Inkwell",
+    category: "Headless CMS / Landing Page",
+    year: "2026",
+    image: "/Images/projects/covers/inkwell-cms.webp",
+    href: "/demos/inkwell-cms.html",
+  },
+  {
+    title: "Stacksite",
+    category: "Website Builder / Landing Page",
+    year: "2026",
+    image: "/Images/projects/covers/stacksite.webp",
+    href: "/demos/stacksite.html",
   },
 ];
 
@@ -52,9 +123,9 @@ export default function SelectedWork() {
         </div>
 
 
-        {/* Three Equal Project Cards */}
+        {/* Project Cards */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <Link
               key={project.title}
               href={project.href}
@@ -71,11 +142,13 @@ export default function SelectedWork() {
                 {/* Image Container */}
                 <div className="relative h-full w-full overflow-hidden rounded-[14px]">
 
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    loading={index < 3 ? "eager" : "lazy"}
                     className="
-              h-full w-full
               object-cover object-top
               transition-transform duration-[900ms]
               ease-[cubic-bezier(0.16,1,0.3,1)]

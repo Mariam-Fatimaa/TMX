@@ -99,16 +99,16 @@ export default function Hero() {
           className="mt-16 md:mt-20"
         >
           <Link
-            href="/work/plinth"
+            href="/demos/slate-and-signal.html"
             className="group relative block aspect-[16/9] overflow-hidden rounded-[28px] border border-black/10 bg-neutral-100"
           >
             {/* Background image */}
             <Image
-              src="/Images/projects/slate-signal.png"
+              src="/Images/projects/covers/slate-and-signal-hero.webp"
               alt="Slate & Signal — Creative Agency Website"
               fill
-              priority
-              sizes="(max-width: 768px) 100vw, 1440px"
+              preload
+              sizes="(max-width: 1440px) 100vw, 1440px"
               className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
             />
 

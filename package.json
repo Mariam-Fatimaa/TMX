@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "one-pagers": "node scripts/one-pagers/generate.mjs",
+    "portfolio": "node scripts/portfolio/generate.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.47.0",
@@ -22,6 +24,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "puppeteer-core": "^25.17.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
