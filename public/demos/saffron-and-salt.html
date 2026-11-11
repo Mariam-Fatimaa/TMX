@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#141110">
+<title>Saffron &amp; Salt — South Asian fusion kitchen in Ancoats</title>
+<meta name="description" content="Saffron & Salt is a modern South Asian fusion restaurant in Ancoats, Manchester: charcoal grill, small plates, natural wine and a chef's table. Book a table online. Designed & developed by TMX Digital Solutions.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--char:#141110;--char2:#1e1916;--char3:#2a231f;--line:#3a312b;--saffron:#f4a62a;--saffron-l:#ffc861;--chili:#b3262a;--chili-d:#8e1b1f;--cream:#f6ecd9;--muted:#bfb19b;--green:#7fc58b;--r:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}body{margin:0;background:var(--char);color:var(--cream);font:16px/1.65 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--saffron);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.02;letter-spacing:-.02em;margin:0 0 .45em}
+p{margin:0 0 1em}.wrap{width:min(1200px,calc(100% - 40px));margin:auto}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--saffron);margin-bottom:16px}.kicker:before{content:"";width:28px;height:1.5px;background:currentColor}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:99px;padding:14px 24px;font-weight:700;text-decoration:none;transition:transform .2s,background .2s}
+.btn-saffron{background:var(--saffron);color:var(--char)}.btn-saffron:hover{background:var(--saffron-l);transform:translateY(-2px)}
+.btn-line{border:1.5px solid var(--line);color:var(--cream)}.btn-line:hover{border-color:var(--saffron)}
+em.s{font-style:italic;color:var(--saffron)}
+/* nav */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
+header.nav.scrolled{background:rgba(20,17,16,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
+.logo{font:600 24px Fraunces,serif;text-decoration:none;letter-spacing:-.02em;white-space:nowrap}.logo span{color:var(--saffron);font-style:italic}
+.links{display:flex;gap:30px;font-size:14.5px;font-weight:600}.links a{text-decoration:none;color:var(--muted)}.links a:hover{color:var(--cream)}
+.nav-r{display:flex;align-items:center;gap:10px}.nav-r .btn{padding:10px 18px;font-size:14px}
+.burger{display:none;background:none;border:0;width:44px;height:44px}.burger span{display:block;width:22px;height:2px;background:var(--cream);margin:5px auto;transition:.3s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger[aria-expanded=true] span:nth-child(2){opacity:0}.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mnav{display:none;background:var(--char);border-top:1px solid var(--line);padding:8px 20px 24px}.mnav.open{display:grid}.mnav a{padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none;font:500 22px Fraunces,serif}.mnav .btn{margin-top:16px;font:700 16px Manrope}
+/* hero */
+.hero{position:relative;min-height:min(100vh,920px);display:flex;align-items:center;padding:110px 0 70px;overflow:hidden;background:radial-gradient(800px 500px at 78% 45%,rgba(244,166,42,.16),transparent 60%),radial-gradient(500px 400px at 10% 90%,rgba(179,38,42,.22),transparent 70%)}
+.hero:after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 4l6 26-6 26-6-26z' fill='none' stroke='%23f6ecd9' stroke-opacity='.05'/%3E%3C/svg%3E");pointer-events:none}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;background:var(--char2);border:1px solid var(--line);border-radius:99px;padding:7px 14px 7px 10px;margin-bottom:26px;text-decoration:none}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:none}.is-open .dot{background:var(--green);box-shadow:0 0 0 4px rgba(127,197,139,.2);animation:pulse 2s infinite}.is-closed .dot{background:var(--chili)}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(127,197,139,0)}}
+.hero h1{font-size:clamp(48px,6.1vw,90px);font-weight:800;letter-spacing:-.035em;line-height:.95}.hero h1 i{font-weight:400;color:var(--saffron)}
+.hero .lead{font-size:clamp(17px,1.5vw,19px);color:var(--muted);max-width:520px;margin:22px 0 32px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-facts{display:flex;gap:28px;margin-top:40px;font-size:13px;color:var(--muted);flex-wrap:wrap}.hero-facts b{display:block;font:600 22px Fraunces,serif;color:var(--cream)}
+.plate-wrap{position:relative;aspect-ratio:1;max-width:540px;width:100%;justify-self:center}
+.plate-wrap svg{width:100%;height:100%;display:block}.spin{transform-origin:250px 250px;animation:spin 60s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.steam path{animation:steam 4s ease-in-out infinite;opacity:.0}.steam path:nth-child(2){animation-delay:1.3s}.steam path:nth-child(3){animation-delay:2.6s}@keyframes steam{0%{opacity:0;transform:translateY(10px)}40%{opacity:.5}100%{opacity:0;transform:translateY(-30px)}}
+.badge{position:absolute;right:2%;bottom:8%;width:120px;height:120px;border-radius:50%;background:var(--chili);display:grid;place-items:center;text-align:center;font:italic 600 15px/1.15 Fraunces,serif;transform:rotate(-10deg);box-shadow:0 20px 40px -10px rgba(0,0,0,.6)}.badge b{display:block;font:800 28px Fraunces;font-style:normal}
+.marquee{border-block:1px solid var(--line);overflow:hidden;background:var(--saffron);color:var(--char)}
+.marquee div{display:flex;gap:40px;white-space:nowrap;padding:16px 0;width:max-content;animation:mq 40s linear infinite;font:italic 600 22px Fraunces,serif}.marquee span:after{content:"✦";margin-left:40px;font-style:normal;color:var(--chili)}@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:110px 0}.sec-head{max-width:680px;margin-bottom:48px}.sec-head h2{font-size:clamp(38px,5vw,64px)}.sec-head p{color:var(--muted);font-size:18px}
+/* menu */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:36px}
+.tab{background:none;border:0;padding:14px 18px;font-weight:700;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;font-size:15px}.tab:hover{color:var(--cream)}.tab[aria-selected=true]{color:var(--saffron);border-color:var(--saffron)}
+.panel[hidden]{display:none}.dishes{display:grid;grid-template-columns:1fr 1fr;gap:6px 56px;list-style:none;margin:0;padding:0}
+.dish{padding:20px 0;border-bottom:1px dashed var(--line)}.dish-top{display:flex;align-items:baseline;gap:12px}.dish h3{font-size:22px;margin:0;font-weight:600}.dish .lead-dots{flex:1;border-bottom:1px dotted #5a4d43;transform:translateY(-5px)}.dish .price{font:600 20px Fraunces,serif;color:var(--saffron)}
+.dish p{color:var(--muted);font-size:15px;margin:6px 0 0;max-width:460px}.tags{display:inline-flex;gap:6px;margin-left:4px;vertical-align:middle}.tags abbr{text-decoration:none;font:700 10px Manrope;letter-spacing:.06em;border:1px solid var(--line);border-radius:99px;padding:2px 7px;color:var(--muted)}.tags abbr.hot{border-color:var(--chili);color:#ff8a7a}
+.menu-note{margin-top:28px;font-size:14px;color:var(--muted)}
+/* story */
+.story{background:var(--char2);position:relative;overflow:hidden}
+.story-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:220px 220px 20px 20px;background:linear-gradient(180deg,var(--chili) 0%,var(--chili-d) 100%);overflow:hidden}
+.portrait svg{position:absolute;inset:0;width:100%;height:100%}
+.story blockquote{margin:0 0 28px;font:italic 400 clamp(24px,2.6vw,32px)/1.3 Fraunces,serif;color:var(--cream)}.story blockquote:before{content:"“";display:block;font-size:80px;line-height:.6;color:var(--saffron)}
+.story p{color:var(--muted)}.sig{font:italic 600 22px Fraunces;color:var(--saffron);margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}.stats div{border-top:1px solid var(--line);padding-top:14px;font-size:13px;color:var(--muted)}.stats b{display:block;font:600 34px Fraunces;color:var(--cream)}
+/* hours */
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.hours{width:100%;border-collapse:collapse;font-size:16px}.hours th,.hours td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:left}.hours th{font-weight:600;white-space:nowrap}.hours td{color:var(--muted);text-align:right}
+.hours tr.today{background:rgba(244,166,42,.1)}.hours tr.today th{color:var(--saffron)}.hours tr.today th:after{content:" · Today";font-size:12px;font-weight:700;letter-spacing:.06em}
+.now-card{border-radius:var(--r);padding:32px;background:var(--char3);border:1px solid var(--line)}
+.now-card .big{font:800 clamp(40px,5vw,60px)/1 Fraunces;margin:8px 0 10px;display:flex;align-items:center;gap:16px}.now-card .big .dot{width:16px;height:16px}
+.now-card.is-open .big{color:var(--green)}.now-card.is-closed .big{color:#ff7d6e}.now-card p{color:var(--muted);margin:0}
+/* events */
+.events{background:var(--char2)}.ev-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:20px}
+.ev{border:1px solid var(--line);border-radius:var(--r);padding:30px;display:flex;flex-direction:column;background:var(--char);position:relative;overflow:hidden}
+.ev>*{position:relative;z-index:1}.ev h3{font-size:28px}.ev p{color:var(--muted);font-size:15px}.ev .meta{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;font-size:13px;font-weight:700}.ev .meta span{border:1px solid var(--line);border-radius:99px;padding:5px 12px}
+.ev.feature{background:var(--chili);border-color:transparent}.ev.feature p{color:#fbdcd3}.ev.feature .meta span{border-color:rgba(246,236,217,.4)}
+.ev.feature:after{content:"";position:absolute;right:-50px;top:-50px;width:180px;height:180px;border-radius:50%;border:26px solid rgba(244,166,42,.35)}
+.upcoming{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.up{display:flex;gap:16px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
+.up time{flex:none;width:64px;height:64px;border-radius:14px;background:var(--saffron);color:var(--char);display:grid;place-items:center;text-align:center;font:800 24px/1 Fraunces}.up time small{display:block;font:700 11px Manrope;letter-spacing:.1em}
+.up b{display:block;font-size:16px}.up div span{font-size:14px;color:var(--muted)}
+/* booking */
+.book-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:64px;align-items:start}
+.book-aside p{color:var(--muted)}.book-aside ul{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:12px;color:var(--muted);font-size:15px}.book-aside li:before{content:"✦ ";color:var(--saffron)}
+form.book{background:var(--cream);color:var(--char);border-radius:22px;padding:clamp(22px,4vw,40px);display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fld{display:grid;gap:6px}.fld.full{grid-column:1/-1}.fld label{font-weight:700;font-size:14px}
+.fld input,.fld select,.fld textarea{width:100%;background:#fff;color:var(--char);border:1.5px solid #d8cbb4;border-radius:12px;padding:12px 14px;min-height:48px}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--char);box-shadow:0 0 0 3px rgba(244,166,42,.6)}
+.fld [aria-invalid=true]{border-color:var(--chili);background:#fff5f3}.fld .err{min-height:18px;font-size:13px;font-weight:700;color:var(--chili-d)}
+form.book .btn{grid-column:1/-1;background:var(--char);color:var(--cream);padding:16px}form.book .btn:hover{background:var(--chili)}
+.form-note{grid-column:1/-1;font-size:13px;color:#5c5047;margin:0}
+/* location */
+.loc-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:stretch}
+.map{border-radius:22px;overflow:hidden;border:1px solid var(--line);min-height:380px;background:#1b1714}.map svg{width:100%;height:100%;display:block}
+.loc-info{display:grid;gap:22px;align-content:start}.loc-info h3{font-size:20px;margin-bottom:4px}.loc-info p{color:var(--muted);margin:0}.loc-info p a{color:var(--saffron)}
+footer{border-top:1px solid var(--line);padding:56px 0 32px;color:var(--muted);font-size:14px}.f-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:36px}.f-top .logo{font-size:34px;color:var(--cream)}
+.f-links{display:flex;gap:24px;flex-wrap:wrap}.f-links a{text-decoration:none}.f-links a:hover{color:var(--saffron)}.f-bot{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:24px;z-index:100;transform:translate(-50%,calc(100% + 40px));visibility:hidden;transition:transform .4s cubic-bezier(.2,.9,.3,1.2),visibility .4s;background:var(--saffron);color:var(--char);padding:16px 22px;border-radius:16px;font-weight:600;box-shadow:0 20px 40px -10px rgba(0,0,0,.6);max-width:calc(100% - 32px);display:flex;gap:12px;align-items:center}
+.toast.show{transform:translate(-50%,0);visibility:visible}.toast b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--char);color:var(--saffron);display:grid;place-items:center}
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}.js .reveal.in{opacity:1;transform:none}
+@media (max-width:980px){.links,.nav-r .btn{display:none}.burger{display:block}.hero-grid,.story-grid,.hours-grid,.book-grid,.loc-grid{grid-template-columns:1fr;gap:40px}.plate-wrap{max-width:440px}.ev-grid{grid-template-columns:1fr 1fr}.ev.feature{grid-column:1/-1}.upcoming{grid-template-columns:1fr}.portrait{max-width:420px}}
+@media (max-width:680px){.wrap{width:calc(100% - 32px)}section{padding:80px 0}.hero{min-height:0;padding:104px 0 60px}.dishes,.ev-grid{grid-template-columns:1fr}form.book{grid-template-columns:1fr}.tab{padding:12px 10px;font-size:14px}.tabs{gap:0;justify-content:space-between}.badge{width:96px;height:96px;font-size:13px}.badge b{font-size:22px}.stats b{font-size:26px}.dish h3{font-size:20px}.map{min-height:260px}.portrait{max-width:330px;margin:auto;width:100%}.hours th,.hours td{padding:12px 8px;font-size:14.5px}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .reveal{opacity:1;transform:none}.steam path{opacity:.35}}
+</style></head>
+<body>
+<header class="nav" id="nav"><div class="wrap nav-in">
+<a class="logo" href="#top">Saffron <span>&amp;</span> Salt</a>
+<nav class="links" aria-label="Main"><a href="#menu">Menu</a><a href="#story">Our story</a><a href="#hours">Hours</a><a href="#events">Private dining</a><a href="#visit">Visit</a></nav>
+<div class="nav-r"><a class="btn btn-saffron" href="#book">Book a table</a><button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button></div>
+</div>
+<nav class="mnav" id="mnav" aria-label="Mobile"><a href="#menu">Menu</a><a href="#story">Our story</a><a href="#hours">Hours</a><a href="#events">Private dining</a><a href="#visit">Visit</a><a class="btn btn-saffron" href="#book">Book a table</a></nav>
+</header>
+<main id="top">
+<section class="hero"><div class="wrap hero-grid">
+<div>
+<a class="status" href="#hours" data-status><span class="dot"></span><span data-status-text>Tue–Sun · from 5pm</span></a>
+<h1>Fire from Lahore. <i>Finesse</i> from everywhere else.</h1>
+<p class="lead">A modern South Asian kitchen in Ancoats. Charcoal-grilled meats, market vegetables, house-blended masalas and natural wine — served to share.</p>
+<div class="hero-actions"><a class="btn btn-saffron" href="#book">Book a table</a><a class="btn btn-line" href="#menu">See the menu</a></div>
+<div class="hero-facts"><div><b>58</b>covers + chef's counter</div><div><b>Bib Gourmand</b>Northern Guide 2026</div><div><b>£38</b>average spend</div></div>
+</div>
+<div class="plate-wrap" aria-hidden="true">
+<svg viewBox="0 0 500 500">
+<defs><radialGradient id="pl" cx="50%" cy="45%"><stop offset="0" stop-color="#2d2622"/><stop offset="1" stop-color="#191412"/></radialGradient><radialGradient id="rice" cx="45%" cy="40%"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#e88f14"/></radialGradient></defs>
+<g class="spin">
+<circle cx="250" cy="250" r="236" fill="none" stroke="#f4a62a" stroke-opacity=".35" stroke-dasharray="2 10"/>
+<circle cx="250" cy="250" r="212" fill="url(#pl)" stroke="#3a312b" stroke-width="2"/>
+<circle cx="250" cy="250" r="170" fill="none" stroke="#f6ecd9" stroke-opacity=".08" stroke-width="14"/>
+<g fill="#f4a62a" fill-opacity=".55"><circle cx="250" cy="52" r="3"/><circle cx="448" cy="250" r="3"/><circle cx="250" cy="448" r="3"/><circle cx="52" cy="250" r="3"/></g>
+<path d="M250 110c60 0 120 50 120 130 0 70-50 120-120 120S120 320 120 245c0-75 60-135 130-135z" fill="url(#rice)"/>
+<g fill="#fff3d6" fill-opacity=".75"><ellipse cx="200" cy="200" rx="7" ry="2.5" transform="rotate(30 200 200)"/><ellipse cx="230" cy="170" rx="7" ry="2.5" transform="rotate(-20 230 170)"/><ellipse cx="290" cy="190" rx="7" ry="2.5" transform="rotate(60 290 190)"/><ellipse cx="320" cy="250" rx="7" ry="2.5"/><ellipse cx="180" cy="270" rx="7" ry="2.5" transform="rotate(-40 180 270)"/><ellipse cx="260" cy="300" rx="7" ry="2.5" transform="rotate(15 260 300)"/><ellipse cx="300" cy="310" rx="7" ry="2.5" transform="rotate(-60 300 310)"/></g>
+<g><path d="M205 225c20-30 70-30 90 0-20 30-70 30-90 0z" fill="#b3262a"/><path d="M215 225h70" stroke="#f6ecd9" stroke-opacity=".4"/></g>
+<g fill="#7fc58b"><path d="M300 150c18-8 34 0 38 14-18 8-34 0-38-14z"/><path d="M170 300c10-16 28-18 38-8-10 16-28 18-38 8z"/><path d="M320 290c16 2 26 14 24 26-16-2-26-14-24-26z"/></g>
+<g fill="none" stroke="#b3262a" stroke-width="7" stroke-linecap="round"><path d="M160 200q10-20 30-24"/><path d="M330 220q12 18 6 38"/></g>
+<circle cx="250" cy="272" r="16" fill="#f6ecd9"/><circle cx="250" cy="272" r="7" fill="#f4a62a"/>
+</g>
+<g class="steam" fill="none" stroke="#f6ecd9" stroke-width="3" stroke-linecap="round"><path d="M220 100c-10-20 10-30 0-50"/><path d="M250 92c-10-20 10-30 0-50"/><path d="M280 100c-10-20 10-30 0-50"/></g>
+</svg>
+<div class="badge"><span><b>No.7</b>Saffron<br>biryani</span></div>
+</div>
+</div></section>
+<div class="marquee" aria-hidden="true"><div><span>Charcoal grill</span><span>Small plates to share</span><span>House masalas</span><span>Natural wine</span><span>Karak chai service</span><span>Chef's counter</span><span>Charcoal grill</span><span>Small plates to share</span><span>House masalas</span><span>Natural wine</span><span>Karak chai service</span><span>Chef's counter</span></div></div>
+
+<section id="menu"><div class="wrap">
+<div class="sec-head reveal"><span class="kicker">The menu</span><h2>Built to share, <em class="s">ordered in waves.</em></h2><p>Most tables order three or four small plates, a main to split and something sweet. Menu changes with the market every few weeks.</p></div>
+<div class="tabs" role="tablist" aria-label="Menu categories">
+<button class="tab" role="tab" id="t-small" aria-controls="p-small" aria-selected="true">Small plates</button>
+<button class="tab" role="tab" id="t-mains" aria-controls="p-mains" aria-selected="false" tabindex="-1">Mains</button>
+<button class="tab" role="tab" id="t-sweet" aria-controls="p-sweet" aria-selected="false" tabindex="-1">Desserts</button>
+<button class="tab" role="tab" id="t-drinks" aria-controls="p-drinks" aria-selected="false" tabindex="-1">Drinks</button>
+</div>
+<div class="panel" role="tabpanel" id="p-small" aria-labelledby="t-small" tabindex="0"><ul class="dishes">
+<li class="dish"><div class="dish-top"><h3>Gol gappa, burrata water</h3><span class="lead-dots"></span><span class="price">£8</span></div><p>Crisp puri, spiced potato, tamarind, chilled tomato-burrata pani. Eat in one bite. <span class="tags"><abbr title="Vegetarian">V</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Lamb chapli, pickled onion</h3><span class="lead-dots"></span><span class="price">£11</span></div><p>Peshawar-style patty with pomegranate seeds, coriander yoghurt and charred lime. <span class="tags"><abbr class="hot" title="Spicy">🌶</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Charred hispi, makhani butter</h3><span class="lead-dots"></span><span class="price">£9</span></div><p>Coal-roasted cabbage, smoked tomato butter, toasted cashew crumb. <span class="tags"><abbr title="Vegetarian">V</abbr><abbr title="Gluten free">GF</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Chilli-salt squid</h3><span class="lead-dots"></span><span class="price">£10</span></div><p>Rice-flour crust, curry leaf, green chutney mayo. <span class="tags"><abbr class="hot" title="Spicy">🌶</abbr><abbr title="Gluten free">GF</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Paneer tikka, peach chaat</h3><span class="lead-dots"></span><span class="price">£9</span></div><p>Tandoor-kissed paneer with grilled stone fruit, chaat masala and mint. <span class="tags"><abbr title="Vegetarian">V</abbr><abbr title="Gluten free">GF</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Seeded roti &amp; three chutneys</h3><span class="lead-dots"></span><span class="price">£6</span></div><p>Nigella and sesame roti, mango-chilli, tamarind-date and coconut-curry leaf. <span class="tags"><abbr title="Vegan">VG</abbr></span></p></li>
+</ul></div>
+<div class="panel" role="tabpanel" id="p-mains" aria-labelledby="t-mains" tabindex="0" hidden><ul class="dishes">
+<li class="dish"><div class="dish-top"><h3>No.7 saffron biryani</h3><span class="lead-dots"></span><span class="price">£24</span></div><p>Slow-cooked lamb shoulder, aged basmati, sealed under pastry and opened at the table. Serves two. <span class="tags"><abbr class="hot" title="Spicy">🌶</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Coal-roast chicken tikka</h3><span class="lead-dots"></span><span class="price">£19</span></div><p>Half chicken, 24-hour hung-yoghurt marinade, green chilli salsa, lacha onions. <span class="tags"><abbr title="Gluten free">GF</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Kerala-style hake</h3><span class="lead-dots"></span><span class="price">£22</span></div><p>Line-caught hake in coconut, kokum and curry leaf moilee with lemon rice. <span class="tags"><abbr title="Gluten free">GF</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Black dal, 48 hours</h3><span class="lead-dots"></span><span class="price">£14</span></div><p>Whole urad simmered over two days, finished with smoked ghee. Ask for it vegan. <span class="tags"><abbr title="Vegetarian">V</abbr><abbr title="Gluten free">GF</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Beef nihari, bone marrow</h3><span class="lead-dots"></span><span class="price">£23</span></div><p>Overnight-braised short rib, ginger, fried shallots and a roasted marrow bone for the bread. <span class="tags"><abbr class="hot" title="Spicy">🌶</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Aubergine salan</h3><span class="lead-dots"></span><span class="price">£15</span></div><p>Hyderabadi peanut-sesame gravy, baby aubergine, tamarind glaze. <span class="tags"><abbr title="Vegan">VG</abbr><abbr title="Gluten free">GF</abbr></span></p></li>
+</ul></div>
+<div class="panel" role="tabpanel" id="p-sweet" aria-labelledby="t-sweet" tabindex="0" hidden><ul class="dishes">
+<li class="dish"><div class="dish-top"><h3>Saffron &amp; salt kulfi</h3><span class="lead-dots"></span><span class="price">£7</span></div><p>Our namesake: reduced-milk kulfi, Maldon salt, pistachio praline. <span class="tags"><abbr title="Vegetarian">V</abbr><abbr title="Gluten free">GF</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Gulab jamun, brown butter</h3><span class="lead-dots"></span><span class="price">£7</span></div><p>Warm, cardamom-soaked, with brown-butter ice cream and rose. <span class="tags"><abbr title="Vegetarian">V</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Mango &amp; chilli sorbet</h3><span class="lead-dots"></span><span class="price">£6</span></div><p>Alphonso mango, Kashmiri chilli, lime salt. Bright, cold, a little bit naughty. <span class="tags"><abbr title="Vegan">VG</abbr><abbr title="Gluten free">GF</abbr></span></p></li>
+<li class="dish"><div class="dish-top"><h3>Chai tiramisu</h3><span class="lead-dots"></span><span class="price">£8</span></div><p>Masala chai-soaked sponge, jaggery mascarpone, cocoa. <span class="tags"><abbr title="Vegetarian">V</abbr></span></p></li>
+</ul></div>
+<div class="panel" role="tabpanel" id="p-drinks" aria-labelledby="t-drinks" tabindex="0" hidden><ul class="dishes">
+<li class="dish"><div class="dish-top"><h3>Saffron negroni</h3><span class="lead-dots"></span><span class="price">£12</span></div><p>Saffron-infused gin, bitter aperitivo, sweet vermouth, orange.</p></li>
+<li class="dish"><div class="dish-top"><h3>Tamarind margarita</h3><span class="lead-dots"></span><span class="price">£12</span></div><p>Blanco tequila, tamarind, lime, chaat-masala rim.</p></li>
+<li class="dish"><div class="dish-top"><h3>Salted mango lassi</h3><span class="lead-dots"></span><span class="price">£6</span></div><p>Thick, tangy and alcohol-free. Ask for a rum float (+£4).</p></li>
+<li class="dish"><div class="dish-top"><h3>Orange wine by the glass</h3><span class="lead-dots"></span><span class="price">£9</span></div><p>A rotating skin-contact pour chosen to stand up to spice. Bottles from £34.</p></li>
+<li class="dish"><div class="dish-top"><h3>Karak chai for the table</h3><span class="lead-dots"></span><span class="price">£8</span></div><p>Strong, milky, cardamom-heavy chai in a copper pot for up to four.</p></li>
+<li class="dish"><div class="dish-top"><h3>House lager, on draught</h3><span class="lead-dots"></span><span class="price">£6</span></div><p>Crisp Pilsner brewed for us two streets away. Pint.</p></li>
+</ul></div>
+<p class="menu-note">V vegetarian · VG vegan · GF gluten free · 🌶 spicy. Tell us about allergies when you book — our kitchen handles nuts, sesame and dairy. A discretionary 12.5% service charge goes entirely to the team.</p>
+</div></section>
+
+<section class="story" id="story"><div class="wrap story-grid">
+<div class="portrait reveal" aria-hidden="true"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+<defs><pattern id="pt" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 4l5 16-5 16-5-16z" fill="#f4a62a" fill-opacity=".18"/></pattern></defs>
+<rect width="400" height="500" fill="url(#pt)"/>
+<circle cx="200" cy="230" r="120" fill="#f4a62a"/><circle cx="200" cy="230" r="86" fill="#141110"/>
+<g fill="#f6ecd9"><path d="M84 500c0-96 50-160 116-160s116 64 116 160z"/><circle cx="200" cy="230" r="44"/></g>
+<path d="M150 210c10-40 90-40 100 0-30-12-70-12-100 0z" fill="#141110"/>
+<g fill="none" stroke="#f6ecd9" stroke-width="5" stroke-linecap="round"><path d="M60 90l40 40M70 70l40 40"/><path d="M330 380q20-40 0-80"/></g>
+<text x="200" y="458" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-size="22" fill="#141110">Chef Zara Malik</text>
+</svg></div>
+<div class="reveal">
+<span class="kicker">Chef's story</span><h2 style="font-size:clamp(36px,4.4vw,56px)">A Lahore childhood, <em class="s">a Manchester kitchen.</em></h2>
+<blockquote>My nani never measured anything. She tasted, added salt, tasted again. That's still the whole recipe.</blockquote>
+<p>Zara Malik grew up above her family's sweet shop in Anarkali, then spent twelve years cooking in London and Copenhagen before opening Saffron &amp; Salt in a former textile warehouse in 2021. The food keeps the heat and generosity of home, with the restraint she learned in tasting-menu kitchens.</p>
+<p>Masalas are toasted and ground in-house every morning. Vegetables come from two farms in the Cheshire plain, and the grill runs on British charcoal.</p>
+<p class="sig">— Zara Malik, chef-owner</p>
+<div class="stats"><div><b>14</b>years at the stove</div><div><b>31</b>spices on the shelf</div><div><b>2</b>partner farms</div></div>
+</div>
+</div></section>
+
+<section id="hours"><div class="wrap">
+<div class="sec-head reveal"><span class="kicker">Opening hours</span><h2>When the grill is lit.</h2><p>Last orders 45 minutes before close. Walk-ins welcome at the bar and chef's counter.</p></div>
+<div class="hours-grid">
+<div class="now-card reveal" id="nowCard"><span class="kicker" style="margin:0">Right now in Manchester</span><div class="big"><span class="dot"></span><span id="nowBig">Check hours</span></div><p id="nowSub">Hours are listed in UK time.</p></div>
+<table class="hours reveal" aria-label="Weekly opening hours"><tbody id="hoursBody">
+<tr data-d="1"><th scope="row">Monday</th><td>Closed</td></tr>
+<tr data-d="2"><th scope="row">Tuesday</th><td>5:00pm – 10:30pm</td></tr>
+<tr data-d="3"><th scope="row">Wednesday</th><td>5:00pm – 10:30pm</td></tr>
+<tr data-d="4"><th scope="row">Thursday</th><td>5:00pm – 10:30pm</td></tr>
+<tr data-d="5"><th scope="row">Friday</th><td>12:00pm – 3:00pm · 5:00pm – 11:30pm</td></tr>
+<tr data-d="6"><th scope="row">Saturday</th><td>12:00pm – 3:00pm · 5:00pm – 11:30pm</td></tr>
+<tr data-d="0"><th scope="row">Sunday</th><td>12:00pm – 9:00pm</td></tr>
+</tbody></table>
+</div></div></section>
+
+<section class="events" id="events"><div class="wrap">
+<div class="sec-head reveal"><span class="kicker">Events &amp; private dining</span><h2>Bring everyone. <em class="s">We'll light the coals.</em></h2><p>From a ten-seat chef's table to a full buyout, our events team plans the menu, wine and timings with you.</p></div>
+<div class="ev-grid">
+<article class="ev feature reveal"><h3>The Saffron Room</h3><p>Our private room under the original warehouse arches. Feasting menus served family-style, with a dedicated host and your own playlist.</p><div class="meta"><span>Up to 28 seated</span><span>From £55 pp</span><span>Lunch &amp; dinner</span></div></article>
+<article class="ev reveal"><h3>Chef's Table</h3><p>Ten seats facing the grill. Nine courses cooked and introduced by Zara, with optional wine pairing.</p><div class="meta"><span>10 guests</span><span>£85 pp</span></div></article>
+<article class="ev reveal"><h3>Full buyout</h3><p>Weddings, launches and big birthdays. Standing receptions with grill stations and a chai bar.</p><div class="meta"><span>Up to 120</span><span>Enquire</span></div></article>
+</div>
+<div class="upcoming">
+<div class="up reveal"><time datetime="2026-11-29"><span>29<small>NOV</small></span></time><div><b>Sunday Thali Club</b><span>Six-bowl thali, one sitting at 1pm · £32</span></div></div>
+<div class="up reveal"><time datetime="2026-12-10"><span>10<small>DEC</small></span></time><div><b>Natural wine &amp; tandoor night</b><span>With Ferment Wine Co. · £60</span></div></div>
+<div class="up reveal"><time datetime="2026-12-31"><span>31<small>DEC</small></span></time><div><b>New Year's Eve feast</b><span>Seven courses &amp; a midnight chai · £95</span></div></div>
+</div>
+<p style="margin-top:28px;color:var(--muted)">Planning something? Email <a href="mailto:events@saffronandsalt.example" style="color:var(--saffron)">events@saffronandsalt.example</a> — we reply within one working day.</p>
+</div></section>
+
+<section id="book"><div class="wrap book-grid">
+<div class="book-aside reveal"><span class="kicker">Reservations</span><h2 style="font-size:clamp(38px,5vw,64px)">Save your seat <em class="s">at the fire.</em></h2>
+<p>Book up to 60 days ahead for groups of 1–8. For 9 or more, see private dining above or call us.</p>
+<ul><li>Tables are held for 15 minutes</li><li>We keep a third of the room for walk-ins</li><li>Tell us about allergies and occasions in the notes</li></ul></div>
+<form class="book reveal" id="bookForm" novalidate>
+<div class="fld"><label for="date">Date</label><input type="date" id="date" name="date" required aria-describedby="e-date"><span class="err" id="e-date"></span></div>
+<div class="fld"><label for="time">Time</label><select id="time" name="time" required aria-describedby="e-time"><option value="">Choose a date first</option></select><span class="err" id="e-time"></span></div>
+<div class="fld"><label for="guests">Guests</label><select id="guests" name="guests" required aria-describedby="e-guests"><option value="">Select</option><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select><span class="err" id="e-guests"></span></div>
+<div class="fld"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required aria-describedby="e-name"><span class="err" id="e-name"></span></div>
+<div class="fld full"><label for="phone">Mobile number</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="07700 900123" required aria-describedby="e-phone"><span class="err" id="e-phone"></span></div>
+<div class="fld full"><label for="notes">Notes <span style="font-weight:500">(optional)</span></label><textarea id="notes" name="notes" rows="2" placeholder="Allergies, birthdays, high chair…"></textarea></div>
+<button class="btn" type="submit">Request table</button>
+<p class="form-note">We'll text a confirmation within a few minutes. No deposit for tables under 6.</p>
+</form>
+</div></section>
+
+<section id="visit" style="padding-top:0"><div class="wrap">
+<div class="sec-head reveal"><span class="kicker">Find us</span><h2>Ancoats, behind the old mills.</h2></div>
+<div class="loc-grid">
+<div class="map reveal" aria-label="Stylised map showing Saffron and Salt on Calder Street, near the canal" role="img"><svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice">
+<rect width="600" height="400" fill="#1b1714"/>
+<path d="M-20 300C120 260 220 330 360 290S560 220 640 250" stroke="#243b47" stroke-width="26" fill="none"/>
+<g stroke="#2e2723" stroke-width="14" fill="none"><path d="M0 120h600M0 210h600M140 0v400M300 0v400M460 0v400"/></g>
+<g stroke="#3a312b" stroke-width="5" fill="none"><path d="M0 60l600 60M220 0l-40 400M380 0l60 400"/></g>
+<g fill="#241e1b"><rect x="160" y="135" width="120" height="60" rx="6"/><rect x="320" y="20" width="120" height="85" rx="6"/><rect x="20" y="140" width="100" height="55" rx="6"/><rect x="480" y="135" width="100" height="60" rx="6"/></g>
+<text x="40" y="285" fill="#5d7f8f" font-size="13" font-family="Manrope" font-style="italic">Rochdale Canal</text>
+<text x="310" y="232" fill="#7d6f62" font-size="12" font-family="Manrope">CALDER ST</text>
+<text x="20" y="112" fill="#7d6f62" font-size="12" font-family="Manrope">GREAT ANCOATS ST</text>
+<circle cx="380" cy="160" r="44" fill="#f4a62a" fill-opacity=".15"/><circle cx="380" cy="160" r="22" fill="#f4a62a" fill-opacity=".3"/>
+<path d="M380 172c-14-16-20-26-20-34a20 20 0 0 1 40 0c0 8-6 18-20 34z" fill="#b3262a" stroke="#f6ecd9" stroke-width="2"/><circle cx="380" cy="138" r="7" fill="#f6ecd9"/>
+<rect x="404" y="120" width="128" height="30" rx="15" fill="#f6ecd9"/><text x="468" y="140" fill="#141110" font-size="13" font-weight="700" text-anchor="middle" font-family="Manrope">Saffron &amp; Salt</text>
+</svg></div>
+<div class="loc-info reveal">
+<div><h3>Address</h3><p>Unit 4, Kestrel Mill<br>42 Calder Street, Ancoats<br>Manchester M4 6DX</p></div>
+<div><h3>Getting here</h3><p>8 minutes' walk from Piccadilly or Shudehill. Nearest tram: New Islington. Bike racks by the door, step-free entrance on the canal side.</p></div>
+<div><h3>Contact</h3><p><a href="tel:+441610000427">0161 000 0427</a><br><a href="mailto:hello@saffronandsalt.example">hello@saffronandsalt.example</a></p></div>
+<div><a class="btn btn-saffron" href="#book">Book a table</a></div>
+</div></div>
+</div></section>
+</main>
+<footer><div class="wrap">
+<div class="f-top"><a class="logo" href="#top">Saffron <span>&amp;</span> Salt</a><nav class="f-links" aria-label="Footer"><a href="#menu">Menu</a><a href="#story">Our story</a><a href="#events">Private dining</a><a href="#book">Reservations</a><a href="#visit">Visit</a></nav></div>
+<div class="f-bot"><span>Designed &amp; developed by TMX Digital Solutions.</span><span>© 2026 Saffron &amp; Salt · Ancoats, Manchester</span></div>
+</div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"><b>✓</b><span id="toastMsg"></span></div>
+<script>
+(()=>{const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const nav=$('#nav');const sc=()=>nav.classList.toggle('scrolled',scrollY>20);addEventListener('scroll',sc,{passive:true});sc();
+const bg=$('#burger'),mn=$('#mnav');bg.addEventListener('click',()=>{const o=mn.classList.toggle('open');bg.setAttribute('aria-expanded',o);bg.setAttribute('aria-label',o?'Close menu':'Open menu')});mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mn.classList.remove('open');bg.setAttribute('aria-expanded','false')}));
+if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});$$('.reveal').forEach(el=>io.observe(el))}else $$('.reveal').forEach(el=>el.classList.add('in'));
+/* tabs */
+const tabs=[...$$('.tab')];const sel=t=>{tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;$('#'+x.getAttribute('aria-controls')).hidden=!on})};
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>sel(t));t.addEventListener('keydown',e=>{let n=null;if(e.key==='ArrowRight')n=(i+1)%tabs.length;if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;if(e.key==='Home')n=0;if(e.key==='End')n=tabs.length-1;if(n!==null){e.preventDefault();tabs[n].focus();sel(tabs[n])}})});
+/* hours: minutes from midnight, UK time */
+const H={0:[[720,1260]],1:[],2:[[1020,1350]],3:[[1020,1350]],4:[[1020,1350]],5:[[720,900],[1020,1410]],6:[[720,900],[1020,1410]]};
+const DN=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const fmt=m=>{let h=Math.floor(m/60),mm=m%60,ap=h>=12?'pm':'am';h=h%12||12;return h+(mm?':'+String(mm).padStart(2,'0'):'')+ap};
+const ukNow=()=>{try{const p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date());const g=k=>p.find(x=>x.type===k).value;return{d:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(g('weekday')),m:+g('hour')*60+ +g('minute')}}catch(e){const n=new Date();return{d:n.getDay(),m:n.getHours()*60+n.getMinutes()}}};
+const nextOpen=(d,m)=>{for(let k=0;k<8;k++){const dd=(d+k)%7;for(const [a] of H[dd]){if(k>0||a>m)return(k===0?'today':k===1?'tomorrow':DN[dd])+' at '+fmt(a)}}return''};
+const status=()=>{const {d,m}=ukNow();const r=H[d].find(([a,b])=>m>=a&&m<b);const open=!!r;let big,sub,pill;
+if(open){big='Open now';sub='Kitchen open until '+fmt(r[1])+' · last orders '+fmt(r[1]-45)+'.';pill='Open now · until '+fmt(r[1])}else{const n=nextOpen(d,m);big='Closed';sub='We open again '+n+'.';pill='Closed · opens '+n}
+const card=$('#nowCard');card.classList.toggle('is-open',open);card.classList.toggle('is-closed',!open);$('#nowBig').textContent=big;$('#nowSub').textContent=sub;
+const s=$('[data-status]');s.classList.toggle('is-open',open);s.classList.toggle('is-closed',!open);$('[data-status-text]').textContent=pill;
+$$('#hoursBody tr').forEach(tr=>tr.classList.toggle('today',+tr.dataset.d===d))};
+status();setInterval(status,60000);
+/* booking */
+const date=$('#date'),time=$('#time'),iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const today=new Date();today.setHours(0,0,0,0);const max=new Date(today);max.setDate(max.getDate()+60);date.min=iso(today);date.max=iso(max);
+const slots=()=>{const v=date.value;time.innerHTML='';if(!v){time.innerHTML='<option value="">Choose a date first</option>';return}
+const d=new Date(v+'T00:00');const r=H[d.getDay()];if(!r.length){time.innerHTML='<option value="">Closed on Mondays</option>';return}
+const isToday=iso(today)===v,nowM=new Date().getHours()*60+new Date().getMinutes();let opts='<option value="">Select a time</option>';
+r.forEach(([a,b])=>{for(let t=a;t<=b-90;t+=30){if(isToday&&t<nowM+60)continue;opts+='<option value="'+fmt(t)+'">'+fmt(t)+'</option>'}});time.innerHTML=opts===('<option value="">Select a time</option>')?'<option value="">No tables left today</option>':opts};
+date.addEventListener('change',slots);
+const setErr=(el,msg)=>{const e=$('#e-'+el.id);e.textContent=msg;msg?el.setAttribute('aria-invalid','true'):el.removeAttribute('aria-invalid');return !msg};
+$('#bookForm').addEventListener('submit',ev=>{ev.preventDefault();const f=ev.target;let ok=true,first=null;const chk=(el,msg)=>{if(!setErr(el,msg)){ok=false;first=first||el}};
+const dv=date.value,dd=dv?new Date(dv+'T00:00'):null;
+chk(date,!dv?'Pick a date.':dd<today?'That date has passed.':dd>max?'We take bookings up to 60 days ahead.':dd.getDay()===1?'We\'re closed on Mondays.':'');
+chk(time,!time.value?'Pick a time.':'');chk($('#guests'),!$('#guests').value?'How many guests?':'');
+const nm=$('#name').value.trim();chk($('#name'),nm.length<2?'Please enter your name.':'');
+const ph=$('#phone').value.replace(/[\s()-]/g,'');chk($('#phone'),!ph?'We need a number to text your confirmation.':!/^(\+44|0)7\d{9}$/.test(ph)&&!/^\+?\d{10,14}$/.test(ph)?'Enter a valid mobile, e.g. 07700 900123.':'');
+if(!ok){first.focus();return}
+const when=dd.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+toast('Table for '+$('#guests').value+' requested — '+when+' at '+time.value+'. We\'ll text '+nm.split(' ')[0]+' shortly.');f.reset();slots()});
+['date','time','guests','name','phone'].forEach(id=>$('#'+id).addEventListener('input',e=>setErr(e.target,'')));
+let tt;const toast=m=>{$('#toastMsg').textContent=m;$('#toast').classList.add('show');clearTimeout(tt);tt=setTimeout(()=>$('#toast').classList.remove('show'),5000)};
+})();
+</script>
+</body></html>

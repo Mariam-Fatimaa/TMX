@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f3eee3">
+<title>Inkwell — The headless CMS built for editors</title>
+<meta name="description" content="Inkwell is a headless CMS for editorial and content teams: a calm writing experience for editors, structured content models and a fast API for developers, with workflows, roles and Next.js support built in.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f3eee3;--paper2:#ebe4d5;--sheet:#fbf8f1;--ink:#15130f;--ink2:#3a362e;--muted:#5f594d;--rule:#cfc6b4;--red:#c8321b;--red-d:#a3260f;--red-s:#f6dcd3;--code:#1b1915;--code-t:#e9e3d6;--k:#ff8a6b;--s:#c6d98a;--n:#e9c46a;--c:#8f8879}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;background-image:radial-gradient(rgba(21,19,15,.045) 1px,transparent 1px);background-size:4px 4px}
+a{color:inherit}button,input{font:inherit;color:inherit}button{cursor:pointer}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.04;letter-spacing:-.02em;margin:0 0 .45em;font-optical-sizing:auto}
+p{margin:0 0 1em}
+:focus-visible{outline:2.5px solid var(--red);outline-offset:3px}
+.wrap{width:min(1220px,calc(100% - 40px));margin:0 auto}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.kicker{font:600 12px/1.2 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:10px 14px;z-index:99}.skip:focus{left:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1.5px solid var(--ink);padding:13px 22px;font-weight:600;text-decoration:none;transition:background .2s,color .2s,transform .2s;white-space:nowrap;background:transparent}
+.btn-red{background:var(--red);border-color:var(--red);color:#fff}.btn-red:hover{background:var(--red-d);border-color:var(--red-d)}
+.btn-ink{background:var(--ink);color:var(--paper)}.btn-ink:hover{background:var(--red);border-color:var(--red)}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+/* nav */
+.top{font:500 12px 'JetBrains Mono',monospace;border-bottom:1px solid var(--rule);color:var(--muted)}
+.top .wrap{display:flex;justify-content:space-between;gap:16px;padding:8px 0}
+.nav{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+.nav.scrolled{border-color:var(--ink);box-shadow:0 6px 0 -4px rgba(21,19,15,.06)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px;transition:height .3s}.nav.scrolled .nav-in{height:60px}
+.logo{font:italic 600 28px 'Fraunces',serif;text-decoration:none;letter-spacing:-.03em;display:flex;align-items:center;gap:8px}
+.logo i{width:10px;height:10px;border-radius:50% 50% 50% 0;background:var(--red);transform:rotate(-45deg);display:inline-block}
+.links{display:flex;gap:30px;font-size:15px;font-weight:500}.links a{text-decoration:none}.links a:hover{color:var(--red)}
+.nav-r{display:flex;gap:10px;align-items:center}
+.burger{display:none;width:44px;height:44px;border:1.5px solid var(--ink);background:transparent;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+.burger span{width:18px;height:1.5px;background:var(--ink);transition:.25s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}.burger[aria-expanded=true] span:nth-child(2){opacity:0}.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mmenu{display:none;border-top:1px solid var(--rule);padding:6px 20px 22px}.mmenu.open{display:grid}
+.mmenu a{font:600 24px 'Fraunces',serif;padding:12px 0;border-bottom:1px solid var(--rule);text-decoration:none}.mmenu .btn{margin-top:16px;font:600 16px 'Instrument Sans'}
+/* hero */
+.hero{padding:64px 0 56px;border-bottom:1px solid var(--ink)}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:end;margin-bottom:48px}
+.hero h1{font-size:clamp(46px,8.4vw,124px);font-weight:400;letter-spacing:-.045em;line-height:.92;margin:16px 0 0}
+.hero h1 em{color:var(--red);font-weight:400}
+.hero-side p{font-size:19px;color:var(--ink2);border-left:2px solid var(--red);padding-left:18px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+/* mockup */
+.split{display:grid;grid-template-columns:1.1fr 1fr;border:1.5px solid var(--ink);background:var(--sheet);box-shadow:12px 12px 0 var(--ink)}
+.pane-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--rule);font:500 12px 'JetBrains Mono',monospace;color:var(--muted);flex-wrap:wrap}
+.editor{border-right:1.5px solid var(--ink);display:flex;flex-direction:column}
+.tools{display:flex;gap:2px;padding:8px 12px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.tools span{min-width:32px;height:30px;display:grid;place-items:center;font-size:14px;color:var(--ink2);border-radius:4px;padding:0 6px}.tools span.on{background:var(--paper2);color:var(--ink)}
+.doc{padding:26px 30px 30px;flex:1}
+.status{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.status button{border:1px solid var(--rule);background:transparent;font:600 11px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:99px;color:var(--muted)}
+.status button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.f-label{display:block;font:500 11px 'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.ed-title{font:600 clamp(26px,2.6vw,36px)/1.1 'Fraunces',serif;letter-spacing:-.02em;outline:none;margin-bottom:16px;min-height:1.1em;border-radius:2px}
+.ed-dek{font:italic 400 18px/1.5 'Fraunces',serif;color:var(--ink2);outline:none;margin-bottom:18px}
+.ed-title:focus-visible,.ed-dek:focus-visible{outline:2px dashed var(--red);outline-offset:6px}
+.ed-body{font-size:15px;color:var(--ink2);border-top:1px solid var(--rule);padding-top:16px}
+.ed-body p:first-child::first-letter{font:600 46px/.8 'Fraunces',serif;float:left;margin:6px 8px 0 0;color:var(--red)}
+.ed-body blockquote{margin:14px 0 0;padding-left:14px;border-left:3px solid var(--red);font:italic 17px/1.45 'Fraunces',serif;color:var(--ink)}
+.caret{display:inline-block;width:2px;height:.9em;background:var(--red);margin-left:2px;vertical-align:-1px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.out{background:var(--code);color:var(--code-t);display:flex;flex-direction:column;min-width:0}
+.out .pane-h{border-color:#3a352c;color:#a59d8c}
+.live{display:inline-flex;align-items:center;gap:6px;color:var(--s)}.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--s);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.3}}
+pre{margin:0;font:13px/1.65 'JetBrains Mono',monospace;overflow-x:auto;white-space:pre;tab-size:2}
+.out pre{padding:20px 22px;flex:1}
+.k{color:var(--k)}.s{color:var(--s)}.n{color:var(--n)}.c{color:var(--c)}
+.flash{background:rgba(198,217,138,.18);border-radius:2px;transition:background .6s}
+/* logos */
+.press{border-bottom:1px solid var(--rule);padding:30px 0}
+.press .wrap{display:flex;align-items:center;gap:16px 34px;flex-wrap:wrap;justify-content:space-between}
+.press small{font:500 12px 'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.press span{font-family:'Fraunces',serif;font-size:21px;color:var(--ink2)}
+.press span:nth-of-type(2){font-style:italic}.press span:nth-of-type(3){font:700 15px 'Instrument Sans';letter-spacing:.22em}.press span:nth-of-type(5){font-weight:800;letter-spacing:-.04em}
+/* sections */
+section{padding:100px 0}
+.sec-h{display:grid;grid-template-columns:200px 1fr;gap:30px;margin-bottom:50px;border-top:1px solid var(--ink);padding-top:18px}
+.sec-h h2{font-size:clamp(34px,4.8vw,64px);font-weight:400;letter-spacing:-.035em;max-width:880px}.sec-h h2 em{color:var(--red)}
+.sec-h p{color:var(--muted);font-size:18px;max-width:640px;margin:0}
+/* model tabs */
+.model{display:grid;grid-template-columns:280px 1fr;border:1.5px solid var(--ink);background:var(--sheet)}
+.mtabs{border-right:1.5px solid var(--ink);display:flex;flex-direction:column}
+.mtab{text-align:left;border:0;border-bottom:1px solid var(--rule);background:transparent;padding:20px 22px;display:grid;gap:4px}
+.mtab b{font:600 22px 'Fraunces',serif}.mtab span{font-size:14px;color:var(--muted)}
+.mtab[aria-selected=true]{background:var(--ink);color:var(--paper)}.mtab[aria-selected=true] span{color:#cfc6b4}
+.mpanel{padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:26px}.mpanel[hidden]{display:none}
+.fields{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.fields li{display:flex;justify-content:space-between;gap:12px;padding:12px 2px;border-bottom:1px solid var(--rule);font-size:15px}
+.fields code{font:12px 'JetBrains Mono',monospace;background:var(--paper2);padding:3px 8px;border-radius:3px;color:var(--ink2);white-space:nowrap}
+.fields li i{font-style:normal;color:var(--red);font-weight:700}
+.mpanel pre{background:var(--code);color:var(--code-t);padding:18px;font-size:12.5px;align-self:start}
+/* workflow */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);border:1.5px solid var(--ink);margin-bottom:24px;background:var(--sheet)}
+.stage{padding:22px 20px;border-right:1px solid var(--rule);position:relative}.stage:last-child{border:0}
+.stage .mono{font-size:11px;color:var(--muted)}.stage h3{font-size:24px;margin:8px 0 6px}.stage p{font-size:14px;color:var(--muted);margin:0}
+.stage.now{background:var(--red-s)}.stage.now .mono{color:var(--red-d)}
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.role{border-top:3px solid var(--ink);padding-top:16px}.role h3{font-size:22px}.role p{color:var(--muted);font-size:15px;margin:0}
+.role .perm{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.role .perm span{font:11px 'JetBrains Mono',monospace;border:1px solid var(--rule);padding:3px 7px}
+/* integrations */
+.ints{background:var(--ink);color:var(--paper);padding:100px 0}
+.ints .sec-h{border-color:var(--paper)}.ints .sec-h p{color:#bdb4a2}.ints .kicker{color:#ff7a5c}
+.badges{display:flex;flex-wrap:wrap;gap:12px}
+.badges span{font:500 16px 'JetBrains Mono',monospace;border:1px solid #57514a;padding:12px 18px;transition:border-color .2s,background .2s}
+.badges span:hover{border-color:#ff7a5c;background:#221f1a}
+.badges span b{color:#ff7a5c;font-weight:600;margin-right:6px}
+.codeblock{margin-top:50px;border:1px solid #57514a;background:#0f0e0b}
+.ctabs{display:flex;border-bottom:1px solid #57514a;align-items:stretch;overflow-x:auto}
+.ctab{background:transparent;border:0;border-right:1px solid #57514a;color:#bdb4a2;padding:14px 20px;font:500 13px 'JetBrains Mono',monospace;white-space:nowrap}
+.ctab[aria-selected=true]{color:#fff;background:#1d1a15;box-shadow:inset 0 -2px 0 #ff7a5c}
+.copy{margin-left:auto;background:transparent;border:0;border-left:1px solid #57514a;color:#bdb4a2;padding:14px 20px;font:500 13px 'JetBrains Mono',monospace}.copy:hover{color:#fff}
+.codeblock pre{padding:24px;color:var(--code-t);font-size:14px}.codeblock pre[hidden]{display:none}
+/* metrics */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+.stat{padding:34px 26px;border-right:1px solid var(--rule)}.stat:last-child{border:0}
+.stat b{display:block;font:400 clamp(46px,5.6vw,80px)/1 'Fraunces',serif;letter-spacing:-.04em}.stat b sup{font-size:.4em;color:var(--red);vertical-align:1.1em}
+.stat>span{display:block;color:var(--muted);margin-top:10px;font-size:15px}
+/* quotes */
+.quotes{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+.quote{margin:0}.quote blockquote{margin:0 0 20px;font:400 clamp(24px,2.6vw,34px)/1.25 'Fraunces',serif;letter-spacing:-.015em}
+.quote blockquote::before{content:"“";display:block;font-size:80px;line-height:.7;color:var(--red)}
+.quote figcaption{font-size:15px;color:var(--muted)}.quote figcaption b{color:var(--ink)}
+.quote.sm blockquote{font-size:22px}.side{display:grid;gap:34px;border-left:1px solid var(--rule);padding-left:40px}
+/* pricing */
+.toggle{display:flex;align-items:center;gap:12px;font-weight:600;margin-bottom:30px}
+.switch{width:56px;height:30px;border:1.5px solid var(--ink);background:var(--sheet);position:relative;padding:0;border-radius:99px}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:var(--ink);transition:transform .25s}
+.switch[aria-checked=true]{background:var(--red-s)}.switch[aria-checked=true]::after{transform:translateX(26px);background:var(--red)}
+.save{font:600 12px 'JetBrains Mono',monospace;color:var(--red-d);border:1px dashed var(--red);padding:3px 8px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--ink);background:var(--sheet)}
+.plan{padding:34px 30px;border-right:1px solid var(--rule);display:flex;flex-direction:column}.plan:last-child{border:0}
+.plan.pop{background:var(--ink);color:var(--paper)}
+.plan h3{font-size:30px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}.plan h3 small{font:600 11px 'JetBrains Mono',monospace;color:#ff7a5c;letter-spacing:.08em;text-transform:uppercase}
+.plan .d{color:var(--muted);font-size:15px}.plan.pop .d,.plan.pop .per,.plan.pop li{color:#cfc6b4}
+.price{font:400 60px/1 'Fraunces',serif;letter-spacing:-.04em;margin:12px 0 6px}.per{font-size:14px;color:var(--muted);margin-bottom:24px}
+.plan ul{list-style:none;padding:0;margin:0 0 28px;font-size:15px}.plan li{padding:8px 0;border-bottom:1px dotted var(--rule)}.plan.pop li{border-color:#4a453c}
+.plan li::before{content:"→ ";color:var(--red);font-family:'JetBrains Mono'}.plan.pop li::before{color:#ff7a5c}
+.plan .btn{margin-top:auto}.plan.pop .btn{border-color:var(--paper);color:var(--paper)}.plan.pop .btn:hover{background:var(--red);border-color:var(--red)}
+/* faq */
+.faq{max-width:900px;margin-left:230px}
+.qa{border-bottom:1px solid var(--rule)}.qa:first-child{border-top:1px solid var(--rule)}.qa h3{margin:0;font-size:inherit}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;border:0;background:none;text-align:left;padding:22px 0;font:400 23px/1.3 'Fraunces',serif;letter-spacing:-.01em}
+.qa button::after{content:"+";font:400 26px 'JetBrains Mono',monospace;color:var(--red);transition:transform .3s;flex:0 0 auto}
+.qa button[aria-expanded=true]::after{transform:rotate(45deg)}
+.ans{overflow:hidden;transition:height .3s}.ans p{margin:0;padding:0 0 22px;color:var(--muted);max-width:720px}
+html.js .ans{height:0}
+/* cta */
+.cta{border:1.5px solid var(--ink);background:var(--sheet);padding:70px 50px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;box-shadow:12px 12px 0 var(--red)}
+.cta h2{font-size:clamp(38px,5.4vw,76px);font-weight:400;letter-spacing:-.04em;margin:0}.cta h2 em{color:var(--red)}
+.signup{display:flex;border:1.5px solid var(--ink);background:#fff}
+.signup input{flex:1;min-width:0;border:0;padding:15px 16px;background:transparent;font-size:16px;outline:none}
+.signup .btn{border:0;border-left:1.5px solid var(--ink)}
+.signup:focus-within{box-shadow:0 0 0 3px var(--red-s)}.signup.invalid{border-color:var(--red);animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.form-msg{min-height:22px;margin-top:8px;font-size:14px;font-weight:600;color:var(--red-d)}
+.fine{font-size:14px;color:var(--muted);margin:0}
+footer{border-top:1.5px solid var(--ink);padding:60px 0 36px}
+.foot{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:30px}
+.foot h4{font:600 12px 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;margin:0 0 14px;color:var(--muted)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}.foot ul a{text-decoration:none}.foot ul a:hover{color:var(--red)}
+.foot p{color:var(--muted);max-width:300px;margin-top:12px}
+.credit{margin-top:50px;padding-top:20px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:500 12px 'JetBrains Mono',monospace;color:var(--muted)}
+.toast{position:fixed;right:24px;bottom:24px;background:var(--ink);color:var(--paper);padding:16px 20px;border-left:4px solid var(--red);transform:translateY(160%);transition:transform .4s cubic-bezier(.2,.9,.3,1.2);z-index:100;max-width:calc(100% - 32px);font-weight:500}
+.toast.show{transform:none}.toast b{font-family:'Fraunces';font-style:italic;font-weight:600;margin-right:6px}
+html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}html.js .reveal.in{opacity:1;transform:none}
+@media (max-width:1000px){.links,.nav-r .btn-line{display:none}.burger{display:flex}.hero-grid{grid-template-columns:1fr;gap:24px}.split{grid-template-columns:1fr}.editor{border-right:0;border-bottom:1.5px solid var(--ink)}.sec-h{grid-template-columns:1fr;gap:10px}.model{grid-template-columns:1fr}.mtabs{flex-direction:row;border-right:0;border-bottom:1.5px solid var(--ink);overflow-x:auto}.mtab{flex:1 0 auto;border-bottom:0;border-right:1px solid var(--rule)}.mpanel{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.stage{border-bottom:1px solid var(--rule)}.stage:last-child{grid-column:1/-1}.roles{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--rule)}.quotes{grid-template-columns:1fr}.side{border-left:0;padding-left:0;border-top:1px solid var(--rule);padding-top:30px}.plans{grid-template-columns:1fr}.plan{border-right:0;border-bottom:1px solid var(--rule)}.faq{margin-left:0}.cta{grid-template-columns:1fr;padding:44px 28px}.foot{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){section,.ints{padding:72px 0}.top .wrap span:last-child{display:none}.nav-r .btn-red{display:none}.hero{padding-top:40px}.doc{padding:20px}.split{box-shadow:6px 6px 0 var(--ink)}.out pre{padding:16px;font-size:12px}.mtab{padding:14px 16px}.mtab span{display:none}.mpanel{padding:18px}.flow{grid-template-columns:1fr}.stage{border-right:0}.roles{grid-template-columns:1fr}.stat{padding:24px 14px}.cta{box-shadow:6px 6px 0 var(--red);padding:36px 20px}.signup{flex-direction:column}.signup .btn{border-left:0;border-top:1.5px solid var(--ink)}.foot>div:first-child{grid-column:1/-1}.toast{right:16px;left:16px}.codeblock pre{font-size:12.5px;padding:18px}.badges span{font-size:14px;padding:10px 14px}.press span{font-size:18px}.press .wrap{justify-content:flex-start;gap:14px 28px}.press small{width:100%}.hide-m{display:none}.ctab,.copy{padding:12px 14px}.out pre,.mpanel pre{white-space:pre-wrap;word-break:break-word}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}html.js .reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="top"><div class="wrap"><span>Vol. 4 · Release 4.2 is out — scheduled publishing across time zones</span><span>Est. 2021 · Status: all systems normal</span></div></div>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#" class="logo" aria-label="Inkwell home"><i aria-hidden="true"></i>Inkwell</a>
+    <nav class="links" aria-label="Primary"><a href="#modelling">Modelling</a><a href="#workflow">Workflow</a><a href="#developers">Developers</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+    <div class="nav-r"><a href="#" class="btn btn-line">Docs</a><a href="#start" class="btn btn-red">Start writing</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button></div>
+  </div>
+  <nav class="mmenu" id="mmenu" aria-label="Mobile"><a href="#modelling">Modelling</a><a href="#workflow">Workflow</a><a href="#developers">Developers</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#start" class="btn btn-red">Start writing for free</a></nav>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div><span class="kicker">The headless CMS for editorial teams</span>
+        <h1 id="hero-h">Write like a newsroom. Ship like an <em>API.</em></h1></div>
+      <div class="hero-side">
+        <p>Inkwell gives editors a calm, focused place to write and gives developers clean, structured content over a fast API. One story, published to your site, app and newsletter at once.</p>
+        <div class="hero-cta"><a href="#start" class="btn btn-ink">Start free</a><a href="#developers" class="btn btn-line">See the API →</a></div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="editor">
+        <div class="pane-h"><span>stories / climate / draft-0412</span><span>Saved · 2 editors here</span></div>
+        <div class="tools" aria-hidden="true"><span class="on"><b>B</b></span><span><i>I</i></span><span>H2</span><span>❝</span><span>🔗</span><span>▦</span><span>{ }</span></div>
+        <div class="doc">
+          <div class="status" role="group" aria-label="Story status">
+            <button type="button" aria-pressed="false" data-status="draft">Draft</button>
+            <button type="button" aria-pressed="true" data-status="in_review">In review</button>
+            <button type="button" aria-pressed="false" data-status="scheduled">Scheduled</button>
+          </div>
+          <span class="f-label" id="lt">Headline · try editing it</span>
+          <div class="ed-title" id="edTitle" contenteditable="true" role="textbox" aria-labelledby="lt" spellcheck="false">The quiet return of the river otter</div>
+          <span class="f-label" id="ld">Standfirst</span>
+          <div class="ed-dek" id="edDek" contenteditable="true" role="textbox" aria-labelledby="ld" spellcheck="false">After forty years away, otters are back on the Calder, and the people who never stopped looking are not surprised.</div>
+          <div class="ed-body"><p>The first sighting came on a wet Tuesday in March, a ripple and a whiskered head below the old mill weir. Within a month, volunteers had logged eleven more.</p><blockquote>“We kept the water clean for them before they came back.”</blockquote></div>
+        </div>
+      </div>
+      <div class="out" aria-label="Live API response">
+        <div class="pane-h"><span>GET /v1/stories/draft-0412</span><span class="live">live preview</span></div>
+<pre id="json"><span class="c">// 200 OK · 38 ms · edge: lhr</span>
+{
+  <span class="k">"id"</span>: <span class="s">"draft-0412"</span>,
+  <span class="k">"type"</span>: <span class="s">"article"</span>,
+  <span class="k">"status"</span>: <span class="s">"in_review"</span>,
+  <span class="k">"headline"</span>: <span class="s">"The quiet return of the river otter"</span>,
+  <span class="k">"slug"</span>: <span class="s">"the-quiet-return-of-the-river-otter"</span>,
+  <span class="k">"standfirst"</span>: <span class="s">"After forty years away, otters are back..."</span>,
+  <span class="k">"section"</span>: <span class="s">"climate"</span>,
+  <span class="k">"author"</span>: { <span class="k">"name"</span>: <span class="s">"Isla Brennan"</span> },
+  <span class="k">"wordCount"</span>: <span class="n">1240</span>
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="press reveal"><div class="wrap"><small>Trusted by 420 publishers</small><span>The Halden Review</span><span>Northline Weekly</span><span>FIELDNOTES</span><span>Cask &amp; Kettle</span><span>meridian.</span></div></div>
+
+<section id="modelling" aria-labelledby="mod-h">
+  <div class="wrap">
+    <div class="sec-h reveal"><span class="kicker">01 — Content modelling</span><div><h2 id="mod-h">Model your content the way your <em>desk</em> thinks about it.</h2><p>Define articles, authors, recipes or live blogs as typed models with references, validation and reusable blocks. No developer needed for a new field.</p></div></div>
+    <div class="model reveal">
+      <div class="mtabs" role="tablist" aria-label="Example content models">
+        <button class="mtab" role="tab" id="mt1" aria-selected="true" aria-controls="mp1"><b>Article</b><span>12 fields · 3 references</span></button>
+        <button class="mtab" role="tab" id="mt2" aria-selected="false" aria-controls="mp2" tabindex="-1"><b>Author</b><span>7 fields · bylines and bios</span></button>
+        <button class="mtab" role="tab" id="mt3" aria-selected="false" aria-controls="mp3" tabindex="-1"><b>Recipe</b><span>9 fields · structured steps</span></button>
+      </div>
+      <div class="mpanel" role="tabpanel" id="mp1" aria-labelledby="mt1">
+        <ul class="fields"><li><span>Headline <i>*</i></span><code>text · max 90</code></li><li><span>Standfirst</span><code>text · max 240</code></li><li><span>Body</span><code>rich text · blocks</code></li><li><span>Author <i>*</i></span><code>ref → Author[]</code></li><li><span>Section</span><code>enum</code></li><li><span>Hero image</span><code>asset · alt required</code></li><li><span>Embargo until</span><code>datetime · tz</code></li></ul>
+<pre><span class="k">model</span> Article {
+  headline   <span class="n">Text</span>     <span class="c">@required @max(90)</span>
+  standfirst <span class="n">Text</span>     <span class="c">@max(240)</span>
+  body       <span class="n">RichText</span> <span class="c">@blocks(quote, image, embed)</span>
+  authors    <span class="n">Author[]</span> <span class="c">@required</span>
+  section    <span class="n">Section</span>
+  hero       <span class="n">Asset</span>    <span class="c">@alt</span>
+  embargo    <span class="n">DateTime</span> <span class="c">@timezone</span>
+}</pre>
+      </div>
+      <div class="mpanel" role="tabpanel" id="mp2" aria-labelledby="mt2" hidden>
+        <ul class="fields"><li><span>Full name <i>*</i></span><code>text</code></li><li><span>Byline</span><code>text · max 40</code></li><li><span>Short bio</span><code>rich text · 280</code></li><li><span>Portrait</span><code>asset · 1:1 crop</code></li><li><span>Desk</span><code>enum</code></li><li><span>Socials</span><code>url[]</code></li></ul>
+<pre><span class="k">model</span> Author {
+  name     <span class="n">Text</span>     <span class="c">@required</span>
+  byline   <span class="n">Text</span>     <span class="c">@max(40)</span>
+  bio      <span class="n">RichText</span> <span class="c">@max(280)</span>
+  portrait <span class="n">Asset</span>    <span class="c">@crop(1:1)</span>
+  desk     <span class="n">Desk</span>
+  socials  <span class="n">Url[]</span>
+}</pre>
+      </div>
+      <div class="mpanel" role="tabpanel" id="mp3" aria-labelledby="mt3" hidden>
+        <ul class="fields"><li><span>Title <i>*</i></span><code>text</code></li><li><span>Serves</span><code>number · 1–24</code></li><li><span>Ingredients</span><code>list → Ingredient</code></li><li><span>Method</span><code>steps[] · rich text</code></li><li><span>Diet tags</span><code>enum[]</code></li><li><span>Total time</span><code>duration</code></li></ul>
+<pre><span class="k">model</span> Recipe {
+  title       <span class="n">Text</span>         <span class="c">@required</span>
+  serves      <span class="n">Int</span>          <span class="c">@range(1, 24)</span>
+  ingredients <span class="n">Ingredient[]</span>
+  method      <span class="n">Step[]</span>
+  diet        <span class="n">DietTag[]</span>
+  totalTime   <span class="n">Duration</span>
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="workflow" style="padding-top:0" aria-labelledby="wf-h">
+  <div class="wrap">
+    <div class="sec-h reveal"><span class="kicker">02 — Workflow &amp; roles</span><div><h2 id="wf-h">From first draft to front page, with <em>nobody</em> skipping legal.</h2><p>Build the stages your newsroom already uses. Each move is logged, every version is kept, and only the right people can press publish.</p></div></div>
+    <div class="flow reveal" aria-label="Example editorial workflow">
+      <div class="stage"><span class="mono">STAGE 1</span><h3>Draft</h3><p>Writers work in private, with comments and suggestions.</p></div>
+      <div class="stage now"><span class="mono">STAGE 2 · 3 STORIES</span><h3>Edit</h3><p>Section editors tighten copy and check facts.</p></div>
+      <div class="stage"><span class="mono">STAGE 3</span><h3>Legal</h3><p>Flag stories for a lawyer before they move on.</p></div>
+      <div class="stage"><span class="mono">STAGE 4</span><h3>Scheduled</h3><p>Embargoes honoured to the minute, in any time zone.</p></div>
+      <div class="stage"><span class="mono">STAGE 5</span><h3>Published</h3><p>Pushed to web, app and newsletter by webhook.</p></div>
+    </div>
+    <div class="roles">
+      <div class="role reveal"><h3>Writer</h3><p>Creates drafts and suggests edits on their own stories.</p><div class="perm"><span>create</span><span>comment</span></div></div>
+      <div class="role reveal"><h3>Editor</h3><p>Edits any story in their section and moves it forward.</p><div class="perm"><span>edit</span><span>approve</span><span>schedule</span></div></div>
+      <div class="role reveal"><h3>Legal</h3><p>Reviews flagged stories and can block publication.</p><div class="perm"><span>review</span><span>block</span></div></div>
+      <div class="role reveal"><h3>Admin</h3><p>Manages models, roles, SSO and API tokens.</p><div class="perm"><span>models</span><span>roles</span><span>tokens</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ints" id="developers" aria-labelledby="dev-h">
+  <div class="wrap">
+    <div class="sec-h reveal"><span class="kicker">03 — For developers</span><div><h2 id="dev-h">Typed content, any framework, at the edge.</h2><p>REST and GraphQL APIs served from 280 edge locations, a typed SDK generated from your models, and webhooks for everything else.</p></div></div>
+    <div class="badges reveal" aria-label="Integrations">
+      <span><b>▲</b>Next.js</span><span><b>◆</b>Astro</span><span><b>●</b>Nuxt</span><span><b>◇</b>SvelteKit</span><span><b>▲</b>Vercel</span><span><b>■</b>Netlify</span><span><b>⌘</b>Algolia</span><span><b>✉</b>Mailchimp</span><span><b>#</b>Slack</span><span><b>◎</b>Cloudinary</span><span><b>⇄</b>Webhooks</span><span><b>{}</b>GraphQL</span>
+    </div>
+    <div class="codeblock reveal">
+      <div class="ctabs" role="tablist" aria-label="Code examples">
+        <button class="ctab" role="tab" id="ct1" aria-selected="true" aria-controls="cp1"><span class="hide-m">app/stories/[slug]/</span>page.tsx</button>
+        <button class="ctab" role="tab" id="ct2" aria-selected="false" aria-controls="cp2" tabindex="-1">REST</button>
+        <button class="ctab" role="tab" id="ct3" aria-selected="false" aria-controls="cp3" tabindex="-1">GraphQL</button>
+        <button class="copy" id="copy" type="button">Copy</button>
+      </div>
+<pre role="tabpanel" id="cp1" aria-labelledby="ct1"><span class="k">import</span> { inkwell } <span class="k">from</span> <span class="s">"@inkwell/next"</span>;
+
+<span class="k">export const</span> revalidate = <span class="n">60</span>; <span class="c">// or revalidate on publish via webhook</span>
+
+<span class="k">export default async function</span> Story({ params }) {
+  <span class="k">const</span> { slug } = <span class="k">await</span> params;
+  <span class="k">const</span> story = <span class="k">await</span> inkwell.article.get({ slug, include: [<span class="s">"authors"</span>] });
+
+  <span class="k">return</span> (
+    &lt;article&gt;
+      &lt;h1&gt;{story.headline}&lt;/h1&gt;
+      &lt;Byline authors={story.authors} /&gt;
+      &lt;RichText value={story.body} /&gt;
+    &lt;/article&gt;
+  );
+}</pre>
+<pre role="tabpanel" id="cp2" aria-labelledby="ct2" hidden>curl https://api.inkwell.so/v1/stories?section=climate&amp;status=published \
+  -H <span class="s">"Authorization: Bearer $INKWELL_TOKEN"</span>
+
+<span class="c"># 200 OK · cached at edge · 24 ms</span>
+{ <span class="k">"data"</span>: [ { <span class="k">"id"</span>: <span class="s">"st_9f2a"</span>, <span class="k">"headline"</span>: <span class="s">"The quiet return of the river otter"</span> } ],
+  <span class="k">"next"</span>: <span class="s">"cursor_Mzg"</span> }</pre>
+<pre role="tabpanel" id="cp3" aria-labelledby="ct3" hidden><span class="k">query</span> LatestClimate {
+  articles(where: { section: CLIMATE }, first: <span class="n">6</span>, orderBy: PUBLISHED_DESC) {
+    headline
+    slug
+    standfirst
+    authors { name byline }
+    hero { url(width: <span class="n">1200</span>, format: AVIF) alt }
+  }
+}</pre>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="st-h">
+  <div class="wrap">
+    <h2 id="st-h" class="sr">Inkwell in numbers</h2>
+    <div class="stats reveal">
+      <div class="stat"><b><span data-count="38">38</span><sup>ms</sup></b><span>median API response, worldwide</span></div>
+      <div class="stat"><b><span data-count="420">420</span></b><span>publishers and content teams</span></div>
+      <div class="stat"><b><span data-count="3.1" data-dec="1">3.1</span><sup>m</sup></b><span>stories published last year</span></div>
+      <div class="stat"><b><span data-count="99.99" data-dec="2">99.99</span><sup>%</sup></b><span>uptime over 12 months</span></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0" aria-labelledby="q-h">
+  <div class="wrap">
+    <div class="sec-h reveal"><span class="kicker">04 — Letters to the editor</span><h2 id="q-h">What the desks are saying.</h2></div>
+    <div class="quotes">
+      <figure class="quote reveal"><blockquote>Our editors stopped asking for “the old system” in week two. Developers got typed content and our homepage got twice as fast.</blockquote><figcaption><b>Margot Achterberg</b> · Managing Editor, Northline Weekly</figcaption></figure>
+      <div class="side">
+        <figure class="quote sm reveal"><blockquote>Embargoes across three time zones used to be a spreadsheet. Now it’s a field.</blockquote><figcaption><b>Samir Haddad</b> · Digital Lead, The Halden Review</figcaption></figure>
+        <figure class="quote sm reveal"><blockquote>We modelled 14 years of recipes in an afternoon and fed them straight into Next.js.</blockquote><figcaption><b>Freya Lund</b> · Head of Product, Cask &amp; Kettle</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="padding-top:0" aria-labelledby="pr-h">
+  <div class="wrap">
+    <div class="sec-h reveal"><span class="kicker">05 — Pricing</span><div><h2 id="pr-h">Priced per workspace, not per word.</h2><p>Unlimited readers and API calls on every paid plan. Pay for the people writing and the models you need.</p></div></div>
+    <div class="toggle reveal"><span id="lm">Monthly</span><button class="switch" id="billing" role="switch" aria-checked="false" aria-labelledby="lm ly"></button><span id="ly">Yearly</span><span class="save">2 months free</span></div>
+    <div class="plans reveal">
+      <div class="plan"><h3>Pamphlet</h3><p class="d">For a blog, a small magazine or a side project.</p><div class="price">$<span data-m="0" data-y="0">0</span></div><div class="per" data-per data-free>free forever</div><ul><li>3 seats</li><li>10 content models</li><li>REST and GraphQL API</li><li>Community support</li></ul><a href="#start" class="btn btn-line">Start free</a></div>
+      <div class="plan pop"><h3>Newsroom <small>Most chosen</small></h3><p class="d">For editorial teams publishing every day.</p><div class="price">$<span data-m="290" data-y="242">290</span></div><div class="per" data-per>per month, billed monthly</div><ul><li>25 seats, then $12 each</li><li>Custom workflows and roles</li><li>Scheduling and embargoes</li><li>Version history, 2 years</li><li>Next.js preview mode</li></ul><a href="#start" class="btn">Start 30-day trial</a></div>
+      <div class="plan"><h3>Syndicate</h3><p class="d">For groups running many titles and regions.</p><div class="price">$<span data-m="1,200" data-y="1,000">1,200</span></div><div class="per" data-per>per month, billed monthly</div><ul><li>Unlimited seats and titles</li><li>SSO, SCIM and audit log</li><li>Content localisation</li><li>99.99% uptime SLA</li><li>Migration help included</li></ul><a href="#start" class="btn btn-line">Talk to us</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="sec-h reveal"><span class="kicker">06 — FAQ</span><h2 id="faq-h">Small print, in large type.</h2></div>
+    <div class="faq reveal">
+      <div class="qa"><h3><button id="q1" aria-expanded="false" aria-controls="a1">Can we migrate from WordPress or Contentful?</button></h3><div class="ans" id="a1" role="region" aria-labelledby="q1"><p>Yes. Importers map WordPress posts, categories and media, and Contentful content types, into Inkwell models. Redirects are generated for every old URL.</p></div></div>
+      <div class="qa"><h3><button id="q2" aria-expanded="false" aria-controls="a2">Do editors need to know anything technical?</button></h3><div class="ans" id="a2" role="region" aria-labelledby="q2"><p>No. Editors see a clean writing screen with a live preview of the real page. Models and fields are set up once by an admin.</p></div></div>
+      <div class="qa"><h3><button id="q3" aria-expanded="false" aria-controls="a3">How does preview work with Next.js?</button></h3><div class="ans" id="a3" role="region" aria-labelledby="q3"><p>The <code class="mono">@inkwell/next</code> package enables draft mode, so editors can open any unpublished story on your real site. Publishing triggers on-demand revalidation.</p></div></div>
+      <div class="qa"><h3><button id="q4" aria-expanded="false" aria-controls="a4">Where is our content stored?</button></h3><div class="ans" id="a4" role="region" aria-labelledby="q4"><p>In the EU or US region you choose at sign-up, with daily backups kept for 35 days. You can export everything as JSON at any time.</p></div></div>
+      <div class="qa"><h3><button id="q5" aria-expanded="false" aria-controls="a5">Is there a limit on API calls?</button></h3><div class="ans" id="a5" role="region" aria-labelledby="q5"><p>Not on paid plans. The free plan includes 500,000 calls a month, which is enough for most blogs and small magazines.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="start" style="padding-top:0" aria-labelledby="cta-h">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2 id="cta-h">Your next edition starts <em>here.</em></h2>
+      <div>
+        <p style="font-size:18px;color:var(--ink2)">Create a workspace in a minute. Bring your team, model your first story type, and publish by the afternoon.</p>
+        <form class="signup" novalidate data-signup><label class="sr" for="email">Work email</label><input id="email" type="email" placeholder="editor@publication.com" autocomplete="email" required><button class="btn btn-red" type="submit">Start writing</button></form>
+        <div class="form-msg" role="alert" aria-live="polite"></div>
+        <p class="fine">Free for up to 3 seats · No card required</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><a href="#" class="logo"><i aria-hidden="true"></i>Inkwell</a><p>The headless CMS for people who care about words, and the developers who ship them.</p></div>
+      <div><h4>Product</h4><ul><li><a href="#modelling">Modelling</a></li><li><a href="#workflow">Workflow</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#">Changelog</a></li></ul></div>
+      <div><h4>Developers</h4><ul><li><a href="#developers">API reference</a></li><li><a href="#developers">Next.js guide</a></li><li><a href="#">SDKs</a></li><li><a href="#">Status</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Security</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="credit"><span>Designed &amp; developed by TMX Digital Solutions.</span><span>Think • Make • eXecute</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><b>Stop the press.</b><span id="toastMsg">You’re in.</span></div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(s, c){return (c||document).querySelector(s)}, $$ = function(s, c){return [].slice.call((c||document).querySelectorAll(s))};
+
+  var nav = $('#nav');
+  function onScroll(){ nav.classList.toggle('scrolled', scrollY > 40) }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  var burger = $('#burger'), menu = $('#mmenu');
+  function setMenu(o){ menu.classList.toggle('open', o); burger.setAttribute('aria-expanded', String(o)); burger.setAttribute('aria-label', o ? 'Close menu' : 'Open menu') }
+  burger.addEventListener('click', function(){ setMenu(!menu.classList.contains('open')) });
+  $$('a', menu).forEach(function(a){ a.addEventListener('click', function(){ setMenu(false) }) });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && menu.classList.contains('open')){ setMenu(false); burger.focus() } });
+
+  // live editor -> JSON
+  var title = $('#edTitle'), dek = $('#edDek'), json = $('#json'), status = 'in_review';
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'\\"') }
+  function slug(s){ return s.toLowerCase().normalize('NFKD').replace(/[^\w\s-]/g,'').trim().replace(/\s+/g,'-').slice(0,60) || 'untitled' }
+  function short(s){ return s.length > 44 ? s.slice(0,44).trim() + '...' : s }
+  var prev = {};
+  function render(){
+    var h = title.textContent.replace(/\s+/g,' ').trim(), d = dek.textContent.replace(/\s+/g,' ').trim();
+    var vals = {status:status, headline:h, slug:slug(h), standfirst:short(d)};
+    var L = function(k){ var v = '<span class="s">"' + esc(vals[k]) + '"</span>'; return prev[k] !== undefined && prev[k] !== vals[k] ? '<span class="flash">' + v + '</span>' : v };
+    json.innerHTML = '<span class="c">// 200 OK · ' + (30 + Math.floor(Math.random()*14)) + ' ms · edge: lhr</span>\n{\n' +
+      '  <span class="k">"id"</span>: <span class="s">"draft-0412"</span>,\n  <span class="k">"type"</span>: <span class="s">"article"</span>,\n' +
+      '  <span class="k">"status"</span>: ' + L('status') + ',\n  <span class="k">"headline"</span>: ' + L('headline') + ',\n' +
+      '  <span class="k">"slug"</span>: ' + L('slug') + ',\n  <span class="k">"standfirst"</span>: ' + L('standfirst') + ',\n' +
+      '  <span class="k">"section"</span>: <span class="s">"climate"</span>,\n  <span class="k">"author"</span>: { <span class="k">"name"</span>: <span class="s">"Isla Brennan"</span> },\n' +
+      '  <span class="k">"wordCount"</span>: <span class="n">1240</span>,\n  <span class="k">"updatedAt"</span>: <span class="s">"' + new Date().toISOString().slice(0,19) + 'Z"</span>\n}';
+    prev = vals;
+    clearTimeout(render.t); render.t = setTimeout(function(){ $$('.flash', json).forEach(function(f){ f.style.background = 'transparent' }) }, 700);
+  }
+  [title, dek].forEach(function(el){
+    el.addEventListener('input', function(){ stopDemo(); render() });
+    el.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault() } });
+  });
+  $$('.status button').forEach(function(b){ b.addEventListener('click', function(){
+    stopDemo(); $$('.status button').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)) }); status = b.dataset.status; render() }) });
+
+  // auto demo: retype headline and swap between versions
+  var heads = ['The quiet return of the river otter', 'Otters are back on the Calder after forty years', 'Forty years on, the otters came home'], hi = 0, demoT, running = !reduce;
+  function stopDemo(){ if(running){ running = false; clearTimeout(demoT); var c = $('.caret', title); if(c) c.remove() } }
+  function typeHead(text, i){
+    if(!running) return;
+    title.textContent = text.slice(0, i); var c = document.createElement('span'); c.className = 'caret'; c.setAttribute('contenteditable','false'); title.appendChild(c);
+    render();
+    if(i < text.length) demoT = setTimeout(function(){ typeHead(text, i+1) }, 45 + Math.random()*50);
+    else demoT = setTimeout(nextHead, 3200);
+  }
+  function eraseHead(text, i){
+    if(!running) return;
+    title.textContent = text.slice(0, i); var c = document.createElement('span'); c.className = 'caret'; title.appendChild(c);
+    if(i > 0) demoT = setTimeout(function(){ eraseHead(text, i-1) }, 18);
+    else { hi = (hi + 1) % heads.length; typeHead(heads[hi], 0) }
+  }
+  function nextHead(){ eraseHead(heads[hi], heads[hi].length) }
+  render();
+  if(running) demoT = setTimeout(nextHead, 2400);
+
+  // generic tabs
+  function tablist(list){
+    var tabs = $$('[role=tab]', list);
+    function sel(t){ tabs.forEach(function(x){ var on = x === t; x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on }) }
+    tabs.forEach(function(t, i){
+      t.addEventListener('click', function(){ sel(t) });
+      t.addEventListener('keydown', function(e){ var n = {ArrowRight:tabs[(i+1)%tabs.length], ArrowDown:tabs[(i+1)%tabs.length], ArrowLeft:tabs[(i-1+tabs.length)%tabs.length], ArrowUp:tabs[(i-1+tabs.length)%tabs.length], Home:tabs[0], End:tabs[tabs.length-1]}[e.key];
+        if(n){ e.preventDefault(); sel(n); n.focus() } });
+    });
+  }
+  $$('[role=tablist]').forEach(tablist);
+
+  // copy code
+  var copy = $('#copy');
+  copy.addEventListener('click', function(){
+    var p = $$('.codeblock pre').filter(function(x){ return !x.hidden })[0];
+    var done = function(){ copy.textContent = 'Copied ✓'; setTimeout(function(){ copy.textContent = 'Copy' }, 1600) };
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(p.textContent).then(done, done); else done();
+  });
+
+  // reveal + count up
+  function fmt(v, dec){ return dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US') }
+  function countUp(el){
+    var end = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0);
+    if(reduce){ el.textContent = fmt(end, dec); return }
+    var t0; (function step(t){ if(!t0) t0 = t; var p = Math.min((t - t0)/1500, 1); el.textContent = fmt(end * (1 - Math.pow(1-p, 3)), dec); if(p < 1) requestAnimationFrame(step) })(performance.now());
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; e.target.classList.add('in'); $$('[data-count]', e.target).forEach(countUp); io.unobserve(e.target) }) }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    $$('.reveal').forEach(function(el){ if(!reduce) $$('[data-count]', el).forEach(function(c){ c.textContent = '0' }); io.observe(el) });
+  } else $$('.reveal').forEach(function(el){ el.classList.add('in') });
+
+  // pricing
+  var sw = $('#billing');
+  sw.addEventListener('click', function(){
+    var y = sw.getAttribute('aria-checked') !== 'true'; sw.setAttribute('aria-checked', String(y));
+    $$('[data-m]').forEach(function(s){ s.textContent = y ? s.dataset.y : s.dataset.m });
+    $$('[data-per]').forEach(function(p){ if(!p.hasAttribute('data-free')) p.textContent = y ? 'per month, billed yearly' : 'per month, billed monthly' });
+  });
+
+  // faq
+  $$('.qa button').forEach(function(b){ b.addEventListener('click', function(){
+    var open = b.getAttribute('aria-expanded') === 'true', a = document.getElementById(b.getAttribute('aria-controls'));
+    $$('.qa button[aria-expanded=true]').forEach(function(o){ if(o !== b){ o.setAttribute('aria-expanded','false'); document.getElementById(o.getAttribute('aria-controls')).style.height = '0px' } });
+    b.setAttribute('aria-expanded', String(!open)); a.style.height = open ? '0px' : a.scrollHeight + 'px';
+  }) });
+
+  // signup
+  var toast = $('#toast'), tm = $('#toastMsg'), tt;
+  $$('[data-signup]').forEach(function(f){
+    var input = $('input', f), msg = f.nextElementSibling;
+    f.addEventListener('submit', function(e){
+      e.preventDefault(); var v = input.value.trim();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){
+        f.classList.remove('invalid'); void f.offsetWidth; f.classList.add('invalid'); input.setAttribute('aria-invalid','true');
+        msg.textContent = v ? 'That address looks incomplete. Try editor@publication.com.' : 'Add your work email to create a workspace.'; input.focus(); return }
+      f.classList.remove('invalid'); input.removeAttribute('aria-invalid'); msg.textContent = '';
+      tm.textContent = 'Your workspace invite is on its way to ' + v + '.'; toast.classList.add('show');
+      clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove('show') }, 4500); f.reset();
+    });
+    input.addEventListener('input', function(){ if(msg.textContent){ msg.textContent = ''; f.classList.remove('invalid') } });
+  });
+})();
+</script>
+</body>
+</html>

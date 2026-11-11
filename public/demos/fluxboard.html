@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0b0d12">
+<title>Fluxboard — Live OKRs your team actually opens</title>
+<meta name="description" content="Fluxboard turns your team's goals and live metrics into one real-time dashboard. Connect your tools, set OKRs, and see progress update by the minute.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0d12;--bg2:#10131a;--panel:#151922;--panel2:#1b202b;--line:#262c39;--text:#eef1f6;--muted:#9aa3b5;--dim:#6b7489;--lime:#c6ff3d;--lime-d:#a6e01c;--ice:#6fd3ff;--violet:#8b7cff;--red:#ff6b6b;--r:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,input{font:inherit;color:inherit}button{cursor:pointer}h1,h2,h3,h4,p{margin:0}h1,h2,h3,.disp{font-family:'Sora',sans-serif;letter-spacing:-.035em;line-height:1.05}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1200px,calc(100% - 40px));margin:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:600 12px/1 'Manrope';letter-spacing:.14em;text-transform:uppercase;color:var(--lime)}
+.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 22px;font-weight:700;font-size:15px;transition:transform .2s,background .2s}
+.btn-lime{background:var(--lime);color:#0b0d12}.btn-lime:hover{background:#d6ff6e;transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--text)}.btn-ghost:hover{border-color:var(--muted)}
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(11,13,18,.82);backdrop-filter:blur(14px);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font:800 20px 'Sora';letter-spacing:-.04em}
+.logo i{width:26px;height:26px;border-radius:8px;background:conic-gradient(from 200deg,var(--lime),var(--ice),var(--violet),var(--lime));display:grid;place-items:center}
+.logo i:after{content:"";width:10px;height:10px;border-radius:3px;background:var(--bg)}
+.links{display:flex;gap:32px;font-size:14px;font-weight:600;color:var(--muted)}.links a:hover{color:var(--text)}
+.nav-cta{display:flex;gap:10px;align-items:center}.nav-cta .btn{padding:10px 18px;font-size:14px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--panel);place-items:center}
+.burger span,.burger span:before,.burger span:after{display:block;width:18px;height:2px;background:var(--text);position:relative;transition:.25s}
+.burger span:before,.burger span:after{content:"";position:absolute;left:0}.burger span:before{top:-6px}.burger span:after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}.burger[aria-expanded=true] span:before{top:0;transform:rotate(45deg)}.burger[aria-expanded=true] span:after{top:0;transform:rotate(-45deg)}
+.mnav{display:none;padding:8px 20px 24px;background:rgba(11,13,18,.96);border-bottom:1px solid var(--line)}
+.mnav.open{display:grid;gap:4px}.mnav a{padding:12px 0;font:600 20px 'Sora';border-bottom:1px solid var(--line)}.mnav .btn{margin-top:14px}
+/* hero */
+.hero{position:relative;padding:150px 0 80px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-20% -10% auto;height:900px;background:radial-gradient(600px 380px at 30% 20%,rgba(198,255,61,.13),transparent 70%),radial-gradient(520px 420px at 80% 30%,rgba(111,211,255,.12),transparent 70%);pointer-events:none}
+.hero:after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.25;mask-image:radial-gradient(ellipse at 50% 0,#000 20%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 0,#000 20%,transparent 70%);pointer-events:none}
+.hero-copy{position:relative;z-index:1;text-align:center;max-width:900px;margin:auto}
+.hero h1{font-size:clamp(44px,7.4vw,96px);font-weight:800;margin:22px 0 22px}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero h1 .ice{background:linear-gradient(90deg,var(--ice),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:620px;margin:auto}
+.signup{display:flex;gap:8px;max-width:480px;margin:34px auto 12px;padding:6px;border-radius:999px;background:var(--panel);border:1px solid var(--line)}
+.signup input{flex:1;min-width:0;background:transparent;border:0;padding:10px 16px;font-size:15px}.signup input:focus{outline:none}
+.signup:focus-within{border-color:var(--lime)}.signup.err{border-color:var(--red)}
+.note{font-size:13px;color:var(--dim)}.note.errtxt{color:var(--red)}
+/* app mockup */
+.app{position:relative;z-index:1;margin:64px auto 0;max-width:1100px;border-radius:22px;background:linear-gradient(180deg,#171b25,#11141b);border:1px solid var(--line);box-shadow:0 40px 120px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02) inset,0 -1px 0 rgba(198,255,61,.25) inset;overflow:hidden}
+.app-top{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line)}.dot{width:10px;height:10px;border-radius:50%;background:#2b3140}
+.app-top .url{margin-left:12px;font-size:12px;color:var(--dim);background:var(--bg);padding:5px 12px;border-radius:8px}
+.live{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--lime)}
+.live:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lime);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(198,255,61,.6)}100%{box-shadow:0 0 0 10px rgba(198,255,61,0)}}
+.app-body{display:grid;grid-template-columns:200px 1fr}
+.side{border-right:1px solid var(--line);padding:18px 12px;display:grid;align-content:start;gap:4px;font-size:13px;color:var(--muted)}
+.side b{font:700 11px 'Manrope';letter-spacing:.12em;color:var(--dim);margin:14px 10px 6px}
+.side span{padding:8px 10px;border-radius:9px;display:flex;align-items:center;gap:9px}.side span:before{content:"";width:8px;height:8px;border-radius:3px;background:var(--line)}
+.side .on{background:var(--panel2);color:var(--text)}.side .on:before{background:var(--lime)}
+.main{padding:20px;display:grid;gap:16px;min-width:0}
+.main-h{display:flex;justify-content:space-between;align-items:center;gap:10px}.main-h h4{font:700 17px 'Sora'}.main-h small{color:var(--dim);font-size:12px}
+.chip{font-size:12px;padding:6px 10px;border-radius:8px;background:var(--panel2);color:var(--muted);white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpi small{display:block;color:var(--dim);font-size:12px}.kpi strong{display:block;font:700 24px/1.3 'Sora';letter-spacing:-.03em;margin-top:4px;font-variant-numeric:tabular-nums}
+.delta{font-size:12px;font-weight:700;color:var(--lime)}.delta.neg{color:var(--red)}
+.grid2{display:grid;grid-template-columns:1.7fr 1fr;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}
+.card h5{margin:0 0 10px;font:700 13px 'Manrope';display:flex;justify-content:space-between;color:var(--text)}.card h5 span{color:var(--dim);font-weight:600}
+.chart svg{width:100%;height:auto;display:block}
+.draw{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.6s .3s cubic-bezier(.6,.1,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.fadein{opacity:0;animation:fade 1s 1.6s forwards}@keyframes fade{to{opacity:1}}
+.okr{display:grid;gap:12px;font-size:12.5px}.okr div{display:grid;gap:6px}.okr p{display:flex;justify-content:space-between;color:var(--muted)}.okr p b{color:var(--text)}
+.bar{height:7px;border-radius:9px;background:var(--panel2);overflow:hidden}.bar i{display:block;height:100%;border-radius:9px;background:var(--lime);width:0;transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.bar i.ice{background:var(--ice)}.bar i.vio{background:var(--violet)}
+/* logos */
+.logos{padding:40px 0 30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+.logos p{text-align:center;color:var(--dim);font-size:13px;margin-bottom:22px}
+.logo-row{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 48px;color:#8892a6;font:700 20px 'Sora';letter-spacing:-.03em}
+.logo-row span{display:flex;align-items:center;gap:8px;opacity:.85}.logo-row svg{width:20px;height:20px}
+/* sections */
+section{padding:110px 0}.sec-h{max-width:700px;margin-bottom:56px}.sec-h.c{text-align:center;margin-inline:auto}
+.sec-h h2{font-size:clamp(34px,4.6vw,56px);font-weight:700;margin:16px 0 16px}.sec-h p{color:var(--muted);font-size:18px}
+/* tabs */
+.tabs{display:grid;grid-template-columns:360px 1fr;gap:32px;align-items:start}
+.tablist{display:grid;gap:10px}
+.tab{text-align:left;background:transparent;border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;transition:.25s}
+.tab h3{font-size:19px;margin-bottom:6px}.tab p{color:var(--muted);font-size:14.5px}
+.tab:hover{border-color:#3a4254}.tab[aria-selected=true]{background:var(--panel);border-color:var(--lime);box-shadow:0 0 0 4px rgba(198,255,61,.07)}
+.tab[aria-selected=true] h3{color:var(--lime)}
+.panel{background:linear-gradient(160deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:24px;padding:28px;min-height:420px}
+.panel[hidden]{display:none}.panel.show{animation:fade .45s forwards;opacity:0}
+.goal{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px;border-radius:14px;background:var(--bg);border:1px solid var(--line);margin-bottom:10px}
+.goal .ring{width:44px;height:44px}.goal h4{font-size:14.5px}.goal small{color:var(--dim);font-size:12.5px}
+.tag{font-size:11.5px;font-weight:700;padding:5px 9px;border-radius:7px;background:rgba(198,255,61,.12);color:var(--lime);white-space:nowrap}.tag.warn{background:rgba(255,184,77,.13);color:#ffc46b}.tag.ice{background:rgba(111,211,255,.12);color:var(--ice)}
+.src{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.src div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px}.src b{display:block;font:700 18px 'Sora'}.src small{color:var(--dim)}
+.feed{display:grid;gap:10px}.msg{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:14px;border-radius:14px;background:var(--bg);border:1px solid var(--line);font-size:14px}
+.av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:700 13px 'Sora';color:#0b0d12}
+.msg p{color:var(--muted)}.msg b{color:var(--text)}.msg small{color:var(--dim);font-size:12px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.step{padding:30px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line);position:relative}
+.step:before{counter-increment:s;content:"0" counter(s);font:800 48px 'Sora';color:transparent;-webkit-text-stroke:1px #3a4254;display:block;margin-bottom:18px}
+.step h3{font-size:21px;margin-bottom:10px}.step p{color:var(--muted);font-size:15px}
+/* metrics */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--bg2)}
+.metric{padding:36px 28px;border-right:1px solid var(--line)}.metric:last-child{border:0}
+.metric strong{display:block;font:800 clamp(38px,4.4vw,56px)/1 'Sora';letter-spacing:-.04em;color:var(--lime);font-variant-numeric:tabular-nums}
+.metric p{color:var(--muted);margin-top:10px;font-size:14.5px}
+/* testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.quote{padding:30px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;gap:22px}
+.quote blockquote{margin:0;font-size:17px;line-height:1.55}.quote.big{background:linear-gradient(160deg,#1d2410,var(--panel));border-color:#3b4a1a}
+.who{display:flex;gap:12px;align-items:center;margin-top:auto}.who small{display:block;color:var(--dim);font-size:13px}
+/* pricing */
+.toggle{display:inline-flex;align-items:center;gap:12px;margin-top:28px;font-weight:600;font-size:15px;color:var(--muted)}
+.switch{width:52px;height:30px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);position:relative;padding:0}
+.switch:after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--lime);transition:transform .25s}
+.switch[aria-checked=true]:after{transform:translateX(22px)}.save{color:var(--lime);font-size:13px;background:rgba(198,255,61,.1);padding:4px 9px;border-radius:7px}
+.toggle .act{color:var(--text)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{padding:32px;border-radius:24px;background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column}
+.plan.pop{border-color:var(--lime);background:linear-gradient(180deg,#1a2112,var(--panel) 50%);position:relative}
+.plan.pop:before{content:"Most teams pick this";position:absolute;top:-13px;left:32px;background:var(--lime);color:#0b0d12;font-size:12px;font-weight:800;padding:5px 12px;border-radius:99px}
+.plan h3{font-size:20px}.plan>p{color:var(--muted);font-size:14.5px;margin:8px 0 22px}
+.price{font:800 48px/1 'Sora';letter-spacing:-.04em}.price small{font:500 15px 'Manrope';color:var(--dim);letter-spacing:0}
+.billed{font-size:13px;color:var(--dim);margin:8px 0 24px;min-height:20px}
+.plan ul{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:11px;font-size:14.5px}
+.plan li{display:flex;gap:10px}.plan li:before{content:"";flex:none;width:16px;height:16px;margin-top:4px;border-radius:50%;background:rgba(198,255,61,.15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%23c6ff3d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px}
+.plan .btn{margin-top:auto}
+/* faq */
+.faq{max-width:820px;margin:auto}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;background:none;border:0;padding:24px 0;font:600 18px 'Sora';letter-spacing:-.02em}
+.qa button i{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);position:relative;transition:transform .3s}
+.qa button i:before,.qa button i:after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.6px;background:var(--lime);transform:translate(-50%,-50%)}
+.qa button i:after{transform:translate(-50%,-50%) rotate(90deg);transition:.3s}
+.qa button[aria-expanded=true] i:after{transform:translate(-50%,-50%) rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s}.qa .ans>div{overflow:hidden}
+.qa .ans p{color:var(--muted);padding-bottom:24px;max-width:680px}
+.qa.open .ans{grid-template-rows:1fr}
+/* cta */
+.cta{position:relative;border-radius:32px;padding:80px 40px;text-align:center;overflow:hidden;background:radial-gradient(500px 300px at 50% 0,rgba(198,255,61,.22),transparent 70%),linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line)}
+.cta h2{font-size:clamp(36px,5.4vw,68px);font-weight:800;max-width:820px;margin:16px auto 18px}
+footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--muted);font-size:14px}
+.foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:32px}.foot h4{color:var(--text);font:700 14px 'Sora';margin-bottom:14px}
+.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}.foot a:hover{color:var(--lime)}
+.credit{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--dim)}
+.credit a{color:var(--lime)}
+/* toast */
+.toast{position:fixed;left:50%;bottom:24px;z-index:80;transform:translate(-50%,calc(100% + 48px));visibility:hidden;background:var(--lime);color:#0b0d12;font-weight:700;padding:14px 20px;border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.5);transition:transform .4s cubic-bezier(.2,.9,.2,1.2),visibility .4s;max-width:calc(100% - 32px);font-size:15px}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:1000px){.links,.nav-cta .btn-ghost{display:none}.tabs{grid-template-columns:1fr}.app-body{grid-template-columns:1fr}.side{display:none}.kpis{grid-template-columns:repeat(2,1fr)}.quotes,.plans{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
+@media (max-width:720px){.burger{display:grid}.nav-cta .btn-lime{display:none}.hero{padding:120px 0 56px}.grid2,.steps{grid-template-columns:1fr}.main{padding:14px}.kpi strong{font-size:20px}.signup{flex-direction:column;border-radius:20px}.signup .btn{width:100%}section{padding:80px 0}.panel{padding:18px;min-height:0}.src{grid-template-columns:1fr 1fr 1fr}.src div{padding:10px}.src b{font-size:15px}.cta{padding:56px 20px;border-radius:24px}.metric{padding:26px 18px}.okrcard{display:none}.app-top .url{display:none}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.draw{stroke-dashoffset:0}.fadein,.panel.show{opacity:1}.js .reveal{opacity:1;transform:none}}
+</style></head>
+<body>
+<a href="#main" class="sr">Skip to content</a>
+<header class="nav" id="nav"><div class="wrap">
+<a href="#" class="logo" aria-label="Fluxboard home"><i></i>Fluxboard</a>
+<nav class="links" aria-label="Primary"><a href="#product">Product</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+<div class="nav-cta"><a href="#cta" class="btn btn-ghost">Book a demo</a><a href="#cta" class="btn btn-lime">Start free</a>
+<button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span></button></div>
+</div>
+<nav class="mnav" id="mnav" aria-label="Mobile"><a href="#product">Product</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#cta" class="btn btn-lime">Start free</a></nav>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="h1">
+<div class="wrap">
+<div class="hero-copy">
+<span class="eyebrow">Now with live Slack check-ins</span>
+<h1 id="h1">Goals that update <em>themselves.</em><br><span class="ice">Teams that stay aligned.</span></h1>
+<p class="lead">Fluxboard pulls live numbers from the tools you already use and pins them to your OKRs. No more spreadsheet Fridays. Just one board everyone actually opens.</p>
+<form class="signup" data-signup novalidate><label for="e1" class="sr">Work email</label><input id="e1" type="email" placeholder="you@company.com" autocomplete="email" required><button class="btn btn-lime" type="submit">Start free trial</button></form>
+<p class="note" data-note>14-day trial. No card. Connect your first source in under five minutes.</p>
+</div>
+
+<div class="app" role="img" aria-label="Fluxboard dashboard showing live revenue, active users, OKR progress and a weekly trend chart">
+<div class="app-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">app.fluxboard.io/q4-company</span><span class="live">Live</span></div>
+<div class="app-body">
+<div class="side" aria-hidden="true"><b>WORKSPACE</b><span class="on">Company Q4</span><span>Growth team</span><span>Platform</span><span>Customer success</span><b>VIEWS</b><span>Weekly review</span><span>Board deck</span><span>Alerts · 3</span></div>
+<div class="main">
+<div class="main-h"><div><h4>Q4 Company Goals</h4><small>Synced 4 seconds ago · 9 sources</small></div><span class="chip">Oct 1 – Dec 31</span></div>
+<div class="kpis">
+<div class="kpi"><small>Net new MRR</small><strong data-tick="184320" data-pre="$" data-jit="40">$184,320</strong><span class="delta">▲ 12.4%</span></div>
+<div class="kpi"><small>Weekly active</small><strong data-tick="48217" data-jit="9">48,217</strong><span class="delta">▲ 6.1%</span></div>
+<div class="kpi"><small>Activation rate</small><strong>38.6%</strong><span class="delta">▲ 2.3 pts</span></div>
+<div class="kpi"><small>Churn</small><strong>1.9%</strong><span class="delta neg">▲ 0.2 pts</span></div>
+</div>
+<div class="grid2">
+<div class="card chart"><h5>MRR vs target <span>last 12 weeks</span></h5>
+<svg viewBox="0 0 600 220" aria-hidden="true">
+<defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c6ff3d" stop-opacity=".28"/><stop offset="1" stop-color="#c6ff3d" stop-opacity="0"/></linearGradient></defs>
+<g stroke="#262c39" stroke-width="1"><line x1="0" y1="40" x2="600" y2="40"/><line x1="0" y1="100" x2="600" y2="100"/><line x1="0" y1="160" x2="600" y2="160"/></g>
+<path d="M0 150 L600 60" stroke="#6b7489" stroke-width="1.5" stroke-dasharray="5 6" fill="none"/>
+<path class="fadein" d="M0 180 C40 176 60 160 100 158 S160 150 200 136 S260 140 300 118 S360 104 400 96 S460 88 500 70 S560 52 600 40 L600 220 L0 220Z" fill="url(#fg)"/>
+<path class="draw" d="M0 180 C40 176 60 160 100 158 S160 150 200 136 S260 140 300 118 S360 104 400 96 S460 88 500 70 S560 52 600 40" stroke="#c6ff3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path class="draw" style="animation-delay:.6s" d="M0 196 C50 194 90 186 150 184 S240 170 300 168 S400 150 450 146 S540 132 600 120" stroke="#6fd3ff" stroke-width="2" fill="none" opacity=".7"/>
+<circle class="fadein" cx="600" cy="40" r="5" fill="#c6ff3d"/>
+</svg></div>
+<div class="card okrcard"><h5>Key results <span>62% avg</span></h5>
+<div class="okr">
+<div><p>Reach $2.4M ARR <b>78%</b></p><div class="bar"><i data-w="78"></i></div></div>
+<div><p>Cut onboarding to 3 days <b>54%</b></p><div class="bar"><i class="ice" data-w="54"></i></div></div>
+<div><p>Ship SSO for enterprise <b>91%</b></p><div class="bar"><i data-w="91"></i></div></div>
+<div><p>NPS above 50 <b>36%</b></p><div class="bar"><i class="vio" data-w="36"></i></div></div>
+</div></div>
+</div>
+</div></div></div>
+</div>
+</section>
+
+<div class="logos"><div class="wrap"><p>Trusted by 2,300+ teams who were tired of status meetings</p>
+<div class="logo-row" aria-label="Customer logos">
+<span><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="3"/></svg>Northwind</span>
+<span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 18L10 2l8 16z" fill="currentColor"/></svg>Kestrel</span>
+<span><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="2" width="16" height="16" rx="4" fill="currentColor"/></svg>Bramble</span>
+<span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10h16M10 2v16" stroke="currentColor" stroke-width="4"/></svg>Halcyon</span>
+<span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3h6v14H3zM11 8h6v9h-6z" fill="currentColor"/></svg>Quarry&amp;Co</span>
+<span><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="7" cy="10" r="5" fill="currentColor"/><circle cx="13" cy="10" r="5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Lumen</span>
+</div></div></div>
+
+<section id="product" aria-labelledby="prod-h"><div class="wrap">
+<div class="sec-h reveal"><span class="eyebrow">Product</span><h2 id="prod-h">One board. Every goal. Always current.</h2><p>Pick a view to see how Fluxboard replaces the weekly scramble for numbers.</p></div>
+<div class="tabs reveal">
+<div class="tablist" role="tablist" aria-label="Feature showcase">
+<button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true"><h3>Goals that track themselves</h3><p>Link any key result to a live metric. Progress moves when the number does.</p></button>
+<button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1"><h3>Every source, one place</h3><p>Stripe, HubSpot, Postgres, Jira and 60+ more, synced every minute.</p></button>
+<button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1"><h3>Check-ins without meetings</h3><p>Owners post a two-line update in Slack. Fluxboard turns it into a weekly digest.</p></button>
+</div>
+<div>
+<div class="panel show" role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0">
+<div class="goal"><svg class="ring" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" stroke="#262c39" stroke-width="5" fill="none"/><circle cx="22" cy="22" r="18" stroke="#c6ff3d" stroke-width="5" fill="none" stroke-dasharray="113" stroke-dashoffset="25" transform="rotate(-90 22 22)" stroke-linecap="round"/></svg><div><h4>Reach $2.4M ARR</h4><small>Linked to Stripe · Priya Raman</small></div><span class="tag">On track</span></div>
+<div class="goal"><svg class="ring" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" stroke="#262c39" stroke-width="5" fill="none"/><circle cx="22" cy="22" r="18" stroke="#ffc46b" stroke-width="5" fill="none" stroke-dasharray="113" stroke-dashoffset="52" transform="rotate(-90 22 22)" stroke-linecap="round"/></svg><div><h4>Cut onboarding to 3 days</h4><small>Linked to Postgres · Diego Alvarez</small></div><span class="tag warn">At risk</span></div>
+<div class="goal"><svg class="ring" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" stroke="#262c39" stroke-width="5" fill="none"/><circle cx="22" cy="22" r="18" stroke="#c6ff3d" stroke-width="5" fill="none" stroke-dasharray="113" stroke-dashoffset="10" transform="rotate(-90 22 22)" stroke-linecap="round"/></svg><div><h4>Ship SSO for enterprise</h4><small>Linked to Jira · Mei Tanaka</small></div><span class="tag">On track</span></div>
+<div class="goal"><svg class="ring" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" stroke="#262c39" stroke-width="5" fill="none"/><circle cx="22" cy="22" r="18" stroke="#6fd3ff" stroke-width="5" fill="none" stroke-dasharray="113" stroke-dashoffset="72" transform="rotate(-90 22 22)" stroke-linecap="round"/></svg><div><h4>NPS above 50</h4><small>Linked to Delighted · Sam Okafor</small></div><span class="tag ice">New data</span></div>
+</div>
+<div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0" hidden>
+<div class="card chart" style="background:var(--bg)"><h5>Pipeline created <span>by source, this month</span></h5>
+<svg viewBox="0 0 600 200" aria-hidden="true"><g fill="#262c39"><rect x="20" y="20" width="60" height="160" rx="8"/><rect x="120" y="20" width="60" height="160" rx="8"/><rect x="220" y="20" width="60" height="160" rx="8"/><rect x="320" y="20" width="60" height="160" rx="8"/><rect x="420" y="20" width="60" height="160" rx="8"/><rect x="520" y="20" width="60" height="160" rx="8"/></g>
+<g><rect x="20" y="70" width="60" height="110" rx="8" fill="#c6ff3d"/><rect x="120" y="40" width="60" height="140" rx="8" fill="#c6ff3d"/><rect x="220" y="100" width="60" height="80" rx="8" fill="#6fd3ff"/><rect x="320" y="60" width="60" height="120" rx="8" fill="#c6ff3d"/><rect x="420" y="120" width="60" height="60" rx="8" fill="#8b7cff"/><rect x="520" y="30" width="60" height="150" rx="8" fill="#c6ff3d"/></g></svg></div>
+<div class="src"><div><b>64</b><small>integrations</small></div><div><b>60s</b><small>sync interval</small></div><div><b>SOC 2</b><small>Type II</small></div></div>
+</div>
+<div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" tabindex="0" hidden>
+<div class="feed">
+<div class="msg"><span class="av" style="background:var(--lime)">PR</span><div><b>Priya Raman</b> <small>· Mon 9:12</small><p>ARR at 78%. Two enterprise deals slipped to December, but pipeline covers it 2.1×.</p></div></div>
+<div class="msg"><span class="av" style="background:#ffc46b">DA</span><div><b>Diego Alvarez</b> <small>· Mon 9:40</small><p>Onboarding still 4.6 days. Shipping the new import flow Thursday; expect a drop next week.</p></div></div>
+<div class="msg"><span class="av" style="background:var(--ice)">FB</span><div><b>Fluxboard digest</b> <small>· Mon 10:00</small><p>3 of 4 company goals on track. 1 at risk. 11 of 12 owners checked in. Full summary sent to #leadership.</p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div></section>
+
+<section id="how" style="background:var(--bg2);border-block:1px solid var(--line)" aria-labelledby="how-h"><div class="wrap">
+<div class="sec-h c reveal"><span class="eyebrow">How it works</span><h2 id="how-h">Live in an afternoon.</h2><p>No data team required. If you can write a goal, you can set up Fluxboard.</p></div>
+<div class="steps">
+<div class="step reveal"><h3>Connect your sources</h3><p>Sign in to Stripe, HubSpot or your warehouse. Fluxboard maps the common metrics for you.</p></div>
+<div class="step reveal"><h3>Write goals in plain English</h3><p>"Grow weekly actives to 60k." Pick the metric, set the target, assign an owner. Done.</p></div>
+<div class="step reveal"><h3>Share one link</h3><p>Pin the board in Slack or on a TV. Everyone sees the same live numbers, all quarter.</p></div>
+</div>
+</div></section>
+
+<section aria-label="Results"><div class="wrap">
+<div class="metrics reveal">
+<div class="metric"><strong data-count="2300" data-suf="+">0</strong><p>teams running their quarter on Fluxboard</p></div>
+<div class="metric"><strong data-count="6" data-suf=" hrs">0</strong><p>saved per manager, per week, on reporting</p></div>
+<div class="metric"><strong data-count="94" data-suf="%">0</strong><p>of owners check in weekly, vs 41% before</p></div>
+<div class="metric"><strong data-count="60" data-suf="s">0</strong><p>from a deal closing to the board updating</p></div>
+</div>
+</div></section>
+
+<section style="padding-top:0" aria-labelledby="q-h"><div class="wrap">
+<div class="sec-h reveal"><span class="eyebrow">Customers</span><h2 id="q-h">Fewer status meetings. Better quarters.</h2></div>
+<div class="quotes">
+<figure class="quote big reveal" style="margin:0"><blockquote>"We killed our Monday metrics meeting in week two. The board just tells us where we are, and we spend the hour on what to do about it."</blockquote><figcaption class="who"><span class="av" style="background:var(--lime)">HL</span><div><b>Hana Lindqvist</b><small>COO, Northwind Logistics</small></div></figcaption></figure>
+<figure class="quote reveal" style="margin:0"><blockquote>"I used to spend Thursday nights copying numbers into slides. Now the board deck is a Fluxboard link."</blockquote><figcaption class="who"><span class="av" style="background:var(--ice)">MO</span><div><b>Marcus Oyelaran</b><small>Head of Ops, Kestrel Health</small></div></figcaption></figure>
+<figure class="quote reveal" style="margin:0"><blockquote>"Engineers finally see how their work moves revenue. That alone changed how we plan sprints."</blockquote><figcaption class="who"><span class="av" style="background:var(--violet)">SC</span><div><b>Sofia Castell</b><small>VP Engineering, Bramble</small></div></figcaption></figure>
+</div>
+</div></section>
+
+<section id="pricing" style="background:var(--bg2);border-block:1px solid var(--line)" aria-labelledby="pr-h"><div class="wrap">
+<div class="sec-h c reveal"><span class="eyebrow">Pricing</span><h2 id="pr-h">Simple pricing that scales with you.</h2><p>Every plan includes unlimited viewers. You only pay for people who own goals.</p>
+<div class="toggle"><span id="lm" class="act">Monthly</span><button class="switch" id="bill" role="switch" aria-checked="false" aria-label="Bill yearly"></button><span id="ly">Yearly</span><span class="save">Save 20%</span></div></div>
+<div class="plans">
+<div class="plan reveal"><h3>Starter</h3><p>For a single team getting its first OKRs off the ground.</p><div class="price" data-m="0" data-y="0">$0<small> / owner / mo</small></div><div class="billed">Free forever, up to 5 owners</div>
+<ul><li>3 data sources</li><li>Unlimited goals and viewers</li><li>Hourly sync</li><li>Slack check-ins</li></ul><a href="#cta" class="btn btn-ghost">Start free</a></div>
+<div class="plan pop reveal"><h3>Growth</h3><p>For companies aligning several teams on one set of goals.</p><div class="price" data-m="12" data-y="9.60">$12<small> / owner / mo</small></div><div class="billed" data-bm="Billed monthly" data-by="Billed yearly, $115.20 per owner">Billed monthly</div>
+<ul><li>Unlimited data sources</li><li>60-second live sync</li><li>Weekly AI digests</li><li>Alerts when goals drift</li><li>TV and board-deck mode</li></ul><a href="#cta" class="btn btn-lime">Start 14-day trial</a></div>
+<div class="plan reveal"><h3>Scale</h3><p>For larger orgs with security, SSO and governance needs.</p><div class="price" data-m="24" data-y="19.20">$24<small> / owner / mo</small></div><div class="billed" data-bm="Billed monthly" data-by="Billed yearly, $230.40 per owner">Billed monthly</div>
+<ul><li>Everything in Growth</li><li>SAML SSO and SCIM</li><li>Warehouse connectors</li><li>Audit log and data residency</li><li>Dedicated success manager</li></ul><a href="#cta" class="btn btn-ghost">Talk to sales</a></div>
+</div>
+</div></section>
+
+<section id="faq" aria-labelledby="f-h"><div class="wrap">
+<div class="sec-h c reveal"><span class="eyebrow">FAQ</span><h2 id="f-h">Questions, answered.</h2></div>
+<div class="faq reveal">
+<div class="qa"><button aria-expanded="false" aria-controls="a1" id="q1">Do we need to be using OKRs already?<i></i></button><div class="ans" id="a1" role="region" aria-labelledby="q1"><div><p>No. Many teams start with three or four plain goals and a metric for each. Fluxboard includes templates for OKRs, KPIs and simple targets, so you can grow into a framework later.</p></div></div></div>
+<div class="qa"><button aria-expanded="false" aria-controls="a2" id="q2">How live is "live"?<i></i></button><div class="ans" id="a2" role="region" aria-labelledby="q2"><div><p>On Growth and Scale, sources sync every 60 seconds. Webhook-enabled tools like Stripe update within a few seconds of an event. Starter syncs hourly.</p></div></div></div>
+<div class="qa"><button aria-expanded="false" aria-controls="a3" id="q3">Who counts as an owner?<i></i></button><div class="ans" id="a3" role="region" aria-labelledby="q3"><div><p>Anyone assigned to a goal or key result. Viewers, commenters and people who only read the digest are always free.</p></div></div></div>
+<div class="qa"><button aria-expanded="false" aria-controls="a4" id="q4">Is our data secure?<i></i></button><div class="ans" id="a4" role="region" aria-labelledby="q4"><div><p>Fluxboard is SOC 2 Type II audited, encrypts data in transit and at rest, and only reads the fields a metric needs. Scale customers can choose EU or US data residency.</p></div></div></div>
+<div class="qa"><button aria-expanded="false" aria-controls="a5" id="q5">Can we leave easily?<i></i></button><div class="ans" id="a5" role="region" aria-labelledby="q5"><div><p>Yes. Export every goal, check-in and metric history to CSV or JSON at any time. No contracts on monthly plans.</p></div></div></div>
+</div>
+</div></section>
+
+<section id="cta" style="padding-top:0" aria-labelledby="c-h"><div class="wrap">
+<div class="cta reveal"><span class="eyebrow">Get started</span><h2 id="c-h">Run your next quarter on live numbers.</h2><p class="lead">Set up your first board this afternoon. Your Monday meeting will thank you.</p>
+<form class="signup" data-signup novalidate><label for="e2" class="sr">Work email</label><input id="e2" type="email" placeholder="you@company.com" autocomplete="email" required><button class="btn btn-lime" type="submit">Start free trial</button></form>
+<p class="note" data-note>Free for up to 5 goal owners. Cancel anytime.</p></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<div class="foot">
+<div><a href="#" class="logo"><i></i>Fluxboard</a><p style="margin-top:14px;max-width:300px">Real-time goals and team analytics for companies that would rather build than report.</p></div>
+<div><h4>Product</h4><ul><li><a href="#product">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#how">Integrations</a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Security</a></li></ul></div>
+<div><h4>Resources</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#">OKR templates</a></li><li><a href="#">Changelog</a></li></ul></div>
+</div>
+<div class="credit"><span>&copy; 2026 Fluxboard</span><span>Designed &amp; developed by <a href="/">TMX Digital Solutions</a>. Think • Make • eXecute</span></div>
+</div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(()=>{const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const nav=$('#nav');const onS=()=>nav.classList.toggle('scrolled',scrollY>20);addEventListener('scroll',onS,{passive:true});onS();
+const bg=$('#burger'),mn=$('#mnav');bg.addEventListener('click',()=>{const o=mn.classList.toggle('open');bg.setAttribute('aria-expanded',o);bg.setAttribute('aria-label',o?'Close menu':'Open menu')});
+mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mn.classList.remove('open');bg.setAttribute('aria-expanded','false')}));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&mn.classList.contains('open')){mn.classList.remove('open');bg.setAttribute('aria-expanded','false');bg.focus()}});
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+function count(el){const t=+el.dataset.count,s=el.dataset.suf||'';if(reduce){el.textContent=fmt(t)+s;return}let st;const f=ts=>{st??=ts;const p=Math.min((ts-st)/1600,1);el.textContent=fmt(t*(1-Math.pow(1-p,3)))+s;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('[data-count]').forEach(count);io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});$$('.reveal').forEach(el=>io.observe(el))}else{$$('.reveal').forEach(el=>{el.classList.add('in');el.querySelectorAll('[data-count]').forEach(count)})}
+setTimeout(()=>$$('.bar i').forEach(b=>b.style.width=b.dataset.w+'%'),reduce?0:400);
+if(!reduce)setInterval(()=>$$('[data-tick]').forEach(el=>{let v=+el.dataset.tick+Math.round(Math.random()*+el.dataset.jit);el.dataset.tick=v;el.textContent=(el.dataset.pre||'')+fmt(v)}),1400);
+const tabs=$$('[role=tab]');function sel(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;const p=document.getElementById(x.getAttribute('aria-controls'));p.hidden=!on;p.classList.toggle('show',on)})}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>sel(t));t.addEventListener('keydown',e=>{let j=e.key==='ArrowDown'||e.key==='ArrowRight'?i+1:e.key==='ArrowUp'||e.key==='ArrowLeft'?i-1:null;if(j===null)return;e.preventDefault();const n=tabs[(j+tabs.length)%tabs.length];sel(n);n.focus()})});
+const sw=$('#bill');sw.addEventListener('click',()=>{const y=sw.getAttribute('aria-checked')!=='true';sw.setAttribute('aria-checked',y);$('#lm').classList.toggle('act',!y);$('#ly').classList.toggle('act',y);
+$$('.price').forEach(p=>{const v=p.dataset[y?'y':'m'];p.firstChild.textContent='$'+(+v%1?(+v).toFixed(2):v)});$$('.billed[data-bm]').forEach(b=>b.textContent=y?b.dataset.by:b.dataset.bm)});
+$$('.qa button').forEach(b=>b.addEventListener('click',()=>{const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o)}));
+const toast=$('#toast');let tt;function show(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),3600)}
+$$('[data-signup]').forEach(f=>{const i=f.querySelector('input'),n=f.nextElementSibling,orig=n.textContent;i.addEventListener('input',()=>{f.classList.remove('err');n.classList.remove('errtxt');n.textContent=orig;i.removeAttribute('aria-invalid')});
+f.addEventListener('submit',e=>{e.preventDefault();const v=i.value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){f.classList.add('err');n.classList.add('errtxt');n.textContent=v?'That email doesn’t look right. Try name@company.com.':'Enter your work email to start your trial.';i.setAttribute('aria-invalid','true');i.focus();return}
+i.value='';show('You’re in. Check '+v+' for your workspace link.')})});
+})();
+</script>
+</body></html>

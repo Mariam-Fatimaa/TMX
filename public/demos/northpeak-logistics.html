@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1a2e">
+<title>Northpeak Logistics — Freight that keeps its promises</title>
+<meta name="description" content="Northpeak Logistics moves road, sea and air freight across 62 countries with live tracking and fixed-price quotes. Designed &amp; developed by TMX Digital Solutions.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1a2e;--navy-2:#11243d;--navy-3:#1a3352;--steel:#8a9bb0;--steel-2:#c9d2dd;--steel-3:#e8edf2;--paper:#f6f8fa;--ink:#0d1726;--muted:#4a5a6e;--orange:#ff6a13;--orange-2:#e05500;--ok:#1f9d6b;--err:#c62828;--radius:6px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 'Barlow',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4,.cond{font-family:'Barlow Condensed',sans-serif;line-height:1;margin:0;text-transform:uppercase;letter-spacing:.01em}
+p{margin:0}a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.wrap{width:min(1240px,100% - 48px);margin-inline:auto}
+.kicker{font:700 13px/1 'Barlow Condensed';letter-spacing:.18em;text-transform:uppercase;color:var(--orange-2);display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:28px;height:3px;background:var(--orange)}
+.h2{font-size:clamp(38px,5vw,64px);font-weight:800;margin:14px 0 16px}
+.lead{color:var(--muted);max-width:560px;font-size:17px}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:var(--radius);padding:15px 22px;font:700 16px/1 'Barlow Condensed';letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s,transform .2s}
+.btn-o{background:var(--orange);color:#111}.btn-o:hover{background:#ff7f33;transform:translateY(-1px)}
+.btn-g{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #ffffff44}.btn-g:hover{box-shadow:inset 0 0 0 2px #fff}
+.btn-n{background:var(--navy);color:#fff}.btn-n:hover{background:var(--navy-3)}
+section{padding:104px 0}
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,box-shadow .3s,height .3s;height:84px;display:flex;align-items:center;color:#fff}
+.nav.scrolled{background:rgba(11,26,46,.96);backdrop-filter:blur(8px);box-shadow:0 8px 30px #0005;height:68px}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 24px/1 'Barlow Condensed';letter-spacing:.06em;text-transform:uppercase}
+.logo svg{flex:none}.logo small{display:block;font:600 10px/1 'Barlow';letter-spacing:.3em;color:var(--steel);margin-top:3px}
+.links{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+.links a{text-decoration:none;font-weight:600;font-size:15px;color:var(--steel-2)}.links a:hover{color:#fff}
+.nav .btn{padding:12px 18px;font-size:15px}
+.burger{display:none;background:none;border:0;color:#fff;width:44px;height:44px;padding:10px}
+.burger span{display:block;height:2px;background:currentColor;margin:5px 0;transition:.3s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger[aria-expanded=true] span:nth-child(2){opacity:0}.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mmenu{display:none}
+/* hero */
+.hero{background:radial-gradient(1200px 600px at 80% 20%,#1d3a5f 0,transparent 60%),var(--navy);color:#fff;padding:150px 0 0;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(56px,8.4vw,124px);font-weight:800;letter-spacing:-.005em;line-height:.88;margin:22px 0 26px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p.sub{color:var(--steel-2);font-size:19px;max-width:470px;margin-bottom:34px}
+.hero .kicker{color:var(--orange)}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.map{position:relative;background:linear-gradient(160deg,#132a47,#0d1f36);border:1px solid #ffffff1a;border-radius:10px;padding:10px;box-shadow:0 40px 80px #0007}
+.map svg{display:block;width:100%;height:auto}
+.lane{fill:none;stroke:#b4c2d3;stroke-width:2.2;stroke-dasharray:420;stroke-dashoffset:420;animation:draw 2.2s cubic-bezier(.6,0,.2,1) forwards}
+.lane.air{stroke:var(--orange);stroke-dasharray:4 6;stroke-dashoffset:0;opacity:0;animation:fade 1s 2s forwards}
+.lane:nth-of-type(2){animation-delay:.2s}.lane:nth-of-type(3){animation-delay:.4s}.lane:nth-of-type(4){animation-delay:.6s}.lane:nth-of-type(5){animation-delay:.8s}.lane:nth-of-type(6){animation-delay:1s}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes fade{to{opacity:.85}}
+.hub circle.ring{fill:none;stroke:var(--orange);stroke-width:1;transform-box:fill-box;transform-origin:center;animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{from{transform:scale(.6);opacity:1}to{transform:scale(2.4);opacity:0}}
+.hub text{fill:var(--steel-2);font:600 10px 'Barlow';letter-spacing:.08em;text-transform:uppercase}
+.live{position:absolute;left:22px;bottom:22px;background:#0b1a2ee6;border:1px solid #ffffff22;border-radius:8px;padding:12px 16px;display:flex;gap:12px;align-items:center;font-size:14px;color:var(--steel-2)}
+.live b{display:block;color:#fff;font:700 24px/1 'Barlow Condensed'}
+.dot{width:10px;height:10px;border-radius:50%;background:#3ddc97;box-shadow:0 0 0 4px #3ddc9733}
+.trust{position:relative;z-index:1;margin-top:72px;border-top:1px solid #ffffff1a;padding:26px 0;display:flex;gap:16px 44px;flex-wrap:wrap;align-items:center;color:var(--steel);font:600 14px/1.2 'Barlow Condensed';letter-spacing:.16em;text-transform:uppercase}
+.trust strong{color:#fff;font-weight:700}.hero .trust{display:flex}
+/* services */
+.svc-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:40px}
+.tabs{display:flex;gap:4px;background:var(--steel-3);padding:4px;border-radius:8px;flex-wrap:wrap}
+.tab{border:0;background:none;padding:12px 22px;border-radius:6px;font:700 17px/1 'Barlow Condensed';letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tab[aria-selected=true]{background:var(--navy);color:#fff}
+.tab:hover:not([aria-selected=true]){color:var(--ink);background:#fff}
+.panel{display:grid;grid-template-columns:1.1fr 1fr;background:#fff;border:1px solid var(--steel-2);border-radius:10px;overflow:hidden}
+.panel[hidden]{display:none}
+.panel .txt{padding:48px}
+.panel h3{font-size:40px;font-weight:800;margin-bottom:14px}
+.panel ul{list-style:none;padding:0;margin:24px 0 30px;display:grid;gap:12px}
+.panel li{padding-left:28px;position:relative}
+.panel li::before{content:"";position:absolute;left:0;top:9px;width:14px;height:8px;border-left:3px solid var(--orange);border-bottom:3px solid var(--orange);transform:rotate(-45deg)}
+.figs{display:flex;gap:36px;border-top:1px solid var(--steel-3);padding-top:22px}
+.figs b{display:block;font:800 34px/1 'Barlow Condensed';color:var(--navy)}.figs span{font-size:14px;color:var(--muted)}
+.art{background:var(--navy);display:grid;place-items:center;padding:30px;min-height:240px;background-image:linear-gradient(#ffffff0a 1px,transparent 1px),linear-gradient(90deg,#ffffff0a 1px,transparent 1px);background-size:32px 32px}
+.art svg{width:min(320px,100%);height:auto}
+/* tracker */
+.track{background:var(--navy-2);color:#fff}
+.track .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.track .lead{color:var(--steel-2)}.track .kicker{color:var(--orange)}
+.tform{display:flex;gap:10px;margin-top:30px}
+.field{display:flex;flex-direction:column;gap:6px;flex:1}
+label{font-weight:600;font-size:14px}
+input,select{width:100%;padding:14px 16px;border-radius:var(--radius);border:2px solid var(--steel-2);background:#fff;color:var(--ink);font-size:16px}
+input:focus,select:focus{border-color:var(--orange);outline:none;box-shadow:0 0 0 3px #ff6a1340}
+.track input{border-color:#ffffff33;background:#0b1a2e;color:#fff;font:600 20px 'Barlow Condensed';letter-spacing:.12em;text-transform:uppercase}
+.samples{margin-top:16px;font-size:14px;color:var(--steel-2);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{border:1px solid #ffffff33;background:none;color:#fff;border-radius:100px;padding:6px 12px;font:600 13px 'Barlow';letter-spacing:.06em}
+.chip:hover{border-color:var(--orange);color:var(--orange)}
+.result{background:#0b1a2e;border:1px solid #ffffff1a;border-radius:10px;padding:32px;min-height:340px}
+.empty{color:var(--steel);display:grid;place-items:center;text-align:center;height:100%;min-height:280px;gap:12px}
+.err{color:#ffb4a8;background:#c628281f;border:1px solid #c6282866;border-radius:8px;padding:14px 16px;margin-top:14px;font-size:15px}
+.rhead{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid #ffffff1a;padding-bottom:18px;margin-bottom:22px}
+.rhead h3{font-size:30px;font-weight:700}.rhead p{color:var(--steel-2);font-size:15px}
+.badge{align-self:start;background:var(--orange);color:#111;font:700 13px/1 'Barlow Condensed';letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;border-radius:4px}
+.badge.ok{background:#3ddc97}
+.bar{height:6px;background:#ffffff1a;border-radius:6px;margin-bottom:26px;overflow:hidden}.bar i{display:block;height:100%;background:var(--orange);width:0;transition:width 1s ease}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:22px 1fr auto;gap:14px;padding-bottom:18px;position:relative;color:var(--steel)}
+.tl li::before{content:"";position:absolute;left:10px;top:20px;bottom:0;width:2px;background:#ffffff1a}
+.tl li:last-child::before{display:none}
+.tl .pt{width:22px;height:22px;border-radius:50%;border:2px solid #ffffff33;background:var(--navy)}
+.tl .done{color:#fff}.tl .done .pt{background:var(--orange);border-color:var(--orange)}
+.tl .now{color:#fff}.tl .now .pt{border-color:var(--orange);box-shadow:0 0 0 5px #ff6a1333}
+.tl time{font-size:14px;white-space:nowrap}
+.tl b{display:block;font-weight:600}
+/* stats */
+.stats .grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:3px solid var(--navy);margin-top:48px}
+.stat{padding:30px 26px 0 0;border-right:1px solid var(--steel-2);margin-right:26px}.stat:last-child{border:0;margin:0}
+.stat b{display:block;font:800 clamp(52px,6vw,84px)/1 'Barlow Condensed';color:var(--navy)}
+.stat b sup{font-size:.45em;color:var(--orange-2);vertical-align:top;margin-left:2px}
+.stat span{color:var(--muted);font-weight:500}
+/* industries */
+.ind{background:var(--steel-3)}
+.igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.icard{background:#fff;border-radius:10px;padding:28px;border:1px solid var(--steel-2);transition:transform .25s,box-shadow .25s,border-color .25s}
+.icard:hover{transform:translateY(-4px);box-shadow:0 18px 40px #0b1a2e1a;border-color:var(--orange)}
+.icard svg{width:40px;height:40px;stroke:var(--orange-2);fill:none;stroke-width:2;margin-bottom:18px}
+.icard h3{font-size:26px;font-weight:700;margin-bottom:8px}.icard p{color:var(--muted);font-size:15px}
+/* case */
+.case{display:grid;grid-template-columns:1fr 1fr;border-radius:12px;overflow:hidden;background:var(--navy);color:#fff}
+.case .l{padding:56px;position:relative}
+.case blockquote{margin:24px 0;font:600 clamp(26px,3vw,36px)/1.15 'Barlow Condensed';text-transform:none}
+.case cite{font-style:normal;color:var(--steel-2);font-size:15px}
+.case .r{background:var(--orange);color:#111;padding:56px;display:grid;gap:26px;align-content:center}
+.case .r div{border-bottom:2px solid #1112;padding-bottom:18px}.case .r div:last-child{border:0}
+.case .r b{display:block;font:800 64px/1 'Barlow Condensed'}
+/* quote */
+.quote .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.qcard{background:#fff;border:1px solid var(--steel-2);border-radius:12px;padding:36px;box-shadow:0 30px 60px #0b1a2e12}
+.steps{display:flex;gap:8px;list-style:none;padding:0;margin:0 0 30px}
+.steps li{flex:1;font:700 14px/1 'Barlow Condensed';letter-spacing:.12em;text-transform:uppercase;color:var(--steel);padding-top:12px;border-top:4px solid var(--steel-3)}
+.steps li.on{color:var(--navy);border-color:var(--orange)}
+.qstep{display:grid;grid-template-columns:1fr 1fr;gap:18px}.qstep[hidden]{display:none}
+.full{grid-column:1/-1}
+.hint{font-size:13px;color:var(--err);min-height:18px}
+.invalid input,.invalid select{border-color:var(--err)}
+.qnav{display:flex;justify-content:space-between;margin-top:26px;gap:12px}
+.qnav .back{background:none;border:0;font-weight:600;color:var(--muted);padding:0 4px}.qnav .back:hover{color:var(--ink)}
+.qside ul{padding:0;list-style:none;margin:28px 0 0;display:grid;gap:16px}
+.qside li{display:flex;gap:14px}.qside li b{font:800 26px/1 'Barlow Condensed';color:var(--orange-2);min-width:30px}
+/* careers */
+.careers{background:var(--navy);color:#fff;padding:88px 0}
+.careers .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.careers .lead{color:var(--steel-2)}.careers .kicker{color:var(--orange)}
+.roles{list-style:none;padding:0;margin:0}
+.roles a{display:flex;justify-content:space-between;gap:16px;padding:20px 0;border-bottom:1px solid #ffffff22;text-decoration:none;transition:padding .2s,color .2s}
+.roles a:hover{padding-left:10px;color:var(--orange)}
+.roles b{font:700 24px/1.1 'Barlow Condensed';text-transform:uppercase}.roles span{color:var(--steel);font-size:14px;white-space:nowrap}
+footer{background:#071222;color:var(--steel-2);padding:64px 0 30px;font-size:15px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+footer h4{color:#fff;font-size:16px;letter-spacing:.14em;margin-bottom:14px}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}footer a{text-decoration:none}footer a:hover{color:var(--orange)}
+.credit{border-top:1px solid #ffffff1a;margin-top:48px;padding-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--steel)}
+.toast{visibility:hidden;position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);background:var(--navy);color:#fff;border-left:5px solid #3ddc97;padding:16px 22px;border-radius:8px;box-shadow:0 20px 40px #0006;z-index:80;max-width:calc(100% - 32px);transition:transform .4s;width:max-content}
+.toast.show{visibility:visible;transform:translate(-50%,0)}
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.js .reveal.in{opacity:1;transform:none}
+@media (max-width:980px){
+.links,.nav .btn{display:none}.burger{display:block}
+.mmenu{position:fixed;inset:68px 0 auto;background:var(--navy);padding:16px 24px 28px;z-index:49;box-shadow:0 20px 30px #0006}
+.mmenu.open{display:grid;gap:4px}
+.mmenu a{color:#fff;text-decoration:none;font:700 26px/1 'Barlow Condensed';text-transform:uppercase;padding:12px 0;border-bottom:1px solid #ffffff1a}
+.hero .wrap,.track .wrap,.quote .wrap,.careers .wrap,.case,.panel{grid-template-columns:1fr}
+.stats .grid{grid-template-columns:1fr 1fr}.stat{margin:0;padding:24px 16px 24px 0;border-right:0;border-bottom:1px solid var(--steel-2)}
+.igrid{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+.wrap{width:calc(100% - 36px)}section{padding:72px 0}
+.hero{padding-top:116px}.hero p.sub{font-size:17px}.trust{margin-top:48px;gap:12px 24px;font-size:12px}
+.live{left:14px;bottom:14px;padding:8px 12px}.live b{font-size:19px}
+.panel .txt,.case .l,.case .r,.qcard{padding:26px 20px}.panel h3{font-size:32px}
+.figs{gap:22px}.tab{padding:11px 14px;font-size:15px}.tabs{width:100%}
+.tform{flex-direction:column}.result{padding:22px 18px}
+.igrid{grid-template-columns:1fr;gap:12px}.icard{display:grid;grid-template-columns:40px 1fr;gap:4px 16px;padding:20px}.icard svg{grid-row:span 2;margin:0}.icard h3{font-size:22px}.qstep{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr}
+.case .r b{font-size:52px}.tl li{grid-template-columns:22px 1fr}.tl time{grid-column:2}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.lane{stroke-dashoffset:0}.lane.air{opacity:.85}.js .reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body id="top">
+<a href="#main" class="btn btn-o" style="position:absolute;left:-999px;top:8px;z-index:99" onfocus="this.style.left='8px'" onblur="this.style.left='-999px'">Skip to content</a>
+<header class="nav" id="nav">
+ <div class="wrap">
+  <a href="#top" class="logo" aria-label="Northpeak Logistics home"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M3 29 L14 8 L20 19 L24 12 L31 29Z" fill="#ff6a13"/><path d="M14 8 L17.5 14.5 L14 13 L10.8 14.2Z" fill="#fff"/></svg><span>Northpeak<small>Logistics</small></span></a>
+  <nav aria-label="Primary"><ul class="links"><li><a href="#services">Services</a></li><li><a href="#track">Track</a></li><li><a href="#network">Network</a></li><li><a href="#industries">Industries</a></li><li><a href="#careers">Careers</a></li></ul></nav>
+  <a href="#quote" class="btn btn-o">Get a quote</a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button>
+ </div>
+</header>
+<nav class="mmenu" id="mmenu" aria-label="Mobile"><a href="#services">Services</a><a href="#track">Track a shipment</a><a href="#network">Network</a><a href="#industries">Industries</a><a href="#careers">Careers</a><a href="#quote" style="color:var(--orange)">Get a quote</a></nav>
+
+<main id="main">
+<section class="hero" aria-labelledby="h1">
+ <div class="wrap">
+  <div>
+   <p class="kicker">Road · Sea · Air · Warehousing</p>
+   <h1 id="h1">Freight that keeps its <em>promises.</em></h1>
+   <p class="sub">Northpeak moves 1.8 million shipments a year across 62 countries — with one account manager, one fixed quote and live tracking from dock to door.</p>
+   <div class="cta"><a href="#quote" class="btn btn-o">Get a quote in 2 minutes <span aria-hidden="true">→</span></a><a href="#track" class="btn btn-g">Track a shipment</a></div>
+  </div>
+  <div class="map">
+   <svg viewBox="0 0 640 400" role="img" aria-labelledby="maptitle">
+    <title id="maptitle">Northpeak shipping lanes linking Chicago, Savannah, Rotterdam, Dubai, Karachi, Singapore and Shanghai</title>
+    <defs><pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#8a9bb0" opacity=".25"/></pattern></defs>
+    <rect width="640" height="400" fill="url(#dots)"/>
+    <g fill="#8a9bb0" opacity=".09"><path d="M40 70 Q120 40 210 70 L230 150 Q200 230 160 260 L120 220 Q60 180 40 120Z"/><path d="M170 270 Q220 260 230 300 L210 380 L180 370 Q160 320 170 270Z"/><path d="M270 60 Q340 40 420 60 Q520 50 610 90 L620 170 Q560 200 520 250 L470 230 Q430 260 380 250 L340 190 Q300 170 280 120Z"/><path d="M300 200 Q350 210 370 260 L340 340 Q310 330 300 280Z"/><path d="M540 300 Q590 290 610 330 L580 360 Q540 350 540 300Z"/></g>
+    <g>
+     <path id="l1" class="lane" d="M165 185 Q235 105 305 110"/>
+     <path id="l2" class="lane" d="M305 110 Q370 140 400 205"/>
+     <path id="l3" class="lane" d="M400 205 Q428 170 455 185"/>
+     <path id="l4" class="lane" d="M455 185 Q500 260 530 285"/>
+     <path id="l5" class="lane" d="M530 285 Q590 230 580 160"/>
+     <path id="l6" class="lane" d="M120 135 Q160 145 165 185"/>
+     <path id="l7" class="lane air" d="M305 110 Q450 0 580 160"/>
+    </g>
+    <g id="movers" fill="#ff6a13">
+     <circle r="4"><animateMotion dur="7s" repeatCount="indefinite"><mpath href="#l1"/></animateMotion></circle>
+     <circle r="4"><animateMotion dur="5s" begin="1s" repeatCount="indefinite"><mpath href="#l2"/></animateMotion></circle>
+     <circle r="4"><animateMotion dur="6s" begin=".5s" repeatCount="indefinite"><mpath href="#l4"/></animateMotion></circle>
+     <circle r="4"><animateMotion dur="5.5s" begin="2s" repeatCount="indefinite"><mpath href="#l5"/></animateMotion></circle>
+     <circle r="3" fill="#fff"><animateMotion dur="4s" begin="2s" repeatCount="indefinite"><mpath href="#l7"/></animateMotion></circle>
+    </g>
+    <g class="hub"><circle class="ring" cx="120" cy="135" r="6"/><circle cx="120" cy="135" r="4.5" fill="#fff"/><text x="78" y="122">Chicago</text></g>
+    <g class="hub"><circle class="ring" cx="165" cy="185" r="6"/><circle cx="165" cy="185" r="4.5" fill="#fff"/><text x="120" y="205">Savannah</text></g>
+    <g class="hub"><circle class="ring" cx="305" cy="110" r="6"/><circle cx="305" cy="110" r="5.5" fill="#ff6a13"/><text x="262" y="96">Rotterdam</text></g>
+    <g class="hub"><circle class="ring" cx="400" cy="205" r="6"/><circle cx="400" cy="205" r="4.5" fill="#fff"/><text x="370" y="226">Dubai</text></g>
+    <g class="hub"><circle class="ring" cx="455" cy="185" r="6"/><circle cx="455" cy="185" r="4.5" fill="#fff"/><text x="466" y="189">Karachi</text></g>
+    <g class="hub"><circle class="ring" cx="530" cy="285" r="6"/><circle cx="530" cy="285" r="4.5" fill="#fff"/><text x="490" y="306">Singapore</text></g>
+    <g class="hub"><circle class="ring" cx="580" cy="160" r="6"/><circle cx="580" cy="160" r="5.5" fill="#ff6a13"/><text x="546" y="146">Shanghai</text></g>
+   </svg>
+   <div class="live" aria-hidden="true"><span class="dot"></span><div><b>1,284</b>shipments in transit now</div></div>
+  </div>
+ </div>
+ <div class="wrap trust"><span>Trusted by</span><strong>Halden Home</strong><strong>Arkvale Motors</strong><strong>Sorrel Pharma</strong><strong>Tidemark Foods</strong><strong>Brightloom Textiles</strong></div>
+</section>
+
+<section id="services" aria-labelledby="svc-h">
+ <div class="wrap">
+  <div class="svc-head reveal">
+   <div><p class="kicker">What we move</p><h2 class="h2" id="svc-h">Four modes. One account.</h2><p class="lead">Mix modes on a single booking. We plan the handovers so your cargo never waits on a dock for paperwork.</p></div>
+   <div class="tabs" role="tablist" aria-label="Services">
+    <button class="tab" role="tab" id="t-road" aria-controls="p-road" aria-selected="true">Road</button>
+    <button class="tab" role="tab" id="t-sea" aria-controls="p-sea" aria-selected="false" tabindex="-1">Sea</button>
+    <button class="tab" role="tab" id="t-air" aria-controls="p-air" aria-selected="false" tabindex="-1">Air</button>
+    <button class="tab" role="tab" id="t-wh" aria-controls="p-wh" aria-selected="false" tabindex="-1">Warehousing</button>
+   </div>
+  </div>
+  <div class="reveal">
+   <div class="panel" role="tabpanel" id="p-road" aria-labelledby="t-road" tabindex="0">
+    <div class="txt"><h3>Road freight</h3><p class="lead">Full and part truckloads on a fleet of 1,100 GPS-tracked vehicles, with dedicated lanes between our 40 cross-dock terminals.</p>
+     <ul><li>FTL, LTL and same-day express</li><li>Temperature-controlled trailers from −25°C to +25°C</li><li>Driver photo proof of delivery within 5 minutes</li></ul>
+     <div class="figs"><div><b>1,100</b><span>vehicles</span></div><div><b>97.9%</b><span>on-time delivery</span></div></div></div>
+    <div class="art" aria-hidden="true"><svg viewBox="0 0 320 200"><rect x="20" y="60" width="180" height="90" rx="6" fill="#1a3352" stroke="#8a9bb0" stroke-width="2"/><path d="M200 90 H255 L290 120 V150 H200Z" fill="#ff6a13"/><rect x="215" y="98" width="34" height="22" rx="2" fill="#0b1a2e"/><circle cx="70" cy="155" r="17" fill="#0b1a2e" stroke="#c9d2dd" stroke-width="5"/><circle cx="250" cy="155" r="17" fill="#0b1a2e" stroke="#c9d2dd" stroke-width="5"/><text x="40" y="112" fill="#c9d2dd" font-family="Barlow Condensed" font-weight="800" font-size="26" letter-spacing="2">NORTHPEAK</text><path d="M0 182 H320" stroke="#8a9bb0" stroke-dasharray="16 12" stroke-width="3"/></svg></div>
+   </div>
+   <div class="panel" role="tabpanel" id="p-sea" aria-labelledby="t-sea" tabindex="0" hidden>
+    <div class="txt"><h3>Sea freight</h3><p class="lead">FCL and LCL across 14 carrier partners, with weekly consolidations out of Rotterdam, Karachi, Singapore and Shanghai.</p>
+     <ul><li>Guaranteed space allocation in peak season</li><li>Customs brokerage in 31 ports, filed before arrival</li><li>Container-level tracking with ETA alerts</li></ul>
+     <div class="figs"><div><b>210k</b><span>TEU per year</span></div><div><b>31</b><span>customs ports</span></div></div></div>
+    <div class="art" aria-hidden="true"><svg viewBox="0 0 320 200"><g stroke="#0b1a2e" stroke-width="2"><rect x="70" y="58" width="56" height="34" fill="#ff6a13"/><rect x="126" y="58" width="56" height="34" fill="#c9d2dd"/><rect x="182" y="58" width="56" height="34" fill="#8a9bb0"/><rect x="98" y="24" width="56" height="34" fill="#8a9bb0"/><rect x="154" y="24" width="56" height="34" fill="#ff6a13"/></g><path d="M30 92 H290 L262 140 H58Z" fill="#1a3352" stroke="#c9d2dd" stroke-width="2"/><path d="M0 160 q20 -12 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#8a9bb0" stroke-width="3"/><path d="M0 180 q20 -12 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#8a9bb0" stroke-width="3" opacity=".5"/></svg></div>
+   </div>
+   <div class="panel" role="tabpanel" id="p-air" aria-labelledby="t-air" tabindex="0" hidden>
+    <div class="txt"><h3>Air freight</h3><p class="lead">Next-flight-out, consolidated and charter options for cargo that can't wait — from a single carton to a full freighter.</p>
+     <ul><li>Next-flight-out from 18 gateway airports</li><li>Dangerous goods and pharma GDP certified</li><li>Door-to-door in 48 hours on core lanes</li></ul>
+     <div class="figs"><div><b>48h</b><span>core lanes</span></div><div><b>18</b><span>gateways</span></div></div></div>
+    <div class="art" aria-hidden="true"><svg viewBox="0 0 320 200"><path d="M40 150 Q160 20 290 60" fill="none" stroke="#ff6a13" stroke-width="2" stroke-dasharray="6 8"/><g transform="translate(190 40) rotate(18)"><path d="M0 20 L80 16 Q96 20 80 24 L0 20Z" fill="#c9d2dd"/><path d="M30 18 L52 -14 L60 -14 L50 18Z M30 22 L52 54 L60 54 L50 22Z" fill="#8a9bb0"/><path d="M4 18 L-4 4 L4 4 L14 18Z M4 22 L-4 36 L4 36 L14 22Z" fill="#8a9bb0"/></g><circle cx="40" cy="150" r="7" fill="#fff"/><path d="M0 175 H320" stroke="#8a9bb0" stroke-width="2"/></svg></div>
+   </div>
+   <div class="panel" role="tabpanel" id="p-wh" aria-labelledby="t-wh" tabindex="0" hidden>
+    <div class="txt"><h3>Warehousing</h3><p class="lead">1.2 million sq ft of bonded and ambient space, run on our own WMS so stock levels sync to your storefront every 15 minutes.</p>
+     <ul><li>Pick, pack and kitting with 99.8% accuracy</li><li>Bonded storage to defer duty until sale</li><li>Same-day dispatch for orders in by 2 pm</li></ul>
+     <div class="figs"><div><b>1.2M</b><span>sq ft</span></div><div><b>99.8%</b><span>pick accuracy</span></div></div></div>
+    <div class="art" aria-hidden="true"><svg viewBox="0 0 320 200"><path d="M30 80 L160 30 L290 80 V180 H30Z" fill="#1a3352" stroke="#c9d2dd" stroke-width="2"/><rect x="100" y="100" width="120" height="80" fill="#0b1a2e" stroke="#8a9bb0" stroke-width="2"/><g fill="#ff6a13"><rect x="112" y="150" width="30" height="24"/><rect x="146" y="150" width="30" height="24"/><rect x="129" y="122" width="30" height="24" fill="#c9d2dd"/><rect x="180" y="150" width="30" height="24" fill="#8a9bb0"/></g></svg></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="track" class="track" aria-labelledby="trk-h">
+ <div class="wrap">
+  <div class="reveal">
+   <p class="kicker">Live tracking</p><h2 class="h2" id="trk-h">Where's my freight?</h2>
+   <p class="lead">Enter your Northpeak tracking ID — you'll find it on your booking confirmation and every invoice.</p>
+   <form class="tform" id="tform" novalidate>
+    <div class="field"><label for="tid">Tracking ID</label><input id="tid" name="tid" placeholder="NP-48213" autocomplete="off" aria-describedby="terr"></div>
+    <button class="btn btn-o" style="align-self:end;justify-content:center">Track</button>
+   </form>
+   <div id="terr" role="alert"></div>
+   <div class="samples">Try a sample: <button class="chip" type="button" data-id="NP-48213">NP-48213</button><button class="chip" type="button" data-id="NP-77051">NP-77051</button><button class="chip" type="button" data-id="NP-30964">NP-30964</button></div>
+  </div>
+  <div class="result reveal" id="result" aria-live="polite">
+   <div class="empty"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#8a9bb0" stroke-width="1.5" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg><p>Your shipment timeline will appear here.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="network" class="stats" aria-labelledby="net-h">
+ <div class="wrap">
+  <div class="reveal"><p class="kicker">Global network</p><h2 class="h2" id="net-h">Big enough to reach. Small enough to pick up the phone.</h2></div>
+  <div class="grid reveal">
+   <div class="stat"><b data-count="62">62</b><span>countries served</span></div>
+   <div class="stat"><b data-count="140">140</b><span>owned &amp; partner hubs</span></div>
+   <div class="stat"><b data-count="1.8" data-dec="1">1.8</b><span>million shipments a year</span></div>
+   <div class="stat"><b data-count="98.4" data-dec="1" data-suf="%">98.4%</b><span>on-time, rolling 12 months</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="industries" class="ind" aria-labelledby="ind-h">
+ <div class="wrap">
+  <div class="reveal"><p class="kicker">Industries served</p><h2 class="h2" id="ind-h">We know your cargo.</h2><p class="lead">Each sector has a dedicated desk that speaks its language — from GDP pharma rules to automotive just-in-time windows.</p></div>
+  <div class="igrid">
+   <article class="icard reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16l-1.5 12h-13zM9 7a3 3 0 016 0"/></svg><h3>Retail &amp; e-commerce</h3><p>Peak-season capacity, returns handling and store replenishment.</p></article>
+   <article class="icard reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15l2-5h14l2 5v3H3zM7 18v2M17 18v2M6 10l2-4h8l2 4"/></svg><h3>Automotive</h3><p>Just-in-time parts to assembly lines with 30-minute delivery windows.</p></article>
+   <article class="icard reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="6" rx="3"/><path d="M12 9v6"/></svg><h3>Pharma &amp; healthcare</h3><p>GDP-certified cold chain with continuous temperature logging.</p></article>
+   <article class="icard reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L5 14h6l-1 8 8-12h-6z"/></svg><h3>Energy &amp; industrial</h3><p>Project cargo, out-of-gauge loads and site deliveries.</p></article>
+   <article class="icard reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v4H6zM5 7h14v14H5zM9 12h6"/></svg><h3>Food &amp; FMCG</h3><p>Chilled and ambient distribution to 9,000 retail doors.</p></article>
+   <article class="icard reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3l-5 4 3 3 2-1v12h8V9l2 1 3-3-5-4a4 4 0 01-8 0z"/></svg><h3>Textiles &amp; apparel</h3><p>Hanging-garment transport and factory-to-shelf consolidation.</p></article>
+  </div>
+ </div>
+</section>
+
+<section aria-labelledby="case-h">
+ <div class="wrap">
+  <div class="case reveal">
+   <div class="l"><p class="kicker" style="color:var(--orange)">Case study · Halden Home</p><h2 class="h2" id="case-h" style="font-size:clamp(34px,4vw,52px)">From 9 suppliers to one control tower.</h2>
+    <blockquote>“We used to chase six forwarders for one sofa. Now I open one dashboard and the answer is already there.”</blockquote>
+    <cite>— Mira Castell, Head of Supply Chain, Halden Home</cite></div>
+   <div class="r"><div><b>−31%</b>average lead time, Asia to EU stores</div><div><b>£2.4M</b>saved in freight and storage in year one</div><div><b>12 wks</b>from kickoff to full migration</div></div>
+  </div>
+ </div>
+</section>
+
+<section id="quote" class="quote" style="padding-top:0" aria-labelledby="q-h">
+ <div class="wrap">
+  <div class="qside reveal"><p class="kicker">Get a quote</p><h2 class="h2" id="q-h">A fixed price by tomorrow morning.</h2><p class="lead">Tell us where, what and who. A named account manager replies within one business day — no call centres.</p>
+   <ul><li><b>01</b><span>Route — where it starts and ends</span></li><li><b>02</b><span>Cargo — what you're shipping and when</span></li><li><b>03</b><span>Contact — so we can send your quote</span></li></ul></div>
+  <div class="qcard reveal">
+   <ol class="steps" aria-label="Quote progress"><li class="on" aria-current="step">1 · Route</li><li>2 · Cargo</li><li>3 · Contact</li></ol>
+   <form id="qform" novalidate>
+    <fieldset class="qstep" data-step="0" style="border:0;padding:0;margin:0">
+     <legend class="sr-only" style="position:absolute;left:-9999px">Route</legend>
+     <div class="field"><label for="q-from">Pick-up city</label><input id="q-from" required placeholder="e.g. Karachi"><span class="hint"></span></div>
+     <div class="field"><label for="q-to">Delivery city</label><input id="q-to" required placeholder="e.g. Rotterdam"><span class="hint"></span></div>
+     <div class="field full"><label for="q-mode">Preferred mode</label><select id="q-mode" required><option value="">Choose a mode</option><option>Road</option><option>Sea (FCL / LCL)</option><option>Air</option><option>Not sure — advise me</option></select><span class="hint"></span></div>
+    </fieldset>
+    <fieldset class="qstep" data-step="1" hidden style="border:0;padding:0;margin:0">
+     <legend style="position:absolute;left:-9999px">Cargo</legend>
+     <div class="field full"><label for="q-type">Cargo type</label><select id="q-type" required><option value="">Choose a type</option><option>General goods</option><option>Temperature-controlled</option><option>Dangerous goods</option><option>Oversized / project</option></select><span class="hint"></span></div>
+     <div class="field"><label for="q-wt">Total weight (kg)</label><input id="q-wt" type="number" min="1" inputmode="numeric" required placeholder="e.g. 1200"><span class="hint"></span></div>
+     <div class="field"><label for="q-date">Ready to ship</label><input id="q-date" type="date" required><span class="hint"></span></div>
+    </fieldset>
+    <fieldset class="qstep" data-step="2" hidden style="border:0;padding:0;margin:0">
+     <legend style="position:absolute;left:-9999px">Contact</legend>
+     <div class="field"><label for="q-name">Full name</label><input id="q-name" required autocomplete="name"><span class="hint"></span></div>
+     <div class="field"><label for="q-co">Company</label><input id="q-co" required autocomplete="organization"><span class="hint"></span></div>
+     <div class="field full"><label for="q-email">Work email</label><input id="q-email" type="email" required autocomplete="email" placeholder="you@company.com"><span class="hint"></span></div>
+    </fieldset>
+    <div class="qnav"><button type="button" class="back" id="qback" hidden>← Back</button><span></span><button class="btn btn-n" id="qnext">Continue →</button></div>
+   </form>
+  </div>
+ </div>
+</section>
+
+<section id="careers" class="careers" aria-labelledby="car-h">
+ <div class="wrap">
+  <div class="reveal"><p class="kicker">Careers</p><h2 class="h2" id="car-h">Keep the world moving with us.</h2><p class="lead">2,600 people across 19 offices. Paid training, a clear path from the dock to management, and a safety record we're proud of.</p></div>
+  <ul class="roles reveal">
+   <li><a href="#careers"><b>Ocean Freight Coordinator</b><span>Karachi · Full-time</span></a></li>
+   <li><a href="#careers"><b>HGV Class 1 Driver</b><span>Rotterdam · Shifts</span></a></li>
+   <li><a href="#careers"><b>Warehouse Systems Engineer</b><span>Dubai · Hybrid</span></a></li>
+   <li><a href="#careers" style="color:var(--orange)"><b>See all 48 open roles</b><span aria-hidden="true">→</span></a></li>
+  </ul>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fgrid">
+   <div><a href="#top" class="logo" style="color:#fff"><svg width="30" height="30" viewBox="0 0 34 34" aria-hidden="true"><path d="M3 29 L14 8 L20 19 L24 12 L31 29Z" fill="#ff6a13"/></svg>Northpeak</a><p style="margin-top:14px;max-width:300px">Road, sea and air freight with warehousing in 62 countries. HQ: Northpeak House, 4 Quayside Row.</p></div>
+   <div><h4>Services</h4><ul><li><a href="#services">Road freight</a></li><li><a href="#services">Sea freight</a></li><li><a href="#services">Air freight</a></li><li><a href="#services">Warehousing</a></li></ul></div>
+   <div><h4>Company</h4><ul><li><a href="#network">Network</a></li><li><a href="#industries">Industries</a></li><li><a href="#careers">Careers</a></li><li><a href="#track">Track</a></li></ul></div>
+   <div><h4>Talk to us</h4><ul><li><a href="mailto:quotes@northpeak.example">quotes@northpeak.example</a></li><li>24/7 ops: +00 800 6678 7325</li></ul></div>
+  </div>
+  <div class="credit"><span>Designed &amp; developed by TMX Digital Solutions.</span><span>© 2026 · Think • Make • eXecute</span></div>
+ </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// nav
+const nav=$('#nav'),onScroll=()=>nav.classList.toggle('scrolled',scrollY>30);onScroll();addEventListener('scroll',onScroll,{passive:true});
+const burger=$('#burger'),mm=$('#mmenu');
+const setMenu=o=>{burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');mm.classList.toggle('open',o);if(o)nav.classList.add('scrolled');else onScroll()};
+burger.onclick=()=>setMenu(burger.getAttribute('aria-expanded')!=='true');
+mm.addEventListener('click',e=>{if(e.target.closest('a'))setMenu(false)});
+addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+// reduced motion: stop SMIL
+if(reduce){const m=$('#movers');m&&m.remove()}
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});
+$$('.reveal').forEach(el=>io.observe(el));
+// tabs
+const tabs=$$('[role=tab]');
+function sel(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;$('#'+x.getAttribute('aria-controls')).hidden=!on})}
+tabs.forEach((t,i)=>{t.onclick=()=>sel(t);t.onkeydown=e=>{let n=null;if(e.key==='ArrowRight')n=tabs[(i+1)%tabs.length];if(e.key==='ArrowLeft')n=tabs[(i-1+tabs.length)%tabs.length];if(e.key==='Home')n=tabs[0];if(e.key==='End')n=tabs[tabs.length-1];if(n){e.preventDefault();sel(n);n.focus()}}});
+// tracker
+const DB={'NP-48213':{route:'Karachi → Rotterdam',mode:'Sea · 1×40ft FCL',eta:'ETA 19 Nov',status:'In transit',steps:[['Booked & documents filed','Karachi','28 Oct'],['Picked up from shipper','Korangi Industrial Area','30 Oct'],['Loaded on MV Northern Lark','Port of Karachi','2 Nov'],['Transited Suez Canal','Egypt','10 Nov'],['Arrives Rotterdam','Maasvlakte II','19 Nov'],['Delivered','Tilburg DC','21 Nov']],at:3},
+'NP-77051':{route:'Shanghai → Chicago',mode:'Air · 6 pallets',eta:'Delivered 9 Nov',status:'Delivered',steps:[['Booked','Shanghai','5 Nov'],['Departed PVG','Flight NP 812','6 Nov'],['Cleared customs','O\'Hare Cargo','7 Nov'],['Out for delivery','Chicago','9 Nov'],['Delivered · signed by R. Okafor','Elk Grove Village','9 Nov']],at:5},
+'NP-30964':{route:'Dubai → Riyadh',mode:'Road · FTL reefer, +4°C',eta:'ETA today, 16:40',status:'Out for delivery',steps:[['Booked','Jebel Ali','9 Nov'],['Loaded & sealed','Jebel Ali Free Zone','10 Nov'],['Crossed border','Al Batha','10 Nov'],['Out for delivery','Riyadh','11 Nov'],['Delivered','Sorrel Pharma DC','—']],at:3}};
+const res=$('#result'),terr=$('#terr'),tid=$('#tid');
+function track(raw){const id=raw.trim().toUpperCase().replace(/\s+/g,'').replace(/^NP(?=\d)/,'NP-');terr.innerHTML='';
+ if(!id){return err('Enter a tracking ID to see where your shipment is.')}
+ if(!/^NP-\d{5}$/.test(id)){return err('That doesn\'t look like a Northpeak ID. They start with <b>NP-</b> followed by 5 digits, e.g. NP-48213.')}
+ const s=DB[id];if(!s){return err('We couldn\'t find <b>'+id+'</b>. New bookings can take up to 2 hours to appear — or try one of the samples below.')}
+ tid.value=id;const pct=Math.round(Math.min(s.at,s.steps.length)/s.steps.length*100),done=s.at>=s.steps.length;
+ res.innerHTML='<div class="rhead"><div><h3>'+id+'</h3><p>'+s.route+' · '+s.mode+'</p></div><span class="badge'+(done?' ok':'')+'">'+s.status+'</span></div><div class="bar" aria-label="'+pct+'% complete"><i></i></div><p style="color:#c9d2dd;margin:-12px 0 20px;font-size:15px">'+s.eta+'</p><ol class="tl">'+s.steps.map((x,i)=>'<li class="'+(i<s.at?'done':i===s.at?'now':'')+'"><span class="pt" aria-hidden="true"></span><div><b>'+x[0]+'</b>'+x[1]+'</div><time>'+x[2]+'</time></li>').join('')+'</ol>';
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{const b=res.querySelector('.bar i');if(b)b.style.width=pct+'%'}))}
+function err(m){terr.innerHTML='<p class="err">'+m+'</p>'}
+$('#tform').onsubmit=e=>{e.preventDefault();track(tid.value)};
+$$('.chip').forEach(c=>c.onclick=()=>{tid.value=c.dataset.id;track(c.dataset.id)});
+// count up
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);const el=e.target,end=+el.dataset.count,d=+(el.dataset.dec||0),suf=el.dataset.suf||'';if(reduce)return;const t0=performance.now(),dur=1600;
+ (function f(t){const p=Math.min((t-t0)/dur,1),v=end*(1-Math.pow(1-p,3));el.textContent=v.toFixed(d)+suf;if(p<1)requestAnimationFrame(f);else el.textContent=end.toFixed(d)+suf})(t0)}),{threshold:.5});
+$$('[data-count]').forEach(el=>cio.observe(el));
+// toast
+const toast=$('#toast');let tt;function show(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),5000)}
+// quote form
+const steps=$$('.qstep'),pills=$$('.steps li'),next=$('#qnext'),back=$('#qback');let cur=0;
+const d=new Date();d.setDate(d.getDate()+1);$('#q-date').min=d.toISOString().slice(0,10);
+function go(n){cur=n;steps.forEach((s,i)=>s.hidden=i!==n);pills.forEach((p,i)=>{p.classList.toggle('on',i<=n);i===n?p.setAttribute('aria-current','step'):p.removeAttribute('aria-current')});back.hidden=n===0;next.textContent=n===2?'Request my quote':'Continue →'}
+function msg(el){const v=el.value.trim();if(!v)return'This field is required.';if(el.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))return'Enter a valid email, e.g. name@company.com.';if(el.type==='number'&&!(+v>0))return'Enter a weight above 0 kg.';if(el.type==='date'&&v<el.min)return'Pick a date from tomorrow onwards.';if(el.id==='q-to'&&v.toLowerCase()===$('#q-from').value.trim().toLowerCase())return'Delivery city must differ from pick-up.';return''}
+function check(){let first=null;steps[cur].querySelectorAll('input,select').forEach(el=>{const m=msg(el),f=el.closest('.field');f.classList.toggle('invalid',!!m);f.querySelector('.hint').textContent=m;el.setAttribute('aria-invalid',!!m);if(m&&!first)first=el});if(first)first.focus();return!first}
+$('#qform').addEventListener('input',e=>{const f=e.target.closest('.field');if(f&&f.classList.contains('invalid')){const m=msg(e.target);f.classList.toggle('invalid',!!m);f.querySelector('.hint').textContent=m}});
+$('#qform').onsubmit=e=>{e.preventDefault();if(!check())return;if(cur<2){go(cur+1);steps[cur].querySelector('input,select').focus();return}
+ show('Thanks, '+$('#q-name').value.trim().split(' ')[0]+' — your '+$('#q-from').value.trim()+' → '+$('#q-to').value.trim()+' quote request is in. Expect a reply by 10 am tomorrow.');e.target.reset();go(0)};
+back.onclick=()=>go(cur-1);
+})();
+</script>
+</body>
+</html>

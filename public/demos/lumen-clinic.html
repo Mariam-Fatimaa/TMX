@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fbfaf7">
+<title>Lumen Dental &amp; Skin Clinic — Calm care for your smile and skin</title>
+<meta name="description" content="Lumen Dental & Skin Clinic: dentists and dermatologists under one roof, with transparent prices, evening hours and online booking. Designed & developed by TMX Digital Solutions.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfaf7;--card:#fff;--sage:#6f9e92;--teal:#2f6a60;--teal-d:#234f48;--sage-l:#e4efea;--sage-xl:#f1f6f3;--peach:#f2b494;--peach-l:#fde8dc;--slate:#1f2d3a;--muted:#56636f;--line:#e3e7e2;--err:#b42318;--r:20px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--slate);font:17px/1.6 'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.1;margin:0;letter-spacing:-.01em}
+p{margin:0}a{color:inherit}button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
+section{padding:96px 0}
+.eyebrow{display:inline-block;font-weight:600;font-size:14px;letter-spacing:.06em;color:var(--teal);background:var(--sage-l);padding:6px 14px;border-radius:100px}
+.h2{font-size:clamp(34px,4.4vw,52px);margin:16px 0 14px}
+.lead{color:var(--muted);max-width:560px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:100px;padding:15px 26px;font-weight:600;text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s}
+.btn-p{background:var(--teal);color:#fff}.btn-p:hover{background:var(--teal-d);transform:translateY(-1px);box-shadow:0 10px 24px #2f6a6033}
+.btn-s{background:#fff;color:var(--slate);box-shadow:inset 0 0 0 1.5px var(--line)}.btn-s:hover{box-shadow:inset 0 0 0 1.5px var(--teal)}
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;height:84px;display:flex;align-items:center;transition:background .3s,box-shadow .3s,height .3s}
+.nav.scrolled{background:#fbfaf7f0;backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line),0 10px 30px #1f2d3a0d;height:70px}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 26px/1 'Fraunces',serif}
+.logo small{font:500 11px/1 'Figtree';letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-top:4px}
+.links{display:flex;gap:28px;list-style:none;margin:0;padding:0}.links a{text-decoration:none;font-weight:500;font-size:16px;color:var(--muted)}.links a:hover{color:var(--teal)}
+.nav .btn{padding:12px 20px}
+.burger{display:none;width:44px;height:44px;border:0;background:var(--sage-l);border-radius:50%;padding:13px 12px}
+.burger span{display:block;height:2px;background:var(--slate);margin:4px 0;border-radius:2px;transition:.3s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(6px) rotate(45deg)}.burger[aria-expanded=true] span:nth-child(2){opacity:0}.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mmenu{display:none}
+/* hero */
+.hero{padding:150px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:700px;height:700px;right:-200px;top:-260px;background:radial-gradient(circle,var(--sage-l),transparent 65%);z-index:-1}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(46px,6.6vw,88px);margin:20px 0 24px;letter-spacing:-.025em}
+.hero h1 em{font-style:italic;color:var(--teal)}
+.hero .lead{font-size:19px;margin-bottom:32px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.proof{display:flex;gap:28px;margin-top:40px;flex-wrap:wrap;color:var(--muted);font-size:15px}
+.proof b{display:block;font:500 26px/1.1 'Fraunces',serif;color:var(--slate)}
+.illo{position:relative}.illo svg{width:100%;height:auto;display:block}
+.blob{animation:morph 12s ease-in-out infinite alternate;transform-origin:center;transform-box:fill-box}
+@keyframes morph{to{transform:rotate(8deg) scale(1.04)}}
+.slot{position:absolute;left:-28px;bottom:24px;background:#fff;border-radius:18px;padding:18px 20px;box-shadow:0 24px 50px #1f2d3a1f;width:270px;animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.slot p{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.slot p::before{content:"";width:8px;height:8px;border-radius:50%;background:#3aa776;box-shadow:0 0 0 4px #3aa77622}
+.slot b{display:block;font:500 22px/1.2 'Fraunces',serif;margin:6px 0 2px}
+.slot span{font-size:14px;color:var(--muted)}
+.slot button{margin-top:12px;width:100%;padding:11px;font-size:15px}
+/* treatments */
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.filters{display:flex;gap:6px;background:#fff;border:1px solid var(--line);padding:5px;border-radius:100px;flex-wrap:wrap}
+.filters button{border:0;background:none;padding:10px 18px;border-radius:100px;font-weight:600;font-size:15px;color:var(--muted)}
+.filters button[aria-pressed=true]{background:var(--teal);color:#fff}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 18px 40px #1f2d3a12}
+.tcard[hidden]{display:none}
+.ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;background:var(--sage-l)}
+.ico svg{width:24px;height:24px;fill:none;stroke:var(--teal);stroke-width:1.8;stroke-linecap:round}
+.tcard[data-cat=skin] .ico{background:var(--peach-l)}.tcard[data-cat=skin] .ico svg{stroke:#a4532c}
+.tcard[data-cat=aesthetics] .ico{background:#ece9f5}.tcard[data-cat=aesthetics] .ico svg{stroke:#5a4e8c}
+.tcard h3{font-size:22px;margin-bottom:8px}.tcard p{color:var(--muted);font-size:15px;flex:1}
+.tmeta{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:18px;padding-top:14px;font-size:14px;color:var(--muted)}.tmeta b{color:var(--slate)}
+/* doctors */
+.docs{background:var(--sage-xl)}
+.dgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.doc{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.doc .av{aspect-ratio:1/1;display:grid;place-items:end center;overflow:hidden}
+.doc .av svg{width:78%;height:auto}
+.doc div.t{padding:20px 22px 24px}.doc h3{font-size:21px}.doc .role{color:var(--teal);font-weight:600;font-size:15px;margin:4px 0 8px}.doc p.b{color:var(--muted);font-size:14px}
+/* compare */
+.cmp .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.ba{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:16/10;background:var(--peach-l);--pos:50%;user-select:none}
+.ba svg{position:absolute;inset:0;width:100%;height:100%}
+.ba .after{clip-path:inset(0 0 0 var(--pos))}
+.ba .tag{position:absolute;top:16px;background:#fffd;border-radius:100px;padding:5px 12px;font-size:13px;font-weight:600}
+.ba .tag.l{left:16px}.ba .tag.r{right:16px}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.handle{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;background:#fff;transform:translateX(-50%);pointer-events:none}
+.handle::after{content:"‹ ›";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#fff;box-shadow:0 6px 20px #0003;display:grid;place-items:center;font-weight:700;color:var(--teal);letter-spacing:4px}
+.ba input:focus-visible~.handle::after{outline:3px solid var(--teal);outline-offset:3px}
+.note{font-size:13px;color:var(--muted);margin-top:12px}
+.checks{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:10px}
+.checks li{padding-left:30px;position:relative}.checks li::before{content:"✓";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:var(--sage-l);color:var(--teal);font-size:12px;font-weight:700;display:grid;place-items:center}
+/* reviews */
+.reviews{background:var(--slate);color:#fff}
+.reviews .h2{color:#fff}.reviews .eyebrow{background:#ffffff14;color:#cfe3dc}
+.car{position:relative;overflow:hidden;margin-top:36px}
+.track{display:flex;transition:transform .5s ease}
+.rv{flex:0 0 100%;padding:0 2px}
+.rv blockquote{margin:0;font:400 clamp(22px,2.6vw,32px)/1.35 'Fraunces',serif;max-width:900px}
+.rv .stars{color:var(--peach);letter-spacing:3px;margin-bottom:18px;font-size:18px}
+.rv footer{margin-top:22px;color:#b9c5cf;font-size:15px}.rv footer b{color:#fff}
+.cctl{display:flex;align-items:center;gap:12px;margin-top:34px}
+.cctl button.arr{width:48px;height:48px;border-radius:50%;border:1.5px solid #ffffff33;background:none;color:#fff;font-size:20px}
+.cctl button.arr:hover{background:#ffffff14}
+.dots{display:flex;gap:8px;margin-left:10px}.dots button{width:10px;height:10px;border-radius:10px;border:0;background:#ffffff40;padding:0;transition:width .3s}
+.dots button[aria-current=true]{background:var(--peach);width:28px}
+/* prices + faq accordions */
+.acc{border-top:1px solid var(--line)}
+.acc-i{border-bottom:1px solid var(--line)}
+.acc-b{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 4px;background:none;border:0;text-align:left;font:500 22px/1.3 'Fraunces',serif}
+.acc-b::after{content:"+";flex:none;width:34px;height:34px;border-radius:50%;background:var(--sage-l);color:var(--teal);display:grid;place-items:center;font:500 22px/1 'Figtree';transition:transform .3s}
+.acc-b[aria-expanded=true]::after{transform:rotate(45deg)}
+.js .acc-p{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.js .acc-p.open{grid-template-rows:1fr}
+.acc-p>div{overflow:hidden}
+.acc-p .in{padding:0 4px 22px;color:var(--muted)}
+.prices .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.plist{list-style:none;margin:0;padding:0 4px 18px}
+.plist li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px dashed var(--line);color:var(--muted)}
+.plist li:last-child{border:0}.plist b{color:var(--slate);white-space:nowrap}
+.ins{padding:56px 0;border-block:1px solid var(--line);background:#fff}
+.ins .wrap{display:flex;align-items:center;gap:18px 34px;flex-wrap:wrap;justify-content:center}
+.ins p{font-size:15px;color:var(--muted);width:100%;text-align:center}
+.ins span{font:600 18px/1 'Fraunces',serif;color:#6b7782;display:flex;align-items:center;gap:8px}
+.ins span::before{content:"";width:12px;height:12px;border-radius:50% 50% 50% 0;background:var(--sage)}
+.faq .wrap{max-width:860px}
+/* booking */
+.book{background:linear-gradient(180deg,var(--sage-xl),var(--bg))}
+.book .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+.bcard{background:#fff;border-radius:28px;padding:36px;box-shadow:0 30px 60px #1f2d3a14;border:1px solid var(--line)}
+.bstep{margin-bottom:26px}
+.lbl{display:block;font-weight:600;margin-bottom:10px;font-size:16px}
+.lbl i{font-style:normal;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-size:13px;margin-right:8px}
+select,input[type=text],input[type=tel]{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:#fff;font-size:16px}
+select:focus,input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px #2f6a6022}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.day,.time{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:10px 4px;text-align:center;transition:.2s}
+.day small{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.day b{font:500 22px/1.2 'Fraunces',serif}
+.day:hover:not(:disabled),.time:hover:not(:disabled){border-color:var(--teal)}
+.day[aria-pressed=true],.time[aria-pressed=true]{background:var(--teal);border-color:var(--teal);color:#fff}.day[aria-pressed=true] small{color:#d7ebe4}
+.day:disabled,.time:disabled{opacity:.45;cursor:not-allowed;text-decoration:line-through}
+.times{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.time{font-weight:600;font-size:15px;padding:11px 4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.e{color:var(--err);font-size:14px;min-height:20px;margin-top:6px}
+.bad select,.bad input{border-color:var(--err)}
+.bside ul{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px;color:var(--muted)}
+.bside li b{color:var(--slate)}
+/* visit */
+.visit .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch}
+.mapbox{border-radius:24px;overflow:hidden;background:var(--sage-xl);border:1px solid var(--line);min-height:340px}.mapbox svg{width:100%;height:100%;display:block}
+.hours{list-style:none;padding:0;margin:20px 0 26px}
+.hours li{display:flex;justify-content:space-between;padding:10px 14px;border-radius:10px;color:var(--muted)}
+.hours li.today{background:var(--sage-l);color:var(--slate);font-weight:600}
+.site-f{background:#16212c;color:#b9c5cf;padding:64px 0 28px;font-size:15px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.site-f h4{color:#fff;margin:0 0 14px;font-size:15px}.site-f ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}.site-f a{text-decoration:none}.site-f a:hover{color:var(--peach)}
+.credit{border-top:1px solid #ffffff1a;margin-top:44px;padding-top:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:#8b98a4}
+.toast{visibility:hidden;position:fixed;left:50%;bottom:24px;transform:translate(-50%,150%);background:var(--slate);color:#fff;padding:16px 22px;border-radius:16px;box-shadow:0 20px 40px #0004;z-index:80;max-width:calc(100% - 32px);width:max-content;transition:transform .4s,visibility .4s;display:flex;gap:12px;align-items:center}
+.toast::before{content:"✓";flex:none;width:28px;height:28px;border-radius:50%;background:var(--sage);display:grid;place-items:center;font-weight:700}
+.toast.show{visibility:visible;transform:translate(-50%,0)}
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}.js .reveal.in{opacity:1;transform:none}
+@media (max-width:1000px){
+.links,.nav .btn{display:none}.burger{display:block}
+.mmenu{position:fixed;inset:70px 0 auto;background:var(--bg);padding:10px 24px 26px;z-index:49;box-shadow:0 20px 30px #1f2d3a1a}
+.mmenu.open{display:grid}.mmenu a{text-decoration:none;font:500 24px/1 'Fraunces',serif;padding:14px 0;border-bottom:1px solid var(--line)}
+.hero .wrap,.cmp .wrap,.prices .wrap,.book .wrap,.visit .wrap{grid-template-columns:1fr}
+.tgrid,.dgrid{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}
+.illo{max-width:560px;margin:0 auto;width:100%}.slot{left:0}
+}
+@media (max-width:600px){
+.wrap{width:calc(100% - 36px)}section{padding:68px 0}
+.hero{padding:112px 0 56px}.hero .lead{font-size:17px}.proof{gap:20px}
+.slot{position:relative;left:auto;bottom:auto;width:auto;margin:-40px 16px 0}
+.tgrid{grid-template-columns:1fr 1fr;gap:12px}.tcard{padding:18px 16px;border-radius:16px}.tcard h3{font-size:18px}.tcard p{font-size:14px;line-height:1.45}.ico{width:40px;height:40px;margin-bottom:12px}.tmeta{flex-direction:column;gap:2px;font-size:13px}.dgrid{grid-template-columns:1fr 1fr;gap:12px}.doc div.t{padding:14px}.doc h3{font-size:17px}.doc p.b{display:none}
+.bcard{padding:24px 18px;border-radius:22px}.days{gap:5px}.day{padding:8px 0}.day b{font-size:18px}.day small{font-size:10px}
+.times{grid-template-columns:repeat(3,1fr)}.two{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr}
+.acc-b{font-size:19px}.filters{width:100%;justify-content:space-between}.filters button{padding:9px 12px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body id="top">
+<a href="#main" class="btn btn-p" style="position:absolute;left:-999px;top:8px;z-index:99" onfocus="this.style.left='8px'" onblur="this.style.left='-999px'">Skip to content</a>
+<header class="nav" id="nav">
+ <div class="wrap">
+  <a href="#top" class="logo" aria-label="Lumen Dental and Skin Clinic home"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="#e4efea"/><path d="M17 6c3 5 7 7 7 12a7 7 0 01-14 0c0-5 4-7 7-12z" fill="#2f6a60"/><circle cx="21" cy="11" r="3" fill="#f2b494"/></svg><span>Lumen<small>Dental &amp; Skin</small></span></a>
+  <nav aria-label="Primary"><ul class="links"><li><a href="#treatments">Treatments</a></li><li><a href="#doctors">Doctors</a></li><li><a href="#prices">Prices</a></li><li><a href="#faq">FAQ</a></li><li><a href="#visit">Visit</a></li></ul></nav>
+  <a href="#book" class="btn btn-p">Book a visit</a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button>
+ </div>
+</header>
+<nav class="mmenu" id="mmenu" aria-label="Mobile"><a href="#treatments">Treatments</a><a href="#doctors">Doctors</a><a href="#prices">Prices</a><a href="#faq">FAQ</a><a href="#visit">Visit us</a><a href="#book" style="color:var(--teal)">Book a visit →</a></nav>
+
+<main id="main">
+<section class="hero" aria-labelledby="h1">
+ <div class="wrap">
+  <div>
+   <span class="eyebrow">Dentistry · Dermatology · Aesthetics</span>
+   <h1 id="h1">Calm care for your <em>smile</em> and skin.</h1>
+   <p class="lead">Dentists and dermatologists under one roof — with clear prices, unrushed 45-minute appointments and evening hours on weekdays.</p>
+   <div class="cta"><a href="#book" class="btn btn-p">Book an appointment</a><a href="#treatments" class="btn btn-s">Explore treatments</a></div>
+   <div class="proof"><div><b>4.9 ★</b>1,240 patient reviews</div><div><b>9</b>specialists</div><div><b>Till 8 pm</b>Monday to Friday</div></div>
+  </div>
+  <div class="illo">
+   <svg viewBox="0 0 520 480" aria-hidden="true">
+    <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe4dc"/><stop offset="1" stop-color="#8fbcb0"/></linearGradient><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde8dc"/><stop offset="1" stop-color="#f2b494"/></linearGradient></defs>
+    <path class="blob" d="M262 30c96-6 214 50 226 160 12 104-60 230-190 262C168 484 46 410 32 300 18 186 120 38 262 30z" fill="#e4efea"/>
+    <path d="M150 440V200a110 110 0 01220 0v240z" fill="url(#g1)"/>
+    <circle cx="370" cy="120" r="54" fill="url(#g2)"/>
+    <path d="M210 420c0-60 10-120 50-160 40 40 50 100 50 160" fill="none" stroke="#fff" stroke-width="3" opacity=".7"/>
+    <g transform="translate(205 170)"><path d="M55 0c-20 0-30 10-55 10S-40 0-40 40c0 30 14 50 20 90 4 22 22 22 26-4 4-24 10-40 24-40s20 16 24 40c4 26 22 26 26 4 6-40 20-60 20-90 0-40-20-40-45-40z" transform="translate(40 0)" fill="#fff" stroke="#2f6a60" stroke-width="3"/><path d="M30 30c8-8 20-10 30-6" fill="none" stroke="#6f9e92" stroke-width="3" stroke-linecap="round"/></g>
+    <g fill="#6f9e92"><path d="M420 330c30-30 70-30 80-20-10 30-50 50-80 20z"/><path d="M410 380c20-40 60-50 72-44-4 34-40 60-72 44z" opacity=".7"/><path d="M405 420c2-60 2-110 10-150" fill="none" stroke="#6f9e92" stroke-width="3"/></g>
+    <circle cx="96" cy="150" r="10" fill="#f2b494"/><circle cx="460" cy="230" r="6" fill="#2f6a60"/><circle cx="120" cy="96" r="5" fill="#6f9e92"/>
+    <path d="M60 380c30 0 30-16 60-16s30 16 60 16" fill="none" stroke="#f2b494" stroke-width="4" stroke-linecap="round"/>
+   </svg>
+   <div class="slot" aria-live="polite"><p>Next available slot</p><b id="slotTime">Tomorrow, 10:30 am</b><span>Check-up &amp; clean · Dr. Amara Qureshi</span><button class="btn btn-p" id="slotBtn" type="button">Book this slot</button></div>
+  </div>
+ </div>
+</section>
+
+<section id="treatments" aria-labelledby="tr-h" style="padding-top:40px">
+ <div class="wrap">
+  <div class="head reveal"><div><span class="eyebrow">Treatments</span><h2 class="h2" id="tr-h">Everything your smile and skin need.</h2><p class="lead">Every plan starts with a consultation and a written quote. No surprises at the front desk.</p></div>
+   <div class="filters" role="group" aria-label="Filter treatments"><button aria-pressed="true" data-f="all">All</button><button aria-pressed="false" data-f="dental">Dental</button><button aria-pressed="false" data-f="skin">Skin</button><button aria-pressed="false" data-f="aesthetics">Aesthetics</button></div></div>
+  <div class="tgrid reveal" id="tgrid" aria-live="polite">
+   <article class="tcard" data-cat="dental"><div class="ico"><svg viewBox="0 0 24 24"><path d="M7 3c-3 0-4 3-3.5 6 .5 3 1.5 4 2 8 .3 3 2.5 3 3 0l1-4h5l1 4c.5 3 2.7 3 3 0 .5-4 1.5-5 2-8 .5-3-.5-6-3.5-6-2 0-3 1-5 1S9 3 7 3z"/></svg></div><h3>Check-up &amp; clean</h3><p>Exam, scale and polish, plus digital X-rays when you're due.</p><div class="tmeta"><span>45 min</span><b>$65</b></div></article>
+   <article class="tcard" data-cat="dental"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M6 18l2-2M16 8l2-2"/></svg></div><h3>Teeth whitening</h3><p>In-chair whitening with take-home trays to keep the result.</p><div class="tmeta"><span>60 min</span><b>$240</b></div></article>
+   <article class="tcard" data-cat="dental"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 10c3-3 15-3 18 0M4 10v3c0 2 16 2 16 0v-3"/></svg></div><h3>Clear aligners</h3><p>Near-invisible aligners with a 3D preview of your new smile.</p><div class="tmeta"><span>6–14 months</span><b>from $1,900</b></div></article>
+   <article class="tcard" data-cat="dental"><div class="ico"><svg viewBox="0 0 24 24"><path d="M8 3h8l-1 6H9zM10 9v4h4V9M11 13l-1 8h4l-1-8"/></svg></div><h3>Dental implants</h3><p>Titanium implant and crown, planned with a 3D jaw scan.</p><div class="tmeta"><span>2 visits</span><b>from $1,450</b></div></article>
+   <article class="tcard" data-cat="skin"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="9" cy="10" r="1"/><circle cx="14" cy="14" r="1"/><circle cx="15" cy="9" r="1"/></svg></div><h3>Acne clinic</h3><p>Dermatologist-led plan with a 6-week review included.</p><div class="tmeta"><span>30 min</span><b>$80</b></div></article>
+   <article class="tcard" data-cat="skin"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 01-12 0c0-3 2-6 6-11z"/></svg></div><h3>Chemical peel</h3><p>Gentle medical-grade peels for dullness, texture and marks.</p><div class="tmeta"><span>40 min</span><b>$120</b></div></article>
+   <article class="tcard" data-cat="aesthetics"><div class="ico"><svg viewBox="0 0 24 24"><path d="M5 19l9-9M14 5l5 5-4 4-5-5zM4 20l2-2"/></svg></div><h3>Anti-wrinkle</h3><p>Softens frown and forehead lines with a natural, rested look.</p><div class="tmeta"><span>20 min</span><b>from $220</b></div></article>
+   <article class="tcard" data-cat="aesthetics"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 4c5 0 8 3 8 8s-3 8-8 8-8-3-8-8M8 12c1 2 3 3 4 3s3-1 4-3"/></svg></div><h3>Dermal fillers</h3><p>Hyaluronic fillers for lips and cheeks, fully dissolvable.</p><div class="tmeta"><span>45 min</span><b>from $320</b></div></article>
+  </div>
+ </div>
+</section>
+
+<section id="doctors" class="docs" aria-labelledby="dr-h">
+ <div class="wrap">
+  <div class="reveal"><span class="eyebrow">Meet the doctors</span><h2 class="h2" id="dr-h">Specialists who take their time.</h2><p class="lead">Every Lumen clinician is registered, insured and does at least 40 hours of training a year.</p></div>
+  <div class="dgrid">
+   <article class="doc reveal"><div class="av" style="background:linear-gradient(160deg,#e4efea,#bcd8ce)"><svg viewBox="0 0 200 180" aria-hidden="true"><path d="M30 180c0-46 32-70 70-70s70 24 70 70z" fill="#2f6a60"/><circle cx="100" cy="72" r="42" fill="#e9b996"/><path d="M58 70c0-30 18-46 42-46s44 14 44 46c-10-14-30-22-52-20-16 2-26 10-34 20z" fill="#3a2a22"/></svg></div><div class="t"><h3>Dr. Amara Qureshi</h3><p class="role">Cosmetic dentist</p><p class="b">BDS, MSc Restorative. 12 years making nervous patients feel at ease.</p></div></article>
+   <article class="doc reveal"><div class="av" style="background:linear-gradient(160deg,#fde8dc,#f4c7ad)"><svg viewBox="0 0 200 180" aria-hidden="true"><path d="M30 180c0-46 32-70 70-70s70 24 70 70z" fill="#1f2d3a"/><circle cx="100" cy="72" r="42" fill="#c98f6b"/><path d="M60 60c4-24 22-34 40-34s38 10 40 34c-14-8-60-8-80 0z" fill="#241a15"/></svg></div><div class="t"><h3>Dr. Leon Ferreira</h3><p class="role">Orthodontist</p><p class="b">Specialist in clear aligners for adults. Has fitted over 2,000 smiles.</p></div></article>
+   <article class="doc reveal"><div class="av" style="background:linear-gradient(160deg,#ece9f5,#cfc8e8)"><svg viewBox="0 0 200 180" aria-hidden="true"><path d="M30 180c0-46 32-70 70-70s70 24 70 70z" fill="#6f9e92"/><path d="M52 120c-6-60 10-96 48-96s54 36 48 96z" fill="#18120f"/><circle cx="100" cy="74" r="38" fill="#f1cba9"/><path d="M62 66c6-22 20-30 38-30s32 8 38 30c-20-12-56-12-76 0z" fill="#18120f"/></svg></div><div class="t"><h3>Dr. Hana Sato</h3><p class="role">Consultant dermatologist</p><p class="b">MD, FRCP. Leads our acne and pigmentation clinics.</p></div></article>
+   <article class="doc reveal"><div class="av" style="background:linear-gradient(160deg,#e9eef2,#c7d3dc)"><svg viewBox="0 0 200 180" aria-hidden="true"><path d="M30 180c0-46 32-70 70-70s70 24 70 70z" fill="#f2b494"/><circle cx="100" cy="72" r="42" fill="#b57d58"/><path d="M62 86c4 30 20 38 38 38s34-8 38-38c-10 10-66 10-76 0z" fill="#2b211c"/><path d="M60 62c4-26 22-36 40-36s36 10 40 36c-16-10-64-10-80 0z" fill="#2b211c"/></svg></div><div class="t"><h3>Dr. Idris Malik</h3><p class="role">Aesthetic physician</p><p class="b">MBBS, Dip. Aesthetics. Known for subtle, natural-looking results.</p></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="cmp" aria-labelledby="ba-h">
+ <div class="wrap">
+  <div class="reveal"><span class="eyebrow">Results</span><h2 class="h2" id="ba-h">See the difference two visits make.</h2><p class="lead">Drag the slider to compare a typical whitening result. We photograph every case so you can track your own progress.</p>
+   <ul class="checks"><li>Shade matched to your skin tone, not a one-size white</li><li>Low-sensitivity gel, safe for enamel</li><li>Free touch-up trays at your 6-month check-up</li></ul></div>
+  <div class="reveal">
+   <div class="ba" id="ba">
+    <svg viewBox="0 0 400 250" aria-hidden="true"><rect width="400" height="250" fill="#f7dccd"/><path d="M70 110c60-30 200-30 260 0-20 80-90 110-130 110S90 190 70 110z" fill="#b5544a"/><path d="M92 116c50-18 166-18 216 0-6 20-14 30-20 34H112c-6-4-14-14-20-34z" fill="#e8a39a"/><g fill="#dcc48e" stroke="#c9ad73" stroke-width="2"><rect x="112" y="112" width="34" height="44" rx="8"/><rect x="148" y="108" width="34" height="50" rx="8"/><rect x="184" y="106" width="34" height="52" rx="8"/><rect x="220" y="108" width="34" height="50" rx="8"/><rect x="256" y="112" width="32" height="44" rx="8"/></g><g fill="#c4a56a" opacity=".6"><circle cx="160" cy="130" r="5"/><circle cx="232" cy="140" r="4"/><circle cx="198" cy="148" r="3"/></g><path d="M110 160c40 26 140 26 180 0" fill="none" stroke="#8c3b33" stroke-width="5"/></svg>
+    <svg class="after" viewBox="0 0 400 250" aria-hidden="true"><rect width="400" height="250" fill="#e4efea"/><path d="M70 110c60-30 200-30 260 0-20 80-90 110-130 110S90 190 70 110z" fill="#c25e55"/><path d="M92 116c50-18 166-18 216 0-6 20-14 30-20 34H112c-6-4-14-14-20-34z" fill="#f0b2a9"/><g fill="#fdfdf8" stroke="#e5e5dc" stroke-width="2"><rect x="112" y="112" width="34" height="44" rx="8"/><rect x="148" y="108" width="34" height="50" rx="8"/><rect x="184" y="106" width="34" height="52" rx="8"/><rect x="220" y="108" width="34" height="50" rx="8"/><rect x="256" y="112" width="32" height="44" rx="8"/></g><g fill="#fff" opacity=".9"><rect x="152" y="114" width="6" height="16" rx="3"/><rect x="188" y="112" width="6" height="16" rx="3"/></g><path d="M110 160c40 26 140 26 180 0" fill="none" stroke="#97433b" stroke-width="5"/></svg>
+    <span class="tag l">Before</span><span class="tag r">After</span>
+    <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Before and after comparison: drag to reveal">
+    <span class="handle" aria-hidden="true"></span>
+   </div>
+   <p class="note">Illustration of a typical two-session result. Your result will depend on your starting shade.</p>
+  </div>
+ </div>
+</section>
+
+<section class="reviews" aria-labelledby="rv-h">
+ <div class="wrap">
+  <span class="eyebrow">Patient reviews</span><h2 class="h2" id="rv-h">4.9 out of 5, from 1,240 patients.</h2>
+  <div class="car" role="region" aria-roledescription="carousel" aria-label="Patient reviews">
+   <div class="track" id="track">
+    <figure class="rv" role="group" aria-roledescription="slide" aria-label="1 of 4" style="margin:0"><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>“I hadn't seen a dentist in seven years because of nerves. Dr. Qureshi explained every step before she did it. I actually booked my next check-up on the way out.”</blockquote><footer><b>Sana R.</b> · Check-up &amp; clean</footer></figure>
+    <figure class="rv" role="group" aria-roledescription="slide" aria-label="2 of 4" style="margin:0"><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>“Three months into Dr. Sato's acne plan and my skin is the calmest it's been since school. The follow-up calls made a real difference.”</blockquote><footer><b>Daniel O.</b> · Acne clinic</footer></figure>
+    <figure class="rv" role="group" aria-roledescription="slide" aria-label="3 of 4" style="margin:0"><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>“The price on the website was the price I paid. No upsell, no pressure — just a really good result from my aligners.”</blockquote><footer><b>Priya K.</b> · Clear aligners</footer></figure>
+    <figure class="rv" role="group" aria-roledescription="slide" aria-label="4 of 4" style="margin:0"><div class="stars" aria-label="4 stars">★★★★☆</div><blockquote>“Evening appointments mean I don't have to take time off work. Booking online took me under a minute.”</blockquote><footer><b>Marcus T.</b> · Teeth whitening</footer></figure>
+   </div>
+   <div class="cctl"><button class="arr" id="prev" aria-label="Previous review">←</button><button class="arr" id="next" aria-label="Next review">→</button><div class="dots" id="dots"></div></div>
+  </div>
+ </div>
+</section>
+
+<section id="prices" class="prices" aria-labelledby="pr-h">
+ <div class="wrap">
+  <div class="reveal"><span class="eyebrow">Transparent pricing</span><h2 class="h2" id="pr-h">The price you see is the price you pay.</h2><p class="lead">Prices include your consultation and aftercare. Interest-free payment plans are available on treatments over $500.</p></div>
+  <div class="acc reveal" data-acc>
+   <div class="acc-i"><h3 style="font:inherit"><button class="acc-b" aria-expanded="true">Dental</button></h3><div class="acc-p open"><div><ul class="plist"><li>Check-up, scale &amp; polish<b>$65</b></li><li>White composite filling<b>$110</b></li><li>Teeth whitening (in-chair + trays)<b>$240</b></li><li>Clear aligners, full course<b>$1,900 – $3,400</b></li><li>Single implant with crown<b>$1,450</b></li></ul></div></div></div>
+   <div class="acc-i"><h3 style="font:inherit"><button class="acc-b" aria-expanded="false">Skin</button></h3><div class="acc-p"><div><ul class="plist"><li>Dermatology consultation<b>$80</b></li><li>Mole check (full body)<b>$95</b></li><li>Chemical peel<b>$120</b></li><li>Laser pigmentation, per session<b>$180</b></li></ul></div></div></div>
+   <div class="acc-i"><h3 style="font:inherit"><button class="acc-b" aria-expanded="false">Aesthetics</button></h3><div class="acc-p"><div><ul class="plist"><li>Anti-wrinkle, 1 area<b>$220</b></li><li>Anti-wrinkle, 3 areas<b>$390</b></li><li>Lip filler, 1 ml<b>$320</b></li><li>Two-week review<b>Included</b></li></ul></div></div></div>
+  </div>
+ </div>
+</section>
+
+<div class="ins" aria-label="Insurance partners"><div class="wrap"><p>We bill these insurers directly — bring your member card.</p><span>Meridian Care</span><span>Crescent Health</span><span>Allied Shield</span><span>Harbourline</span><span>Tandem Assure</span><span>Verde Mutual</span></div></div>
+
+<section id="faq" class="faq" aria-labelledby="faq-h">
+ <div class="wrap">
+  <div class="reveal" style="text-align:center;margin-bottom:34px"><span class="eyebrow">FAQ</span><h2 class="h2" id="faq-h">Good questions, straight answers.</h2></div>
+  <div class="acc reveal" data-acc>
+   <div class="acc-i"><h3 style="font:inherit"><button class="acc-b" aria-expanded="false">I'm anxious about dental visits. Can you help?</button></h3><div class="acc-p"><div><p class="in">Yes. Tell us when you book and we'll schedule a longer slot, explain every step first and agree a stop signal. Gentle sedation is available for longer treatments.</p></div></div></div>
+   <div class="acc-i"><h3 style="font:inherit"><button class="acc-b" aria-expanded="false">Do I need a referral to see a dermatologist?</button></h3><div class="acc-p"><div><p class="in">No referral needed. Some insurers ask for one before they reimburse you — check your policy or ask our front desk.</p></div></div></div>
+   <div class="acc-i"><h3 style="font:inherit"><button class="acc-b" aria-expanded="false">What if I need to cancel?</button></h3><div class="acc-p"><div><p class="in">Cancel or move your appointment free of charge up to 24 hours before. Use the link in your confirmation text or call us.</p></div></div></div>
+   <div class="acc-i"><h3 style="font:inherit"><button class="acc-b" aria-expanded="false">Can children be seen at Lumen?</button></h3><div class="acc-p"><div><p class="in">We see children from age 3 for dental care. Skin and aesthetic treatments are for adults only.</p></div></div></div>
+   <div class="acc-i"><h3 style="font:inherit"><button class="acc-b" aria-expanded="false">Is there parking?</button></h3><div class="acc-p"><div><p class="in">Free patient parking for 90 minutes in the Willow Court car park behind the clinic. We're also 4 minutes' walk from Harbour Street station.</p></div></div></div>
+  </div>
+ </div>
+</section>
+
+<section id="book" class="book" aria-labelledby="bk-h">
+ <div class="wrap">
+  <div class="bside reveal"><span class="eyebrow">Book online</span><h2 class="h2" id="bk-h">Book in under a minute.</h2><p class="lead">Pick a treatment, a day and a time. We'll text you a confirmation and a reminder the day before.</p>
+   <ul><li><b>Free cancellation</b> up to 24 hours before</li><li><b>Prefer to talk?</b> Call +00 210 555 0148</li><li><b>Sundays</b> we're closed so our team can rest</li></ul></div>
+  <form class="bcard reveal" id="bform" novalidate>
+   <div class="bstep" id="f-tr"><label class="lbl" for="b-tr"><i>1</i>Treatment</label><select id="b-tr"><option value="">Choose a treatment</option><option>Check-up &amp; clean</option><option>Teeth whitening</option><option>Clear aligners consultation</option><option>Dermatology consultation</option><option>Chemical peel</option><option>Aesthetics consultation</option></select><p class="e"></p></div>
+   <div class="bstep" id="f-day"><span class="lbl" id="l-day"><i>2</i>Date</span><div class="days" id="days" role="group" aria-labelledby="l-day"></div><noscript><p>Please call +00 210 555 0148 to book.</p></noscript><p class="e"></p></div>
+   <div class="bstep" id="f-time"><span class="lbl" id="l-time"><i>3</i>Time</span><div class="times" id="times" role="group" aria-labelledby="l-time"></div><p class="e"></p></div>
+   <div class="two"><div class="bstep" id="f-name"><label class="lbl" for="b-name"><i>4</i>Your name</label><input type="text" id="b-name" autocomplete="name"><p class="e"></p></div>
+    <div class="bstep" id="f-ph"><label class="lbl" for="b-ph"><i>5</i>Mobile number</label><input type="tel" id="b-ph" autocomplete="tel" placeholder="e.g. 0300 123 4567"><p class="e"></p></div></div>
+   <button class="btn btn-p" style="width:100%">Confirm appointment</button>
+  </form>
+ </div>
+</section>
+
+<section id="visit" class="visit" aria-labelledby="vs-h" style="padding-top:20px">
+ <div class="wrap">
+  <div class="mapbox reveal"><svg viewBox="0 0 600 360" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map showing Lumen at 22 Willow Court, near Harbour Street station"><rect width="600" height="360" fill="#eef4f1"/><g stroke="#fff" stroke-width="18" fill="none"><path d="M-10 120H610M-10 260H610M180 -10V370M420 -10V370"/></g><g stroke="#fff" stroke-width="8" fill="none"><path d="M-10 40L300 200 610 330M60 -10V370"/></g><rect x="200" y="140" width="200" height="100" rx="10" fill="#d6e7df"/><circle cx="520" cy="60" r="34" fill="#cfe4dc"/><text x="490" y="112" font-family="Figtree" font-size="13" fill="#56636f">Harbour St ⦿</text><text x="196" y="300" font-family="Figtree" font-size="13" fill="#56636f">Willow Court</text><g transform="translate(300 150)"><path d="M0 40c-20-22-30-34-30-50a30 30 0 0160 0c0 16-10 28-30 50z" fill="#2f6a60"/><circle cy="-10" r="11" fill="#f2b494"/></g></svg></div>
+  <div class="reveal"><span class="eyebrow">Visit us</span><h2 class="h2" id="vs-h">22 Willow Court, Harbour District</h2><p class="lead">Step-free entrance, a lift to every floor and a quiet room if you need a moment before your appointment.</p>
+   <ul class="hours" id="hours"><li data-d="1">Monday<span>8:30 am – 8:00 pm</span></li><li data-d="2">Tuesday<span>8:30 am – 8:00 pm</span></li><li data-d="3">Wednesday<span>8:30 am – 8:00 pm</span></li><li data-d="4">Thursday<span>8:30 am – 8:00 pm</span></li><li data-d="5">Friday<span>8:30 am – 6:00 pm</span></li><li data-d="6">Saturday<span>9:00 am – 3:00 pm</span></li><li data-d="0">Sunday<span>Closed</span></li></ul>
+   <a class="btn btn-s" href="tel:+002105550148">Call +00 210 555 0148</a></div>
+ </div>
+</section>
+</main>
+
+<footer class="site-f">
+ <div class="wrap">
+  <div class="fgrid">
+   <div><a href="#top" class="logo" style="color:#fff">Lumen</a><p style="margin-top:12px;max-width:300px">Dental, skin and aesthetic care with clear prices and time to listen.</p></div>
+   <div><h4>Treatments</h4><ul><li><a href="#treatments">Dental</a></li><li><a href="#treatments">Skin</a></li><li><a href="#treatments">Aesthetics</a></li><li><a href="#prices">Price list</a></li></ul></div>
+   <div><h4>Clinic</h4><ul><li><a href="#doctors">Our doctors</a></li><li><a href="#faq">FAQ</a></li><li><a href="#visit">Find us</a></li><li><a href="#book">Book online</a></li></ul></div>
+   <div><h4>Contact</h4><ul><li><a href="tel:+002105550148">+00 210 555 0148</a></li><li><a href="mailto:hello@lumenclinic.example">hello@lumenclinic.example</a></li><li>22 Willow Court</li></ul></div>
+  </div>
+  <div class="credit"><span>Designed &amp; developed by TMX Digital Solutions.</span><span>© 2026 · Think • Make • eXecute</span></div>
+ </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const nav=$('#nav'),onS=()=>nav.classList.toggle('scrolled',scrollY>20);onS();addEventListener('scroll',onS,{passive:true});
+const bg=$('#burger'),mm=$('#mmenu');
+const setM=o=>{bg.setAttribute('aria-expanded',o);bg.setAttribute('aria-label',o?'Close menu':'Open menu');mm.classList.toggle('open',o);o?nav.classList.add('scrolled'):onS()};
+bg.onclick=()=>setM(bg.getAttribute('aria-expanded')!=='true');mm.onclick=e=>{if(e.target.closest('a'))setM(false)};addEventListener('keydown',e=>{if(e.key==='Escape')setM(false)});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -30px'});
+$$('.reveal').forEach(el=>io.observe(el));
+// filters
+$$('.filters button').forEach(b=>b.onclick=()=>{const f=b.dataset.f;$$('.filters button').forEach(x=>x.setAttribute('aria-pressed',x===b));$$('.tcard').forEach(c=>c.hidden=f!=='all'&&c.dataset.cat!==f)});
+// compare
+const ba=$('#ba'),rg=$('#baRange');rg.oninput=()=>ba.style.setProperty('--pos',rg.value+'%');
+// carousel
+const tr=$('#track'),slides=tr.children,dots=$('#dots');let i=0;
+[...slides].forEach((s,n)=>{const d=document.createElement('button');d.setAttribute('aria-label','Show review '+(n+1));d.onclick=()=>go(n);dots.appendChild(d)});
+function go(n){i=(n+slides.length)%slides.length;tr.style.transform='translateX(-'+i*100+'%)';[...slides].forEach((s,k)=>s.setAttribute('aria-hidden',k!==i));[...dots.children].forEach((d,k)=>d.setAttribute('aria-current',k===i))}
+$('#prev').onclick=()=>go(i-1);$('#next').onclick=()=>go(i+1);go(0);
+// accordions
+$$('[data-acc]').forEach(a=>a.querySelectorAll('.acc-b').forEach(b=>{const p=b.closest('.acc-i').querySelector('.acc-p');p.id=p.id||'p'+Math.random().toString(36).slice(2,8);b.setAttribute('aria-controls',p.id);
+ b.onclick=()=>{const o=b.getAttribute('aria-expanded')!=='true';a.querySelectorAll('.acc-b').forEach(x=>{x.setAttribute('aria-expanded',false);x.closest('.acc-i').querySelector('.acc-p').classList.remove('open')});if(o){b.setAttribute('aria-expanded',true);p.classList.add('open')}}}));
+// hours today
+const today=new Date().getDay();const h=$('#hours li[data-d="'+today+'"]');if(h){h.classList.add('today');h.firstChild.textContent+=' (today)'}
+// booking
+const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const SLOTS=['09:00','09:45','10:30','11:15','12:00','14:00','15:30','16:45'];
+const daysEl=$('#days'),timesEl=$('#times');let sDay=null,sTime=null;const dates=[];
+for(let k=1;k<=7;k++){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+k);dates.push(d);
+ const b=document.createElement('button');b.type='button';b.className='day';b.setAttribute('aria-pressed','false');b.innerHTML='<small>'+DN[d.getDay()]+'</small><b>'+d.getDate()+'</b>';b.setAttribute('aria-label',DN[d.getDay()]+' '+d.getDate()+' '+MN[d.getMonth()]+(d.getDay()===0?' (closed)':''));
+ if(d.getDay()===0)b.disabled=true;b.onclick=()=>pickDay(k-1);daysEl.appendChild(b)}
+const taken=(d,t)=>((d.getDate()*7+t*13)%5)===0||(d.getDay()===6&&t>4);
+function pickDay(n){sDay=n;sTime=null;[...daysEl.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===n));clr('f-day');
+ timesEl.innerHTML='';SLOTS.forEach((t,k)=>{const b=document.createElement('button');b.type='button';b.className='time';b.textContent=t;b.setAttribute('aria-pressed','false');if(taken(dates[n],k)){b.disabled=true;b.setAttribute('aria-label',t+' unavailable')}b.onclick=()=>{sTime=t;[...timesEl.children].forEach(x=>x.setAttribute('aria-pressed',x===b));clr('f-time')};timesEl.appendChild(b)})}
+const first=dates.findIndex(d=>d.getDay()!==0);pickDay(first);
+const firstT=SLOTS.findIndex((t,k)=>!taken(dates[first],k));
+const fmt=(d,t)=>DN[d.getDay()]+' '+d.getDate()+' '+MN[d.getMonth()]+', '+t;
+$('#slotTime').textContent=(first===0?'Tomorrow, ':fmt(dates[first],'').slice(0,-2)+', ')+SLOTS[firstT];
+$('#slotBtn').onclick=()=>{$('#b-tr').value='Check-up & clean';pickDay(first);timesEl.children[firstT].click();$('#book').scrollIntoView({behavior:reduce?'auto':'smooth'});setTimeout(()=>$('#b-name').focus({preventScroll:true}),reduce?0:600)};
+function err(id,m){const f=$('#'+id);f.classList.add('bad');f.querySelector('.e').textContent=m}
+function clr(id){const f=$('#'+id);f.classList.remove('bad');f.querySelector('.e').textContent=''}
+$('#b-tr').onchange=()=>clr('f-tr');$('#b-name').oninput=()=>clr('f-name');$('#b-ph').oninput=()=>clr('f-ph');
+const toast=$('#toast');let tt;
+$('#bform').onsubmit=e=>{e.preventDefault();['f-tr','f-day','f-time','f-name','f-ph'].forEach(clr);let bad=[];
+ const tr=$('#b-tr').value,nm=$('#b-name').value.trim(),ph=$('#b-ph').value.replace(/[\s()-]/g,'');
+ if(!tr){err('f-tr','Choose the treatment you want to book.');bad.push('#b-tr')}
+ if(sDay===null){err('f-day','Pick a day.');bad.push('#days button:not(:disabled)')}
+ if(!sTime){err('f-time','Pick a time slot.');bad.push('#times button:not(:disabled)')}
+ if(nm.length<2){err('f-name','Enter your name so we know who to expect.');bad.push('#b-name')}
+ if(!/^\+?\d{10,13}$/.test(ph)){err('f-ph','Enter a mobile number with 10–13 digits.');bad.push('#b-ph')}
+ if(bad.length){$(bad[0]).focus();return}
+ toast.textContent='You\'re booked, '+nm.split(' ')[0]+'! '+tr+' on '+fmt(dates[sDay],sTime)+'. A confirmation text is on its way.';toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),6000);
+ e.target.reset();pickDay(first)};
+})();
+</script>
+</body>
+</html>

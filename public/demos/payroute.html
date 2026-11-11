@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0f3d30">
+<title>Payroute — Get paid from anywhere, on time</title>
+<meta name="description" content="Payroute is invoicing and global payments for agencies and freelancers. Send branded invoices, accept 40+ currencies and get paid out locally in days, not weeks.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--em:#0f3d30;--em2:#0a2e24;--em3:#155443;--em-l:#2f7a62;--cream:#f6f0e3;--cream2:#ede4d1;--paper:#fffcf5;--ink:#14231d;--muted:#55635c;--line:#ddd2bb;--gold:#e0a93b;--gold-l:#f2c66d;--gold-d:#8a5a00;--ok:#1f8a5b;--warn:#b8740e;--err:#b3261e;--r:20px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.6 'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,input{font:inherit;color:inherit}button{cursor:pointer}h1,h2,h3,h4,p,figure{margin:0}
+h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.025em;line-height:1.06}
+:focus-visible{outline:2px solid var(--gold-d);outline-offset:3px;border-radius:6px}
+.on-dark :focus-visible,.hero :focus-visible,.nav :focus-visible,footer :focus-visible{outline-color:var(--gold-l)}
+.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+.kicker{font:700 12px/1 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--gold-d)}
+.on-dark .kicker,.hero .kicker{color:var(--gold-l)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:14px 22px;font-weight:700;font-size:15px;transition:transform .2s,background .2s,box-shadow .2s}
+.btn-gold{background:var(--gold);color:var(--em2)}.btn-gold:hover{background:var(--gold-l);transform:translateY(-1px);box-shadow:0 10px 24px -8px rgba(224,169,59,.6)}
+.btn-em{background:var(--em);color:var(--cream)}.btn-em:hover{background:var(--em3)}
+.btn-line{background:transparent;border:1.5px solid currentColor}.btn-line:hover{background:rgba(0,0,0,.04)}
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;color:var(--cream);transition:background .3s,box-shadow .3s}
+.nav.scrolled{background:rgba(10,46,36,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,.08)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font:600 23px 'Fraunces';letter-spacing:-.03em}
+.logo i{width:28px;height:28px;border-radius:50%;background:var(--gold);position:relative}
+.logo i:after{content:"";position:absolute;inset:7px 7px 7px 11px;border:2.5px solid var(--em2);border-left:0;border-radius:0 9px 9px 0}
+.links{display:flex;gap:34px;font-size:14.5px;font-weight:600;opacity:.92}.links a:hover{color:var(--gold-l)}
+.nav-cta{display:flex;gap:10px;align-items:center}.nav-cta .btn{padding:10px 18px;font-size:14px}
+.signin{font-weight:600;font-size:14.5px;padding:10px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:transparent;place-items:center}
+.burger span,.burger span:before,.burger span:after{display:block;width:18px;height:2px;background:var(--cream);position:relative;transition:.25s}
+.burger span:before,.burger span:after{content:"";position:absolute;left:0}.burger span:before{top:-6px}.burger span:after{top:6px}
+.burger[aria-expanded=true] span{background:transparent}.burger[aria-expanded=true] span:before{top:0;transform:rotate(45deg)}.burger[aria-expanded=true] span:after{top:0;transform:rotate(-45deg)}
+.mnav{display:none;padding:6px 20px 24px;background:var(--em2)}.mnav.open{display:grid}
+.mnav a{padding:13px 0;font:500 22px 'Fraunces';border-bottom:1px solid rgba(255,255,255,.1)}.mnav .btn{margin-top:16px;font:700 15px 'Plus Jakarta Sans';border:0}
+/* hero */
+.hero{background:radial-gradient(700px 500px at 85% 20%,rgba(224,169,59,.16),transparent 65%),radial-gradient(800px 600px at 0 100%,rgba(47,122,98,.45),transparent 60%),var(--em);color:var(--cream);padding:150px 0 110px;overflow:hidden;position:relative}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(242,198,109,.5),transparent)}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(46px,6.6vw,88px);margin:22px 0 24px}
+.hero h1 em{font-style:italic;color:var(--gold-l);font-weight:400}
+.lead{font-size:clamp(17px,1.5vw,19px);color:#cfdcd4;max-width:540px}
+.signup{display:flex;gap:8px;max-width:480px;margin:34px 0 12px;padding:6px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18)}
+.signup input{flex:1;min-width:0;background:transparent;border:0;padding:10px 14px;font-size:15px;color:var(--cream)}.signup input::placeholder{color:#9fb5aa}.signup input:focus{outline:none}
+.signup:focus-within{border-color:var(--gold-l)}.signup.err{border-color:#ff8a80}
+.note{font-size:13.5px;color:#a9bdb3}.note.errtxt{color:#ffb4ab}
+.proof{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px;font-size:14px;color:#cfdcd4}.proof b{color:var(--gold-l);font-weight:700}
+/* invoice mockup */
+.stage{position:relative;padding:20px 0 30px}
+.inv{position:relative;background:var(--paper);color:var(--ink);border-radius:22px;padding:28px;box-shadow:0 50px 100px -30px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.4) inset;transform:rotate(-1.5deg)}
+.inv-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:22px}
+.inv-h h3{font-size:26px}.inv-h small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.status{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;padding:7px 12px;border-radius:99px;white-space:nowrap;transition:background .4s,color .4s}
+.status:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.status[data-s=pending]{background:#fbefd6;color:var(--warn)}.status[data-s=processing]{background:#e4eef8;color:#2b62a3}.status[data-s=paid]{background:#dcf1e6;color:var(--ok)}
+.parties{display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px;padding:16px 0;border-block:1px dashed var(--line);margin-bottom:14px}
+.parties span{display:block;color:var(--muted);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.lines{width:100%;border-collapse:collapse;font-size:13.5px}.lines td{padding:8px 0}.lines td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.lines tr+tr td{border-top:1px solid #efe7d6}.lines .q{color:var(--muted)}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:14px;border-top:2px solid var(--ink)}
+.total b{font:600 30px 'Fraunces';letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.track{height:5px;border-radius:9px;background:#efe7d6;margin-top:18px;overflow:hidden}.track i{display:block;height:100%;width:8%;background:var(--warn);border-radius:9px;transition:width 1.2s cubic-bezier(.3,.8,.2,1),background .4s}
+.stamp{position:absolute;left:38%;top:47%;border:3px solid var(--ok);color:var(--ok);font:600 24px 'Fraunces';letter-spacing:.12em;padding:4px 14px;border-radius:10px;transform:rotate(-14deg) scale(1.6);opacity:0;transition:opacity .3s,transform .4s cubic-bezier(.2,1.4,.4,1);pointer-events:none;background:rgba(220,241,230,.6)}
+.stamp.on{opacity:.92;transform:rotate(-14deg) scale(1)}
+.toastcard{position:absolute;left:-34px;bottom:-34px;background:var(--em2);color:var(--cream);border:1px solid rgba(242,198,109,.35);border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);font-size:13.5px;transform:translateY(16px);opacity:0;transition:.5s cubic-bezier(.2,.9,.2,1.1);max-width:300px}
+.toastcard.on{transform:none;opacity:1}.toastcard b{display:block;font-size:14.5px}.toastcard small{color:#a9bdb3}
+.coin{flex:none;width:36px;height:36px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:var(--em2);font-weight:800}
+.fx{position:absolute;right:-18px;top:-14px;white-space:nowrap;z-index:2;background:var(--paper);color:var(--ink);border-radius:14px;padding:10px 14px;font-size:12.5px;box-shadow:0 20px 40px -16px rgba(0,0,0,.5);transform:rotate(3deg)}
+.fx b{font-variant-numeric:tabular-nums}.fx span{color:var(--ok);font-weight:700}
+/* logos */
+.logos{padding:44px 0;border-bottom:1px solid var(--line)}
+.logos p{text-align:center;color:var(--muted);font-size:14px;margin-bottom:22px}
+.logo-row{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 52px;color:#5f6b5f;font:500 22px 'Fraunces';letter-spacing:-.02em}
+.logo-row span:nth-child(even){font:700 17px 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase}
+section{padding:110px 0}.sec-h{max-width:680px;margin-bottom:54px}.sec-h.c{text-align:center;margin-inline:auto}
+.sec-h h2{font-size:clamp(36px,4.8vw,60px);margin:16px 0}.sec-h h2 em{font-style:italic;color:var(--em-l)}.sec-h p{color:var(--muted);font-size:18px}
+/* tabs */
+.tablist{display:flex;gap:6px;padding:6px;border-radius:16px;background:var(--cream2);width:max-content;max-width:100%;margin:0 auto 34px;overflow-x:auto}
+.tab{border:0;background:transparent;padding:11px 20px;border-radius:11px;font-weight:700;font-size:14.5px;color:var(--muted);white-space:nowrap}
+.tab[aria-selected=true]{background:var(--paper);color:var(--em);box-shadow:0 2px 10px rgba(20,35,29,.1)}
+.panel{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:48px}
+.panel[hidden]{display:none}.panel.show{animation:fade .45s}@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+.panel h3{font-size:clamp(28px,3vw,38px);margin-bottom:14px}.panel p{color:var(--muted)}
+.ticks{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px;font-size:15px}.ticks li{display:flex;gap:10px}.ticks li:before{content:"✓";color:var(--ok);font-weight:800}
+.mock{background:var(--em);border-radius:20px;padding:22px;color:var(--cream);min-width:0}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.06);margin-bottom:8px;font-size:14px}
+.row small{display:block;color:#a9bdb3;font-size:12px}.row b{font-variant-numeric:tabular-nums}
+.pill{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:99px;background:rgba(242,198,109,.18);color:var(--gold-l)}.pill.ok{background:rgba(111,214,160,.16);color:#8fe3b5}
+.wallets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.wallet{border-radius:14px;padding:14px;background:rgba(255,255,255,.06)}
+.wallet small{color:#a9bdb3;font-size:12px}.wallet b{display:block;font:600 22px 'Fraunces';margin-top:4px}
+.conv{margin-top:14px;padding:16px;border-radius:14px;background:var(--paper);color:var(--ink);font-size:14px}
+.conv label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.conv-row{display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.conv input{width:120px;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;font-weight:700}
+.conv output{font:600 20px 'Fraunces';color:var(--em)}.conv small{display:block;color:var(--muted);margin-top:6px;font-size:12.5px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{padding:34px 30px;border-radius:var(--r);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+.step .n{font:italic 400 56px/1 'Fraunces';color:var(--gold-l);display:block;margin-bottom:18px}
+.step h3{font-size:24px;margin-bottom:10px}.step p{color:#c4d3cb;font-size:15.5px}
+.on-dark{background:var(--em);color:var(--cream)}.on-dark .sec-h p{color:#c4d3cb}.on-dark .sec-h h2 em{color:var(--gold-l)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:70px;border-top:1px solid rgba(255,255,255,.15);padding-top:44px}
+.metric strong{display:block;font:500 clamp(42px,4.6vw,62px)/1 'Fraunces';letter-spacing:-.03em;color:var(--gold-l);font-variant-numeric:tabular-nums}
+.metric p{color:#c4d3cb;font-size:14.5px;margin-top:10px;max-width:220px}
+/* quotes */
+.quotes{display:grid;grid-template-columns:1.3fr 1fr;gap:22px}
+.quote{padding:36px;border-radius:24px;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;gap:26px}
+.quote blockquote{margin:0;font:400 21px/1.45 'Fraunces';letter-spacing:-.01em}.quote.big blockquote{font-size:clamp(24px,2.4vw,31px)}
+.quote.big{grid-row:span 2;background:var(--cream2)}
+.who{display:flex;gap:12px;align-items:center;margin-top:auto;font-size:14.5px}.who small{display:block;color:var(--muted);font-size:13px}
+.av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font:600 15px 'Fraunces';color:var(--cream);flex:none}
+/* pricing */
+.toggle{display:inline-flex;align-items:center;gap:12px;margin-top:26px;font-weight:600;color:var(--muted)}
+.switch{width:54px;height:30px;border-radius:99px;background:var(--em);border:0;position:relative;padding:0}
+.switch:after{content:"";position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:var(--gold);transition:transform .25s}
+.switch[aria-checked=true]:after{transform:translateX(24px)}.toggle .act{color:var(--ink)}
+.save{font-size:12.5px;font-weight:700;color:var(--gold-d);background:#f8e6bf;padding:4px 9px;border-radius:7px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.plan{padding:34px;border-radius:26px;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column}
+.plan.pop{background:var(--em);color:var(--cream);border-color:var(--em);position:relative;box-shadow:0 30px 60px -30px rgba(15,61,48,.7)}
+.plan.pop:before{content:"Best for agencies";position:absolute;top:-13px;left:34px;background:var(--gold);color:var(--em2);font-size:12px;font-weight:800;padding:5px 12px;border-radius:99px}
+.plan h3{font-size:26px}.plan>p{color:var(--muted);font-size:14.5px;margin:8px 0 24px}.plan.pop>p,.plan.pop .billed{color:#c4d3cb}
+.price{font:500 52px/1 'Fraunces';letter-spacing:-.03em}.price small{font:500 15px 'Plus Jakarta Sans';color:var(--muted);letter-spacing:0}.pop .price small{color:#c4d3cb}
+.billed{font-size:13px;color:var(--muted);margin:10px 0 26px}
+.plan ul{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:11px;font-size:14.5px}.plan li{display:flex;gap:10px}
+.plan li:before{content:"✓";color:var(--ok);font-weight:800}.pop li:before{color:var(--gold-l)}
+.plan .btn{margin-top:auto}
+/* faq */
+.faq{max-width:820px;margin:auto}.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;background:none;border:0;text-align:left;padding:24px 0;font:500 21px 'Fraunces';letter-spacing:-.01em}
+.qa button i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--em);position:relative}
+.qa button i:before,.qa button i:after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.8px;background:var(--cream);transform:translate(-50%,-50%);transition:transform .3s}
+.qa button i:after{transform:translate(-50%,-50%) rotate(90deg)}.qa button[aria-expanded=true] i:after{transform:translate(-50%,-50%) rotate(0)}
+.ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s}.ans>div{overflow:hidden}.ans p{color:var(--muted);padding-bottom:24px;max-width:680px}
+.qa.open .ans{grid-template-rows:1fr}
+/* cta */
+.cta{border-radius:32px;padding:84px 48px;text-align:center;background:radial-gradient(600px 300px at 50% 120%,rgba(224,169,59,.3),transparent 70%),var(--em);color:var(--cream)}
+.cta h2{font-size:clamp(38px,5.6vw,72px);margin:16px auto 18px;max-width:800px}.cta h2 em{font-style:italic;color:var(--gold-l);font-weight:400}
+.cta .lead{margin:auto}.cta .signup{margin:32px auto 12px}
+footer{background:var(--em2);color:#c4d3cb;padding:60px 0 36px;font-size:14px}
+.foot{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:32px}.foot .logo{color:var(--cream)}
+.foot h4{color:var(--cream);font-size:14px;margin:0 0 14px}.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}.foot a:hover{color:var(--gold-l)}
+.credit{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;color:#a9bdb3}.credit a{color:var(--gold-l)}
+.toast{position:fixed;left:50%;bottom:24px;z-index:80;transform:translate(-50%,calc(100% + 48px));visibility:hidden;background:var(--em2);color:var(--cream);border:1px solid var(--gold);font-weight:600;padding:14px 20px;border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.35);transition:transform .4s cubic-bezier(.2,.9,.2,1.2),visibility .4s;max-width:calc(100% - 32px);font-size:15px}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.js .reveal.in{opacity:1;transform:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:1000px){.links,.signin{display:none}.hero-grid,.panel{grid-template-columns:1fr}.hero-grid{gap:40px}.stage{max-width:520px;margin:auto;width:100%}.plans,.quotes{grid-template-columns:1fr}.quote.big{grid-row:auto}.metrics{grid-template-columns:repeat(2,1fr);gap:36px 20px}.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
+@media (max-width:720px){.burger{display:grid}.nav-cta .btn-gold{display:none}.hero{padding:118px 0 80px}.signup{flex-direction:column}.steps{grid-template-columns:1fr}section{padding:80px 0}.panel{padding:22px;gap:28px;border-radius:22px}.inv{padding:20px;transform:none}.inv-h h3{font-size:22px}.fx{right:-6px;top:-18px}.toastcard{left:8px;right:8px;bottom:-40px;max-width:none}.stage{padding-bottom:40px}.stamp{left:30%;font-size:20px}.wallets{grid-template-columns:1fr 1fr 1fr;gap:6px}.wallet{padding:10px}.wallet b{font-size:17px}.cta{padding:56px 20px;border-radius:24px}.quote{padding:26px}.tab{padding:10px 16px}.row{flex-wrap:wrap;row-gap:6px}.row>div{flex:1 1 100%}.row b{margin-right:auto}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.js .reveal{opacity:1;transform:none}}
+</style></head>
+<body>
+<a href="#main" class="sr">Skip to content</a>
+<header class="nav" id="nav"><div class="wrap">
+<a href="#" class="logo" aria-label="Payroute home"><i></i>Payroute</a>
+<nav class="links" aria-label="Primary"><a href="#product">Product</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+<div class="nav-cta"><a href="#cta" class="signin">Sign in</a><a href="#cta" class="btn btn-gold">Get started</a>
+<button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span></button></div>
+</div>
+<nav class="mnav" id="mnav" aria-label="Mobile"><a href="#product">Product</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#cta" class="btn btn-gold">Get started free</a></nav>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="h1"><div class="wrap hero-grid">
+<div>
+<span class="kicker">Invoicing &amp; global payments</span>
+<h1 id="h1">Send the invoice.<br><em>We'll chase the money.</em></h1>
+<p class="lead">Payroute gives agencies and freelancers branded invoices, 40+ currencies and local payouts in days. Clients pay by card or bank transfer. You get paid without the follow-up emails.</p>
+<form class="signup" data-signup novalidate><label for="e1" class="sr">Email address</label><input id="e1" type="email" placeholder="you@studio.com" autocomplete="email" required><button class="btn btn-gold" type="submit">Get started free</button></form>
+<p class="note" data-note>Free for your first 5 invoices every month. No card needed.</p>
+<div class="proof"><span><b>4.9/5</b> from 3,100 reviews</span><span><b>11 days</b> faster on average</span></div>
+</div>
+<div class="stage" aria-label="Animated invoice showing its status change from pending to paid" role="img">
+<div class="fx" aria-hidden="true">EUR → USD <b>1.0843</b> <span>▲ mid-market</span></div>
+<div class="inv" aria-hidden="true">
+<div class="inv-h"><div><h3>Invoice #0427</h3><small>Issued 3 Nov · Due 17 Nov</small></div><span class="status" id="st" data-s="pending">Pending</span></div>
+<div class="parties"><div><span>From</span>Oakridge Studio<br>Lisbon, PT</div><div><span>Billed to</span>Halden &amp; Wu GmbH<br>Berlin, DE</div></div>
+<table class="lines"><tr><td>Brand identity system<div class="q">Fixed fee</div></td><td>€5,200.00</td></tr><tr><td>Website design, 8 templates<div class="q">32 h × €85</div></td><td>€2,720.00</td></tr><tr><td>Motion guidelines<div class="q">Fixed fee</div></td><td>€530.00</td></tr></table>
+<div class="total"><span>Total due</span><b>€8,450.00</b></div>
+<div class="track"><i id="tr"></i></div>
+<div class="stamp" id="stamp">PAID</div>
+</div>
+<div class="toastcard" id="tc" aria-hidden="true"><span class="coin">€</span><div><b>€8,450.00 received</b><small>Paid out as $9,107.36 to Chase ••4417</small></div></div>
+</div>
+</div></section>
+
+<div class="logos"><div class="wrap"><p>Over 18,000 studios and independents get paid with Payroute</p>
+<div class="logo-row" aria-label="Customer logos"><span>Oakridge</span><span>Field&amp;Form</span><span>Marlow Bureau</span><span>Northlight</span><span>Atlas Kin</span><span>Pellucid</span></div></div></div>
+
+<section id="product" aria-labelledby="p-h"><div class="wrap">
+<div class="sec-h c reveal"><span class="kicker">Product</span><h2 id="p-h">Everything between <em>“sent”</em> and “paid.”</h2><p>Three tools that work together, so your money moves as fast as your work.</p></div>
+<div class="reveal">
+<div class="tablist" role="tablist" aria-label="Payroute features">
+<button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">Invoices</button>
+<button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Payments</button>
+<button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Wallet</button>
+</div>
+<div class="panel show" role="tabpanel" id="p1" aria-labelledby="t1">
+<div><h3>Invoices clients pay on the first read.</h3><p>Turn a proposal or timesheet into a branded invoice in under a minute. Payroute sends polite reminders on your schedule, so you never write “just following up” again.</p>
+<ul class="ticks"><li>Your logo, colors and payment terms</li><li>Automatic reminders at 3, 7 and 14 days</li><li>Deposits, milestones and retainers</li></ul></div>
+<div class="mock" aria-hidden="true">
+<div class="row"><div>#0427 · Halden &amp; Wu<small>Due 17 Nov</small></div><b>€8,450.00</b><span class="pill ok">Paid</span></div>
+<div class="row"><div>#0426 · Brightwater Co.<small>Reminder sent today</small></div><b>$4,800.00</b><span class="pill">Due in 2d</span></div>
+<div class="row"><div>#0425 · Kōya Ramen<small>Deposit 50%</small></div><b>¥310,000</b><span class="pill ok">Paid</span></div>
+<div class="row" style="margin:0"><div>#0424 · Sundial Health<small>Retainer, monthly</small></div><b>£2,250.00</b><span class="pill">Scheduled</span></div>
+</div></div>
+<div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+<div><h3>Let clients pay the way they already do.</h3><p>Cards, Apple Pay, SEPA, ACH, BACS and local bank transfers in 40+ currencies. You see the real exchange rate and fee before you send, not after.</p>
+<ul class="ticks"><li>Mid-market FX with one flat 0.6% fee</li><li>Local bank details in EUR, GBP, USD and AUD</li><li>No fees charged to your client</li></ul></div>
+<div class="mock"><div class="conv">
+<label for="amt">Your client pays (EUR)</label>
+<div class="conv-row"><input id="amt" type="number" min="0" step="50" value="8450" inputmode="decimal"><span>→ you receive</span><output id="out" for="amt">$9,107.36</output></div>
+<small id="fee">Rate 1.0843 · Payroute fee €50.70 · Arrives in 1–2 business days</small></div>
+<div class="row" style="margin:12px 0 0"><div>Typical bank wire<small>Rate 1.0510 + €35 fee</small></div><b id="bank">$8,844.17</b></div>
+</div></div>
+<div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+<div><h3>Hold, convert and pay out on your terms.</h3><p>Keep balances in the currencies you earn, convert when the rate suits you, and pay contractors abroad from the same place.</p>
+<ul class="ticks"><li>Balances in 12 currencies</li><li>Pay contractors in 70 countries</li><li>Exports for Xero, QuickBooks and FreeAgent</li></ul></div>
+<div class="mock" aria-hidden="true"><div class="wallets"><div class="wallet"><small>EUR</small><b>€24,180</b></div><div class="wallet"><small>USD</small><b>$11,402</b></div><div class="wallet"><small>GBP</small><b>£3,960</b></div></div>
+<div class="row" style="margin:12px 0 8px"><div>Payout to Ana Ribeiro<small>Illustration · to BRL account</small></div><b>R$6,200</b><span class="pill ok">Sent</span></div>
+<div class="row" style="margin:0"><div>Convert €10,000 → $<small>When rate hits 1.0900</small></div><b>Auto</b><span class="pill">Watching</span></div>
+</div></div>
+</div>
+</div></section>
+
+<section id="how" class="on-dark" aria-labelledby="h-h"><div class="wrap">
+<div class="sec-h reveal"><span class="kicker">How it works</span><h2 id="h-h">Paid in three steps. <em>No chasing.</em></h2></div>
+<div class="steps">
+<div class="step reveal"><span class="n">i.</span><h3>Create the invoice</h3><p>Start from a template, a timesheet or last month's invoice. Pick the client's currency.</p></div>
+<div class="step reveal"><span class="n">ii.</span><h3>Client pays their way</h3><p>They get a clean payment page with card, wallet and local bank options. No account needed.</p></div>
+<div class="step reveal"><span class="n">iii.</span><h3>Money lands locally</h3><p>Funds arrive in your bank in your currency, usually within two business days.</p></div>
+</div>
+<div class="metrics reveal">
+<div class="metric"><strong data-count="18000" data-suf="+">0</strong><p>agencies and freelancers on Payroute</p></div>
+<div class="metric"><strong data-count="11" data-suf=" days">0</strong><p>faster payment than with emailed PDFs</p></div>
+<div class="metric"><strong data-count="40" data-suf="+">0</strong><p>currencies accepted from clients</p></div>
+<div class="metric"><strong data-pre="$" data-count="1200" data-suf="M">0</strong><p>paid out to independents last year</p></div>
+</div>
+</div></section>
+
+<section aria-labelledby="q-h"><div class="wrap">
+<div class="sec-h reveal"><span class="kicker">Customers</span><h2 id="q-h">Studios that stopped <em>chasing</em>.</h2></div>
+<div class="quotes">
+<figure class="quote big reveal"><blockquote>“We bill clients in six currencies. Before Payroute, a third of our week went on reconciling wires. Now invoices get paid, the books match, and nobody on the team has to ask twice.”</blockquote><figcaption class="who"><span class="av" style="background:var(--em)">IM</span><div><b>Inês Marques</b><small>Founder, Oakridge Studio · Lisbon</small></div></figcaption></figure>
+<figure class="quote reveal"><blockquote>“My US clients pay by ACH, I get pounds two days later. It's the first tool that made freelancing abroad feel normal.”</blockquote><figcaption class="who"><span class="av" style="background:var(--gold-d)">TB</span><div><b>Tom Bexley</b><small>Freelance product designer</small></div></figcaption></figure>
+<figure class="quote reveal"><blockquote>“Automatic reminders cut our overdue invoices from 23 to 4 in one quarter.”</blockquote><figcaption class="who"><span class="av" style="background:var(--em-l)">AK</span><div><b>Amara Kwesi</b><small>Ops Lead, Field&amp;Form</small></div></figcaption></figure>
+</div>
+</div></section>
+
+<section id="pricing" style="background:var(--cream2)" aria-labelledby="pr-h"><div class="wrap">
+<div class="sec-h c reveal"><span class="kicker">Pricing</span><h2 id="pr-h">Fair pricing. <em>No surprises.</em></h2><p>One flat 0.6% FX fee on every plan. Domestic payments are free.</p>
+<div class="toggle"><span id="lm" class="act">Monthly</span><button class="switch" id="bill" role="switch" aria-checked="false" aria-label="Bill yearly"></button><span id="ly">Yearly</span><span class="save">2 months free</span></div></div>
+<div class="plans">
+<div class="plan reveal"><h3>Solo</h3><p>For freelancers starting to work with clients abroad.</p><div class="price" data-m="0" data-y="0">$0<small> / month</small></div><div class="billed">Free forever</div>
+<ul><li>5 invoices per month</li><li>Card and bank payments</li><li>EUR, GBP and USD accounts</li><li>Automatic reminders</li></ul><a href="#cta" class="btn btn-line">Start free</a></div>
+<div class="plan pop reveal"><h3>Studio</h3><p>For small agencies billing several clients each month.</p><div class="price" data-m="29" data-y="24">$29<small> / month</small></div><div class="billed" data-bm="Billed monthly · up to 5 seats" data-by="$290 billed yearly · up to 5 seats">Billed monthly · up to 5 seats</div>
+<ul><li>Unlimited invoices</li><li>Balances in 12 currencies</li><li>Retainers and milestones</li><li>Xero and QuickBooks sync</li><li>Pay contractors abroad</li></ul><a href="#cta" class="btn btn-gold">Try Studio free for 30 days</a></div>
+<div class="plan reveal"><h3>Agency</h3><p>For teams with approvals, entities and heavier volume.</p><div class="price" data-m="89" data-y="74">$89<small> / month</small></div><div class="billed" data-bm="Billed monthly · unlimited seats" data-by="$890 billed yearly · unlimited seats">Billed monthly · unlimited seats</div>
+<ul><li>Everything in Studio</li><li>Multiple legal entities</li><li>Approval rules and roles</li><li>Lower FX fee above $50k/mo</li><li>Priority human support</li></ul><a href="#cta" class="btn btn-em">Talk to us</a></div>
+</div>
+</div></section>
+
+<section id="faq" aria-labelledby="f-h"><div class="wrap">
+<div class="sec-h c reveal"><span class="kicker">FAQ</span><h2 id="f-h">Good questions.</h2></div>
+<div class="faq reveal">
+<div class="qa"><button id="q1" aria-expanded="false" aria-controls="a1">Do my clients need a Payroute account?<i></i></button><div class="ans" id="a1" role="region" aria-labelledby="q1"><div><p>No. Clients open a secure payment link, choose card, wallet or bank transfer, and pay. They get a receipt by email.</p></div></div></div>
+<div class="qa"><button id="q2" aria-expanded="false" aria-controls="a2">How fast do I get paid?<i></i></button><div class="ans" id="a2" role="region" aria-labelledby="q2"><div><p>Card payments settle in 1–2 business days. Local bank transfers in EUR, GBP and USD usually arrive the same or next business day.</p></div></div></div>
+<div class="qa"><button id="q3" aria-expanded="false" aria-controls="a3">What does currency conversion cost?<i></i></button><div class="ans" id="a3" role="region" aria-labelledby="q3"><div><p>We use the mid-market rate and charge a flat 0.6%, shown before you send the invoice. There is no hidden markup in the rate.</p></div></div></div>
+<div class="qa"><button id="q4" aria-expanded="false" aria-controls="a4">Is my money safe?<i></i></button><div class="ans" id="a4" role="region" aria-labelledby="q4"><div><p>Client funds are held in safeguarded accounts at regulated partner banks, separate from our own operating funds.</p></div></div></div>
+<div class="qa"><button id="q5" aria-expanded="false" aria-controls="a5">Can I bring my existing invoices?<i></i></button><div class="ans" id="a5" role="region" aria-labelledby="q5"><div><p>Yes. Import clients and open invoices from a CSV, Xero, QuickBooks or FreshBooks in a few clicks.</p></div></div></div>
+</div>
+</div></section>
+
+<section id="cta" style="padding-top:0" aria-labelledby="c-h"><div class="wrap">
+<div class="cta reveal"><span class="kicker" style="color:var(--gold-l)">Get started</span><h2 id="c-h">Your next invoice could be <em>paid by Friday.</em></h2><p class="lead">Set up in ten minutes. Send your first five invoices free, every month.</p>
+<form class="signup" data-signup novalidate><label for="e2" class="sr">Email address</label><input id="e2" type="email" placeholder="you@studio.com" autocomplete="email" required><button class="btn btn-gold" type="submit">Create free account</button></form>
+<p class="note" data-note>No card needed. Cancel paid plans anytime.</p></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<div class="foot">
+<div><a href="#" class="logo"><i></i>Payroute</a><p style="margin-top:14px;max-width:300px">Invoicing and global payments for agencies and independents.</p></div>
+<div><h4>Product</h4><ul><li><a href="#product">Invoices</a></li><li><a href="#product">Payments</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
+<div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Security</a></li></ul></div>
+<div><h4>Help</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#">Guides</a></li><li><a href="#">Contact</a></li></ul></div>
+</div>
+<div class="credit"><span>&copy; 2026 Payroute</span><span>Designed &amp; developed by <a href="/">TMX Digital Solutions</a>. Think • Make • eXecute</span></div>
+</div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(()=>{const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const nav=$('#nav');const onS=()=>nav.classList.toggle('scrolled',scrollY>20);addEventListener('scroll',onS,{passive:true});onS();
+const bg=$('#burger'),mn=$('#mnav');const setM=o=>{mn.classList.toggle('open',o);bg.setAttribute('aria-expanded',o);bg.setAttribute('aria-label',o?'Close menu':'Open menu')};
+bg.addEventListener('click',()=>setM(!mn.classList.contains('open')));mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setM(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&mn.classList.contains('open')){setM(false);bg.focus()}});
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+const show=el=>{const t=+el.dataset.count,s=el.dataset.suf||'',p0=el.dataset.pre||'',out=v=>t>=1000&&s==='M'?p0+(v/1000).toFixed(1).replace('.0','')+'B':p0+fmt(v)+s;if(reduce){el.textContent=out(t);return}let st;const f=ts=>{st??=ts;const p=Math.min((ts-st)/1600,1);el.textContent=out(t*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)};
+if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('[data-count]').forEach(show);io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});$$('.reveal').forEach(el=>io.observe(el))}else $$('.reveal').forEach(el=>{el.classList.add('in');el.querySelectorAll('[data-count]').forEach(show)});
+/* invoice status cycle */
+const st=$('#st'),tr=$('#tr'),stamp=$('#stamp'),tc=$('#tc');
+const states=[['pending','Pending','8%','var(--warn)'],['processing','Processing','62%','#2b62a3'],['paid','Paid','100%','var(--ok)']];
+const setS=i=>{const[s,l,w,c]=states[i];st.dataset.s=s;st.textContent=l;tr.style.width=w;tr.style.background=c;stamp.classList.toggle('on',s==='paid');tc.classList.toggle('on',s==='paid')};
+if(reduce)setS(2);else{let i=0;setS(0);const loop=()=>{i=(i+1)%3;setS(i);setTimeout(loop,i===2?3600:1500)};setTimeout(loop,1300)}
+/* tabs */
+const tabs=$$('[role=tab]');const sel=t=>tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;const p=document.getElementById(x.getAttribute('aria-controls'));p.hidden=!on;p.classList.toggle('show',on)});
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>sel(t));t.addEventListener('keydown',e=>{const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!d)return;e.preventDefault();const n=tabs[(i+d+tabs.length)%tabs.length];sel(n);n.focus()})});
+/* fx calculator */
+const amt=$('#amt'),money=(v,c)=>c+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const calc=()=>{const a=Math.max(0,+amt.value||0),fee=a*.006;$('#out').textContent=money((a-fee)*1.0843,'$');$('#fee').textContent='Rate 1.0843 · Payroute fee '+money(fee,'€')+' · Arrives in 1–2 business days';$('#bank').textContent=money(Math.max(0,(a-35)*1.051),'$')};amt.addEventListener('input',calc);calc();
+/* pricing */
+const sw=$('#bill');sw.addEventListener('click',()=>{const y=sw.getAttribute('aria-checked')!=='true';sw.setAttribute('aria-checked',y);$('#lm').classList.toggle('act',!y);$('#ly').classList.toggle('act',y);
+$$('.price').forEach(p=>p.firstChild.textContent='$'+p.dataset[y?'y':'m']);$$('.billed[data-bm]').forEach(b=>b.textContent=y?b.dataset.by:b.dataset.bm)});
+/* faq */
+$$('.qa button').forEach(b=>b.addEventListener('click',()=>{const q=b.parentElement,o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o)}));
+/* signup */
+const toast=$('#toast');let tt;const pop=m=>{toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),3800)};
+$$('[data-signup]').forEach(f=>{const i=f.querySelector('input'),n=f.nextElementSibling,orig=n.textContent;
+i.addEventListener('input',()=>{f.classList.remove('err');n.classList.remove('errtxt');n.textContent=orig;i.removeAttribute('aria-invalid')});
+f.addEventListener('submit',e=>{e.preventDefault();const v=i.value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){f.classList.add('err');n.classList.add('errtxt');n.textContent=v?'Please check that email, e.g. name@studio.com.':'Add your email to create your account.';i.setAttribute('aria-invalid','true');i.focus();return}
+i.value='';pop('Welcome aboard. We sent a setup link to '+v+'.')})});
+})();
+</script>
+</body></html>
